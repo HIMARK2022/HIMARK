@@ -15,9 +15,7 @@ th {
     padding-right: 12px;
     text-align: center;
 }
-.table-bordered {
-    border: 0px ; 
-}
+
 td{
     text-align: center;
 }
@@ -34,4 +32,10 @@ th{
 }
 .textcom{
     display: none;
+}
+#modalT{
+	text-align:center;
+}
+#modalT th{
+	background:white;
 }
