@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의 정보 - 승인자</title>
-<link href="resources/css/myinfo.css" rel="stylesheet">
+<link href="/resources/css/myinfo.css" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -30,7 +31,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-4" style="text-align: center;padding: 2%;">
-                                    <img class="img-circle img-responsive" alt="" src="resources/img/undraw_profile.svg" width="70%">
+                                    <img class="img-circle img-responsive" alt="" src="/resources/img/undraw_profile.svg" width="70%">
                                     <div style="margin-top: 10%;">
                                         <a href="#" class="btn btn-outline-danger btn-icon-split" >
                                             <span class="icon text-white-50">
@@ -52,44 +53,44 @@
                                         <tr>
                                             <th class="col-lg-3  col-md-3">이름</th>
                                             <td>
-                                                김찬호
+                                                 ${member.userName}   
                                             </td>
                                         </tr>
                                        
                                         <tr>
                                             <th >직급</th>
                                             <td>
-                                                부장
+                                                ${member.pos}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th >직책</th>
                                             <td>
-                                                부서장
+                                                ${member.duty}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>부서(상업부/부서/팀)</th>
                                             <td>
-                                                비트학원/마크애니
+                                                 ${member.dept}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>생년월일</th>
                                             <td >
-                                              1995년 9월 13일
+                                               ${member.birth}
                                             </td>
                                           </tr>
                                           <tr>
                                             <th >성별</th>
                                             <td >
-                                              남
+                                              ${member.sex}
                                             </td>
                                           </tr>
                                           <tr>
                                             <th >휴대폰 번호</th>
                                             <td >
-                                              010-4401-9611
+                                             ${member.phoneNo}
                                             </td>
                                           </tr>
                                     </table>
@@ -100,7 +101,7 @@
                                         <tr>
                                             <th class="col-lg-3  col-md-3">아이디</th>
                                             <td>
-                                                chanho470
+                                               ${member.userId}
                                             </td>
                                         </tr>
                                        
@@ -110,7 +111,7 @@
                                                 <div class="myPwd">
                                                     <label>현재 비밀번호</label>
                                                     <div class="form-group pass_show"> 
-                                                        <input type="password" value="12345678" class="form-control" placeholder="Current Password"> 
+                                                        <input type="password" value='<c:out value="${member.userPwd}"/>' class="form-control" placeholder="Current Password"> 
                                                     </div> 
                                                     <label>새로운 비밀번호</label>
                                                     <div class="form-group pass_show"> 
@@ -151,6 +152,6 @@
             </div>
             <!-- End of Main Content -->
         <%@include file="../sidebar/footer.jsp"%>
-        <script src="resources/js/member.js"></script>
+        <script src="/resources/js/member.js"></script>
 </body>
 </html>
