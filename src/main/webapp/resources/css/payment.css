@@ -1,0 +1,212 @@
+@charset "UTF-8";
+/* 테이블 */
+.table-responsive{
+    overflow-x: hidden;
+}
+#No, #classification, #requestdate, #enddate, #state, #refuse{
+    width: 10% !important;
+}
+#title{
+    width: 60% !important;
+}
+
+table{
+    table-layout: fixed;
+}
+th, td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th{
+	 background: #f8f9fc;
+}
+#strong{
+    color: rgb(80, 80, 80);
+}
+
+textarea {
+    resize: none;
+}
+
+/* 요청 */
+ol,
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.searchDate {
+    overflow: hidden;
+    margin-bottom: 10px;
+    *zoom: 1;
+}
+
+.searchDate:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.searchDate li {
+    position: relative;
+    float: left;
+    margin: 0 7px 0 0;
+}
+
+.searchDate li .chkbox {
+    display: block;
+    text-align: center;
+}
+
+.searchDate li .chkbox input {
+    position: absolute;
+    z-index: -1;
+}
+
+.searchDate li .chkbox label {
+    display: block;
+    width: 70px;
+    height: 25px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 26px;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--info);
+    border-radius: 0.5rem;
+}
+
+.searchDate li .chkbox label:hover {
+    color: #fff;
+    background-color: #2c9faf;
+    border-color: #2a96a5;
+}
+
+.searchDate li .chkbox.on label {
+    background: #ec6a6a;
+}
+
+/* 필터 */
+#filter label input{
+    margin: 0 15px;
+}
+
+#dataTable button{
+    border: none;
+    background-color: white;
+}
+
+/* 승인자 리스트 */
+.select-box {
+        float: left;
+        position: relative;
+        display: block;
+        color: rgb(94, 94, 94);
+        z-index: 1;
+    }
+    @media (min-width: 768px) {
+        .select-box {
+            width: 70%;
+        }
+    }
+    @media (min-width: 992px) {
+        .select-box {
+            width: 50%;
+        }
+    }
+    @media (min-width: 1200px) {
+        .select-box {
+            width: 30%;
+        }
+    }
+    .select-box__current {
+        position: relative;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        outline: none;
+    }
+    .select-box__current:focus + .select-box__list {
+        opacity: 1;
+        -webkit-animation-name: none;
+                animation-name: none;
+    }
+    .select-box__current:focus + .select-box__list .select-box__option {
+        cursor: pointer;
+    }
+    .select-box__current:focus .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+    }
+    .select-box__icon {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 20px;
+        opacity: 0.3;
+        transition: 0.2s ease;
+    }
+    .select-box__value {
+        display: flex;
+    }
+    .select-box__input {
+        display: none;
+    }
+    .select-box__input:checked + .select-box__input-text {
+        display: block;
+    }
+    .select-box__input-text {
+        display: none;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        background-color: #fff;
+    }
+    .select-box__list {
+        background-color: white;
+        position: absolute;
+        width: 100%;
+        padding: 0;
+        list-style: none;
+        opacity: 0;
+        -webkit-animation-name: HideList;
+                animation-name: HideList;
+        -webkit-animation-duration: 0.5s;
+                animation-duration: 0.5s;
+        -webkit-animation-delay: 0.5s;
+                animation-delay: 0.5s;
+        -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+        -webkit-animation-timing-function: step-start;
+                animation-timing-function: step-start;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+    .select-box__option {
+        display: block;
+        padding: 15px;
+        background-color: white;
+    }
+    .select-box__option:hover, .select-box__option:focus {
+        color: rgb(94, 94, 94);
+        background-color: rgb(210, 197, 165);
+    }
+
+    @-webkit-keyframes HideList {
+        from {
+            transform: scaleY(1);
+        }
+        to {
+            transform: scaleY(0);
+        }
+    }
+
+    @keyframes HideList {
+        from {
+            transform: scaleY(1);
+        }
+        to {
+            transform: scaleY(0);
+        }
+    }

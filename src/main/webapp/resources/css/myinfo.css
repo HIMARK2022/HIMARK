@@ -1,0 +1,41 @@
+@charset "UTF-8";
+th{
+    background: #f8f9fc;
+    text-align: center !important;
+}
+
+.myPwd {
+    text-align: left;
+  }
+.pass_show{position: relative} 
+.pass_show .ptxt { 
+    position: absolute; 
+    top: 50%; 
+    right: 10px; 
+    z-index: 1; 
+    color: #f36c01; 
+    margin-top: -10px; 
+    cursor: pointer; 
+    transition: .3s ease all; 
+} 
+
+.pass_show .ptxt:hover{color: #333333;} 
+#table th{
+    vertical-align: middle;
+}
+
+#table{
+    height: 95%;
+}
+#table td{
+    vertical-align: middle;
+}
+#table1 th{
+    vertical-align: middle;
+}
+#pwd_btn{
+    float: right;
+}
+#tohomebtn{
+    text-align: center;
+}

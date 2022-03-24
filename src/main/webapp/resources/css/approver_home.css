@@ -1,0 +1,40 @@
+@charset "UTF-8";
+#profile {
+    padding: 50px;
+    vertical-align: top;
+    word-break: keep-all;
+    width: 450px;
+}
+
+.pic {
+    float: left;
+    margin-right: 20px;
+}
+
+.profile {
+    font-size: xx-large;
+}
+
+#table {
+    /* overflow: scroll; */
+    height: 320px;
+}
+
+#table_content {
+    margin-top: -1rem;
+    height: 15rem;
+    overflow: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+#table_content::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera*/
+}
+
+#table td {
+    width: 50%;
+}
