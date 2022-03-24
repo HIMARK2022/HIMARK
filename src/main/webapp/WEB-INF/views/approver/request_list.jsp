@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,37 +48,25 @@
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead>
-                                                    <tr>
-                                                        <th id="No">No</th>
-                                                        <th id="classification">분류</th>
-                                                        <th id="title">제목</th>
-                                                        <th id="requestdate">요청일</th>
-                                                        <th id="state">승인일</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>휴가</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">휴가 요청</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>비용</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">아이폰 사줘</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/11</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>긴글aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">긴글aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/12</td>
-                                                    </tr>
-                                                </tbody>
+                                                     <tr>
+                                                     <th id="No" width="5%">No</th>
+													<th id="classification" width="15%">분류</th>
+													<th id="title" width="30%">제목</th>
+													<th id="requestdate" width="15%">요청일</th>
+													<th id="completedate" width="15%">승인일</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                 <c:forEach var="list" items="${cpayment}">
+                                                <tr>
+                                                   	<td>${list.requestNo}</td>
+													<td>${list.category}</td>
+													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
+													<td><fmt:formatDate value="${list.cdate}" pattern="yyyy/MM/dd" /></td>
+                                                </tr>
+                                                </c:forEach>
+                                                   </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -89,43 +80,25 @@
                                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th id="No">No</th>
-                                                        <th id="classification">분류</th>
-                                                        <th id="title">제목</th>
-                                                        <th id="requestdate">요청일</th>
-                                                        <th id="refuse">반려일</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>휴가</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">휴가 요청</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>비용</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">아이폰 사줘</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/11</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>긴글aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-                                                        <td><a class="collapse-item" href="상세보기.html">긴글aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></td>
-                                                        <td>2022/03/10</td>
-                                                        <td>2022/03/10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
+                                                  
+                                                  <th id="No" width="5%">No</th>
+												<th id="classification" width="15%">분류</th>
+												<th id="title" width="30%">제목</th>
+												<th id="requestdate" width="15%">요청일</th>
+												<th id="finishdate" width="15%">반려일</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach var="list" items="${bpayment}">
+                                                <tr>
+                                                   	<td>${list.requestNo}</td>
+													<td>${list.category}</td>
+													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
+													<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+                                                </tr>
+                                                </c:forEach>
+                                                    </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -141,6 +114,6 @@
             </div>
             <!-- End of Main Content -->
         <%@include file="../sidebar/footer.jsp"%>
-        <script src="resources/js/request.js"></script>
+        <script src="/resources/js/request.js"></script>
 </body>
 </html>
