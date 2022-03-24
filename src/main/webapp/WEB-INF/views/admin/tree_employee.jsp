@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <link href="/resources/css/calendar.css" rel="stylesheet">
 		<div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">직원정보/임시승인자 편집</h1>
+                        <h1 class="h3 mb-0 text-gray-800">조직도/직원정보 수정</h1>
                         
                     </div>
                     <p class="mb-4"><b>사내 부서 및 부서원 정보를 조회 및 수정, 임시승인자를 지정할 수 있는 페이지입니다.</b></p>
@@ -31,153 +32,60 @@
                                 <!-- Card Body 부서트리-->
                                 <div class="card-body">
                                     <div>
-                                        <form>
+                                        <form action="/admin/tree_employee" method="post" id="SearchFrom">
                                             <div class="input-group">
                                                 <input type="text" class="form-control bg-light border-0 "
                                                     placeholder="검색하시오" aria-label="Search"
-                                                    aria-describedby="basic-addon2">
+                                                    aria-describedby="basic-addon2" name="username" autocomplete="off">
                                             </div>
                                         </form>
                                     </div>
                                     <div id="search_result" >
-                                        <br>
-                                        <span class="personal">비트학원/마크애니/김찬호</span><br><br>
-                                        <span>비트학원/비트컴퓨터/김찬호</span><br><br>
-                                        <span>비트학원/비트컴퓨터/김찬호</span><br><br>
-                                        <span>비트학원/드림시큐리티/김찬호</span><br><br>
+                                    <br>
+	                                    <c:forEach var="userinfo" items="${userinfo}">
+	                                      
+	                                        <span class="personal" id="searchUser">${userinfo.pos_name}/${userinfo.user_id}/${userinfo.user_name}</span><br><br>
+	                                    </c:forEach>
+	                                    
                                     </div>
                                     <div class="container" id="tree_people">
                                         <div class="row">
                                             <div >
-                                                <ul id="tree1">
-                                                    <li class="pointer"> <i class="fas fa-fw fa-cog"></i>사업부1 <a href="#">김찬호 상무</a>
+                                            <!-- 상업부 영역 -->
+                                            <c:forEach var="head" items="${head}">
+                                                <ul class="tree">
+                                                    <li class="pointer"><i class="fa-solid fa-folder-open"></i>${head.head }
                                                         <ul>
-                                                            <li><i class="fas fa-fw fa-bell"></i><a href="#">부서1</a> <a href="#">김찬호 부장</a>
-                                                                <ul>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1 김찬호 과장</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1 김찬호1 과장</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1 김찬호2 과장</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    
-                                                                </ul>
-                                                            </li>
-                                                            <li><i class="fas fa-fw fa-bell"></i><a href="#">부서2</a>
-                                                                <ul>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    
-                                                                </ul>
-                                                            </li>
+                                                        <!-- 부서 영역 -->
+                                                        <c:forEach var="depart" items="${depart}">
+	                                                        <c:if test="${depart.head eq head.head}">
+	                                                            <li><i class="fa-solid fa-folder"></i></i><a href="#">${depart.depart }</a> 
+	                                                                <ul>
+	                                                                <!-- 팀 영역 -->
+	                                                                <c:forEach var="part" items="${part}">
+		                                                        		<c:if test="${part.depart eq depart.depart}">
+		                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">${part.team}</a>
+		                                                                        <ul>
+		                                                                        <c:forEach var="team" items="${team}">
+			                                                        				<c:if test="${team.team eq part.team}">
+			                                                                            <li class="personal">${team.name}/${team.user_id}</li>
+			                                                                        </c:if>
+		                                                         				</c:forEach>
+		                                                                        </ul>
+		                                                                    </li>
+		                                                                </c:if>
+	                                                         		</c:forEach>
+	                                                                 <!-- 팀 영역 -->   
+	                                                                </ul>
+	                                                            </li>
+	                                                         </c:if>
+                                                         </c:forEach>
+                                                        <!-- 부서 영역 -->
                                                         </ul>
+                                                        
                                                     </li>
-                                                   
-                                        
                                                 </ul>
-                                                <ul id="tree2">
-                                                    <li class="pointer"> <i class="fas fa-fw fa-cog"></i>사업부2
-                                                        <ul>
-                                                            <li><i class="fas fa-fw fa-bell"></i><a href="#">부서1</a>
-                                                                <ul>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀1</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    
-                                                                </ul>
-                                                            </li>
-                                                            <li><i class="fas fa-fw fa-bell"></i><a href="#">부서2</a>
-                                                                <ul>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li><i class="fas fa-fw fa-file"></i><a href="#">팀2</a>
-                                                                        <ul>
-                                                                            <li class="personal">고현욱</li>
-                                                                            <li class="personal">김수진</li>
-                                                                            <li class="personal">김찬호</li>
-                                                                            <li class="personal">최수현</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                   
-                                        
-                                                </ul>
+                                            </c:forEach>
                                             </div>
                                             
                                         </div>
@@ -198,94 +106,89 @@
                                 <div class="card-body">
                                    
                                     <div id="som">
-                                        <div>
-                                            <form>
-                                                <figure>
-                                                    <img class="img-circle img-responsive " alt="" src="/resources/img/undraw_profile.svg" id="perimg">
-                                                </figure>
-                                               
-                                            </form>
                                         
-                                        </div>
                                         <br>
                                         <table class="table table-bordered " id="dataTable" cellspacing="0">
                                             <tr>
-                                                <th class="col-lg-3">이름</th>
+                                                <th class="col-lg-3 col-md-3">이름</th>
                                                 <td>
-                                                    <span>김찬호</span>
+                                                    <span id="Tname"></span>
                                                 </td>
                                             </tr>
                                             
                                             <tr>
                                               <th >생년월일</th>
                                               <td >
-                                                <span>1995년 9월 13일</span>
+                                                <span id="Tbirth"></span>
                                               </td>
                                             </tr>
                                             <tr>
                                               <th >성별</th>
                                               <td >
-                                                <span>남자</span>
+                                                <span id="Tsex"></span>
                                                 
                                               </td>
                                             </tr>
                                             <tr>
                                               <th >휴대폰 번호</th>
                                               <td >
-                                                <span>010-4401-9611</span>
+                                                <span id="Tphone"></span>
                                               </td>
                                             </tr>
                                             <tr>
                                                 <th >이메일</th>
                                                 <td >
-                                                    <span>chanho470@naver.com</span>
+                                                    <span id="Temail"></span>
                                                 </td>
                                             </tr>
-                                        </table>
-                                        <table  class="table table-bordered" id="dataTable1" cellspacing="0" >
-                                            
                                             <tr>
                                                 <th class="col-lg-3">직급</th>
                                                 <td>
-                                                    <span>사원</span>
+                                                    <span id="Tpos"></span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th >직책</th>
                                                 <td>
-                                                    <span></span>
+                                                    <span id="Tduty"></span>
                                                     
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>부서</th>
                                                 <td>
-                                                    <span>비트학원/마크애니</span>
+                                                    <span id="Tpart"></span>
                                                 </td>
                                             </tr>
                                         </table>
+                                       
                                         <table  class="table table-bordered" id="dataTable1" cellspacing="0" >
                                             <tr>
-                                                <th class="col-lg-3">아이디</th>
+                                                <th class="col-lg-3 col-md-3">임시 승인권한</th>
                                                 <td>
-                                                    <span>chanho470</span>
+                                                    <span id="TempA"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th >비밀번호</th>
+                                                <th >승인 기간</th>
                                                 <td >
-                                                    <span>*******</span>
+                                                    <span id="TempP"></span>
                                                 </td>
                                             </tr>
                                             
                                         </table>
+                                        <br>
                                         <div class="twobuttons" >
-                                            <a href="../직원관리/상세보기.html" class="btn btn-outline-warning btn-lg btn-icon-split">
+                                        <form action="/admin/modify_employee" method="get" name="modalform" id="modalform">
+                                        	<input type="hidden" value="" name="mod_id"/>
+                                        </form>	
+                                            <a href="#" class="btn btn-outline-warning btn-lg btn-icon-split" id="modbtn">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-plus"></i>
                                                 </span>
                                                 <span class="text">수정하기</span>
                                             </a>
+                                        
                                             <a class="content-detail btn btn-outline-primary btn-lg btn-icon-split">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-check"></i>
@@ -306,86 +209,87 @@
                     </div>
                     
                 </div>
+tree_employee_modal
 
-
-<!-- 모달 -->
-	<div class="modal-wrapper">
-        <div class="modal">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">임시승인자 지정</h4>
-                <button type="button" class="close content-detail" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <table class="tempU">
-                            <thead>
-                                <tr>
-                                    <th><label class="font-weight-bold">승인권한</label></th>
-                                    <th><label class="font-weight-bold">권한부서정보</label></th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><div class="form-group">
-                                        <select class="form-control col-md-8 selbox"  id="selectBox" name="selectBox" >
-                                            <option value="1" selected>선택하시오</option>
-                                            <option value="2">대표</option>
-                                            <option value="3">본부장</option>
-                                            <option value="4">부서장</option>
-                                            <option value="4">팀장</option>
-                                        </select>
-                                    
-                                    <td>
-                                        <div class="form-group">
-                                            <input class="form-control col-md-8" name="" value="" placeholder="사업부/부서">
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                    </table>
-                    
-                </div>
-                
-                <div class="form-group">
-                    <label class="font-weight-bold">권한 대상</label>
-                    <input class="form-control col-md-4" name="" value="" placeholder="김찬호" readonly>
-                </div>
-                <div class="form-group ">
-                    <label class="font-weight-bold">승인기간</label>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800 ">
-                        <div class="clearfix row">
-                            <!-- 시작일 -->
-                            <span class="input-date">
-                                <input type="text" name="start-date2" value="" class="datepicker inp form-control" id="start-date2"
-                                placeholder="시작일" readonly />
-                                <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
-                            </span>
-                            <span class="demi">~</span>
-                            <!-- 종료일 -->
-                            <span class="input-date">
-                                <input type="text" name="end-date2" value="" class="datepicker inp form-control" id="end-date2"
-                                    placeholder="종료일" readonly />
-                                <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
-                            </span>
-                        </div>
-                    </div> 
-                </div>
-                
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default content-detail" data-dismiss="modal" role="button">취소</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="positive" class="btn btn-default btn-hover-green" role="button">지정</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- 모달 --><form action="/admin/tree_employee_modal" method="post" id="ModalForm">
+				<input type="hidden" value="" name="user_id"/>
+				<input type="hidden" value="" name="team_modal"/>
+				<input type="hidden" value="" name="depart_modal"/>
+				<input type="hidden" value="" name="head_modal"/>
+				<input type="hidden" value="" name="authority"/>
+				<div class="modal-wrapper">
+			        <div class="modal">
+			            <div class="modal-header">
+			                <h4 class="modal-title" id="myModalLabel">임시승인자 지정</h4>
+			                <button type="button" class="close content-detail" data-dismiss="modal" aria-hidden="true">&times;</button>
+			            </div>
+			            <div class="modal-body">
+			                <div class="form-group">
+			                    <table class="tempU">
+			                            <thead>
+			                                <tr>
+			                                    <th><label class="font-weight-bold">승인권한</label></th>
+			                                    <th><label class="font-weight-bold">권한대상이름</label></th>
+			                                    
+			                                </tr>
+			                            </thead>
+			                            <tbody>
+			                                <tr>
+			                                    <td>
+			                                        <select class="form-control col-md-8 selbox"  id="selectBox" name="selectBox" >
+			                                            <option  selected>선택하시오</option>
+			                                            <option value="d05">대표</option>
+			                                            <option value="d04">본부장</option>
+			                                            <option value="d03">부서장</option>
+			                                            <option value="d02">팀장</option>
+			                                        </select>
+			                                    
+			                                    <td>
+			                                        <input class="form-control col-md-4 col-lg-8" name="formName" value="" placeholder="" readonly>
+			                                    </td>
+			                                    
+			                                </tr>
+			                            </tbody>
+			                    </table>
+			                    
+			                </div>
+			                
+			             
+			                <div class="form-group ">
+			                    <label class="font-weight-bold">승인기간</label>
+			                    <div class="h5 mb-0 font-weight-bold text-gray-800 ">
+			                        <div class="clearfix row">
+			                            <!-- 시작일 -->
+			                            <span class="input-date">
+			                                <input type="text" name="start-date2" value="" class="datepicker inp form-control" id="start-date2"
+			                                placeholder="시작일" readonly />
+			                                <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
+			                            </span>
+			                            <span class="demi" style="margin-left: 30px">~</span>
+			                            <!-- 종료일 -->
+			                            <span class="input-date">
+			                                <input type="text" name="end-date2" value="" class="datepicker inp form-control" id="end-date2"
+			                                    placeholder="종료일" readonly  style="margin-left: 27px"/>
+			                                <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
+			                            </span>
+			                        </div>
+			                    </div> 
+			                </div>
+			                
+			            </div>
+			            <div class="modal-footer">
+			                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+			                    <div class="btn-group" role="group">
+			                        <button type="button" class="btn btn-default content-detail" data-dismiss="modal" role="button">취소</button>
+			                    </div>
+			                    <div class="btn-group" role="group">
+			                        <button type="submit" id="positive" class="btn btn-default btn-hover-green" role="button">지정</button>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+		</form>
 <%@include file="../sidebar/footer.jsp"%>
 </body>
 <script src="/resources/js/tree.js"></script>
@@ -397,15 +301,154 @@
         });
     </script>
     <script>
+    	var list = new Array();
+    	<c:forEach var="team" items="${team}"> //팀 인원 정보
+    		list.push({
+    			user_id :"${team.user_id}"
+    			,birth : "${team.birth_date}"
+    			,phone_number :"${team.phone_number}"
+    			,email : "${team.email}"
+    			,sex : "${team.sex}"
+    			,name : "${team.name}"
+    			,pos : "${team.pos}"
+    			,duty : "${team.duty}"
+    			,part : "${team.part}"
+    			,head : "${team.head}"
+    			,depart : "${team.depart}"
+    			,team : "${team.team}"
+    		});
+    	</c:forEach> 
+    	
+    	var list1 = new Array();
+    	<c:forEach var="userinfo" items="${userinfo}"> //모든 인원 정보 검색했을때 
+    		list1.push({
+    			user_id :"${userinfo.user_id}"
+    			,user_name : "${userinfo.user_name}"
+    			,birth_date : "${userinfo.birth_date}"
+    			,phone_number : "${userinfo.phone_number}"
+    			,sex : "${userinfo.sex}"
+    			,email : "${userinfo.email}"
+    			,pos_name : "${userinfo.pos_name}"
+    			,duty_name : "${userinfo.duty_name}"
+    			,dept_name : "${userinfo.dept_name}"
+    			,upper_dept : "${userinfo.upper_dept}"
+    			,upper_dept2 : "${userinfo.upper_dept2}"
+    		});
+    	</c:forEach>
+    	
+    	var list2 = new Array();
+    	<c:forEach var="temp" items="${temp}">
+    		list2.push({
+    			user_id :"${temp.user_id}",
+    			manager_id :"${temp.manager_id}",
+    			start_date2 :"${temp.approval_start}",
+    			end_date2 :"${temp.approval_finish}"
+    		});
+    		
+    	</c:forEach>
+    	
+    	
         $(".personal").click(function(e){
             console.log($(this).text());
             if($('#som').css("display")=="none"){
                 $('#som').show();
-            }else{
-                $('#som').hide();
             }
-        
         });
+        $(".personal").click(function(e){
+        	
+        	$("#Tname span").remove();$("#Tbirth span").remove();$("#Temail span").remove();
+            $("#Tphone span").remove();$("#Tsex span").remove();$("#Tpos span").remove();
+            $("#Tduty span").remove();$("#Tpart span").remove();  
+            
+            $("#TempA span").remove();$("#TempP span").remove();
+            
+        	
+            var user = $(this).text();
+            userId = user.split('/');
+            console.log(userId[1]); // 클릭한 사용자의 아이디
+        	var id ; var birth  ; var phone_number ;
+        	var email  ; var sex  ; var name ;
+        	var pos  ; var duty  ; var part ;
+        	var head   ; var depart   ; var team;
+            for(var i=0 ;i<list.length;i++){
+            	if(list[i].user_id == userId[1]){
+            		id = list[i].user_id;
+            		birth  = list[i].birth;
+            		phone_number  = list[i].phone_number;
+            	
+            		email  = list[i].email;
+            		sex  = list[i].sex;
+            		name  = list[i].name;
+            		pos  = list[i].pos;
+            		duty  = list[i].duty;
+            		part  = list[i].part;
+            		head  = list[i].head;
+            		depart  = list[i].depart;
+            		team  = list[i].team;
+            		if(sex == "S1"){
+                		sex= "남자";
+                	}else{
+                		sex = "여자";
+                	}
+            	}
+            }
+            for(var i=0 ;i<list1.length;i++){
+            	if(list1[i].user_id == userId[1]){
+            		name = list1[i].user_name ;
+            		birth  = list1[i].birth_date ;
+            		phone_number  = list1[i].phone_number ;
+            		email  = list1[i].email;
+            		sex  = list1[i].sex;
+            		pos   = list1[i].pos_name ;
+            		duty   = list1[i].duty_name ;
+            		team   = list1[i].dept_name ;
+            		part   = list1[i].upper_dept ;
+            		head   = list1[i].upper_dept2 ;
+            		if(sex == "S1"){
+                		sex= "남자";
+                	}else{
+                		sex = "여자";
+                	}
+            	}
+            }
+           
+            var Thire ; var Tstart  ; var Tfinish ;
+            for(var i=0 ;i<list2.length;i++){
+            	if(list2[i].user_id == userId[1]){
+            		Thire = list2[i].manager_id
+            		Tstart = list2[i].start_date2
+            		Tfinish = list2[i].end_date2
+            	}
+            }
+            if( Thire != null){
+            	str9 = "<span>" + Thire +"</span>" ; $("#TempA").append(str9);
+                str10 = "<span>" + Tstart +" ~ "+ Tfinish+"</span>" ;$("#TempP").append(str10);	
+            }
+            
+            str1 = "<span>" +name+ "</span>" ; $("#Tname").append(str1);
+            str2 = "<span>" +birth+ "</span>";$("#Tbirth").append(str2);
+            str3 = "<span>" +phone_number+ "</span>";$("#Tphone").append(str3);
+            str4 = "<span>" +email+ "</span>";$("#Temail").append(str4);
+            str5 = "<span>" +sex+ "</span>";$("#Tsex").append(str5);
+            str6 = "<span>" +pos+ "</span>";$("#Tpos").append(str6);
+            str7 = "<span>" +duty+ "</span>";$("#Tduty").append(str7);
+            str8 = "<span>" +team + "/"+part+"/"+head+"</span>";  $("#Tpart").append(str8); 
+            
+            $('input[name=formName]').attr('value',name);
+            
+            $('input[name=user_id]').attr('value',userId[1]);
+            $('input[name=team_modal]').attr('value',team);
+            $('input[name=depart_modal]').attr('value',part);
+            $('input[name=head_modal]').attr('value',head);
+            $('input[name=authority]').attr('value',duty);
+            
+            
+            $("#modbtn").click(function(){
+            	$('input[name=mod_id]').attr('value',userId[1]);
+            	$("#modalform").submit();
+            });
+            
+        });        
     </script>
     <script>
         // Search Date
