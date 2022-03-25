@@ -45,13 +45,13 @@
                                         </svg>
                                     </div>
                                     <div class="profile">
-                                        <b>김회의</b> / 팀장 <p class="text-xs font-weight-bold text-primary"
-                                            style="float: right; margin-top: 20px;">(승인자)</p><br> 인사&nbsp;부서
+                                        <b>${member.userName }</b> /  ${member.duty } <p class="text-xs font-weight-bold text-primary"
+                                            style="float: right; margin-top: 20px;">(승인자)</p><br> ${member.dept }&nbsp;
                                     </div>
                                     </p>
                                     <br>
-                                    <p><b>아이디</b> 601800D0</p>
-                                    <b>이메일</b> KimHoeui@markany.com
+                                     <p><b>아이디</b> ${member.userId }</p>
+                                    <b>이메일</b> ${member.email }
                                 </div>
                             </div>
                         </div>
