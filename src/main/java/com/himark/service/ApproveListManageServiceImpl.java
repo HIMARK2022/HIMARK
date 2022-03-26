@@ -21,5 +21,23 @@ public class ApproveListManageServiceImpl implements ApproveListManageService{
 	
 		return mapper.getAllList();
 	}
+	@Override
+	public boolean delList(String classify_name) {
+		
+		return mapper.delList(classify_name);
+	}
+	@Override
+	public boolean modList(String mod_name, String mod_period, String org_name, String org_period) {
+		return mapper.modList(mod_name, mod_period, org_name, org_period);
+	}
+	@Override
+	public boolean insertNewList( String classify_name, String approval_period) {
+		return mapper.insertNewList( classify_name, approval_period);
+	}
+	@Override
+	public int isInCheck(String classify_name) {
+		int cnt = mapper.isInCheck(classify_name);
+		return cnt;
+	}
 
 }
