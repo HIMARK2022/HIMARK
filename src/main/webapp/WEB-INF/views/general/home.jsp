@@ -45,12 +45,12 @@
                                         </svg>
                                     </div>
                                     <div class="profile">
-                                        <b>김회의</b> / 팀장 <br> 인사&nbsp;부서
+                                        <b>${member.userName }</b> / ${member.duty } <br> ${member.dept }&nbsp;
                                     </div>
                                     </p>
                                     <br>
-                                    <p><b>아이디</b> 601800D0</p>
-                                    <b>이메일</b> KimHoeui@markany.com
+                                    <p><b>아이디</b> ${member.userId }</p>
+                                    <b>이메일</b> ${member.email }
                                 </div>
                             </div>
 
@@ -130,7 +130,7 @@
                                             <a href="#" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <img src="resources/img/department.png" id="ad_icon" style="width: 74px; height: 64px; opacity: 0.7;"></img></br>
+                                                        <img src="/resources/img/department.png" id="ad_icon" style="width: 74px; height: 64px; opacity: 0.7;"></img></br>
                                                         <h5>나의 부서</h5>
                                                     </div>
                                                 </div>
@@ -165,7 +165,7 @@
                                                             <div
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0건</div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15건</div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
@@ -183,7 +183,7 @@
                                                                 <div
                                                                     class="text-sm font-weight-bold text-success text-uppercase mb-1">
                                                                     완료</div>
-                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">0건
+                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">55건
                                                                 </div>
                                                             </div>
                                                             <div class="col-auto">
@@ -203,7 +203,7 @@
                                                                         class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
                                                                         반려</div>
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                        0건</div>
+                                                                        30건</div>
                                                                 </div>
                                                                 <div class="col-auto">
                                                                     <i class="fa fa-reply fa-2x text-secondary"></i>
