@@ -24,3 +24,13 @@ $(document).ready(function() {
     ordering: false
   });
 });
+$(document).ready(function() {
+  var table =$('#dataTable2').DataTable({
+    
+    language:lang_kor, 
+    
+    searching: true,    //검색란 표시 설정
+    paging: true,  
+    ordering: false
+  });
+});

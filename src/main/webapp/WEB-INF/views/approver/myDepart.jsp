@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 	<%@include file="../sidebar/approver_side.jsp"%>
 	<link href="/resources/css/calendar.css" rel="stylesheet">
 	<link href="/resources/css/approver_myDepart.css" rel="stylesheet">
@@ -30,52 +34,81 @@
                                
                                 <!-- Card Body 부서트리-->
                                 <div class="card-body">
-                                    <p id="info_text"><b>※관리중인 부서정보를 확인할 수 있습니다 .</b></p>
+                                    <p id="info_text"><b>※팀을 선택하시면 자세한 정보를 보실 수 있습니다.</b></p>
                                     <div class="container" id="tree_people">
                                         <div class="row">
                                             <div >
-                                                <!-- <ul id="tree1"> 부서장일경우
-                                                    <li class="pointer"> <i class="fas fa-fw fa-cog"></i>비트학원
-                                                        <ul id="tree1">
-                                                            <li class="pointer"><i class="fas fa-fw fa-bell"></i><a href="#">마크애니</a>
-                                                                <ul>
-                                                                    <li class="personal">고현욱</li>
-                                                                    <li class="personal">김수진</li>
-                                                                    <li class="personal">김찬호</li>
-                                                                    <li class="personal">최수현</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><i class="fas fa-fw fa-bell"></i>드림시큐리티
-                                                                <ul>
-                                                                    <li>권희수</li>
-                                                                    <li>김종백</li>
-                                                                    <li>박현주</li>
-                                                                    <li>박현민</li>
-                                                                    <li>박준호</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><i class="fas fa-fw fa-bell"></i>비트컴퓨터
-                                                                <ul>
-                                                                    <li>최인우</li>
-                                                                    <li>유채현</li>
-                                                                    <li>조장훈</li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul> -->
+                                               <!-- 팀장일경우 -->
+                                               <c:if test="${team ne null}">
+	                                                <ul class="tree">
+	                                                    <li class="pointer"><i class="fas fa-fw fa-file"></i>${team[0].team}
+	                                                        <ul>
+	                                                            <c:forEach var="team" items="${team}">
+	                                                            	<li>${team.user_name}/${team.user_id}</li>
+	                                                            </c:forEach>
+	                                                        </ul>
+	                                                    </li>
+	                                                </ul>
+                                                </c:if>
                                                 <!-- 팀장일경우 -->
-                                                <ul id="tree1">
-                                                    <li class="pointer"><i class="fas fa-fw fa-bell"></i><a href="#">마크애니</a>
-                                                        <ul>
-                                                            <li class="personal">고현욱</li>
-                                                            <li class="personal">김수진</li>
-                                                            <li class="personal">김찬호</li>
-                                                            <li class="personal">최수현</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                                 <!-- 팀장일경우 -->
+                                                
+                                                <!-- 부서장일경우 -->
+                                                <c:if test="${depart ne null}">
+													<ul class="tree">
+	                                                	<li class="pointer"><i class="fa-solid fa-folder"></i> <a class="personalD" >${depart[0].depart}</a> 
+	                                                    	<ul>
+	                                                    		<c:forEach var="departT" items="${departT}"><!-- 팀 영역 -->
+	                                                    			<c:if test="${departT.team ne null}">
+		                                                    			<li class="pointer"><i class="fas fa-fw fa-file"></i><a class="personal">${departT.team}</a>
+		                                                    				<ul>
+		                                                    					<c:forEach var="All" items="${All}">	
+				                                                    				<c:if test="${All.team eq departT.team}">
+		                                                    							<li>${All.user_name}/${All.user_id}</li>
+		    		                                                				</c:if>
+		                                                    					</c:forEach>
+			                                                                </ul>
+			                                                           	</li> <!-- 팀 영역 -->
+		                                                           	</c:if>
+		                                                    	</c:forEach> 
+		                                                	</ul>
+	                                                	</li>
+	                                             	</ul>
+	                                             </c:if>
+                                                <!-- 부서장일경우 -->
+                                                
+                                                <!-- 본부장의 경우 -->
+                                               	<c:if test="${head ne null}">
+													<ul class="tree">
+	                                                	<li><i class="fa-solid fa-folder-open"></i></i><a class="personalH">${head[0].head}</a> 
+	                                                        <ul>
+	                                                       	<!-- 본부 영역 -->
+	                                                        	<c:forEach var="headD" items="${headD}"><!-- 팀 영역 -->
+	                                                    			<c:if test="${headD.depart ne null}">
+		                                                            	<li><i class="fas fa-fw fa-folder"></i><a class="personalD" >${headD.depart}</a>
+		                                                                	<ul>
+		                                                                    	<c:forEach var="headDT" items="${headDT}"><!-- 팀 영역 -->
+		                                                    						<c:if test="${headDT.depart eq headD.depart}">
+			  																			<li><i class="fas fa-fw fa-file"></i><a class="personal" >${headDT.team}</a>
+					                                                                        <ul>
+					                                                                        	<c:forEach var="All" items="${All}">	
+				                                                    								<c:if test="${All.team eq headDT.team}">
+					                                                                        			<li>${All.user_name}/${All.user_id}</li>
+					                                                                        		</c:if>
+		                                                    									</c:forEach>
+						                                                                     </ul>
+					                                                                    </li>
+				                                                                	</c:if>
+		                                                           				</c:forEach>
+		                                                                	</ul>
+		                                                           		</li>
+		                                                        	</c:if>
+		                                                    	</c:forEach>
+	                                                        <!-- 본부 영역 -->   
+	                                                    	</ul>
+	                                                	</li>
+	                                            	</ul>
+	                                           	</c:if>
+                                                <!-- 본부장의 경우  -->
                                             </div>
                                             
                                         </div>
@@ -96,64 +129,151 @@
                                     <!-- Card Body 좌측 페이지 -->
                                     <div class="card-body">
                                         <div class="table-responsive col-lg-12" >  
-                                            <h3>팀장 최수현의 OOO부서원</h3>
-                                            <p class="mb-4"><b>※대상의 이름을 클릭하면 임시승인자 권한을 부여할 수 있습니다.</b></p>
+                                        <c:if test="${team ne null}">
+                                            <h3>${team[0].team}의 구성원</h3>
+                                        </c:if>
+                                        <c:if test="${depart ne null}">
+                                            <h3 id="dtname">${depart[0].depart}</h3>
+                                            
+                                        </c:if>
+                                        <c:if test="${head ne null}">
+                                            <h3 id="htname">${head[0].head}</h3>
+                                        </c:if>
+                                        <p class="mb-4"><b>※대상의 이름을 클릭하면 임시승인자 권한을 부여할 수 있습니다.</b></p>
                                             <br>
-                                            <table class="table table-bordered table-hover" id="dataTable1"  cellspacing="0" >
-                                                <thead>
-                                                    <tr>
-                                                        <th >이름</th>
-                                                        <th >직책</th>
-                                                        <th >직급</th>
-                                                        <th >이메일</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>최수현</td>
-                                                        <td>팀장</td>
-                                                        <td>과장</td>
-                                                        <td>chltngus129@gmail.com</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="page-wrapper">
-                                                                <a class="content-detail">
-                                                                    <span class="text">고현욱</span>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>일반</td>
-                                                        <td>대리</td>
-                                                        <td>superrookie@gmail.com</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="page-wrapper">
-                                                                <a class="content-detail">
-                                                                    <span class="text">김수진</span>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>일반</td>
-                                                        <td>사원</td>
-                                                        <td>rlatnwls0606@gmail.com</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="page-wrapper">
-                                                                <a class="content-detail">
-                                                                    <span class="text">김찬호</span>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>일반</td>
-                                                        <td>인턴</td>
-                                                        <td>chanho470@naver.com</td>
-                                                    </tr>
-                                                    
-                                                </tbody> 
+                                            <div>
+                                            <!-- 팀장일경우 -->
+		                                    <c:if test="${team ne null}">
+                                            	<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
+	                                                <thead>
+	                                                    <tr>
+	                                                        <th >이름</th>
+	                                                        <th >직책</th>
+	                                                        <th >직급</th>
+	                                                        <th >이메일</th>
+	                                                    </tr>
+	                                                </thead>
+	                                                <tbody>
+	                                                	<c:forEach var="team" items="${team}">
+		                                                     <c:if test="${team.duty_id eq 'd02'}">
+				                                             	<tr>
+				                                             		<td>${team.user_name}/${team.user_id}</td>
+				                                             		<td>${team.duty_name}</td>
+				                                             		<td>${team.pos_name}</td>
+				                                             		<td></td>
+				                                               </tr>
+			                                                </c:if>
+		                                                    <c:if test="${team.duty_id ne 'd02'}">
+				                                            	<tr>
+				                                                        <td>
+				                                                            <div class="page-wrapper">
+				                                                                <a class="content-detail">
+				                                                                    <span class="text">${team.user_name}/${team.user_id}</span>
+				                                                                </a>
+				                                                            </div>
+				                                                        </td>
+				                                                        <td>${team.duty_name}</td>
+				                                                        <td>${team.pos_name}</td>
+				                                                        <td></td>
+				                                            	</tr>
+			                                            	</c:if>
+		                                            	</c:forEach>
+	                                                </tbody> 
                                             </table>
+                                            </c:if>
+		                                    <!-- 팀장일경우 -->
+                                             <!-- 부서장일경우 -->
+                                             <c:if test="${depart ne null}">
+                                             	<div >
+                                             		<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
+		                                                <thead>
+		                                                    <tr>
+		                                                        <th >이름</th>
+		                                                        <th >직책</th>
+		                                                        <th >직급</th>
+		                                                        <th >이메일</th>
+		                                                    </tr>
+		                                                </thead>
+		                                                <tbody>
+		                                                	<c:forEach var="depart" items="${depart}">
+		                                                     <c:if test="${depart.duty_id eq 'd03'}">
+				                                             	<tr>
+				                                             		<td>${depart.user_name}</td>
+				                                             		<td>${depart.duty_name}</td>
+				                                             		<td>${depart.pos_name}</td>
+				                                             		<td></td>
+				                                               </tr>
+			                                                </c:if>
+		                                                    <c:if test="${depart.duty_id ne 'd03'}">
+				                                            	<tr>
+				                                            		<td>
+				                                            			<div class="page-wrapper">
+				                                                        	<a class="content-detail">
+				                                                        		<span class="text">${depart.user_name}</span>
+				                                                        	</a>
+				                                                        </div>
+				                                                    </td>
+				                                                    <td>${depart.team} ${depart.duty_name}</td>
+				                                                    <td>${depart.pos_name}</td>
+				                                                    <td></td>
+				                                            	</tr>
+			                                            	</c:if>
+		                                            	</c:forEach>
+		                                                	
+		                                               	</tbody>
+	                                               	</table>
+                                             	</div>
+                                             </c:if>
+		                                     <!-- 부서장일경우 -->
+		                                     <!-- 본부장일경우 -->
+		                                     <div class="table-responsive col-lg-12" >
+		                                     <c:if test="${head ne null}">
+		                                     	<div >
+                                             		<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
+		                                                <thead>
+		                                                    <tr>
+		                                                        <th >이름/아이디</th>
+		                                                        <th >직책</th>
+		                                                        <th >직급</th>
+		                                                        <th >이메일</th>
+		                                                    </tr>
+		                                                </thead>
+		                                                <tbody>
+		                                                	     <c:forEach var="head" items="${head}">
+		                                                     <c:if test="${head.duty_id eq 'd04'}">
+				                                             	<tr>
+				                                             		<td>${head.user_name}/${head.user_id}</td>
+				                                             		<td>${head.duty_name}</td>
+				                                             		<td>${head.pos_name}</td>
+				                                             		<td>chanho470@naver.com</td>
+				                                               </tr>
+			                                                </c:if>
+		                                                    <c:if test="${head.duty_id ne 'd04'}">
+				                                            	<tr>
+				                                                        <td>
+				                                                            <div class="page-wrapper">
+				                                                                <a class="content-detail">
+				                                                                    <span class="text">${head.user_name}/${head.user_id}</span>
+				                                                                </a>
+				                                                            </div>
+				                                                        </td>
+				                                                        <td>${head.depart} ${head.team} ${head.duty_name}</td>
+				                                                        <td>${head.pos_name}</td>
+				                                                        <td>chanho470@naver.com</td>
+				                                            	</tr>
+			                                            	</c:if>
+		                                            	</c:forEach>
+				                                                       
+		                                                	
+		                                               	</tbody>
+	                                               	</table>
+                                             	</div>
+		                                     </c:if>
+		                                     </div>
+		                                     <!-- 본부장일경우 -->
+                                            
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                      <!-- Card Body 좌측 페이지 -->
@@ -164,164 +284,183 @@
                     
                 </div>
                  <!-- Modal -->
-    <div class="modal-wrapper">
-        <div class="modal">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">임시 승인자 지정</h4>
-                <button type="button" class="close content-detail" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="font-weight-bold">대상</label>
-                    <input class="form-control" name="" value="김찬호" readonly>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bold">임시 승인 기간</label>
-                    <div class="clearfix row">
-                        <!-- 시작일 -->
-                        <span class="input-date">
-                            <input type="text" name="start-date2" value="" class="datepicker inp form-control" id="start-date2"
-                            placeholder="시작일" readonly />
-                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
-                        </span>
-                        <span class="demi">~</span>
-                        <!-- 종료일 -->
-                        <span class="input-date">
-                            <input type="text" name="end-date2" value="" class="datepicker inp form-control" id="end-date2"
-                                placeholder="종료일" readonly />
-                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
-                        </span>
-                    </div>
-                </div>
                 
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default content-detail" data-dismiss="modal" role="button">취소</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="positive" class="btn btn-default btn-hover-green" role="button">권한부여</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                 <form action="/approver/myDepart_team_temp" method="post" id="tempModal">
+                 	<input type="hidden" value="" name="user_id_team"/>
+ 				    <div class="modal-wrapper">
+				        <div class="modal">
+				            <div class="modal-header">
+				                <h4 class="modal-title" id="myModalLabel">임시 승인자 지정</h4>
+				                <button type="button" class="close content-detail" data-dismiss="modal" aria-hidden="true">&times;</button>
+				            </div>
+				            <div class="modal-body">
+				                <div class="form-group">
+				                    <label class="font-weight-bold">대상</label>
+				                    <input class="form-control" name="USER" value="" readonly>
+				                </div>
+				                <div class="form-group">
+				                    <label class="font-weight-bold">임시 승인 기간</label>
+				                    <div class="clearfix row">
+				                        <!-- 시작일 -->
+				                        <span class="input-date">
+				                            <input type="text" name="start-date2" value="" class="datepicker inp form-control" id="start-date2" style="width:270px"
+				                            placeholder="시작일" readonly />
+				                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
+				                        </span>
+				                        <span class="demi">~</span>
+				                        <!-- 종료일 -->
+				                        <span class="input-date">
+				                            <input type="text" name="end-date2" value="" class="datepicker inp form-control" id="end-date2" style="width:270px"
+				                                placeholder="종료일" readonly />
+				                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
+				                        </span>
+				                    </div>
+				                </div>
+				                
+				            </div>
+				            <div class="modal-footer">
+				                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+				                    <div class="btn-group" role="group">
+				                        <button type="button" class="btn btn-default content-detail" data-dismiss="modal" role="button">취소</button>
+				                    </div>
+				                    <div class="btn-group" role="group">
+				                        <button type="submit" id="positive" class="btn btn-default btn-hover-green" role="button">권한부여</button>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				        </div>
+				    </div>
+				 </form>
 <%@include file="../sidebar/footer.jsp"%>
  <script src="/resources/js/tree.js"></script>
-<script>
-$('.content-detail').on('click', function () {
-    $('.modal-wrapper').toggleClass('open');
-     $('.page-wrapper').toggleClass('blur-it');
-     return false;
-});
-</script>
-<script>
-// Search Date
-jQuery.fn.schDate = function () {
-    var $obj = $(this);
-    var $chk = $obj.find("input[type=radio]");
-    $chk.click(function () {
-        $('input:not(:checked)').parent(".chkbox").removeClass("on");
-        $('input:checked').parent(".chkbox").addClass("on");
-    });
-};
-
-// DateClick
-jQuery.fn.dateclick = function () {
-    var $obj = $(this);
-    $obj.click(function () {
-        $(this).parent().find("input").focus();
-    });
-}
-
-function setSearchDate(start, n){
-
-    var num = start.substring(0,1);
-    var str = start.substring(1,2);
-
-    var today = new Date();
-
-    //var year = today.getFullYear();
-    //var month = today.getMonth() + 1;
-    //var day = today.getDate();
-
-    var endDate = $.datepicker.formatDate('yy-mm-dd', today);
-    $('#end-date'+n).val(endDate);
-
-    if(str == 'd'){
-        today.setDate(today.getDate() - num);
-    }else if (str == 'w'){
-        today.setDate(today.getDate() - (num*7));
-    }else if (str == 'm'){
-        today.setMonth(today.getMonth() - num);
-        today.setDate(today.getDate() + 1);
-    }
-
-    var startDate = $.datepicker.formatDate('yy-mm-dd', today);
-    $('#start-date'+n).val(startDate);
-            
-    // 종료일은 시작일 이전 날짜 선택하지 못하도록 비활성화
-    $("#end-date"+n).datepicker( "option", "minDate", startDate );
-
-    // 시작일은 종료일 이후 날짜 선택하지 못하도록 비활성화
-    $("#start-date"+n).datepicker( "option", "maxDate", endDate );
-
-}
-
-$(document).ready(function () {
-    
-
-    $.datepicker.setDefaults($.datepicker.regional['ko']);
-    
-    $(".datepicker").datepicker({
-        showButtonPanel: true,
-        dateFormat: "yy-mm-dd",
-        onClose: function (selectedDate) {
-
-            var eleId = $(this).attr("id");
-            var optionName = "";
-
-            if (eleId.indexOf("StartDate") > 0) {
-                eleId = eleId.replace("StartDate", "EndDate");
-                optionName = "minDate";
-            } else {
-                eleId = eleId.replace("EndDate", "StartDate");
-                optionName = "maxDate";
+  <script src="/resources/js/cal.js"></script>
+	<script>
+		$('.content-detail').on('click', function () {
+		    $('.modal-wrapper').toggleClass('open');
+		     $('.page-wrapper').toggleClass('blur-it');
+		     return false;
+		});
+		$('.text').on('click', function () {
+			var user = $(this).text();
+			console.log($(this).text());
+			userId = user.split('/');
+			console.log("선택한 사람의 아이디"+userId[1]);
+		
+			userId[1];
+			 $('input[name=USER]').attr('value',userId[0]); // 유저 이름 
+			 $('input[name=user_id_team]').attr('value',userId[1]); // 유저 아이디
+			 
+		});
+	</script>
+	<script>
+		var list = new Array();
+		<c:forEach var="All" items="${All}">
+			list.push({
+				user_id :"${All.user_id}"
+				,user_name : "${All.user_name}"
+				,duty_name :"${All.duty_name}"
+				,duty_id :"${All.duty_id}"
+				,pos_name :"${All.pos_name}"
+				,team :"${All.team}"
+				,depart : "${All.depart}"
+				,head : "${All.head}"
+			});
+		</c:forEach>
+	</script>
+	
+	<script type="text/javascript">
+		$(".personalD").click(function(e){
+			$("#htname span").remove();
+			$("#dtname span").remove();
+			$("#dataTable>tbody tr").remove();
+			console.log($(this).text());
+			var depart = $(this).text();
+			for(var i=0 ;i<list.length;i++){
+				  if(list[i].depart == depart && list[i].duty_id !="d03"){
+					   str4 = "<tr ><td><div class="+'page-wrapper'+"><a class="+'content-detail'+"><span class="+'text'+">"+list[i].user_name+"/"+list[i].user_id+"</span></a></div></td>";
+					   str4 += "<td>"+list[i].team +" "+list[i].duty_name+"</td>"
+					   str4 += "<td>"+list[i].pos_name+"</td><td>chanho470@naver.com</td></tr>"
+					   $("#dataTable>tbody").append(str4);
+				   }else if(list[i].depart == depart && list[i].duty_id =="d03"){
+					   str4 = "<tr ><td>"+list[i].user_name+"</td>";
+					   str4 += "<td>"+list[i].team +" "+list[i].duty_name+"</td>"
+					   str4 += "<td>"+list[i].pos_name+"</td><td>chanho470@naver.com</td></tr>"
+					   $("#dataTable>tbody").append(str4);
+				   }
+			   }
+			 $('.content-detail').on('click', function () {
+				 console.log($(this).text());
+				    $('.modal-wrapper').toggleClass('open');
+				     $('.page-wrapper').toggleClass('blur-it');
+				     return false;
+				});
+			str5 = "<span>"+ ">" + depart+"</span>";$("#htname").append(str5);
+		});
+		$(".personalH").click(function(e){
+			$("#htname span").remove();
+			$("#dtname span").remove();
+			$("#dataTable>tbody tr").remove();
+			console.log($(this).text());
+			var head = $(this).text();
+			for(var i=0 ;i<list.length;i++){
+				  if(list[i].head == head && list[i].duty_id !="d04"){
+					   str4 = "<tr ><td><div class="+'page-wrapper'+"><a class="+'content-detail'+"><span class="+'text'+">"+list[i].user_name+"/"+list[i].user_id+"</span></a></div></td>";
+					   str4 += "<td>"+list[i].depart +" "+list[i].team +" "+list[i].duty_name+"</td>"
+					   str4 += "<td>"+list[i].pos_name+"</td><td>chanho470@naver.com</td></tr>"
+					   $("#dataTable>tbody").append(str4);
+				   }else if(list[i].head == head && list[i].duty_id =="d04"){
+					   str4 = "<tr ><td>"+list[i].user_name+"</td>";
+					   str4 += "<td>"+list[i].depart +" "+list[i].team +" "+list[i].duty_name+"</td>"
+					   str4 += "<td>"+list[i].pos_name+"</td><td>chanho470@naver.com</td></tr>"
+					   $("#dataTable>tbody").append(str4);
+				   }
+			   }
+			 $('.content-detail').on('click', function () {
+				 console.log($(this).text());
+				    $('.modal-wrapper').toggleClass('open');
+				     $('.page-wrapper').toggleClass('blur-it');
+				     return false;
+				});
+			str5 = "<span>"+ ">" + head+"</span>";$("#htname").append(str5);
+		});
+	
+		$(".personal").click(function(e){
+			$("#Lname span").remove();$("#Lpos span").remove(); 
+			$("#htname span").remove();$("#dtname span").remove(); 
+			$("#dataTable>tbody tr").remove();
+		    console.log($(this).text());
+		    if($('#som').css("display")=="none"){
+                $('#som').show();
             }
+		   var team = $(this).text();
+		   var Lname; var Lduty; var Lpos;
+		   
+		   
+		   for(var i=0 ;i<list.length;i++){
+			  if(list[i].team == team){
+				   str3 = "<tr ><td><div class="+'page-wrapper'+"><a class="+'content-detail'+"><span class="+'text'+">"+list[i].user_name+"/"+list[i].user_id+"</span></a></div></td>";
+				   str3 += "<td>"+list[i].duty_name+"</td>"
+				   str3 += "<td>"+list[i].pos_name+"</td><td>chanho470@naver.com</td></tr>"
+				   $("#dataTable>tbody").append(str3);
+			   }
+		   }
 
-            $("#" + eleId).datepicker("option", optionName, selectedDate);
-            $(".searchDate").find(".chkbox").removeClass("on");
-        }
-    });
-
-    $(".dateclick").dateclick();    // DateClick
-    $(".searchDate").schDate();        // searchDate
-
-    $('#start-date1').datepicker("option", "maxDate", $('#end-date1').val());
-    $('#start-date1').datepicker("option", "onClose", function (selectedDate) {
-        $('#end-date1').datepicker("option", "minDate", selectedDate);
-    });
-
-    $('#end-date1').datepicker("option", "minDate", $('#start-date1').val());
-    $('#end-date1').datepicker("option", "onClose", function (selectedDate) {
-        $('#start-date1').datepicker("option", "maxDate", selectedDate);
-    });
-
-    $('#start-date2').datepicker("option", "maxDate", $('#end-date2').val());
-    $('#start-date2').datepicker("option", "onClose", function (selectedDate) {
-        $('#end-date2').datepicker("option", "minDate", selectedDate);
-    });
-
-    $('#end-date2').datepicker("option", "minDate", $('#start-date2').val());
-    $('#end-date2').datepicker("option", "onClose", function (selectedDate) {
-        $('#start-date2').datepicker("option", "maxDate", selectedDate);
-    });
-    
+		   $('.content-detail').on('click', function () {
+			    $('.modal-wrapper').toggleClass('open');
+			     $('.page-wrapper').toggleClass('blur-it');
+			     
+			     return false;
+			});
+		   str1 = "<span>" +Lname+ "</span>" ; $("#Lname").append(str1);
+           str2 = "<span>" +Lpos+ "</span>";$("#Lpos").append(str2);
+		   
+           str4 = "<span>"+ " > " + team+"</span>";
+           $("#dtname").append(str4);
+           $("#htname").append(str4);
+		});
+	</script>
 
 
-    
-});
-</script>
 </body>
 </html>

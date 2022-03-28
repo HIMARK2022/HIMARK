@@ -77,6 +77,9 @@
 #som{
     display:none
 }
+#som > div{
+    text-align: center;
+}
 
 #perimg{
     width: 30%;
@@ -142,15 +145,7 @@ tr{
 .pointer{
     cursor: pointer;
 }
-.personalH{
-	    cursor: pointer;
-}
-.personalD{
-	    cursor: pointer;
-}
-.personal{
-	    cursor: pointer;
-}
+
 
 #info_text{
     font-size: 0.9rem;

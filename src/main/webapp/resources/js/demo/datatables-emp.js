@@ -36,7 +36,7 @@ $(document).ready(function() {
     
   });
 });
-$(document).ready(function() {
+/*$(document).ready(function() {
   var table =$('#dataTable1').DataTable({
     "pageLength":10,
     language:lang_kor, 
@@ -49,7 +49,7 @@ $(document).ready(function() {
     paging: true,  
     
   });
-});
+});*/
 $(document).ready(function() {
   var table =$('#dataTable3').DataTable({
     "scrollY":"300px",

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.himark.mapper.ApproverMyDepartMapper">
+	
+	<!-- 직급 check -->
+	<select id="checkDuty"  resultType="com.himark.domain.UsersDetailVO" >	
+		select duty_id from usersdetail where user_id = #{user_id};
+	</select>
+	<!-- 전체 -->
+	<select id="findAll"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where current_state="O1";
+	</select>
+	<!-- 팀장 -->
+	<select id="findTeam"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where team = 
+			(select team from usersdetail where user_id = #{user_id}) and current_state="O1";
+	</select>
+	
+	<!-- 부서장 -->
+	<select id="findDepart"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where depart = 
+			(select depart from usersdetail where user_id = #{user_id}) and current_state="O1";
+	</select>
+	<!-- 부서장 팀-->
+	<select id="findDTeam"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where depart = 
+			(select depart from usersdetail where user_id = #{user_id}) and current_state="O1" group by team;
+	</select>
+	
+	<!-- 본부장 -->
+	<select id="findHead"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where head = 
+			(select head from usersdetail where user_id = #{user_id}) and current_state="O1";
+	</select>
+	<!-- 본부장 부서-->
+	<select id="findHDepart"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where head = 
+			(select head from usersdetail where user_id = #{user_id}) and current_state="O1" group by depart;
+	</select>
+	<!-- 본부장 부서 팀-->
+	<select id="findHDTeam"  resultType="com.himark.domain.UsersDetailVO" >	
+		select * from usersdetail where head = 
+			(select head from usersdetail where user_id = #{user_id}) and current_state="O1" group by team;
+	</select>
+	
+</mapper>
