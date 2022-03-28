@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 import com.himark.mapper.PaymentMapper;
@@ -85,8 +86,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public void updateFdate(int requestNo) {
-		mapper.updateFdate(requestNo);
+	public void updateFdate(int requestNo,String imp) {
+		mapper.updateFdate(requestNo,imp);
 		
 	}
 
@@ -102,7 +103,6 @@ public class PaymentServiceImpl implements PaymentService {
 		mapper.updateReason(requestNo,rejectReason);
 		
 	}
-
 
 	
 
