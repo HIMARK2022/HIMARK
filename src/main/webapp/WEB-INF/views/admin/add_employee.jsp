@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>add employee</title>
+<title>add employee </title>
   	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
@@ -46,31 +47,16 @@
                                     
                                     <div style="padding: 3%;" >
                                         <div class="row">
-                                            <div  style="text-align: center" class="col-lg-3 col-md-8" >
-                                                <form>
-                                                    <figure >
-                                                        <img class="img-circle img-responsive " alt="" src="/resources/img/undraw_profile.svg">
-                                                    </figure>
-                                                    
-                                                    <a href="#" class="btn btn-outline-primary btn-icon-split" >
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-upload"></i>
-                                                        </span>
-                                                        <span class="text">업로드</span>
-                                                    </a>
-                                                    
-                                                </form>
-                                            
-                                            </div>
                                             <br>
-                                            <div class="col-lg-9" >
+                                            <div class="col-lg-12" >
+                                    <form action="/admin/add_employee_All" method="post" name="AddAll" id="AddAll">
                                                 <table class="table table-bordered" id="dataTable" cellspacing="0" >
                                                     <tr>
                                                         <th >이름</th>
                                                         <td>
                                                             <div class="col-lg-4">
                                                                 <input type="text" class="form-control bg-light border-0 small" placeholder="이름을 입력하시오"
-                                                                    aria-label="Search" aria-describedby="basic-addon2">
+                                                                    aria-label="Search" aria-describedby="basic-addon2" name="user_name" required>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -79,9 +65,9 @@
                                                       <th >생년월일</th>
                                                       <td >
                                                         <div class="form-inline col-lg-8">
-                                                            <select name="year" id="year" title="년도" class="form-control" ></select><span id="birthlast"> 년 </span>
-                                                            <select name="month" id="month" title="월" class="form-control"></select><span id="birthlast"> 월 </span>
-                                                            <select name="day" id="day" title="일" class="form-control"></select><span id="birthlast"> 일 </span>
+                                                            <select required name="year" id="year" title="년도" class="form-control" ></select><span id="birthlast"> 년 </span>
+                                                            <select required name="month" id="month" title="월" class="form-control"></select><span id="birthlast"> 월 </span>
+                                                            <select required name="day" id="day" title="일" class="form-control"></select><span id="birthlast"> 일 </span>
                                                         </div>
                                                       </td>
                                                     </tr>
@@ -90,12 +76,18 @@
                                                       <td >
                                                         <div class="col-lg-4">
                                                             <div class="form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="inlineRadioOptionSex" id="inlineRadiosex1" value="male">
-                                                                <label class="form-check-label" for="inlineRadiosex1">남자</label>
+                                                                
+                                                                <label class="form-check-label" for="inlineRadiosex1">
+                                                                	<input class="form-check-input" type="radio"id="inlineRadiosex1" value="남" name="sex" required>
+                                                                	남자
+                                                                </label>
                                                             </div>
                                                             <div class="form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="inlineRadioOptionSex" id="inlineRadiosex2" value="female">
-                                                                <label class="form-check-label" for="inlineRadiosex2">여자</label>
+                                                                
+                                                                <label class="form-check-label" for="inlineRadiosex2">
+                                                                	<input class="form-check-input" type="radio" id="inlineRadiosex2" value="여" name="sex" >
+                                                                	여자
+                                                                </label>
                                                             </div>
                                                         </div>
                                                         
@@ -106,7 +98,7 @@
                                                       <td >
                                                         <div class="col-lg-4" >
                                                             <input type="text" class="form-control bg-light border-0 small" placeholder="전화번호를 입력하시오"
-                                                                aria-label="Search" aria-describedby="basic-addon2">
+                                                                aria-label="Search" aria-describedby="basic-addon2" name="phone" required>
                                                         </div>
                                                       </td>
                                                     </tr>
@@ -115,30 +107,15 @@
                                                         <td >
                                                             <div class="col-lg-4" style="float: left;" >
                                                                 <input type="text" class="form-control bg-light border-0 small" placeholder="이메일을 입력하세요"
-                                                                    aria-label="Search" aria-describedby="basic-addon2">
+                                                                    aria-label="Search" aria-describedby="basic-addon2" name="email" required>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </table>
+                                                
                                             </div>
                                            
                                         </div>
-                                        <br>
-                                        <div class="twobuttons" >
-                                            <a href="../직원관리/직원정보관리.html" class="btn btn-outline-success btn-lg btn-icon-split">
-                                                <span class="icon text-gray-600">
-                                                    <i class="fas fa-arrow-right"></i>
-                                                </span>    
-                                                <span class="text">홈화면 이동</span>
-                                            </a>
-                                            
-                                            <a href="#" class="btn btn-outline-primary btn-lg btn-icon-split">
-                                                <span class="icon text-white-50">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
-                                                <span class="text">저장하기</span>
-                                            </a>
-                                        </div>      
                                         
                                     </div>
                                     
@@ -149,66 +126,50 @@
                                         <table  class="table table-bordered" id="dataTable1" cellspacing="0" >
                                             
                                             <tr>
-                                                <th >직급</th>
-                                                <td>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="직급을 입력하시오"
-                                                            aria-label="Search" aria-describedby="basic-addon2">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th >직책</th>
                                                 <td>
                                                     <div class="col-lg-4">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                            <label class="form-check-label" for="inlineRadio1">일반사용자</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                            <label class="form-check-label" for="inlineRadio2">승인자</label>
-                                                        </div>
-                                                        
+                                                    	<select class="form-select form-control col-lg-5" name="duty" required>
+                                                        	<c:forEach  var="duty" items="${duty}">
+                                                           		<option value="${duty.duty_id}" >${duty.duty_name}</option>                                                    
+                                                        	</c:forEach>
+                                                        </select>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>부서</th>
+                                                <th >직급</th>
                                                 <td>
-                                                    <div class="form-inline col-lg-8">
-                                                        <select class="form-select form-control col-lg-2" >
-                                                            <option value="1" selected>사업부</option>
-                                                            <option value="2">비트학원</option>
-                                                            <option value="3">비트학원1</option>
-                                                            <option value="4">비트학원2</option>
-                                                            
-                                                        </select>
-                                                        <select class="form-select form-control col-lg-2" >
-                                                            <option value="1" selected>부서</option>
-                                                            <option value="2">마크애니</option>
-                                                            <option value="3">드림시큐리티</option>
-                                                            <option value="4">비트컴퓨터</option>
-                                                        </select>
-                                                        <select class="form-select form-control col-lg-2" >
-                                                            <option value="1" selected>팀</option>
-                                                            <option value="2">개발2</option>
-                                                            <option value="3">개발3</option>
-                                                            <option value="4">인사</option>
-                                                            <option value="5">마케팅</option>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-select form-control col-lg-5"  name="pos" required>
+                                                        <c:forEach  var="pos" items="${pos}">
+                                                            <option value="${pos.pos_id}" >${pos.pos_name}</option>  
+                                                        </c:forEach>
                                                         </select>
                                                     </div>
-                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>소속</th>
+                                                <td>
+                                                    <div class="input-group col-lg-4">
+                                                       <select class="form-select form-control col-lg-5"  name="dept" required>
+	                                                        <c:forEach  var="dept" items="${dept}">
+	                                                            <option value="${dept.dept_id}" >${dept.dept_name}</option>  
+	                                                        </c:forEach>
+                                                        </select>
+                                                    </div>	
                                                 </td>
                                             </tr>
                                         </table>
+                                        
                                         <table  class="table table-bordered" id="dataTable1" cellspacing="0" >
                                             <tr>
                                                 <th >아이디</th>
                                                 <td>
                                                     <div class="input-group col-lg-4">
-                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="아이디를 입력하시오"
-                                                            aria-label="Search" aria-describedby="basic-addon2">
+                                                        <input type="text" class="form-control bg-light border-0 small" value="아이디는 규칙에 입각해 자동생성 됩니다" readonly 
+                                                            aria-label="Search" aria-describedby="basic-addon2" name="user_id" >
                                                     </div>
                                                 </td>
                                             </tr>
@@ -216,8 +177,8 @@
                                                 <th >비밀번호</th>
                                                 <td>
                                                     <div class="input-group col-lg-4">
-                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="비밀번호를 입력하시오"
-                                                            aria-label="Search" aria-describedby="basic-addon2">
+                                                        <input type="text" class="form-control bg-light border-0 small" value="아이디는 규칙에 입각해 자동생성 됩니다" readonly
+                                                            aria-label="Search" aria-describedby="basic-addon2" name="user_pwd">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -232,25 +193,37 @@
                                                 <span class="text">홈화면 이동</span>
                                             </a>
                                             
-                                            <a href="#" class="btn btn-outline-primary btn-lg btn-icon-split">
+                                           <!--  <a href="#" class="btn btn-outline-primary btn-lg btn-icon-split" id="saveAll">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-check"></i>
                                                 </span>
                                                 <span class="text">저장하기</span>
-                                            </a>
+                                            </a> -->
+                                            <button type="submit" class="btn btn-outline-primary btn-lg btn-icon-split"><span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <span class="text">저장하기</span>
+                                            </button>
                                         </div> 
                                     </div>
-                                
+                                </form>
                                 </div>
                             </div>
                         </div>
                     
                     </div>   
                         
-                    
+                    </div>
                     <!-- 여기는 직원추가 -->
-                </div>
+              </div>   
  <%@include file="../sidebar/footer.jsp"%>
+
 <script src="/resources/js/birth.js"></script>
+<script>
+/* $("#saveAll").click(function(){
+    $("#AddAll").submit();
+}); */
+</script>
+	
 </body>
 </html>
