@@ -22,9 +22,8 @@ td{
 th{
     text-align: center;
 }
-#addbtn{
-    float: right;
-    margin-right: 1%;
+.btnM{
+	margin-left:87.7%;
 }
 .selbox{
     margin-left: 2%;
@@ -39,3 +38,6 @@ th{
 #modalT th{
 	background:white;
 }
+
+.id_ok{color:#fff; display: none;}
+.id_already{color:#6A82FB; display: none;}

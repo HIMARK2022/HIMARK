@@ -3,7 +3,7 @@
 var lang_kor = {
   "decimal" : "",
   "emptyTable" : "데이터가 없습니다.",
-  "info" : "_START_ - _END_ (총 _TOTAL_ 명)",
+  "info" : "_START_ - _END_ (총 _TOTAL_ 건)",
   "infoEmpty" : "0명",
   "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
   "infoPostFix" : "",
