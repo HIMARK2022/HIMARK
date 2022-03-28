@@ -8,7 +8,6 @@
 	  	<result property="userName" column="user_name"/>
         <result property="managerId" column="manager_id"/>
         <result property="title" column="request_title"/> 
-        <result property="classifyNo" column="classify_number"/>  
          <result property="category" column="classify_name"/>
          <result property="period" column="approval_period"/>        
         <result property="imp" column="imp_code"/>     
@@ -41,8 +40,8 @@
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="requestNo">
-		insert into user_request(user_id,request_title,classify_number,imp_code, request_file,request_content,request_state)
-		values( #{userId},#{title},#{classifyNo}, #{imp},#{file},#{content},"대기" );
+		insert into user_request(user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
+		values( #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
 		
 	</insert>
 	
@@ -58,16 +57,25 @@
 	
 	<update id="updateFdate">
 	update user_request 
-	set finish_date =
-		(select 
-			result.n
-	    	from( select adddate(u.request_date,substring_index(a.approval_period,"일",1)) as n
-					from user_request u
-					join approval_classify a
-					on u.classify_number = a.classify_number
-					where u.request_number=#{requestNo}) as result)
-	where request_number=#{requestNo}
+set finish_date=
+case when #{imp} = '긴급'
+then adddate(request_date,1)
+when #{imp} = '높음'
+then adddate(request_date,3)
+when #{imp} = '보통'
+then adddate(request_date,7)
+when #{imp} = '낮음'
+then adddate(request_date,15)
+else (select result.n
+		from (select adddate(u.request_date,substring_index(a.approval_period,"일",1)) as n
+				from user_request u
+				join approval_classify a
+				on u.classify_name = a.classify_name
+				where u.request_number = #{requestNo} ) as result)
+                end
+                where  request_number = #{requestNo}
 	</update>
+	
 	
 	<update id="updateState">
 	update user_request 
@@ -86,21 +94,21 @@
 	<select id="getList" resultMap="getPaymentMap">
 		select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state ="대기"
 	</select>
 	
 	<select id="getBackList" resultMap="getPaymentMap">
 			select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state="반려"
 	</select>
 	
 		<select id="getCompleteList" resultMap="getPaymentMap">
 			select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state="승인"
 	</select>
 
@@ -108,7 +116,7 @@
 	<select id="getSearchList" resultMap="getPaymentMap">
 		select * from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number where user_id=#{userId}
+		on u.classify_name = a.classify_name where user_id=#{userId}
 		<!-- <if test="filterList.size !=0"> -->
 		and a.classify_name in
 		
@@ -123,28 +131,28 @@
 		<select id="read" resultMap="getPaymentMap">
 		select * from user_request u
 			join approval_classify a
-			on u.classify_number = a.classify_number
+			on u.classify_name = a.classify_name
 			where request_number=#{requestNo}
 	</select>
 	
 	<select id="getPaymentList" resultMap="getPaymentMap">
 			select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="대기"
 	</select>
 	
 		<select id="getBackPaymentList" resultMap="getPaymentMap">
 			select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="반려"
 	</select>
 	
 		<select id="getCompletePaymentList" resultMap="getPaymentMap">
 			select *  from user_request u
 		join approval_classify a
-		on u.classify_number = a.classify_number 
+		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="승인"
 	</select>
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 public interface PaymentMapper {
@@ -26,7 +27,7 @@ public interface PaymentMapper {
 	
 	public void updateApprover(String userId);
 	
-	public void updateFdate(int requestNo);
+	public void updateFdate( @Param ("requestNo") int requestNo, @Param ("imp")String imp);
 
 	public List<PaymentVO> getPaymentList(String userId);
 

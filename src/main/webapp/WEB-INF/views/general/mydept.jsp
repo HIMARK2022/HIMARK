@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive col-lg-12" >  
-                                <h3>OOO 부서원</h3>
+                                <h3>${member.dept}부서원</h3>
                                 <br>
                                 <table class="table table-bordered table-hover" id="dataTable1"  cellspacing="0" >
                                     <thead>
@@ -34,74 +35,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="list" items="${dlist}">
                                         <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
+                                            <td>${list.userName}</td>
+                                            <td>${list.duty}</td>
+                                            <td>${list.pos}</td>
+                                            <td>${list.email }</td>
                                         </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김찬호</td>
-                                            <td>일반</td>
-                                            <td>사원</td>
-                                            <td>chanho470@naver.com</td>
-                                        </tr>
-                                        
-                                        
+                                      </c:forEach>
+                                                                               
                                     </tbody> 
                                 </table>
                             </div>

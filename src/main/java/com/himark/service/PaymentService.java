@@ -3,6 +3,7 @@ package com.himark.service;
 
 import java.util.List;
 
+import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 public interface PaymentService {
@@ -22,7 +23,7 @@ public interface PaymentService {
 
 	public List<PaymentVO> getBackPaymentList(String userId);
 
-	public void updateFdate(int requestNo);
+	public void updateFdate(int requestNo, String imp);
 
 	public void updateState(int requestNo, String state);
 
@@ -34,4 +35,3 @@ public interface PaymentService {
 	
 
 }
-

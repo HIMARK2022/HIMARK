@@ -49,6 +49,18 @@ on user.current_state=cs.common_code
 where user_id=#{userId}
 </select>
 
+<select id="getDeptList" resultMap="getMemberMap">
+select * from user
+JOIN dept 
+ON user.dept_id = dept.dept_id
+join pos
+on user.pos_id = pos.pos_id
+join duty
+on user.duty_id = duty.duty_id
+where user.dept_id=#{deptId};
+</select>
+
+
 <!--manager 테이블 insert  -->
 <insert id="manager">
 insert into manager(manager_id, approval_target)
