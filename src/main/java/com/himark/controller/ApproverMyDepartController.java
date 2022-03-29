@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.himark.service.ApproverMyDepartService;
+import com.himark.service.MemberService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ApproverMyDepartController {
 	private ApproverMyDepartService service;
+	private MemberService mservice;
 	
 	@GetMapping("/myDepart")
 	public void tree(Model model,@RequestParam("userId")String userId) {
@@ -28,6 +30,10 @@ public class ApproverMyDepartController {
 		log.info(userId);
 		String duty = service.checkDuty(userId).get(0).getDuty_id().toString();
 		log.info(duty);
+		
+		model.addAttribute("member", mservice.getMember(userId));
+		
+		
 		if (duty.equals("d02")) {
 			log.info("팀장");
 			//log.info(service.findTeam(userId));
@@ -53,7 +59,7 @@ public class ApproverMyDepartController {
 			 * else if (duty.equals("d05")) { model.addAttribute("All", service.findAll());
 			 * }
 			 */
-	
+		
 	}
 	@PostMapping("/myDepart_team_temp")
 	public String teamtemp(Model model,@RequestParam("user_id_team")String user_Id
