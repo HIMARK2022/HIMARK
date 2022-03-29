@@ -40,7 +40,7 @@
 						</p>
 						<p>
 						<h6>기안자</h6>
-						<strong>${member.dept} / 개발팀1(팀명) / ${member.userName}</strong>
+						<strong>${member.bonbu} / ${member.dept} / ${member.team} / ${member.userName}</strong>
 						</p>
 						<p>
 						<h6>중요도</h6>
@@ -136,17 +136,37 @@
 						<p>
 						<h6>첨부파일</h6>
 						<div class="custom-file col-xl-4">
-							<input type="file" class="custom-file-input" id="Files"
-								name="file"> <label class="custom-file-label"
-								for="Files">파일선택</label>
+						
+							<div class = 'uploadResult' style="height:70px">
+									<ul>
+									</ul>
+							</div>
 						</div>
-						</p>
+						
+						<div class = 'bigPictureWrapper'>
+							<div class = 'bigPicture'>
+							</div>
+						</div>
+						
+						
 						<p>
 						<h6>내용</h6>
 						<textarea class="form-control" placeholder="내용을 입력해 주세요."
 							rows="10" name="content" readonly >${detail.content}</textarea>
 						</p>
-						<a class="btn btn-outline-primary" type="submit" href="/approver/request?userId=${member.userId}"
+						
+						<c:if test='${detail.state eq "반려" }'>
+										<p>
+										<h6>반려 사유</h6>
+										<textarea class="form-control"
+											rows="10" name="rejectReason" readonly>${detail.rejectReason}</textarea>
+										
+										</p>
+										
+										</c:if>
+										
+						
+						<a class="btn btn-outline-primary" type="submit" href="/general/request?userId=${member.userId}"
 							id="request_btn">목록</a>
 
 					</div>
@@ -157,8 +177,74 @@
 
 		</div>
 		<!-- End of Main Content -->
-		<script>
+	<script>
 			// $("input:checkbox[value="+values[i]+"]").prop("checked", true);
+			$(document).ready(function() {
+	
+				var rno = '<c:out value = "${detail.requestNo}"/>';
+				$.getJSON("/general/getAttachList", {rno:rno}, function(arr){
+					console.log(arr);
+					var str = "";
+		            $(arr).each(function(i, obj) {
+		               if(!obj.fileType) { // 이미지가 아닌 경우
+		                  
+		                  var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+		                  str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'><div>";
+		                  str += "<img src='/resources/img/attach.png'>";
+		                  str += "<span> "+ obj.fileName+"</span></br>";
+		                  str += "</div></li>";
+		               } else {
+		                  
+		                  // 썸네일 나오게 처리
+		                  var fileCallPath = encodeURIComponent(obj.uploadPath +  "/s_" + obj.uuid + "_" + obj.fileName);
+		                  var originPath = obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName;
+		                  console.log("originPath1 : " + originPath);
+		                  originPath = originPath.replace(new RegExp(/\\/g), "/"); // \를 /로 통일
+		                  console.log("originPath2 : " + originPath);
+		                  str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'><div>";
+		                  str += "<a href=\"javascript:showImage(\'" + originPath + "\')\"><img src='/display?fileName=" + fileCallPath + "'></a>";
+		                  str += "</div></li>";
+		               }
+		            });
+		            $(".uploadResult ul").html(str);
+		         }); // getJSON
+			 $(".uploadResult").on("click","li", function(e){
+			      
+				    console.log("view image");
+				    
+				    var liObj = $(this);
+						    
+				    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+				    
+				    if(liObj.data("type")){
+				    	showImage(path.replace(new RegExp(/\\/g),"/"));
+				    }else {
+				      //download 
+				      self.location ="/download?fileName="+path
+				    }
+				    
+				    
+				  });
+			//이미지 크게 보여주기
+			  function showImage(fileCallPath){
+			    //alert(fileCallPath);
+			    
+			    $(".bigPictureWrapper").css("display","flex").show();
+			    
+			    $(".bigPicture")
+			    .html("<img src='/display?fileName="+fileCallPath+"' >")
+			    .animate({width:'100%', height: '100%'}, 1000);
+			    
+			  }
+
+			  $(".bigPictureWrapper").on("click", function(e){
+			    $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+			    setTimeout(function(){
+			      $('.bigPictureWrapper').hide();
+			    }, 1000);
+			  });
+				  
+			});
 		</script>
 
 

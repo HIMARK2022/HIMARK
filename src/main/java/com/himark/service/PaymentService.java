@@ -3,6 +3,7 @@ package com.himark.service;
 
 import java.util.List;
 
+import com.himark.domain.BoardAttachVO;
 import com.himark.domain.PaymentVO;
 
 public interface PaymentService {
@@ -33,6 +34,8 @@ public interface PaymentService {
 	public List<PaymentVO> getBackList(String userId);
 	
 	public List<String> getCategory();
+	
+	public List<BoardAttachVO> getAttachList(int rno);
 	
 
 }

@@ -28,6 +28,7 @@ public class PaymentVO {
 	private String rejectReason;
 	
 	private List<String> filterList;
+	private List<BoardAttachVO> attachList;
 	
 	
 }

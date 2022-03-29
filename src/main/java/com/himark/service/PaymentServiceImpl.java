@@ -3,28 +3,42 @@ package com.himark.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.himark.domain.BoardAttachVO;
 import com.himark.domain.PaymentVO;
-
+import com.himark.mapper.BoardAttachMapper;
 import com.himark.mapper.PaymentMapper;
 
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
-	
+	@Setter(onMethod_=@Autowired)
 	private PaymentMapper mapper;
-	//private PaymentVO pvo;
 	
+	@Setter(onMethod_=@Autowired)
+	private BoardAttachMapper attachMapper;
+	
+	@Transactional
 	@Override
 	public void register(PaymentVO payment) {
 
 		log.info("register...."+payment);
 		mapper.insert(payment);
+		
+		if(payment.getAttachList() == null || payment.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		payment.getAttachList().forEach(attach ->{
+			attach.setRno(payment.getRequestNo());
+			attachMapper.insert(attach);
+		});
 		
 	}
 
@@ -107,6 +121,12 @@ public class PaymentServiceImpl implements PaymentService {
 	public List<String> getCategory() {
 		// TODO Auto-generated method stub
 		return mapper.getCategory();
+	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList(int rno) {
+		log.info("get Attach list by bno" + rno);
+		return attachMapper.findByRno(rno);
 	}
 
 	

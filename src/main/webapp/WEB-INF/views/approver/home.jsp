@@ -110,7 +110,7 @@
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <div
+                                                            <div id="progress" 
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
@@ -287,6 +287,10 @@
                 </div>
                 <!-- End of Main Content -->
                 <script>
+                        
+                
+                
+                
              // Pie Chart Example
              Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';

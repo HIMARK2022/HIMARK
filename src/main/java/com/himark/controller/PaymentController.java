@@ -6,20 +6,23 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.himark.domain.BoardAttachVO;
 import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
-import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
-import com.himark.service.TreeTeamService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,11 +41,16 @@ public class PaymentController {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
-		
+		log.info(userId);
+		payment.setUserId(userId);
 		log.info(payment);
 		pservice.register(payment);
 		pservice.updateApprover(userId);
 		log.info("요청번호 : " +payment.getRequestNo());
+		
+		if(payment.getAttachList() != null) {
+			payment.getAttachList().forEach(attach -> log.info(attach));
+		}
 		
 		pservice.updateFdate(payment.getRequestNo(),payment.getImp());
 		
@@ -218,5 +226,14 @@ public class PaymentController {
 		return "redirect:/approver/payment?userId="+userId;
 		
 	}
+	
+	//게시물 번호를 이용해서 첨부파일과 관련된 데이터를 JSON으로 반환하도록 처리
+		@GetMapping(value = "/getAttachList",
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<List<BoardAttachVO>>getAttachList(int rno){
+			log.info("getAttachList" + rno);
+			return new ResponseEntity<>(pservice.getAttachList(rno), HttpStatus.OK);
+		}
 	
 }
