@@ -47,63 +47,30 @@ public class AdminTreeTeamController {
 	@PostMapping("/tree_employee_modal")
 	public String modalinfo(Model model ,@RequestParam("selectBox")String selectBox , @RequestParam("user_id")String user_id , 
 			@RequestParam("team_modal")String team,@RequestParam("depart_modal")String depart,@RequestParam("head_modal")String head,
-			@RequestParam("authority")String authority,@RequestParam("start-date2")String startdate2,@RequestParam("end-date2")String enddate2) {
+			@RequestParam("authority")String authority,@RequestParam("start-date2")String startdate,@RequestParam("end-date2")String enddate) {
 		log.info("모달");
 		
-		log.info(selectBox+" "+user_id+" "+ team+" "+depart+" "+head+" "+authority+" "+startdate2+" "+enddate2);
-	
-		if(selectBox != "none" ) {
-			if(selectBox.equals("d05")) {
-				log.info("대표 권한 부여");
-			}else if(selectBox.equals("d04")) {
-				log.info("본부장 권한 부여");
-				if(service.searchTemp_user(user_id) == null) {
-					log.info("이전에 부여된 권한이 없음");
-					log.info(service.searchManager(selectBox, head));
-					log.info(service.searchManager(selectBox, head).get(0));
-					String s = service.searchManager(selectBox, head).get(0).getUser_id().toString();
-					
-					service.insertTemp(user_id,s,startdate2,enddate2);	
-					
-				}else {
-					log.info("이전에 부여된 권한이 있음.");
-					String s = service.searchManager(selectBox, head).get(0).getUser_id().toString();
-					service.updateTemp(s, startdate2, enddate2,user_id);
-					log.info(service.updateTemp(s, startdate2, enddate2,user_id));
-				}
-			}
-			else if(selectBox.equals("d03")) {
-				log.info("부서장 권한 부여");
-				if(service.searchTemp_user(user_id) == null) {
-					log.info("이전에 부여된 권한이 없음");
-					String s = service.searchManager(selectBox, depart).get(0).getUser_id().toString();
-					log.info(s);
-					service.insertTemp(user_id,s,startdate2,enddate2);
-				}else {
-					log.info("이전에 부여된 권한이 있음.");
-					String s = service.searchManager(selectBox, depart).get(0).getUser_id().toString();
-					
-					log.info("권한 업데이트 "+s);
-					service.updateTemp(s, startdate2, enddate2,user_id);
-				}
-				
-			}
-			else if(selectBox.equals("d02")) {
-				log.info("팀장 권한 부여");
-				if(service.searchTemp_user(user_id) == null) {
-					log.info("이전에 부여된 권한이 없음");
-					String s = service.searchManager(selectBox, team).get(0).getUser_id().toString();
-					service.insertTemp(user_id,s,startdate2,enddate2);
-				}else {
-					log.info("이전에 부여된 권한이 있음.");
-					String s = service.searchManager(selectBox, team).get(0).getUser_id().toString();
-					log.info("권한 업데이트 "+s);
-					service.updateTemp(s, startdate2, enddate2,user_id);
-				}
-			}
-		}
-
-		return "redirect:/admin/tree_employee";
+		// ex) d05 10048 운영1팀 운영1팀 경영본부 사원
+		String duty_id = selectBox; //부서 아이디 - 셀렉박스
+		//user_id
+		String duty_name = team;	//팀
+		String head_name = head;	//본부
+		String dept_name = authority; // 직급 이름
+		//startdate					//시작일
+		//enddate					//마감일
+		
+		log.info(service.searchUpper(duty_name, duty_id)); // 임시 승인자의 정보
+		
+		String manager_id = service.searchUpper(duty_name, duty_id).get(0).getUser_id();	// 매니저 아이디
+		
+		log.info(manager_id+ user_id+ startdate+ enddate);
+		
+		
+		service.addTempManager(manager_id, user_id, startdate, enddate); // 임시 승인자를 매니저 테이블에 추가
+		
+		service.changeAcode(user_id); //임시 승인자의 권한 코드를 A2로 만듬
+		
+		return "redirect:/admin/tree_employee/";
 	}
 	
 	@GetMapping("/modify_employee")

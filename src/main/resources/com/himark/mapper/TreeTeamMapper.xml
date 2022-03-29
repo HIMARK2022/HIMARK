@@ -17,7 +17,7 @@
 	</select>
 	<!-- 팀원 정보 가져옴 -->
 	<select id="getTeam" resultType="com.himark.domain.TreeTeamVO">
-		select * from teaminfo where current_state = "O1";
+		select * from teaminfo where current_state = "재직";
 	</select>
 	<select id="getUserInfo" resultType="com.himark.domain.UserDetailVO">
       select * from user_detail 
@@ -26,7 +26,7 @@
       or dept_name like CONCAT('%',#{name},'%') 
       or pos_name like CONCAT('%',#{name},'%') 
       or upper_dept like CONCAT('%',#{name},'%')
-      or upper_dept2 like CONCAT('%',#{name},'%') and current_state="O1";
+      or upper_dept2 like CONCAT('%',#{name},'%') and current_state="재직";
    </select>
 
 	
@@ -37,20 +37,19 @@
 	</insert>
 	<!-- 임시 승인자 업데이트 -->
 	<update id="updateTemp">
-		update temporary_manager
-		set 
-		manager_id = #{manager_id},
+		update manager
+		set
 		approval_start = #{approval_start},
 		approval_finish = #{approval_finish}
 		where user_id = #{user_id};
 	</update>
 	<!-- 임시 승인자 찾기 -->
 	<select id="searchTemp" resultType="com.himark.domain.TempApprovalVO">
-		select * from temporary_manager;
+		select * from manager;
 	</select>
 	<!-- 임시 승인자 찾기2 -->
 	<select id="searchTemp_user" resultType="String">
-		select user_id from temporary_manager where user_id = #{user_id};
+		select user_id from manager where user_id = #{user_id};
 	</select>
 	<!-- 임시 승인자 메니저 찾기  -->
 	<select id="searchManager" resultType="com.himark.domain.UserDetailVO">
@@ -58,8 +57,57 @@
 	</select>
 	<!-- 수정할 인원의 정보 아이디로 찾기 -->
 	<select id="searchUserById" resultType="com.himark.domain.UserDetailVO">
-		select * from user_detail where user_id = #{user_id} and current_state="O1";
+		select * from user_detail where user_id = #{user_id} and current_state="재직";
 	</select>
 	
+	<!-- 직원 정보 수정 -->
+	<update id="updateUser">
+		update user
+		set
+		user_name = #{param1},
+		sex = #{param2},
+		phone_number = #{param3},
+		email = #{param4}
+		where user_id = #{param5};
+	</update>
+	
+	<!-- 임시 승인자가 대신할, 승인자의 정보 가져오기 -->
+	<select id="searchUpper" resultType="com.himark.domain.UserVO">
+	 	select distinct U.* from user as U 
+		join (
+		select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
+		union all
+		select user_id from user as u 
+		inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where dept_name= #{param1} and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
+		on u.dept_id = C.upper_dept_id
+		union all
+		select u.user_id from user as u 
+		inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where dept_name= #{param1} and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
+		on u.user_id = B.user_id
+		join dept as de on u.dept_id = de.dept_id
+		union all
+		select u.user_id from user as u 
+		join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
+		where dept_name= #{param1} and du.duty_name in('팀장')) as L
+		on U.user_id = L.user_id
+		where U.duty_id = #{param2};
+	 </select>
+	 
+	 <insert id="addTempManager">
+	 	insert into manager (manager_id, approval_target, classify_target, approval_start, approval_finish, temp_manager) 
+		select 
+		replace(manager_id, #{param1}, #{param1}) as manager_id, 
+		replace(approval_target, #{param1}, #{param1}) as approval_target , 
+		"T1", #{param3}, #{param4} , #{param2} 
+		from manager 
+		where manager_id = #{param1};
+	 </insert>
+	 
+	 <update id="changeAcode">
+	 	update user
+        set authority_code = "A2"
+        where user_id =  #{param1}
+	 </update>
+	 
 	
 </mapper>

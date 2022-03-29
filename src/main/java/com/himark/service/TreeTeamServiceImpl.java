@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.himark.domain.TempApprovalVO;
 import com.himark.domain.TreeTeamVO;
 import com.himark.domain.UserDetailVO;
+import com.himark.domain.UserVO;
 import com.himark.mapper.TreeTeamMapper;
 
 import lombok.Setter;
@@ -65,6 +66,20 @@ public class TreeTeamServiceImpl implements TreeTeamService{
 	@Override
 	public List<UserDetailVO> searchUserById(String user_id) {
 		return mapper.searchUserById(user_id);
+	}
+	@Override
+	public List<UserVO> searchUpper(String duty_name, String duty_id) {
+		return mapper.searchUpper(duty_name, duty_id);
+	}
+	@Override
+	public void addTempManager(String manager_id, String user_id, String startdate, String enddate) {
+		mapper.addTempManager(manager_id, user_id, startdate, enddate);
+		
+	}
+	@Override
+	public void changeAcode(String user_id) {
+		mapper.changeAcode(user_id);
+		
 	}
 
 }
