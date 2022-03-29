@@ -23,19 +23,13 @@
 		where dept_name = (select upper_dept2 from user_detail where user_id =#{user_id}) and duty_id = 'd04';
 	</select>
 
-	<!-- 임시승인자 찾기 -->
-	<select id="tempManagerT" resultType="com.himark.domain.TempManagerInfoVO">
-		select * from tempMangerInfo where duty_id = 'd02' and dept_name=#{dept_name};
-	</select>
-	<select id="tempManagerD" resultType="com.himark.domain.TempManagerInfoVO">
-		select * from tempMangerInfo where duty_id = 'd03' and dept_name=#{dept_name};
-	</select>
-	<select id="tempManagerH" resultType="com.himark.domain.TempManagerInfoVO">
-		select * from tempMangerInfo where duty_id = 'd04' and dept_name=#{dept_name};
-	</select>
 
 	<!-- 사용자 정보 가져오기 -->
-	<select id="searchAll" resultType="com.himark.domain.UserDetailVO">
-		select * from user_detail 
+	<select id="searchAll" resultType="com.himark.domain.UsersDetailVO">
+		select * from usersdetail where user_id =#{user_id};
+	</select>
+	<!-- 임시 승인자 조회 정보 가져오기 -->
+	<select id="findTemp" resultType="com.himark.domain.ManagerVO">
+		select  * from manager where temp_manager is not null and manager_id = #{user_id} group by temp_manager;
 	</select>
 </mapper> 

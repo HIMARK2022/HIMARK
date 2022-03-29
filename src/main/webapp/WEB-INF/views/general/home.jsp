@@ -75,18 +75,38 @@
                                                 <table class="table table-bordered bg-primary text-white"
                                                     id="dataTable topbar" width="100%" cellspacing="0">
                                                     <tr>
-                                                        <th id="name">이름</th>
-				                                        <th id="headquarter">본부</th>
-				                                        <th id="department">부서</th>
-				                                        <th id="team">팀</th>
-				                                        <th id="position">직책</th>
+                                                        <th id="name" style="width:20%">이름</th>
+				                                        <th id="headquarter" style="width:20%">본부</th>
+				                                        <th id="department" style="width:20%">부서</th>
+				                                        <th id="team" style="width:20%">팀</th>
+				                                        <th id="position" style="width:20%">직책</th>
                                                     </tr>
+                                                    
                                                 </table>
                                                 <div id="table_content">
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
-                                                      
-								
+                                                       <tr>
+                                                        <th style="width:20%">${team[0].user_name}</th>
+				                                        <th style="width:20%">${team[0].upper_dept2}</th>
+				                                        <th style="width:20%">${team[0].upper_dept}</th>
+				                                        <th style="width:20%">${team[0].dept_name}</th>
+				                                        <th style="width:20%">${team[0].duty_name}</th>
+                                                    	</tr>
+														<tr>
+                                                        <th id="name">${depart[0].user_name}</th>
+				                                        <th id="headquarter">${depart[0].upper_dept}</th>
+				                                        <th id="department">${depart[0].dept_name}</th>
+				                                        <th id="team">--</th>
+				                                        <th id="position">${depart[0].duty_name}</th>
+                                                    	</tr>
+                                                    	<tr>
+                                                        <th id="name">${upper[0].user_name}</th>
+				                                        <th id="headquarter">${upper[0].dept_name}</th>
+				                                        <th id="department">--</th>
+				                                        <th id="team">--</th>
+				                                        <th id="position">${upper[0].duty_name}</th>
+                                                    	</tr>
 							
 														</table>
                                                 </div>

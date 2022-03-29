@@ -75,7 +75,7 @@
 					 <a class="collapse-item" href="/general/request?userId=${member.userId}">요청</a>
                         <a class="collapse-item" href="/general/request_list?userId=${member.userId}">목록</a>
                         <h6 class="collapse-header">승인자 리스트 </h6>
-                        <a class="collapse-item" href="#">승인자 리스트</a>
+                        <a class="collapse-item" href="/general/approver_list?userId=${member.userId}">승인자 리스트</a>
                         
 				</div>
 			</div></li>

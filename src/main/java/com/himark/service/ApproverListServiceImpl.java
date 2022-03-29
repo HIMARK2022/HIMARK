@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.himark.domain.ManagerVO;
 import com.himark.domain.TempManagerInfoVO;
 import com.himark.domain.UserDetailVO;
+import com.himark.domain.UsersDetailVO;
 import com.himark.mapper.ApproverListMapper;
 
 import lombok.Setter;
@@ -32,24 +34,16 @@ public class ApproverListServiceImpl implements ApproverListService{
 	}
 
 	@Override
-	public List<TempManagerInfoVO> tempManagerT(String dept_name) {
-		return mapper.tempManagerT(dept_name);
+	public List<ManagerVO> findTemp(String user_id) {
+		
+		return mapper.findTemp(user_id);
 	}
 
 	@Override
-	public List<TempManagerInfoVO> tempManagerD(String dept_name) {
-		return mapper.tempManagerD(dept_name);
+	public List<UsersDetailVO> searchAll(String user_id) {
+		return mapper.searchAll(user_id);
 	}
 
-	@Override
-	public List<TempManagerInfoVO> tempManagerH(String dept_name) {
-		return mapper.tempManagerH(dept_name);
-	}
 
-	@Override
-	public List<UserDetailVO> searchAll() {
-
-		return mapper.searchAll();
-	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.himark.domain.MemberVO;
 import com.himark.service.AdminHomeService;
+import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
 
@@ -24,7 +25,7 @@ public class MainController {
 	private MemberService mservice;
 	private AdminHomeService aservice;
 	private PaymentService pservice;
-	
+	private ApproverListService service; // 승인자 목록
 	@GetMapping({"/home", "/mydept"})
 	public void home(Model model, HttpServletRequest request) {
 		
@@ -44,7 +45,10 @@ public class MainController {
 		model.addAttribute("gcomplete",pservice.getCompletePaymentList(userId).size());
 		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
 		model.addAttribute("member", mservice.getMember(m.getUserId()));
-		
+		// 승인자 목록
+		model.addAttribute("team", service.getTeamL(userId));
+		model.addAttribute("depart", service.getDepartL(userId));
+		model.addAttribute("upper", service.getUpperL(userId));
 		
 
 	}

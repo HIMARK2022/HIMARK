@@ -20,17 +20,17 @@
 		<!-- 승인자리스트.html -->
 		<div class="container-fluid">
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">승인목록 관리</h1>
-			<p class="mb-4">승인 목록을 관리하는 페이지 입니다.</p>
+			<h1 class="h3 mb-2 text-gray-800">승인자 리스트</h1>
+			<p class="mb-4">승인자 목록과 임시 승인자 목록을 확인할 수 있습니다.</p>
 
 			<!--승인자 목록 Start-->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">승인자 목록</h6>
+					<h6 class="m-0 font-weight-bold text-primary">승인자 라스트</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive col-lg-12">
-						<h4>승인자 목록</h4>
+						<h4>승인자 리스트</h4>
 						<br>
 						<table class="table table-bordered table-hover" id="dataTable11"
 							width="100%" cellspacing="0">
@@ -76,60 +76,48 @@
 					</div>
 					<br>
 					<div class="table-responsive col-lg-12" id="temp">
-						<h4>임시 승인자 목록</h4>
+						<h4>임시 승인자 리스트</h4>
 						<br>
 						<table class="table table-bordered" id="dataTable11" width="100%"
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th>임시 승인자</th>
-									<th>본부(승인대상)</th>
-									<th>부서(승인대상)</th>
-									<th>팀(승인대상)</th>
+									<th>임시 승인자/직급</th>
+									<th>승인 대상</th>
+									<th>승인 부여일</th>
+									<th>승인 만료일</th>
 									<th>임시 권한</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${Tempteam[0].user_id ne null}">
+								<c:if test="${teamPer[0].manager_id ne null}">
 									<tr>
-										<td><span data-toggle="tooltip" data-placement="top"
-											title="${ user_team[0].dept_name} / ${ user_team[0].pos_name}">
-												${user_team[0].user_name} </span></td>
-										<td>${Tempteam[0].upper_dept2}</td>
-										<td>${Tempteam[0].upper_dept}</td>
-										<td>${Tempteam[0].dept_name}</td>
-
-										<td><span data-toggle="tooltip" data-placement="top"
-											title="<fmt:formatDate value="${Tempteam[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempteam[0].approval_finish}" pattern="yyyy-MM-dd" />">
-												${Tempteam[0].duty_name} </span></td>
+										<td>${teamA[0].user_name}/${ teamA[0].pos_name} </td>
+										<td>${teamA[0].team}</td>
+										<td><fmt:formatDate value="${teamPer[0].approval_start}" pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatDate value="${teamPer[0].approval_finish}" pattern="yyyy-MM-dd" /></td>
+										<td>팀장</td>
 									</tr>
 								</c:if>
-								<c:if test="${Tempdepart[0].user_id ne null}">
+								<c:if test="${departPer[0].manager_id ne null}">
 									<tr>
-										<td><span data-toggle="tooltip" data-placement="top"
-											title="${ user_dept[0].dept_name} / ${ user_dept[0].pos_name}">
-												${user_dept[0].user_name} </span></td>
-										<td>${Tempdepart[0].upper_dept}</td>
-										<td>${Tempdepart[0].dept_name}</td>
-										<td>--</td>
+										<td>${departA[0].user_name}/${ departA[0].pos_name}</td>
+										<td>${departA[0].head}</td>
+										<td>${departA[0].depart}</td>
+										<td><fmt:formatDate value="${departPer[0].approval_start}" pattern="yyyy-MM-dd" /> </td>
 
-										<td><span data-toggle="tooltip" data-placement="top"
-											title="<fmt:formatDate value="${Tempdepart[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempdepart[0].approval_finish}" pattern="yyyy-MM-dd" />">${Tempdepart[0].duty_name}</span></td>
+										<td><fmt:formatDate value="${departPer[0].approval_finish}" pattern="yyyy-MM-dd" /></td>
 									</tr>
 								</c:if>
-								<c:if test="${Tempupper[0].user_id ne null}">
+								<c:if test="${headPer[0].manager_id ne null}">
 									<tr>
-										<td><span data-toggle="tooltip" data-placement="top"
-											title=" ${ user_upper[0].dept_name} / ${ user_upper[0].pos_name}">
-												${user_upper[0].user_name} </span></td>
-										<td>${Tempupper[0].dept_name}</td>
-										<td>--</td>
-										<td>--</td>
-
-										<td><span data-toggle="tooltip" data-placement="top"
-											title="<fmt:formatDate value="${Tempupper[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempupper[0].approval_finish}" pattern="yyyy-MM-dd" />">${Tempupper[0].duty_name}</span></td>
+										<td>${headA[0].user_name}/${ headA[0].pos_name}</td>
+										<td>${headA[0].head}</td>
+										<td><fmt:formatDate value="${headPer[0].approval_start}" pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatDate value="${headPer[0].approval_finish}" pattern="yyyy-MM-dd" /></td>
+										<td>본부장</td>
 									</tr>
-								</c:if>
+								</c:if> 
 							</tbody>
 						</table>
 
@@ -154,15 +142,15 @@
 	<script>
 		$("#temp").css("display","none")
 		var t=1;
-		 <c:if test="${Tempteam[0].user_id eq null}">
+		<c:if test="${teamPer[0].manager_id ne null}">
 		 	t=0;
 		 </c:if>
 		 var d=1;
-		 <c:if test="${Tempdepart[0].user_id eq null}">
+		 <c:if test="${departPer[0].manager_id ne null}">
 		 	d=0;
 		 </c:if>
 		 var u=1;
-		 <c:if test="${Tempupper[0].user_id eq null}">
+		 <c:if test="${headPer[0].manager_id ne null}">
 		 	d=0;
 		 </c:if>
 		
