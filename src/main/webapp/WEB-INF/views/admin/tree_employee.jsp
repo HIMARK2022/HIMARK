@@ -108,6 +108,7 @@
                                     <div id="som">
                                         
                                         <br>
+                                        <form action="/admin/modify" method = "get">
                                         <table class="table table-bordered " id="dataTable" cellspacing="0">
                                             <tr>
                                                 <th class="col-lg-3 col-md-3">이름</th>
@@ -123,7 +124,7 @@
                                               </td>
                                             </tr>
                                             <tr>
-                                              <th >성별</th>
+                                              <th >성별 (남자/여자)</th>
                                               <td >
                                                 <span id="Tsex"></span>
                                                 
@@ -177,24 +178,26 @@
                                             </tr>
                                             
                                         </table>
-                                        <br>
-                                        <div class="twobuttons" >
-                                        <form action="/admin/modify_employee" method="get" name="modalform" id="modalform">
                                         	<input type="hidden" value="" name="mod_id"/>
-                                        </form>	
-                                            <a href="#" class="btn btn-outline-warning btn-lg btn-icon-split" id="modbtn">
+                                        	<button type="submit" class="btn btn-outline-warning btn-lg btn-icon-split" id="modbtn">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-plus"></i>
                                                 </span>
                                                 <span class="text">수정하기</span>
-                                            </a>
-                                        
+                                            </button>
                                             <a class="content-detail btn btn-outline-primary btn-lg btn-icon-split">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-check"></i>
                                                 </span>
                                                 <span class="text">임시승인자 지정</span>
                                             </a>
+                                       </form>
+                                        
+                                        <br>
+                                        <div class="twobuttons" >
+	                                        <form action="/admin/modify" method="get" name="modalform" id="modalform">
+	                                        	<input type="hidden" value="" name="mod_id"/>
+	                                        </form>	
                                         </div>  
                                     </div>
                                     
@@ -209,7 +212,6 @@
                     </div>
                     
                 </div>
-tree_employee_modal
 
 <!-- 모달 --><form action="/admin/tree_employee_modal" method="post" id="ModalForm">
 				<input type="hidden" value="" name="user_id"/>
@@ -425,14 +427,20 @@ tree_employee_modal
                 str10 = "<span>" + Tstart +" ~ "+ Tfinish+"</span>" ;$("#TempP").append(str10);	
             }
             
-            str1 = "<span>" +name+ "</span>" ; $("#Tname").append(str1);
-            str2 = "<span>" +birth+ "</span>";$("#Tbirth").append(str2);
-            str3 = "<span>" +phone_number+ "</span>";$("#Tphone").append(str3);
-            str4 = "<span>" +email+ "</span>";$("#Temail").append(str4);
-            str5 = "<span>" +sex+ "</span>";$("#Tsex").append(str5);
+            // 상세 정보 card-body 안 table
+            str1 = "<span><input name='name' value="+name+ "> </input></span>"; $("#Tname").append(str1);
+            str2 = "<span>"+birth+"</span>";$("#Tbirth").append(str2);
+            str3 = "<span><input name='phone_number' value="+phone_number+ "> </input></span>";$("#Tphone").append(str3);
+            str4 = "<span><input name='email' value="+email+ "> </input></span>";$("#Temail").append(str4);
+            str5 = "<span><input name='sex' value="+sex+ "> </input></span>"; $("#Tsex").append(str5);
+            
             str6 = "<span>" +pos+ "</span>";$("#Tpos").append(str6);
             str7 = "<span>" +duty+ "</span>";$("#Tduty").append(str7);
-            str8 = "<span>" +team + "/"+part+"/"+head+"</span>";  $("#Tpart").append(str8); 
+            str8 = "<span>" +team+ "</span>";$("#Tpart").append(str8);
+            
+/*             str6 = "<span><input value="+pos+ "> </input></span>";$("#Tpos").append(str6);
+            str7 = "<span><input value="+duty+ "> </input></span>";$("#Tduty").append(str7);
+            str8 = "<span><input value="+team+ "> </input></span>";$("#Tpart").append(str8); */
             
             $('input[name=formName]').attr('value',name);
             
