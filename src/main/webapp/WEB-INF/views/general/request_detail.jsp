@@ -158,7 +158,7 @@
 										</c:if>
 										
 						
-						<a class="btn btn-outline-primary" type="submit" href="/general/request_list?userId=${member.userId}"
+						<a class="btn btn-outline-primary" type="submit" href="/general/request?userId=${member.userId}"
 							id="request_btn">목록</a>
 
 					</div>
