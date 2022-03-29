@@ -4,13 +4,33 @@
     width: 100%;
     height: 100%;
     background-size: cover;
-    margin-left: 90%;
+
 }
 
 .blur-it {
     filter: blur(4px);
 }
+.modal-wrapper2 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    background: rgba(94, 94, 94, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+    z-index: 2;
+}
 
+.modal-wrapper2.open {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-wrapper2.open .modal {
+    margin-top: -300px;
+    opacity: 1;
+}
 .modal-wrapper {
     width: 100%;
     height: 100%;
