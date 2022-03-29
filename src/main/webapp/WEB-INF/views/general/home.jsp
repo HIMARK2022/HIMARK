@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>홈 - 일반 사용자</title>
 <link href="/resources/css/general_home.css" rel="stylesheet">
+  <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>
 <body id="page-top">
 
@@ -27,7 +31,7 @@
                     <div class="row">
                         <!-- 나의 정보 Start -->
                         <div class="col-xl-6 col-lg-6">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-2">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -59,7 +63,7 @@
                             <div class="row">
                                 <!-- 승인자 목록 Start -->
                                 <div class="col-xl-12 col-lg-12">
-                                    <div class="card shadow mb-4">
+                                    <div class="card shadow mb-2">
                                         <!-- Card Header - Dropdown -->
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -71,38 +75,45 @@
                                                 <table class="table table-bordered bg-primary text-white"
                                                     id="dataTable topbar" width="100%" cellspacing="0">
                                                     <tr>
-                                                        <td><b> 승인자</b></td>
-                                                        <td><b> 권한</b></td>
+                                                        <th id="name">이름</th>
+				                                        <th id="headquarter">본부</th>
+				                                        <th id="department">부서</th>
+				                                        <th id="team">팀</th>
+				                                        <th id="position">직책</th>
                                                     </tr>
                                                 </table>
                                                 <div id="table_content">
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
-                                                        <tr>
-                                                            <td>김개발</td>
-                                                            <td>개발 승인</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>김미팅</td>
-                                                            <td>회의실 사용</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>김과장</td>
-                                                            <td>문서 열람</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>김개발</td>
-                                                            <td>개발 승인</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>김미팅</td>
-                                                            <td>회의실 사용</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>김과장</td>
-                                                            <td>문서 열람</td>
-                                                        </tr>
-                                                    </table>
+                                                      
+								<tr>
+									<td>${team[0].user_name}</td>
+									<td>${team[0].upper_dept2}</td>
+									<td>${team[0].upper_dept}</td>
+									<td>${team[0].dept_name}</td>
+									<td>${team[0].duty_name}</td>
+
+								</tr>
+								<tr>
+									<td>${depart[0].user_name}</td>
+
+									<td>${depart[0].upper_dept}</td>
+									<td>${depart[0].dept_name}</td>
+									<td>--</td>
+									<td>${depart[0].duty_name}</td>
+
+								</tr>
+								<tr>
+									<td>${upper[0].user_name}</td>
+
+									<td>${upper[0].dept_name}</td>
+									<td>--</td>
+									<td>--</td>
+									<td>${upper[0].duty_name}</td>
+
+								</tr>
+							
+						</table>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +131,7 @@
                                             <a href="#" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <i class="fa fa-user fa-4x" id="ad_icon" aria-hidden="true"></i></br>
+                                                        <i class="fa fa-user fa-4x" id="ad_icon1" aria-hidden="true"></i></br>
                                                         <h5>나의 정보</h5>
                                                     </div>
                                                 </div>
@@ -130,7 +141,7 @@
                                             <a href="#" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <img src="/resources/img/department.png" id="ad_icon" style="width: 74px; height: 64px; opacity: 0.7;"></img></br>
+                                                        <img src="/resources/img/department.png" id="ad_icon2" style="width: 74px; height: 64px; opacity: 0.7;"></img></br>
                                                         <h5>나의 부서</h5>
                                                     </div>
                                                 </div>
@@ -140,7 +151,7 @@
                                             <a href="#" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <i class="fa fa-list-alt fa-4x " id="ad_icon2" aria-hidden="true"></i></br>
+                                                        <i class="fa fa-list-alt fa-4x " id="ad_icon3" aria-hidden="true"></i></br>
                                                         <h5>요청 목록</h5>
                                                     </div>
                                                 </div>
@@ -157,7 +168,7 @@
                                 </div>
                                 <div class="card-body" id="request" style="padding: 1em;">
                                     <div class="row">
-                                        <div class="col-lg-4 mb-4">
+                                        <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
@@ -165,7 +176,7 @@
                                                             <div
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15건</div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
@@ -175,7 +186,7 @@
                                             </div>
                                         </div>
 
-                                            <div class="col-lg-4 mb-4">
+                                            <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
                                                     <div class="card-body">
                                                         <div class="row no-gutters align-items-center">
@@ -183,7 +194,7 @@
                                                                 <div
                                                                     class="text-sm font-weight-bold text-success text-uppercase mb-1">
                                                                     완료</div>
-                                                                <div class="h5 mb-0 font-weight-bold text-gray-800">55건
+                                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>건
                                                                 </div>
                                                             </div>
                                                             <div class="col-auto">
@@ -194,7 +205,7 @@
                                                 </div>
                                            </div>
 
-                                                <div class="col-lg-4 mb-4">
+                                                <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
                                                         <div class="card-body">
                                                             <div class="row no-gutters align-items-center">
@@ -203,7 +214,7 @@
                                                                         class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
                                                                         반려</div>
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                        30건</div>
+                                                                        <c:out value='${back}'/>건</div>
                                                                 </div>
                                                                 <div class="col-auto">
                                                                     <i class="fa fa-reply fa-2x text-secondary"></i>
@@ -249,8 +260,54 @@
                 </div>  
                 <!-- 메인 끝 -->
             </div>
+            <script>
+            var button1 = document.getElementById("ad_icon1");
+            var button2 = document.getElementById("ad_icon2");
+            var button3 = document.getElementById("ad_icon3");
+            button1.onclick = function(event) {
+            	location.href = "myinfo?userId="+${member.userId}
+            }
+            button2.onclick = function(event) {
+            	location.href = "mydept?userId="+${member.userId}
+              }
+            button3.onclick = function(event) {
+            	location.href = "request?userId="+${member.userId}
+              }
+            
+            Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+			Chart.defaults.global.defaultFontColor = '#858796';
+                var ctx = document.getElementById("myPieChart");
+                var myPieChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: ["진행중", "완료", "반려"],
+                    datasets: [{
+                      data: [<c:out value='${progress}'/>, <c:out value='${complete}'/>, <c:out value='${back}'/>],
+                      backgroundColor: ['#4e73df', '#1cc88a', '#858796'],
+                      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                      hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                    },
+                    legend: {
+                      display: false
+                    },
+                    cutoutPercentage: 80,
+                  },
+                });
+            </script>
             <!-- End of Main Content -->
             <%@include file="../sidebar/footer.jsp"%>
-
 </body>
 </html>

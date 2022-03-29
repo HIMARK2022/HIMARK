@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>홈 - 승인자</title>
 <link href="/resources/css/approver_home.css" rel="stylesheet">
+  <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>
 <body id="page-top">
 
@@ -78,30 +82,13 @@
                                         <div id="table_content">
                                             <table class="table table-bordered" id="dataTable" width="100%"
                                                 cellspacing="0">
+                                                <c:forEach var="list" items="${dlist}"> 
                                                 <tr>
-                                                    <td>이과장</td>
-                                                    <td>과장</td>
+                                                    <td>${list.userName}</td>
+                                                    <td>${list.pos}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>윤대리</td>
-                                                    <td>대리</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>김미팅</td>
-                                                    <td>계장</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>김개발</td>
-                                                    <td>사원</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>김마크</td>
-                                                    <td>사원</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>박비트</td>
-                                                    <td>사원</td>
-                                                </tr>
+                                                </c:forEach>
+                                               
                                             </table>
                                         </div>
                                     </div>
@@ -116,7 +103,7 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">나의 요청 </h6>
                                 </div>
-                                <div class="card-body" id="request" style="padding: 1em 1em 0;">
+                                <div class="card-body" id="request" style="padding: 1em;">
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
@@ -124,10 +111,9 @@
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div
-                                                                class="text-sm  font-weight-bold text-primary text-uppercase mb-1">
+                                                                class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0건
-                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
@@ -137,45 +123,45 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 mb-2">
-                                            <div class="card border shadow h-100 ">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-sm font-weight-bold text-success text-uppercase mb-1">
-                                                                완료</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0건
+                                            <div class="col-lg-4 mb-2">
+                                                <div class="card border shadow h-100 ">
+                                                    <div class="card-body">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                <div
+                                                                    class="text-sm font-weight-bold text-success text-uppercase mb-1">
+                                                                    완료</div>
+                                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>건
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <i class="fas fa-check fa-2x text-success"></i>
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-check fa-2x text-success"></i>
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                           </div>
 
-                                        <div class="col-lg-4 mb-2">
-                                            <div class="card border shadow h-100">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div
-                                                                class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
-                                                                반려</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                0건</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-reply fa-2x text-secondary"></i>
+                                                <div class="col-lg-4 mb-2">
+                                                    <div class="card border shadow h-100">
+                                                        <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                <div class="col mr-2">
+                                                                    <div
+                                                                        class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
+                                                                        반려</div>
+                                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                        <c:out value='${back}'/>건</div>
+                                                                </div>
+                                                                <div class="col-auto">
+                                                                    <i class="fa fa-reply fa-2x text-secondary"></i>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
                                 <!-- Pie Chart -->
                                 <div class="col-xl-12 col-lg-12">
@@ -208,7 +194,7 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">요청 GET</h6>
                                 </div>
-                                <div class="card-body" id="request" style="padding: 1em 1em 0;">
+                                <div class="card-body" id="request" style="padding: 1em;">
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
@@ -218,7 +204,7 @@
                                                             <div
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0건
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gprogress}'/>건
                                                             </div>
                                                         </div>
                                                         <div class="col-auto">
@@ -237,7 +223,7 @@
                                                             <div
                                                                 class="text-sm font-weight-bold text-success text-uppercase mb-1">
                                                                 완료</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0건
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gcomplete}'/>건
                                                             </div>
                                                         </div>
                                                         <div class="col-auto">
@@ -257,7 +243,7 @@
                                                                 class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
                                                                 반려</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                0건</div>
+                                                                <c:out value='${gback}'/>건</div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-reply fa-2x text-secondary"></i>
@@ -300,7 +286,73 @@
 
                 </div>
                 <!-- End of Main Content -->
-<%@include file="../sidebar/footer.jsp"%>
+                <script>
+             // Pie Chart Example
+             Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+                var ctx = document.getElementById("myPieChart");
+                var myPieChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: ["진행중", "완료", "반려"],
+                    datasets: [{
+                      data: [<c:out value='${progress}'/>, <c:out value='${complete}'/>, <c:out value='${back}'/>],
+                      backgroundColor: ['#4e73df', '#1cc88a', '#858796'],
+                      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                      hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                    },
+                    legend: {
+                      display: false
+                    },
+                    cutoutPercentage: 80,
+                  },
+                });
+
+                var ctx = document.getElementById("myPieChart2");
+                var myPieChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: ["진행중", "완료", "반려"],
+                    datasets: [{
+                      data:  [<c:out value='${gprogress}'/>, <c:out value='${gcomplete}'/>, <c:out value='${gback}'/>],
+                      backgroundColor: ['#4e73df', '#1cc88a', '#858796'],
+                      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                      hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      backgroundColor: "rgb(255,255,255)",
+                      bodyFontColor: "#858796",
+                      borderColor: '#dddfeb',
+                      borderWidth: 1,
+                      xPadding: 15,
+                      yPadding: 15,
+                      displayColors: false,
+                      caretPadding: 10,
+                    },
+                    legend: {
+                      display: false
+                    },
+                    cutoutPercentage: 80,
+                  },
+                });
+                </script>
+	<%@include file="../sidebar/footer.jsp"%>
 
 </body>
 </html>

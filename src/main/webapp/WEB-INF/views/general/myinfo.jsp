@@ -35,19 +35,7 @@
                                 <div class="col-lg-4" style="text-align: center;padding: 2%;">
                                     <img class="img-circle img-responsive" alt="" src="/resources/img/undraw_profile.svg" width="70%">
                                     <div style="margin-top: 10%;">
-                                        <a href="#" class="btn btn-outline-danger btn-icon-split" >
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">초기화</span>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary btn-icon-split" >
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="text">업로드</span>
-                                        </a>
-                                    </div>
+                                                                           </div>
                                 </div>
                                 
                                 <div class="col-lg-8" >
@@ -110,6 +98,7 @@
                                         <tr>
                                             <th>비밀번호</th>
                                             <td>
+                                            
                                                 <div class="myPwd">
                                                     <label>현재 비밀번호</label>
                                                     <div class="form-group pass_show"> 
@@ -129,6 +118,7 @@
                                                         </a>
                                                     </div> 
                                                 </div>
+                                               
                                             </td>
                                         </tr>
                                         

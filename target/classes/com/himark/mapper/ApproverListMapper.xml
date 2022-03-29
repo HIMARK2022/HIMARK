@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.himark.mapper.ApproverListMapper">
+
+	<!-- 본인 해당 팀 승인자 -->
+	<select id="getTeamL" resultType="com.himark.domain.UserDetailVO">
+		select * 
+		from user_detail
+		where dept_name = (select dept_name from user_detail where user_id = #{user_id}) and duty_id = 'd02';
+	</select>
+	<!-- 본인 해당 부서 승인자 -->
+	<select id="getDepartL" resultType="com.himark.domain.UserDetailVO">
+		select * 
+		from user_detail
+		where dept_name = (select upper_dept from user_detail where user_id =#{user_id}) and duty_id = 'd03';
+	</select>
+	<!-- 본인 해당 사업부 승인자 -->	
+	<select id="getUpperL" resultType="com.himark.domain.UserDetailVO">
+		select * 
+		from user_detail
+		where dept_name = (select upper_dept2 from user_detail where user_id =#{user_id}) and duty_id = 'd04';
+	</select>
+
+	<!-- 임시승인자 찾기 -->
+	<select id="tempManagerT" resultType="com.himark.domain.TempManagerInfoVO">
+		select * from tempMangerInfo where duty_id = 'd02' and dept_name=#{dept_name};
+	</select>
+	<select id="tempManagerD" resultType="com.himark.domain.TempManagerInfoVO">
+		select * from tempMangerInfo where duty_id = 'd03' and dept_name=#{dept_name};
+	</select>
+	<select id="tempManagerH" resultType="com.himark.domain.TempManagerInfoVO">
+		select * from tempMangerInfo where duty_id = 'd04' and dept_name=#{dept_name};
+	</select>
+
+	<!-- 사용자 정보 가져오기 -->
+	<select id="searchAll" resultType="com.himark.domain.UserDetailVO">
+		select * from user_detail 
+	</select>
+</mapper> 

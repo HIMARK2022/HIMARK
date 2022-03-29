@@ -89,9 +89,11 @@
 													<label><input type="checkbox" value="팀업무C" name="filter" <c:if test="${flist eq '팀업무C'}">checked</c:if> />팀업무C</label> 
 													<label><input type="checkbox" value="팀업무D" name="filter" <c:if test="${flist eq '팀업무D'}">checked</c:if> />팀업무D</label> 
 													<label><input type="checkbox" value="팀업무E" name="filter" <c:if test="${flist eq '팀업무E'}">checked</c:if>/>팀업무E</label>
-											<button id="search_btn" class="btn btn-outline-primary"
-														type="button" style="margin-left: 10px; margin-top: -5px">검색</button>		
+													
+													<button id="search_btn" class="btn btn-outline-primary"
+														type="button" style="margin-left: 10px; margin-top: -5px">검색</button>
 												</div>
+											
 											
 												
 											</form>
@@ -102,10 +104,8 @@
 												</form>  
 												
 											</p>
-
-											
-
-									</div>
+</div>
+</div>
 								</div>
 							</div>
 							</p>
@@ -166,11 +166,11 @@
 					</form>
 					<!-- 요청 내역 End -->
 
-					<!-- 신규 기안 Start -->
+						<!-- 신규 기안 Start -->
 					<div class="tab-pane fade show" id="tab2">
 						<div class="table-responsive">
 							<div class="card-body">
-								<form id="actionForm" action="/general/register" method="post">
+								<form id="actionForm" action="/general/register" method="post" role="form">
 									<p>
 									<h6>제목</h6>
 									<input type="text" class="form-control col-xl-4" required
@@ -178,29 +178,25 @@
 									</p>
 									<p>
 									<h6>양식명</h6>
-									<select class="form-control col-xl-4" name="classifyNo">
+									<select class="form-control col-xl-4" name="category">
 										<option value='' disabled selected>-- 결재 분류 --</option>
 										<optgroup label="Common">
 
-											<option value='a01'>휴가</option>
-											<option value='a02'>비용</option>
+											<option value='휴가'>휴가</option>
+											<option value='비용'>비용</option>
 										</optgroup>
 										<optgroup label="Department ">
-											<option value='a03'>팀업무 A</option>
-											<option value='a04'>팀업무 B</option>
-											<option value='a05'>팀업무 C</option>
-											<option value='a06'>팀업무 D</option>
-											<option value='a07'>팀업무 E</option>
+											<option value='팀업무A'>팀업무 A</option>
+											<option value='팀업무B'>팀업무 B</option>
+											<option value='팀업무C'>팀업무 C</option>
+											<option value='팀업무D'>팀업무 D</option>
+											<option value='팀업무E'>팀업무 E</option>
 										</optgroup>
 									</select>
 									</p>
 									<p>
 									<h6>기안자</h6>
-									<strong id=\><input id="noborder" name="dept" readonly
-										value='<c:out value="${member.dept}"/>'> / 개발팀1(팀명) /
-										<input id="noborder" name="userName" readonly
-										value='<c:out value="${member.userName}"/>'></strong>
-
+									<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
 									</p>
 									<p>
 									<h6>중요도</h6>
@@ -229,9 +225,10 @@
 									<h6>첨부파일</h6>
 									<div class="custom-file col-xl-4">
 										<input type="file" class="custom-file-input" id="Files"
-											name="file"> <label class="custom-file-label"
+											name="uploadFile"> <label class="custom-file-label"
 											for="Files">파일선택</label>
 									</div>
+									<div class = 'uploadResult'>
 									</p>
 									<p>
 									<h6>내용</h6>
