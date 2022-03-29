@@ -38,5 +38,7 @@ public interface PaymentMapper {
 	public void updateState(@Param ("requestNo") int requestNo, @Param ("state") String state);
 
 	public void updateReason(@Param ("requestNo") int requestNo, @Param ("rejectReason") String rejectReason);
+	
+	public List<String> getCategory();
 
 }
