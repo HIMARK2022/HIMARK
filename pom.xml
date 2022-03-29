@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+			<version>3.1.0</version> <!--4.0.1  -->
 			<scope>provided</scope>
 		</dependency>
 
@@ -243,6 +243,12 @@
 		</dependency>
 		<!-- 설정 완료 -->
 		<!-- ====================복사한 부분============================ -->
+		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.16</version>
+		</dependency>
 
 	</dependencies>
 	<build>
