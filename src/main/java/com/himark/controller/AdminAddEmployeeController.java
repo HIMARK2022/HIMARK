@@ -62,7 +62,7 @@ public class AdminAddEmployeeController {
  		String id;
  		id = Integer.toString(max);
 		
-		service.AddUser(id, id, user_name,pos ,duty, dept,AC,birth, sex, phone, email,"O1");
+		service.AddUser(id, id, user_name,pos ,duty, dept,AC,birth, sex, phone, email,"재직");
 		return "redirect:/admin/add_employee";	
 	}
 	@PostMapping("/add_employee_com")
