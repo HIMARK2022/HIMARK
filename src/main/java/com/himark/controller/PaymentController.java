@@ -53,15 +53,6 @@ public class PaymentController {
 		
 	}
 	
-
-	@GetMapping({"/home","/mydept"})
-	public void home(@RequestParam("userId") String userId,Model model){
-		model.addAttribute("member", mservice.getMember(userId));
-		String deptId =mservice.getMember(userId).getDeptId();
-		model.addAttribute("dlist",mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
-	}
-
 	@GetMapping("/request")
 	public void request( HttpServletRequest request, @RequestParam("userId") String userId, Model model, PaymentVO pvo) 
 	{

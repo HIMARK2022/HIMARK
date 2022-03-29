@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class LoginController {
-	MemberService service;
+	private MemberService service;
 	
 	@GetMapping("/login")
 	public void login() {
