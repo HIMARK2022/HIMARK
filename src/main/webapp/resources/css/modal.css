@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/* 버튼 및 모달 */
+.page-wrapper {
+    display: inline;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.blur-it {
+    filter: blur(4px);
+}
+
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    background: rgba(94, 94, 94, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+    z-index: 2;
+}
+
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    width: 600px !important;
+    height: 560px !important;
+    display: block !important;
+    margin: 50% 0 0 -300px;
+    top: 50% !important; 
+    left: 50% !important;
+    background: #fff;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0.5rem;
+    border: 1px solid #858796;
+}
+
+.modal-wrapper.open .modal {
+    margin-top: -300px;
+    opacity: 1;
+}
+
+.head { 
+    width: 100%;
+    height: 50px;
+    padding: 12px 30px;
+    overflow: hidden;
+    background: rgb(210, 197, 165);
+    color: white;
+}
+
+.btn-close {
+    font-size: 22px;
+    display: block;
+    float: right;
+    color: #fff;
+}
+
+.content{
+    padding: 3%;
+    text-align: center;
+
+    
+}
+.content input{
+    margin: 15px;
+}
+#yes, #no{
+    float: right;
+    margin: 5px;
+}
+.strong{
+    font-weight: bolder;
+}
+
+ul li{
+    font-size: large;
+    font-weight: bolder;
+}

@@ -55,7 +55,7 @@ join pos
 on user.pos_id = pos.pos_id
 join duty
 on user.duty_id = duty.duty_id
-where user.dept_id=#{deptId};
+where user.dept_id like CONCAT(#{deptId},'%');
 </select>
 
 

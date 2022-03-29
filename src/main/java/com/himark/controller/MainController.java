@@ -6,9 +6,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.himark.domain.MemberVO;
+import com.himark.service.AdminHomeService;
 import com.himark.service.MemberService;
+import com.himark.service.PaymentService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -16,42 +19,50 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
+@RequestMapping({"/general/*","/approver/*","/*"})
 public class MainController {
 	private MemberService mservice;
+	private AdminHomeService aservice;
+	private PaymentService pservice;
 	
-	@GetMapping({"/general/home", "/general/mydept"})
-	public void general_home(Model model, HttpServletRequest request) {
-		log.info("general home");
+	@GetMapping({"/home", "/mydept"})
+	public void home(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
-		
-		model.addAttribute("member", mservice.getMember(m.getUserId()));
-		String deptId = mservice.getMember(m.getUserId()).getDeptId();
+		String userId= m.getUserId();
+		model.addAttribute("member", mservice.getMember(userId));
+		String deptId = mservice.getMember(userId).getDeptId();
 		model.addAttribute("dlist", mservice.getDeptList(deptId));
 		log.info(mservice.getDeptList(deptId));
-	}
-	
-	@GetMapping({"/approver/home", "/approver/mydept"})
-	public void approver_home(Model model, HttpServletRequest request) {
-		log.info("approver home");
 		
-		HttpSession session = request.getSession();
-		MemberVO m = (MemberVO) session.getAttribute("loginUser");
-		
+		log.info(pservice.getList(userId).size());
+		model.addAttribute("progress",pservice.getList(userId).size());
+		model.addAttribute("complete",pservice.getCompleteList(userId).size());
+		model.addAttribute("back",pservice.getBackList(userId).size());
+		model.addAttribute("gprogress",pservice.getPaymentList(userId).size());
+		model.addAttribute("gcomplete",pservice.getCompletePaymentList(userId).size());
+		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
 		model.addAttribute("member", mservice.getMember(m.getUserId()));
-		String deptId = mservice.getMember(m.getUserId()).getDeptId();
-		model.addAttribute("dlist", mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
+		
+		
+
 	}
-	
 	@GetMapping("/admin/home")
-	public void admin_home(Model model, HttpServletRequest request) {
-		log.info("admin home");
-		
+	public void adminHome(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
+		String userId= m.getUserId();
+		model.addAttribute("member", mservice.getMember(userId));
 		
-		model.addAttribute("member", mservice.getMember(m.getUserId()));
+		model.addAttribute("bonbu",  aservice.getbonbu());
+		model.addAttribute("buseo",aservice.getbuseo());
+		model.addAttribute("team",aservice.getteam());
+		log.info( aservice.getbonbu());
+		log.info( aservice.getbuseo());
+		log.info( aservice.getteam());
+
 	}
+	
+	
 }

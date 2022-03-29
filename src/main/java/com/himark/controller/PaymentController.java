@@ -30,8 +30,6 @@ public class PaymentController {
 
 	private PaymentService pservice;
 	private MemberService mservice;
-	private ApproverListService aservice;
-	private TreeTeamService tservice;
 	
 	@PostMapping("/register")
 	public String register(HttpServletRequest request,PaymentVO payment, RedirectAttributes rttr) {
@@ -57,31 +55,6 @@ public class PaymentController {
 		
 	}
 
-	@GetMapping("/mydept")
-	public void mydept(@RequestParam("userId") String userId,Model model){
-		model.addAttribute("member", mservice.getMember(userId));
-		String deptId =mservice.getMember(userId).getDeptId();
-		model.addAttribute("dlist",mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
-	}
-
-	@GetMapping("/home")
-	public void home(@RequestParam("userId") String userId,Model model){
-		model.addAttribute("member", mservice.getMember(userId));
-		String deptId =mservice.getMember(userId).getDeptId();
-		model.addAttribute("dlist",mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
-	
-		
-		log.info(pservice.getList(userId).size());
-		model.addAttribute("progress",pservice.getList(userId).size());
-		model.addAttribute("complete",pservice.getCompleteList(userId).size());
-		model.addAttribute("back",pservice.getBackList(userId).size());
-		model.addAttribute("gprogress",pservice.getPaymentList(userId).size());
-		model.addAttribute("gcomplete",pservice.getCompletePaymentList(userId).size());
-		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
-
-	}
 
 	@GetMapping("/request")
 	public void request( HttpServletRequest request, @RequestParam("userId") String userId, Model model, PaymentVO pvo) 

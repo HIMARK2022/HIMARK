@@ -86,34 +86,9 @@
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
                                                       
-								<tr>
-									<td>${team[0].user_name}</td>
-									<td>${team[0].upper_dept2}</td>
-									<td>${team[0].upper_dept}</td>
-									<td>${team[0].dept_name}</td>
-									<td>${team[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${depart[0].user_name}</td>
-
-									<td>${depart[0].upper_dept}</td>
-									<td>${depart[0].dept_name}</td>
-									<td>--</td>
-									<td>${depart[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${upper[0].user_name}</td>
-
-									<td>${upper[0].dept_name}</td>
-									<td>--</td>
-									<td>--</td>
-									<td>${upper[0].duty_name}</td>
-
-								</tr>
+								
 							
-						</table>
+														</table>
                                                 </div>
                                             </div>
                                         </div>
