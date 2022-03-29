@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.himark.mapper.ApproveListManageMapper">
+	
+	<select id="getAllList" resultType="com.himark.domain.ApproveListManageVO">
+		select * from approval_classify;
+	</select>
+	
+	<select id="isInCheck" resultType="int">
+		select count(*) from approval_classify where classify_name = #{classify_name};
+	</select>
+	<!-- 삭제 -->
+	<delete id="delList" >
+		delete from approval_classify where classify_name = #{classify_name}
+	</delete>
+	<!-- 수정 -->
+	<update id="modList">
+		update approval_classify
+		set classify_name = #{mod_name} , approval_period = #{mod_period}
+		where classify_name = #{org_name} and approval_period = #{org_period}
+	</update>
+	<!-- 삽입 -->
+	<insert id="insertNewList">
+		insert into approval_classify(classify_name, approval_period)
+		values ( #{classify_name} , #{approval_period});
+	</insert>
+</mapper>

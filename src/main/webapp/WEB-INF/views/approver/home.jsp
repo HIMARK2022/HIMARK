@@ -352,7 +352,7 @@ Chart.defaults.global.defaultFontColor = '#858796';
                   },
                 });
                 </script>
-<%@include file="../sidebar/footer.jsp"%>
+	<%@include file="../sidebar/footer.jsp"%>
 
 </body>
 </html>

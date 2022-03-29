@@ -40,27 +40,27 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="p-5">
-                                    <form class="user">
+                                    <form class="user" id="login">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="아이디">
+                                            <input type="text" class="form-control form-control-user"
+                                                name="userId" placeholder="아이디">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="비밀번호">
+                                                name="userPwd" placeholder="비밀번호">
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <input type="hidden" name="authority" value="일반 사용자/승인자">
                                         <hr>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="button" class="btn btn-primary btn-user btn-block" onclick="checkForm()">
                                             Login
-                                        </a>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -85,7 +85,59 @@
     <script src="/resources/js/sb-admin-2.min.js"></script>
 
     <script>
+	    function checkForm() {
+	    	var userId = $("input[name=userId]").val();
+	    	var userPwd = $("input[name=userPwd]").val();
+	    	var authority = $("input[name=authority]").val();
+	    	
+			if(!userId) {
+				alert('아이디를 입력하세요');
+				$("input[name=userId]").focus();
+				return false;
+			}
+			
+			if(!userPwd) {
+				alert('비밀번호를 입력하세요');
+				$("input[name=userPwd]").focus();
+				return false;
+			}
+			
+			$.ajax({
+				url : '/login',
+				type : 'POST',
+				data: { userId: userId, 
+						userPwd: userPwd,
+						authority: authority },
+				dataType : 'json',
+				success: function(result) {
+					console.log(result);
+					console.log('로그인!!!!!!!!');
+					
+					if("none" == result.authorityCode) {
+						alert('잘못된 아이디이거나, 비밀번호가 틀렸습니다.');
+					} else if ("wrong" == result.authorityCode){
+						alert('접근 불가능한 권한입니다!');
+					} else if ("general" == result.authorityCode) {
+						location.href = '/general/home';
+					} else if ("approver" == result.authorityCode) {
+						location.href = '/approver/home';
+					} else {
+						location.href = '/admin/home';
+					}
+				}, error: function(xhr, status, error) {
+					alert('오류가 발생했습니다.');		
+				}
+			});
+		}
+    
         $(document).ready(function() {
+        	// 로그인 엔터
+        	$("#login").keypress(function (e) {
+        		if(e.keyCode === 13) {
+        			checkForm();
+        		}
+        	});
+        	
             // 창 위치
             var element_height = $(".card").height();
             $(".card").css("margin-top", "calc((100vh - " + element_height + "px)/2)");
@@ -104,6 +156,7 @@
                 $(".user a").addClass("btn-dark");
                 
                 $('body').addClass('bg-gradient-admin');
+                $("input[name=authority]").val("관리자");
             });
 
             $(".general").click(function() {
@@ -115,6 +168,7 @@
                 $(".user a").removeClass("btn-dark");
 
                 $('body').removeClass('bg-gradient-admin');
+                $("input[name=authority]").val("일반 사용자/승인자");
             });
         });
     </script>

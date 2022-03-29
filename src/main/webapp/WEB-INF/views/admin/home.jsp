@@ -129,6 +129,7 @@
                 <!-- 메인 끝 -->
             </div>
             <!-- End of Main Content -->
-                        <%@include file="../sidebar/footer.jsp"%>
+            <%@include file="../sidebar/footer.jsp"%>
+             
 </body>
 </html>

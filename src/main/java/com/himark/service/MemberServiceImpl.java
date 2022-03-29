@@ -24,9 +24,15 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mapper.getApproverList(deptId,duty);
 	}
+	
 	@Override
 	public List<MemberVO> getDeptList(String deptId) {
 		// TODO Auto-generated method stub
 		return mapper.getDeptList(deptId);
+	}
+
+	@Override
+	public MemberVO login(MemberVO vo) {
+		return mapper.login(vo);
 	}
 }
