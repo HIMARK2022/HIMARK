@@ -25,7 +25,7 @@
 
 
 <select id="getMember" resultMap="getMemberMap">
-select user_id,user_password,user_name,authority_code,birth_date,c.code_name as 성별,phone_number,email,dept.dept_name,result.본부,result.부서,result.팀,pos.pos_name,duty.duty_name,current_state as 재직여부,dept.dept_id as dept_id from user
+select user_id,user_password,user_name,authority_code,birth_date,sex as 성별,phone_number,email,dept.dept_name,result.본부,result.부서,result.팀,pos.pos_name,duty.duty_name,current_state as 재직여부,dept.dept_id as dept_id from user
 JOIN dept 
 ON user.dept_id = dept.dept_id
 join pos
@@ -42,8 +42,6 @@ on b.upper_dept_id = c.dept_id
 inner join dept d
 on c.upper_dept_id = d.dept_id) as result
 on user.dept_id = result.bid
-join code_info c
-on user.sex = c.common_code
 where user_id=#{userId}
 </select>
 

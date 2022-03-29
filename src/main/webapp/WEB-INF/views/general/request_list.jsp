@@ -130,7 +130,23 @@ $(".move").on("click",function(e) {
 	actionForm2.attr("action", "/general/request_detail");
 	actionForm2.submit();
 });
+
+
+$(function(){  
+	console.log(location.hash);
+	if (location.hash == "#tab1"){      
+		$('.nav-tabs').find('a').eq(0).addClass('active').siblings().removeClass();      
+		$('.tab-content').find('#tab1').addClass('active show').siblings().removeClass('active show');   
+		} 
+	else if(location.hash == "#tab2"){    
+		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
+		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');  
+		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
+		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
+		} 
+	 	})
 </script>
+
         <%@include file="../sidebar/footer.jsp"%>
         <script src="/resources/js/request.js"></script>
 </body>

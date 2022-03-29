@@ -125,7 +125,7 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}'">
+                                                    <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab1'" data-toggle="tab">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
@@ -144,7 +144,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}'">
+                                                        <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
@@ -198,10 +198,10 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}'">
+                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab1'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <div
+                                                            <div id="gprogress"
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 진행중</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gprogress}'/>건
@@ -217,10 +217,10 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100 ">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}'">
+                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab2'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <div
+                                                            <div id="gcomplete"
                                                                 class="text-sm font-weight-bold text-success text-uppercase mb-1">
                                                                 완료</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gcomplete}'/>건
@@ -236,10 +236,10 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}'">
+                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab3'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <div
+                                                            <div id="gback"
                                                                 class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
                                                                 반려</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -287,7 +287,7 @@
                 </div>
                 <!-- End of Main Content -->
                 <script>
-                        
+                      
                 
                 
                 
