@@ -41,7 +41,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/general/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -56,9 +56,9 @@
 
 		<!-- Nav Item - Dashboard -->
 
-		<li class="nav-item"><a class="nav-link" href="index.html"> <i
+		<li class="nav-item"><a class="nav-link" href="#"> <i
 				class="fa-solid fa-users"></i> <span>나의 정보</span></a></li>
-		<li class="nav-item"><a class="nav-link" href="index.html"> <i
+		<li class="nav-item"><a class="nav-link" href="#"> <i
 				class="fa-solid fa-sitemap"></i> <span>나의 부서</span></a></li>
 
 
@@ -75,7 +75,7 @@
 					 <a class="collapse-item" href="/general/request?userId=${member.userId}">요청</a>
                         <a class="collapse-item" href="/general/request_list?userId=${member.userId}">목록</a>
                         <h6 class="collapse-header">승인자 리스트 </h6>
-                        <a class="collapse-item" href="admin_request1.html">승인자 리스트</a>
+                        <a class="collapse-item" href="#">승인자 리스트</a>
                         
 				</div>
 			</div></li>

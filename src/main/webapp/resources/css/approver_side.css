@@ -3,3 +3,6 @@
     background-image: linear-gradient(20deg,#fff 5%,#051367 100%);
     background-size: cover;
 }
+.state {
+	cursor: pointer;
+}

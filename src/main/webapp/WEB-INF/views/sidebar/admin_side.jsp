@@ -40,7 +40,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/add_employee">
                     <i class="fa-solid fa-plus"></i>
                     <span>직원 추가</span></a>
             </li>
@@ -85,9 +85,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/approve_list">
                     <i class="fa-solid fa-list-check"></i>
-                    <span>승인목록 관리</span></a>
+                    <span>안건 목록 관리</span></a>
             </li>
             
             <!-- Divider -->

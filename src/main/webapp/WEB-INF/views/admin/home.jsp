@@ -25,11 +25,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#" class="text-body">
+                                    <a href="/admin/add_employee" class="text-body">
                                         <div class="card bg-light mb-3">
                                             <div class="card-body">
                                                 <i class="fa fa-id-card-o fa-4x" id="ad_icon1" aria-hidden="true"></i></br>
-                                                <h5 >직원 관리</h5>
+                                                <h5 >직원 추가</h5>
                                             </div>
                                         </div>
                                     </a>
@@ -56,11 +56,11 @@
                                 </div>
                                 
                                 <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#" class="text-body">
+                                    <a href="/admin/approve_list" class="text-body">
                                         <div class="card bg-light mb-3">
                                             <div class="card-body">
                                                 <img src="/resources/img/authority.png" id="ad_icon4" style="width: 74px; height: 64px; opacity: 0.8;"></img></br>
-                                                <h5>권한 관리</h5>
+                                                <h5>안건 관리</h5>
                                             </div>
                                         </div>
                                     </a>

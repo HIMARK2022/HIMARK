@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.himark.domain.TempApprovalVO;
 import com.himark.domain.TreeTeamVO;
 import com.himark.domain.UserDetailVO;
+import com.himark.domain.UserVO;
 
 public interface TreeTeamMapper {
 
@@ -34,4 +35,10 @@ public interface TreeTeamMapper {
 			@Param("user_id") String user_id
 			); 
 	public List<UserDetailVO> searchUserById (String user_id);
+	public List<UserVO> searchUpper (@Param("duty_name") String duty_name, @Param("duty_id") String duty_id);
+	
+	public void addTempManager(String manager_id, String user_id, String startdate, String enddate);
+	public void changeAcode(String user_id);
+	
+	
 }

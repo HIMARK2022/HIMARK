@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/approver/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -52,12 +52,12 @@
             <!-- Nav Item - Dashboard -->
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="#">
                     <i class="fa-solid fa-users"></i>
                     <span>나의 정보</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/approver/myDepart?userId=${member.userId}">
                     <i class="fa-solid fa-sitemap"></i>
                     <span>나의 부서</span></a>
             </li>
@@ -77,7 +77,7 @@
                         <a class="collapse-item" href="/approver/request?userId=${member.userId}">요청</a>
                         <a class="collapse-item" href="/approver/request_list?userId=${member.userId}">목록</a>
                         <h6 class="collapse-header">승인자 리스트 </h6>
-                        <a class="collapse-item" href="admin_request1.html">승인자 리스트</a>
+                        <a class="collapse-item" href="/approver/approver_list?userId=${member.userId}">승인자 리스트</a>
                         <h6 class="collapse-header">승인자 결재</h6>
                         <a class="collapse-item" href="/approver/payment?userId=${member.userId}">결재</a>
                     </div>
