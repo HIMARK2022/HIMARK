@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
-import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 import com.himark.mapper.PaymentMapper;
@@ -103,11 +102,13 @@ public class PaymentServiceImpl implements PaymentService {
 		mapper.updateReason(requestNo,rejectReason);
 		
 	}
+
 	@Override
 	public List<String> getCategory() {
 		// TODO Auto-generated method stub
 		return mapper.getCategory();
 	}
+
 	
 
 	

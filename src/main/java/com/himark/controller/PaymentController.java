@@ -56,41 +56,22 @@ public class PaymentController {
 		return "redirect:/general/request?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		
 	}
-	
+	@GetMapping("/mydept")
+	public void mydept(@RequestParam("userId") String userId,Model model){
+		model.addAttribute("member", mservice.getMember(userId));
+		String deptId =mservice.getMember(userId).getDeptId();
+		model.addAttribute("dlist",mservice.getDeptList(deptId));
+		log.info(mservice.getDeptList(deptId));
+	}
 
-	@GetMapping({"/home","/mydept"})
+	@GetMapping("/home")
 	public void home(@RequestParam("userId") String userId,Model model){
 		model.addAttribute("member", mservice.getMember(userId));
 		String deptId =mservice.getMember(userId).getDeptId();
 		model.addAttribute("dlist",mservice.getDeptList(deptId));
 		log.info(mservice.getDeptList(deptId));
 	
-		model.addAttribute("team", aservice.getTeamL(userId));
-		model.addAttribute("depart", aservice.getDepartL(userId));
-		model.addAttribute("upper", aservice.getUpperL(userId));
-		model.addAttribute("alluser", aservice.searchAll());
-		String team_name = aservice.getTeamL(userId).get(0).getDept_name().toString();
-		String depart_name = aservice.getDepartL(userId).get(0).getDept_name().toString();
-		String upper_name = aservice.getUpperL(userId).get(0).getDept_name().toString();
-
-		model.addAttribute("Tempteam", aservice.tempManagerT(team_name));
-		model.addAttribute("Tempdepart", aservice.tempManagerD(depart_name));
-		model.addAttribute("Tempupper", aservice.tempManagerH(upper_name));
-		if(aservice.tempManagerT(team_name).size() != 0) {
-			String tid = aservice.tempManagerT(team_name).get(0).getUser_id().toString();
-			tservice.searchUserById(tid);
-			model.addAttribute("user_team",tservice.searchUserById(tid));
-		}
-		if(aservice.tempManagerD(depart_name).size() != 0) {
-			String did = aservice.tempManagerD(depart_name).get(0).getUser_id().toString();
-			tservice.searchUserById(did);
-			model.addAttribute("user_dept",tservice.searchUserById(did));
-		}
-		if(aservice.tempManagerH(upper_name).size() != 0) {
-			String uid = aservice.tempManagerH(upper_name).get(0).getUser_id().toString();
-			tservice.searchUserById(uid);
-			model.addAttribute("user_upper",tservice.searchUserById(uid));
-		}
+		
 		log.info(pservice.getList(userId).size());
 		model.addAttribute("progress",pservice.getList(userId).size());
 		model.addAttribute("complete",pservice.getCompleteList(userId).size());

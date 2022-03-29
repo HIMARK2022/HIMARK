@@ -3,7 +3,6 @@ package com.himark.service;
 
 import java.util.List;
 
-import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 public interface PaymentService {
