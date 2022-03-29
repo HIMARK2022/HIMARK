@@ -123,7 +123,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" id="logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -135,14 +135,20 @@
                 </nav>
                 <!-- End of Topbar 헤더 끝 -->
             <script>
-	var today = new Date();
-	var year = today.getFullYear();
-	var month = ('0' + (today.getMonth() + 1)).slice(-2);
-	var day = ('0' + today.getDate()).slice(-2);
-	var week = new Array('일','월','화','수','목','금','토');
-	
-	var dateString ="<b>"+ year + '년 ' + month  + '월 ' + day +'일 '+week[today.getDay()]+"요일" + "</b>";
-	$("#date").append(dateString);
-</script>    
+				var today = new Date();
+				var year = today.getFullYear();
+				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+				var day = ('0' + today.getDate()).slice(-2);
+				var week = new Array('일','월','화','수','목','금','토');
+				
+				var dateString ="<b>"+ year + '년 ' + month  + '월 ' + day +'일 '+week[today.getDay()]+"요일" + "</b>";
+				$("#date").append(dateString);
+				
+				$("#logout").click(function() {
+					if(confirm('로그아웃 하시겠습니까?')) {
+						window.location.replace('/logout');
+					}
+				});
+			</script>    
 </body>
 </html>

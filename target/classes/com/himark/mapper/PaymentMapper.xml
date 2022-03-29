@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himark.mapper.PaymentMapper">
+
+<resultMap type="com.himark.domain.PaymentVO" id="getPaymentMap">
+ 		<result property="requestNo" column="request_number"/>
+	  	<result property="userId" column="user_id"/>
+	  	<result property="userName" column="user_name"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="title" column="request_title"/> 
+         <result property="category" column="classify_name"/>
+         <result property="period" column="approval_period"/>        
+        <result property="imp" column="imp_code"/>     
+        <result property="file" column="request_file"/>  
+        <result property="content" column="request_content"/>  
+        <result property="rdate" column="request_date"/>  
+        <result property="fdate" column="finish_date"/>  
+        <result property="cdate" column="completion_date"/>  
+        <result property="state" column="request_state"/>  
+        <result property="rejectReason" column="reject_reason"/>  
+        
+</resultMap>
+<resultMap type="com.himark.domain.MemberVO" id="getMemberMap">
+	  <result property="userId" column="user_id"/>
+        <result property="userPwd" column="user_password"/>
+        <result property="userName" column="user_name"/>
+        <result property="pos" column="pos_name"/>    
+        <result property="duty" column="duty_name"/>     
+        <result property="dept" column="dept_name"/>  
+        <result property="authorityCode" column="authority_code"/>  
+        <result property="birth" column="birth_date"/>  
+        <result property="sex" column="성별"/>  
+        <result property="phoneNo" column="phone_number"/>  
+        <result property="email" column="email"/>  
+         <result property="currentState" column="재직여부"/>  
+         <result property="bonbu" column="본부"/>
+         <result property="buseo" column="부서"/>
+         <result property="team" column="팀"/>
+</resultMap>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="requestNo">
+		insert into user_request(user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
+		values( #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
+		
+	</insert>
+	
+	<update id="updateApprover">
+	update user_request as ur
+	set ur.manager_id = 
+	(select m.manager_id from manager m
+			join user u
+			on m.approval_target=u.user_id
+	       where u.user_id=#{userId}) 
+	where ur.user_id=#{userId}
+	</update>
+	
+	<update id="updateFdate">
+	update user_request 
+set finish_date=
+case when #{imp} = '긴급'
+then adddate(request_date,1)
+when #{imp} = '높음'
+then adddate(request_date,3)
+when #{imp} = '보통'
+then adddate(request_date,7)
+when #{imp} = '낮음'
+then adddate(request_date,15)
+else (select result.n
+		from (select adddate(u.request_date,substring_index(a.approval_period,"일",1)) as n
+				from user_request u
+				join approval_classify a
+				on u.classify_name = a.classify_name
+				where u.request_number = #{requestNo} ) as result)
+                end
+                where  request_number = #{requestNo}
+	</update>
+	
+	
+	<update id="updateState">
+	update user_request 
+	set request_state=#{state},completion_date=now()
+    where request_number =#{requestNo}
+	</update>
+	
+	
+	<update id="updateReason">
+	update user_request 
+	set reject_reason=#{rejectReason}
+    where request_number =#{requestNo}
+	</update>
+	
+	
+	<select id="getList" resultMap="getPaymentMap">
+		select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where user_id=#{userId} and request_state ="대기"
+	</select>
+	
+	<select id="getBackList" resultMap="getPaymentMap">
+			select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where user_id=#{userId} and request_state="반려"
+	</select>
+	
+		<select id="getCompleteList" resultMap="getPaymentMap">
+			select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where user_id=#{userId} and request_state="승인"
+	</select>
+
+
+	<select id="getSearchList" resultMap="getPaymentMap">
+		select * from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name where user_id=#{userId}
+		<!-- <if test="filterList.size !=0"> -->
+		and a.classify_name in
+		
+		<foreach item="val" index="index" collection="filterList"
+		open="(" separator="," close=")">
+			#{val}
+		</foreach>
+		and u.request_state ="대기"
+		<!--  </if> -->
+		</select>
+
+		<select id="read" resultMap="getPaymentMap">
+		select * from user_request u
+			join approval_classify a
+			on u.classify_name = a.classify_name
+			where request_number=#{requestNo}
+	</select>
+	
+	<select id="getPaymentList" resultMap="getPaymentMap">
+			select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where manager_id=#{userId} and request_state="대기"
+	</select>
+	
+		<select id="getBackPaymentList" resultMap="getPaymentMap">
+			select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where manager_id=#{userId} and request_state="반려"
+	</select>
+	
+		<select id="getCompletePaymentList" resultMap="getPaymentMap">
+			select *  from user_request u
+		join approval_classify a
+		on u.classify_name = a.classify_name 
+		where manager_id=#{userId} and request_state="승인"
+	</select>
+	
+	<select id="getApproverList" resultMap="getMemberMap">
+		
+
+	</select>
+	
+	
+</mapper>

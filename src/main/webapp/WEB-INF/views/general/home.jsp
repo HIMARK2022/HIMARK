@@ -309,6 +309,5 @@
             </script>
             <!-- End of Main Content -->
             <%@include file="../sidebar/footer.jsp"%>
-
 </body>
 </html>

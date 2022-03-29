@@ -179,7 +179,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" id="logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -202,5 +202,11 @@
 	
 	var dateString ="<b>"+ year + '년 ' + month  + '월 ' + day +'일 '+week[today.getDay()]+"요일" + "</b>";
 	$("#date").append(dateString);
+	
+	$("#logout").click(function() {
+		if(confirm('로그아웃 하시겠습니까?')) {
+			window.location.replace('/logout');
+		}
+	});
 </script>
 </html>             

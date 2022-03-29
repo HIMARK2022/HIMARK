@@ -159,6 +159,7 @@
                 <!-- 메인 끝 -->
             </div>
             <!-- End of Main Content -->
+
             <script>
             var button1 = document.getElementById("ad_icon1");
             var button2 = document.getElementById("ad_icon2");
@@ -178,6 +179,10 @@
               }
             
             </script>
-                        <%@include file="../sidebar/footer.jsp"%>
+         
+
+            <%@include file="../sidebar/footer.jsp"%>
+             
+
 </body>
 </html>

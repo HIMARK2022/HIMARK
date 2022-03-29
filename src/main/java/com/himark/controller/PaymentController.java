@@ -56,6 +56,7 @@ public class PaymentController {
 		return "redirect:/general/request?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		
 	}
+
 	@GetMapping("/mydept")
 	public void mydept(@RequestParam("userId") String userId,Model model){
 		model.addAttribute("member", mservice.getMember(userId));
