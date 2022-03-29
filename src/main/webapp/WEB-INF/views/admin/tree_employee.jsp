@@ -387,11 +387,7 @@
             		head  = list[i].head;
             		depart  = list[i].depart;
             		team  = list[i].team;
-            		if(sex == "S1"){
-                		sex= "남자";
-                	}else{
-                		sex = "여자";
-                	}
+            		
             	}
             }
             for(var i=0 ;i<list1.length;i++){
@@ -406,11 +402,7 @@
             		team   = list1[i].dept_name ;
             		part   = list1[i].upper_dept ;
             		head   = list1[i].upper_dept2 ;
-            		if(sex == "S1"){
-                		sex= "남자";
-                	}else{
-                		sex = "여자";
-                	}
+            		
             	}
             }
            

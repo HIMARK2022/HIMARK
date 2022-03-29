@@ -79,7 +79,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/tree_employee">
                     <i class="fa-solid fa-sitemap"></i>
                     <span>조직도/직원정보 수정</span></a>
             </li>

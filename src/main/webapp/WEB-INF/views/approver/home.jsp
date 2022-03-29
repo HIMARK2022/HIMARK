@@ -101,7 +101,7 @@
                         <div class="col-xl-6 col-lg-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">나의 요청 </h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">보낸 결재 요청 </h6>
                                 </div>
                                 <div class="card-body" id="request" style="padding: 1em;">
                                     <div class="row">

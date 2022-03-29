@@ -35,9 +35,13 @@ public interface TreeTeamMapper {
 			@Param("user_id") String user_id
 			); 
 	public List<UserDetailVO> searchUserById (String user_id);
+	
+	public void updateUser(String user_id, String user_name, String sex, String phone_number, String email);
+	
 	public List<UserVO> searchUpper (@Param("duty_name") String duty_name, @Param("duty_id") String duty_id);
 	
 	public void addTempManager(String manager_id, String user_id, String startdate, String enddate);
+	
 	public void changeAcode(String user_id);
 	
 	

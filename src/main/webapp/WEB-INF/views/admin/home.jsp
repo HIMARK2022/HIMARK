@@ -45,11 +45,11 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#" class="text-body">
+                                    <a href="/admin/tree_employee" class="text-body">
                                         <div class="card bg-light mb-3">
                                             <div class="card-body">
                                                 <img src="/resources/img/manager.png" id="ad_icon3" style="width: 74px; height: 64px; opacity: 0.5;"></img></br>
-                                                <h5>임시승인자 관리</h5>
+                                                <h5>직원정보 수정</h5>
                                             </div>
                                         </div>
                                     </a>
@@ -165,7 +165,7 @@
             var button2 = document.getElementById("ad_icon2");
             var button3 = document.getElementById("ad_icon3");
             var button4 = document.getElementById("ad_icon4");
-            button1.onclick = function(event) {
+            /* button1.onclick = function(event) {
             	location.href = "add_employee"
             }
             button2.onclick = function(event) {
@@ -176,7 +176,7 @@
               }
             button4.onclick = function(event) {
             	location.href = "manage_authority"
-              }
+              } */
             
             </script>
          

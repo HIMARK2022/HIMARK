@@ -83,4 +83,19 @@ public class AdminTreeTeamController {
 		log.info("이건뭐" + service.searchUserById(user_id).get(0).getUser_name().getClass().getSimpleName()); 
 		log.info("이건뭐" + service.searchUserById(user_id).get(0).getBirth_date().getClass().getSimpleName()); 
 	}
+	
+	
+	@GetMapping("/modify")
+	public String modify(Model model ,@RequestParam("mod_id") String user_id ,@RequestParam("name") String user_name ,@RequestParam("phone_number") String phone_number ,@RequestParam("email") String email ,@RequestParam("sex") String sex )throws ParseException {
+		log.info("수정하려는 사람의 아이디 : "+user_id); 
+		log.info("수정하려는 사람의 이름 : "+user_name);  
+		log.info("수정하려는 사람의 성별 : "+sex); 
+		log.info("수정하려는 사람의 휴대폰 번호 : "+phone_number); 
+		log.info("수정하려는 사람의 이메일 : "+email);
+		
+		service.updateUser(user_id, user_name, sex, phone_number, email);
+		
+		return "redirect:/admin/tree_employee";
+		
+	}
 }
