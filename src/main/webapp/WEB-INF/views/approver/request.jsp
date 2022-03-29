@@ -180,18 +180,9 @@
 									<h6>양식명</h6>
 									<select class="form-control col-xl-4" name="category">
 										<option value='' disabled selected>-- 결재 분류 --</option>
-										<optgroup label="Common">
-
-											<option value='휴가'>휴가</option>
-											<option value='비용'>비용</option>
-										</optgroup>
-										<optgroup label="Department ">
-											<option value='팀업무A'>팀업무 A</option>
-											<option value='팀업무B'>팀업무 B</option>
-											<option value='팀업무C'>팀업무 C</option>
-											<option value='팀업무D'>팀업무 D</option>
-											<option value='팀업무E'>팀업무 E</option>
-										</optgroup>
+										<c:forEach var="list" items="${category}"> 
+											<option value='${list}'>${list}</option>
+										</c:forEach>
 									</select>
 									</p>
 									<p>

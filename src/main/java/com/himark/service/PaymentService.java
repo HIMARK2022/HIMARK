@@ -33,5 +33,7 @@ public interface PaymentService {
 
 	public List<PaymentVO> getBackList(String userId);
 	
+	public List<String> getCategory();
+	
 
 }
