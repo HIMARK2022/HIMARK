@@ -186,7 +186,7 @@
                                         </table>
 
                                         <div class="twobuttons" >
-                                            <a href="../직원관리/직원정보관리.html" class="btn btn-outline-success btn-lg btn-icon-split">
+                                            <a href="/admin/home" class="btn btn-outline-success btn-lg btn-icon-split">
                                                 <span class="icon text-gray-600">
                                                     <i class="fas fa-arrow-right"></i>
                                                 </span>    

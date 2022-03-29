@@ -7,14 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+	
+	<link href="/resources/css/calendar.css" rel="stylesheet">
+	<link href="/resources/css/approver_myDepart.css" rel="stylesheet">
+	<link href="/resources/css/approver_modal.css" rel="stylesheet">
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-	<%@include file="../sidebar/approver_side.jsp"%>
-	<link href="/resources/css/calendar.css" rel="stylesheet">
-	<link href="/resources/css/approver_myDepart.css" rel="stylesheet">
-	<link href="/resources/css/approver_modal.css" rel="stylesheet">
+<%@include file="../sidebar/approver_side.jsp"%>
 	<div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">나의 부서</h1>

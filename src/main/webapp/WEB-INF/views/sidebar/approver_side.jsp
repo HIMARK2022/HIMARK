@@ -57,7 +57,7 @@
                     <span>나의 정보</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/approver/myDepart?userId=${member.userId}">
                     <i class="fa-solid fa-sitemap"></i>
                     <span>나의 부서</span></a>
             </li>

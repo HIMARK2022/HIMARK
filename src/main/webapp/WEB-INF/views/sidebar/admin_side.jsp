@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/add_employee">
                     <i class="fa-solid fa-plus"></i>
                     <span>직원 추가</span></a>
             </li>
@@ -85,9 +85,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/approve_list">
                     <i class="fa-solid fa-list-check"></i>
-                    <span>승인목록 관리</span></a>
+                    <span>안건 목록 관리</span></a>
             </li>
             
             <!-- Divider -->
