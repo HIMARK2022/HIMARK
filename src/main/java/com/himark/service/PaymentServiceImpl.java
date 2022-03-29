@@ -103,7 +103,11 @@ public class PaymentServiceImpl implements PaymentService {
 		mapper.updateReason(requestNo,rejectReason);
 		
 	}
-
+	@Override
+	public List<String> getCategory() {
+		// TODO Auto-generated method stub
+		return mapper.getCategory();
+	}
 	
 
 	

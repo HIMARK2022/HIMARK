@@ -156,8 +156,8 @@ else (select result.n
 		where manager_id=#{userId} and request_state="승인"
 	</select>
 	
-	<select id="getApproverList" resultMap="getMemberMap">
-		
+		<select id="getCategory" resultType="String">
+		select classify_name from approval_classify
 
 	</select>
 	
