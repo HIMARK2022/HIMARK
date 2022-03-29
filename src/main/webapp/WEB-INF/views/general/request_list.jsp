@@ -53,11 +53,11 @@
                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                      <th id="No" width="5%">No</th>
-													<th id="classification" width="15%">분류</th>
-													<th id="title" width="30%">제목</th>
-													<th id="requestdate" width="15%">요청일</th>
-													<th id="completedate" width="15%">승인일</th>
+                                                    	<th id="No">No</th>
+				                                        <th id="classification">분류</th>
+				                                        <th id="title">제목</th>
+				                                        <th id="requestdate">요청일</th>
+				                                        <th id="state">승인일</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -84,11 +84,11 @@
                                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                      <th id="No" width="5%">No</th>
-													<th id="classification" width="15%">분류</th>
-													<th id="title" width="30%">제목</th>
-													<th id="requestdate" width="15%">요청일</th>
-													<th id="completedate" width="15%">반려일</th>
+	                                                    <th id="No">No</th>
+					                                    <th id="classification">분류</th>
+					                                    <th id="title">제목</th>
+					                                    <th id="requestdate">요청일</th>
+					                                    <th id="refuse">반려일</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
