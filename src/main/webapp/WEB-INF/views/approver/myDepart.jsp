@@ -109,6 +109,7 @@
 	                                            	</ul>
 	                                           	</c:if>
                                                 <!-- 본부장의 경우  -->
+                                                
                                             </div>
                                             
                                         </div>
@@ -198,7 +199,7 @@
 		                                                	<c:forEach var="depart" items="${depart}">
 		                                                     <c:if test="${depart.duty_id eq 'd03'}">
 				                                             	<tr>
-				                                             		<td>${depart.user_name}</td>
+				                                             		<td>${depart.user_name}/${depart.user_id}</td>
 				                                             		<td>${depart.duty_name}</td>
 				                                             		<td>${depart.pos_name}</td>
 				                                             		<td></td>
@@ -209,7 +210,7 @@
 				                                            		<td>
 				                                            			<div class="page-wrapper">
 				                                                        	<a class="content-detail">
-				                                                        		<span class="text">${depart.user_name}</span>
+				                                                        		<span class="text">${depart.user_name}/${depart.user_id}</span>
 				                                                        	</a>
 				                                                        </div>
 				                                                    </td>
@@ -239,41 +240,37 @@
 		                                                    </tr>
 		                                                </thead>
 		                                                <tbody>
-		                                                	     <c:forEach var="head" items="${head}">
-		                                                     <c:if test="${head.duty_id eq 'd04'}">
-				                                             	<tr>
-				                                             		<td>${head.user_name}/${head.user_id}</td>
-				                                             		<td>${head.duty_name}</td>
-				                                             		<td>${head.pos_name}</td>
-				                                             		<td>chanho470@naver.com</td>
-				                                               </tr>
-			                                                </c:if>
-		                                                    <c:if test="${head.duty_id ne 'd04'}">
-				                                            	<tr>
-				                                                        <td>
-				                                                            <div class="page-wrapper">
-				                                                                <a class="content-detail">
-				                                                                    <span class="text">${head.user_name}/${head.user_id}</span>
-				                                                                </a>
-				                                                            </div>
-				                                                        </td>
-				                                                        <td>${head.depart} ${head.team} ${head.duty_name}</td>
-				                                                        <td>${head.pos_name}</td>
-				                                                        <td>chanho470@naver.com</td>
-				                                            	</tr>
-			                                            	</c:if>
-		                                            	</c:forEach>
-				                                                       
-		                                                	
+			                                              	<c:forEach var="head" items="${head}">
+			                                                     <c:if test="${head.duty_id eq 'd04'}">
+					                                             	<tr>
+					                                             		<td>${head.user_name}/${head.user_id}</td>
+					                                             		<td>${head.duty_name}</td>
+					                                             		<td>${head.pos_name}</td>
+					                                             		<td>chanho470@naver.com</td>
+					                                               </tr>
+				                                                </c:if>
+			                                                    <c:if test="${head.duty_id ne 'd04'}">
+					                                            	<tr>
+					                                                    <td>
+					                                                        <div class="page-wrapper">
+					                                                        	<a class="content-detail">
+					                                                        		<span class="text">${head.user_name}/${head.user_id}</span>
+					                                                        	</a>
+					                                                        </div>
+					                                                   </td>
+					                                                   <td>${head.depart} ${head.team} ${head.duty_name}</td>
+					                                                   	<td>${head.pos_name}</td>
+					                                                    <td>chanho470@naver.com</td>
+					                                            	</tr>
+				                                            	</c:if>
+			                                            	</c:forEach>
 		                                               	</tbody>
 	                                               	</table>
                                              	</div>
 		                                     </c:if>
 		                                     </div>
 		                                     <!-- 본부장일경우 -->
-                                            
                                             </div>
-                                            
                                         </div>
                                     </div>
                                      <!-- Card Body 좌측 페이지 -->
@@ -285,8 +282,9 @@
                 </div>
                  <!-- Modal -->
                 
-                 <form action="/approver/myDepart_team_temp" method="post" id="tempModal">
+                 <form action="/approver/myDepart_team_temp?managerId=${param.userId}" method="post" id="tempModal">
                  	<input type="hidden" value="" name="user_id_team"/>
+                 	<%-- <input type="hidden" value="${param.userId}" name="user_id_my" oninput = "checkId()" id="user_id_my"/> --%>
  				    <div class="modal-wrapper">
 				        <div class="modal">
 				            <div class="modal-header">
@@ -304,14 +302,14 @@
 				                        <!-- 시작일 -->
 				                        <span class="input-date">
 				                            <input type="text" name="start-date2" value="" class="datepicker inp form-control" id="start-date2" style="width:270px"
-				                            placeholder="시작일" readonly />
+				                            placeholder="시작일" readonly required  oninput = "checkId()" />
 				                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
 				                        </span>
 				                        <span class="demi">~</span>
 				                        <!-- 종료일 -->
 				                        <span class="input-date">
 				                            <input type="text" name="end-date2" value="" class="datepicker inp form-control" id="end-date2" style="width:270px"
-				                                placeholder="종료일" readonly />
+				                                placeholder="종료일" readonly required/>
 				                            <!-- <i class="fa-regular fa-calendar dateclick"></i> -->
 				                        </span>
 				                    </div>
@@ -324,7 +322,7 @@
 				                        <button type="button" class="btn btn-default content-detail" data-dismiss="modal" role="button">취소</button>
 				                    </div>
 				                    <div class="btn-group" role="group">
-				                        <button type="submit" id="positive" class="btn btn-default btn-hover-green" role="button">권한부여</button>
+				                        <button type="submit" id="positive" class="btn btn-default btn-hover-green" role="button" onclick="if(alert('임시승인자 지정되었습니다.')==false)return false;">권한부여</button>
 				                    </div>
 				                </div>
 				            </div>
@@ -335,8 +333,10 @@
 <%@include file="../sidebar/footer.jsp"%>
  <script src="/resources/js/tree.js"></script>
   <script src="/resources/js/cal.js"></script>
+	  
 	<script>
 		$('.content-detail').on('click', function () {
+			
 		    $('.modal-wrapper').toggleClass('open');
 		     $('.page-wrapper').toggleClass('blur-it');
 		     return false;
@@ -350,6 +350,7 @@
 			userId[1];
 			 $('input[name=USER]').attr('value',userId[0]); // 유저 이름 
 			 $('input[name=user_id_team]').attr('value',userId[1]); // 유저 아이디
+			 
 			 
 		});
 	</script>
@@ -390,12 +391,23 @@
 				   }
 			   }
 			 $('.content-detail').on('click', function () {
-				 console.log($(this).text());
+				 	
 				    $('.modal-wrapper').toggleClass('open');
 				     $('.page-wrapper').toggleClass('blur-it');
 				     return false;
 				});
 			str5 = "<span>"+ ">" + depart+"</span>";$("#htname").append(str5);
+			$('.text').on('click', function () {
+				var user = $(this).text();
+				
+				userId = user.split('/');
+				
+				userId[1];
+				 $('input[name=USER]').attr('value',userId[0]); // 유저 이름 
+				 $('input[name=user_id_team]').attr('value',userId[1]); // 유저 아이디
+				 
+			});
+			
 		});
 		$(".personalH").click(function(e){
 			$("#htname span").remove();
@@ -417,7 +429,7 @@
 				   }
 			   }
 			 $('.content-detail').on('click', function () {
-				 console.log($(this).text());
+				 
 				    $('.modal-wrapper').toggleClass('open');
 				     $('.page-wrapper').toggleClass('blur-it');
 				     return false;
@@ -429,11 +441,12 @@
 			$("#Lname span").remove();$("#Lpos span").remove(); 
 			$("#htname span").remove();$("#dtname span").remove(); 
 			$("#dataTable>tbody tr").remove();
-		    console.log($(this).text());
+		    
 		    if($('#som').css("display")=="none"){
                 $('#som').show();
             }
 		   var team = $(this).text();
+		   
 		   var Lname; var Lduty; var Lpos;
 		   
 		   
@@ -458,6 +471,16 @@
            str4 = "<span>"+ " > " + team+"</span>";
            $("#dtname").append(str4);
            $("#htname").append(str4);
+           $('.text').on('click', function () {
+				var user = $(this).text();
+				
+				userId = user.split('/');
+				
+				userId[1];
+				 $('input[name=USER]').attr('value',userId[0]); // 유저 이름 
+				 $('input[name=user_id_team]').attr('value',userId[1]); // 유저 아이디
+				 
+			});
 		});
 	</script>
 

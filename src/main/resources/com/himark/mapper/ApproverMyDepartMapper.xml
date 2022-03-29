@@ -10,39 +10,63 @@
 	</select>
 	<!-- 전체 -->
 	<select id="findAll"  resultType="com.himark.domain.UsersDetailVO" >	
-		select * from usersdetail where current_state="O1";
+		select * from usersdetail where current_state="재직";
 	</select>
 	<!-- 팀장 -->
 	<select id="findTeam"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where team = 
-			(select team from usersdetail where user_id = #{user_id}) and current_state="O1";
+			(select team from usersdetail where user_id = #{user_id}) and current_state="재직";
 	</select>
 	
 	<!-- 부서장 -->
 	<select id="findDepart"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where depart = 
-			(select depart from usersdetail where user_id = #{user_id}) and current_state="O1";
+			(select depart from usersdetail where user_id = #{user_id}) and current_state="재직";
 	</select>
 	<!-- 부서장 팀-->
 	<select id="findDTeam"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where depart = 
-			(select depart from usersdetail where user_id = #{user_id}) and current_state="O1" group by team;
+			(select depart from usersdetail where user_id = #{user_id}) and current_state="재직" group by team;
 	</select>
 	
 	<!-- 본부장 -->
 	<select id="findHead"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where head = 
-			(select head from usersdetail where user_id = #{user_id}) and current_state="O1";
+			(select head from usersdetail where user_id = #{user_id}) and current_state="재직";
 	</select>
 	<!-- 본부장 부서-->
 	<select id="findHDepart"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where head = 
-			(select head from usersdetail where user_id = #{user_id}) and current_state="O1" group by depart;
+			(select head from usersdetail where user_id = #{user_id}) and current_state="재직" group by depart;
 	</select>
 	<!-- 본부장 부서 팀-->
 	<select id="findHDTeam"  resultType="com.himark.domain.UsersDetailVO" >	
 		select * from usersdetail where head = 
-			(select head from usersdetail where user_id = #{user_id}) and current_state="O1" group by team;
+			(select head from usersdetail where user_id = #{user_id}) and current_state="재직" group by team;
 	</select>
+	<!-- 임시 승인자 팀장 -->
+	<select id="teamtemp"  resultType="com.himark.domain.ManagerVO" >	
+		select approval_target from manager where manager_id=#{user_id} and temp_manager is null;
+	</select>
+	<!-- 임시 승인자 팀장 삽입 -->
+	<insert id="insertTempNew">
+		insert into manager(manager_id, approval_target ,classify_target,approval_start ,approval_finish,temp_manager)
+		values ( #{manager_id} , #{approval_target}, #{classify_target},#{approval_start} , #{approval_finish}, #{temp_manager});
+	</insert>
+	<!-- 임시 있는지 check -->
+	<select id="checkIn"  resultType="int" >	
+		select count(*) from manager where manager_id = #{manager_id} and  temp_manager is not null;
+	</select>
+	
+	<update id="changeD">
+		update manager
+		set approval_start = #{approval_start} , approval_finish = #{approval_finish}  ,temp_manager= #{temp_manager}
+		where manager_id = #{manager_id} and temp_manager is not null;
+	</update>
+	<update id="changeAcode">
+		update user
+		set authority_code = "A2"
+		where user_id =  #{user_id}
+	</update>
 	
 </mapper>
