@@ -177,7 +177,7 @@
                                                 <th >비밀번호</th>
                                                 <td>
                                                     <div class="input-group col-lg-4">
-                                                        <input type="text" class="form-control bg-light border-0 small" value="아이디는 규칙에 입각해 자동생성 됩니다" readonly
+                                                        <input type="text" class="form-control bg-light border-0 small" value="비밀번호는 규칙에 입각해 자동생성 됩니다" readonly
                                                             aria-label="Search" aria-describedby="basic-addon2" name="user_pwd">
                                                     </div>
                                                 </td>
