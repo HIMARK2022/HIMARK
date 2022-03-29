@@ -68,6 +68,11 @@ public class TreeTeamServiceImpl implements TreeTeamService{
 		return mapper.searchUserById(user_id);
 	}
 	@Override
+	public void updateUser(String user_id, String user_name, String sex, String phone_number, String email) {
+		mapper.updateUser(user_name, sex, phone_number, email, user_id);
+		
+	}
+	@Override
 	public List<UserVO> searchUpper(String duty_name, String duty_id) {
 		return mapper.searchUpper(duty_name, duty_id);
 	}
