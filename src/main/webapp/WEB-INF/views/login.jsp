@@ -27,7 +27,7 @@
                 <div class="card o-hidden border-0 shadow-lg">
                     
                     <div class="card-body">
-                        <a class="logo d-flex align-items-center justify-content-center p-4" href="manager_request.html">
+                        <a class="logo d-flex align-items-center justify-content-center p-4" href="/login">
                             <div class="rotate-n-15">
                                 <i class="fas fa-laugh-wink"></i>
                             </div>
