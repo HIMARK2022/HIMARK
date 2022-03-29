@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.himark.mapper.AdminHomeMapper">
+
+<select id="getbonbu" resultType="String">
+select dept_name from dept
+where length(dept_id)=1;
+</select>
+
+<select id="getbuseo" resultType="String">
+select dept_name from dept
+where length(dept_id)=2;
+</select>
+
+<select id="getteam" resultType="String">
+select dept_name from dept
+where length(dept_id)=3;
+</select>
+
+</mapper>

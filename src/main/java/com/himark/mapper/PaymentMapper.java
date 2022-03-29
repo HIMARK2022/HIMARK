@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 
 public interface PaymentMapper {
@@ -38,5 +37,7 @@ public interface PaymentMapper {
 	public void updateState(@Param ("requestNo") int requestNo, @Param ("state") String state);
 
 	public void updateReason(@Param ("requestNo") int requestNo, @Param ("rejectReason") String rejectReason);
+
+	public List<String> getCategory();
 
 }

@@ -55,7 +55,7 @@ join pos
 on user.pos_id = pos.pos_id
 join duty
 on user.duty_id = duty.duty_id
-where user.dept_id=#{deptId};
+where user.dept_id like CONCAT(#{deptId},'%');
 </select>
 
 
@@ -79,17 +79,17 @@ join (
 select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
 union
 select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
+inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
 on u.dept_id = C.upper_dept_id
 union
 select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
+inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
 on u.user_id = B.user_id
 join dept as de on u.dept_id = de.dept_id
 union
 select u.user_id from user as u 
 join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= '211' and du.duty_name in('팀장')
+where u.dept_id= #{deptId} and du.duty_name in(#{duty})
 ) as L
 on U.user_id = L.user_id
 left join (select * from dept) as D on U.dept_id = D.dept_id
@@ -109,17 +109,17 @@ join (
 select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
 union
 select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
+inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
 on u.dept_id = C.upper_dept_id
 union
 select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
+inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
 on u.user_id = B.user_id
 join dept as de on u.dept_id = de.dept_id
 union
 select u.user_id from user as u 
 join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= '211' and du.duty_name in('팀장')
+where u.dept_id= #{deptId} and du.duty_name in(#{duty})
 ) as L
 on U.user_id = L.user_id
 left join (select * from dept) as D on U.dept_id = D.dept_id
@@ -139,17 +139,17 @@ join (
 select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
 union
 select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
+inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
 on u.dept_id = C.upper_dept_id
 union
 select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
+inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
 on u.user_id = B.user_id
 join dept as de on u.dept_id = de.dept_id
 union
 select u.user_id from user as u 
 join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= '211' and du.duty_name in('팀장')
+where u.dept_id= #{deptId} and du.duty_name in(#{duty})
 ) as L
 on U.user_id = L.user_id
 left join (select * from dept) as D on U.dept_id = D.dept_id
@@ -169,17 +169,17 @@ join (
 select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
 union
 select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
+inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
 on u.dept_id = C.upper_dept_id
 union
 select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= '211' and du.duty_name in('팀장')) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
+inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
 on u.user_id = B.user_id
 join dept as de on u.dept_id = de.dept_id
 union
 select u.user_id from user as u 
 join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= '211' and du.duty_name in('팀장')
+where u.dept_id= #{deptId} and du.duty_name in(#{duty})
 ) as L
 on U.user_id = L.user_id
 left join (select * from dept) as D on U.dept_id = D.dept_id

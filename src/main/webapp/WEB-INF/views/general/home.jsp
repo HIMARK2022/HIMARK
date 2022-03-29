@@ -86,34 +86,9 @@
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
                                                       
-								<tr>
-									<td>${team[0].user_name}</td>
-									<td>${team[0].upper_dept2}</td>
-									<td>${team[0].upper_dept}</td>
-									<td>${team[0].dept_name}</td>
-									<td>${team[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${depart[0].user_name}</td>
-
-									<td>${depart[0].upper_dept}</td>
-									<td>${depart[0].dept_name}</td>
-									<td>--</td>
-									<td>${depart[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${upper[0].user_name}</td>
-
-									<td>${upper[0].dept_name}</td>
-									<td>--</td>
-									<td>--</td>
-									<td>${upper[0].duty_name}</td>
-
-								</tr>
+								
 							
-						</table>
+														</table>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +145,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body">
+                                                <div class="card-body state" onclick="location.href='/general/request?userId=${member.userId}'">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div
@@ -188,7 +163,7 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body">
+                                                    <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}'">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
@@ -207,7 +182,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body">
+                                                        <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}'">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
