@@ -247,7 +247,7 @@
 									</p>
 									<p>
 									<h6>기안자</h6>
-									<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
+									<strong>${member.bonbu} / ${member.dept} / ${member.team} / ${member.userName}</strong>
 									</p>
 									<p>
 									<h6>중요도</h6>
