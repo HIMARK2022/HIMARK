@@ -36,6 +36,8 @@ public interface PaymentService {
 	public List<String> getCategory();
 	
 	public List<BoardAttachVO> getAttachList(int rno);
+
+	public String getTempManager(String userId);
 	
 
 }

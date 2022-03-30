@@ -129,6 +129,12 @@ public class PaymentServiceImpl implements PaymentService {
 		return attachMapper.findByRno(rno);
 	}
 
+	@Override
+	public String getTempManager(String userId) {
+		// TODO Auto-generated method stub
+		return mapper.getTempManager(userId);
+	}
+
 	
 
 	

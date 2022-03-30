@@ -40,4 +40,6 @@ public interface PaymentMapper {
 
 	public List<String> getCategory();
 
+	public String getTempManager(String userId);
+
 }

@@ -161,5 +161,9 @@ else (select result.n
 
 	</select>
 	
+	<select id="getTempManager" resultType="String">
+	select temp_manager from manager
+	where approval_target=#{userId}
+	</select>
 	
 </mapper>
