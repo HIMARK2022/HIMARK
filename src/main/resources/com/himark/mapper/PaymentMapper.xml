@@ -44,6 +44,11 @@
 		values( #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
 		
 	</insert>
+	<insert id="insert2" useGeneratedKeys="true" keyProperty="requestNo">
+		insert into user_request(request_number,user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
+		values(#{requestNo}, #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
+		
+	</insert>
 	
 	<update id="updateApprover">
 	update user_request as ur
@@ -53,6 +58,16 @@
 			on m.approval_target=u.user_id
 	       where u.user_id=#{userId}) 
 	where ur.user_id=#{userId}
+	</update>
+	
+	<update id="updateApprover2">
+	update user_request as ur
+	set ur.manager_id = 
+	(select m.temp_manager from manager m
+			join user u
+			on m.approval_target=u.user_id
+	       where u.user_id=#{userId}) 
+	where ur.user_id=#{userId} 
 	</update>
 	
 	<update id="updateFdate">

@@ -9,6 +9,8 @@ import com.himark.domain.PaymentVO;
 
 public interface PaymentMapper {
 	public void insert(PaymentVO payment);
+	
+	public void insert2(PaymentVO payment, @Param ("requestNo")int requestNo);
 
 	public String deptId(String userName);
 

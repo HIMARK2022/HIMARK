@@ -41,6 +41,19 @@ public class PaymentServiceImpl implements PaymentService {
 		});
 		
 	}
+	@Override
+	public void register(PaymentVO payment, int requestNo) {
+		mapper.insert2(payment,requestNo);
+		if(payment.getAttachList() == null || payment.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		payment.getAttachList().forEach(attach ->{
+			attach.setRno(payment.getRequestNo());
+			attachMapper.insert(attach);
+		});
+		
+	}
 
 	@Override
 	public List<PaymentVO> getList(String userId) {
@@ -134,6 +147,8 @@ public class PaymentServiceImpl implements PaymentService {
 		// TODO Auto-generated method stub
 		return mapper.getTempManager(userId);
 	}
+
+	
 
 	
 

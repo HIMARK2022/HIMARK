@@ -38,6 +38,8 @@ public interface PaymentService {
 	public List<BoardAttachVO> getAttachList(int rno);
 
 	public String getTempManager(String userId);
+
+	public void register(PaymentVO payment, int requestNo);
 	
 
 }

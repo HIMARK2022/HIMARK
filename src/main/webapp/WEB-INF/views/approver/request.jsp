@@ -83,14 +83,10 @@
 												 check()
 												 </script>
 											
-													<label><input type="checkbox" value="전체" name="filter" onclick='selectAll(this)' />전체</label>
-													<label><input type="checkbox" value="휴가" name="filter" />휴가</label>
-													<label><input type="checkbox" value="비용" name="filter" <c:if test="${flist eq '비용'}">checked</c:if> />비용</label>
-													<label><input type="checkbox" value="팀업무A" name="filter" <c:if test="${flist eq '팀업무A'}">checked</c:if>/>팀업무A</label>
-													<label><input type="checkbox" value="팀업무B" name="filter"  <c:if test="${flist eq '팀업무B'}">checked</c:if>/>팀업무B</label> 
-													<label><input type="checkbox" value="팀업무C" name="filter" <c:if test="${flist eq '팀업무C'}">checked</c:if> />팀업무C</label> 
-													<label><input type="checkbox" value="팀업무D" name="filter" <c:if test="${flist eq '팀업무D'}">checked</c:if> />팀업무D</label> 
-													<label><input type="checkbox" value="팀업무E" name="filter" <c:if test="${flist eq '팀업무E'}">checked</c:if>/>팀업무E</label>
+												<label><input type="checkbox" value="전체" name="filter" onclick='selectAll(this)' />전체</label>
+									 			<c:forEach var="list" items="${category}"> 
+											<label><input type="checkbox" value="${list}" name="filter"/>${list}</label>
+												</c:forEach>
 													
 													<button id="search_btn" class="btn btn-outline-primary"
 														type="button" style="margin-left: 10px; margin-top: -5px">검색</button>

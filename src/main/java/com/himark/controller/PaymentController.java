@@ -46,6 +46,15 @@ public class PaymentController {
 		log.info(payment);
 		pservice.register(payment);
 		pservice.updateApprover(userId);
+		int requestNo = payment.getRequestNo();
+		
+		/*
+		 * String tempManager = pservice.getTempManager(userId);
+		 * log.info("임시승인자 : "+tempManager); if(tempManager != null) {
+		 * log.info("임시승인자 : "+tempManager); pservice.register(payment,requestNo);
+		 * //pservice.updateApprover(userId); }
+		 */
+		
 		log.info("요청번호 : " +payment.getRequestNo());
 		
 		if(payment.getAttachList() != null) {
