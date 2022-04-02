@@ -12,10 +12,35 @@
 </head>
 <body id="page-top">
 
-<c:if test = '${member.authorityCode.equals("A2")}'>
+<!-- <script type="text/javascript">
+$(document).ready(function(e){
+	var userId = 
+	var htmlText="";
+	$.ajax({
+		type:"post",
+		url:"/request",
+		data : { userId: userId},
 
-<c:redirect url="/approver/request?userId=${member.userId}"/>
-</c:if>
+		dataType : "json",
+
+		success : function(data) {
+
+			for(var i =0;i<data.length;i++){
+				htmlText +="<tr>"
+				+"<td>"+ data[i].requestNo +"</td>"
+				+"<td><a class="move" href='<c:out value="+data[i].title+"/>'>"+ data[i].title +"</td>"
+				+"<td>"+ data[i].rdate +"</td>"
+				+"<td>"+ data[i].fdate+"</td>"
+				+"<td>"+ data[i].state+"</td>"
+				+"</tr>"
+				}
+			$('table > tbody').html(htmlText);
+
+	})
+	
+	
+}
+</script> -->
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -122,7 +147,7 @@
 											<th id="state" width="15%">상태</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="requestList">
 									 <c:if test = '${filterList == null}'>  
 										<c:forEach var="list" items="${list}">
 											<tr>
@@ -236,6 +261,7 @@
 									<h6>양식명</h6>
 									<select class="form-control col-xl-4" name="category">
 										<option value='' disabled selected>-- 결재 분류 --</option>
+										
 									 	<c:forEach var="list" items="${category}"> 
 											<option value='${list}'>${list}</option>
 										</c:forEach>

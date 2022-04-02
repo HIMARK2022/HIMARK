@@ -7,17 +7,19 @@ import org.apache.ibatis.annotations.Param;
 import com.himark.domain.ApproveListManageVO;
 
 public interface ApproveListManageMapper {
-	public List<ApproveListManageVO> getAllList();
+	
 	public int isInCheck(String classify_name);
+	
+	public int isInUpperCheck(String upper_classify_name);
+	
 	public boolean delList(String classify_name);
-	public boolean modList(
-			@Param("mod_name") String mod_name,
-			@Param("mod_period") String mod_period,
-			@Param("org_name") String org_name,
-			@Param("org_period") String org_period
-			);
-	public boolean insertNewList(
-			@Param("classify_name") String classify_name,
-			@Param("approval_period") String approval_period
-		);
+		
+	public List<String> getUpperList();
+	
+	public void insertNewList(ApproveListManageVO amvo);
+	
+	public List<ApproveListManageVO> getCategory(String upper_classify_name);
+
+	public boolean modList(@Param("mod_name")String mod_name, @Param("mod_period")String mod_period, @Param("amvo")ApproveListManageVO amvo);
+
 }

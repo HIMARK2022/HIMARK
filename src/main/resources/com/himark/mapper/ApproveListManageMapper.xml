@@ -5,13 +5,23 @@
 
 <mapper namespace="com.himark.mapper.ApproveListManageMapper">
 	
-	<select id="getAllList" resultType="com.himark.domain.ApproveListManageVO">
-		select * from approval_classify;
+	<select id="getUpperList" resultType="String">
+		select classify_name from approval_classify where upper_classify_name is null
+	</select>
+	
+	<select id = "getCategory" resultType="com.himark.domain.ApproveListManageVO">
+	select * from approval_classify
+	where upper_classify_name=#{upper_classify_name}
 	</select>
 	
 	<select id="isInCheck" resultType="int">
 		select count(*) from approval_classify where classify_name = #{classify_name};
 	</select>
+	
+	<select id="isInUpperCheck" resultType="int">
+		select count(*) from approval_classify where classify_name = #{upper_classify_name};
+	</select>
+	
 	<!-- 삭제 -->
 	<delete id="delList" >
 		delete from approval_classify where classify_name = #{classify_name}
@@ -20,11 +30,11 @@
 	<update id="modList">
 		update approval_classify
 		set classify_name = #{mod_name} , approval_period = #{mod_period}
-		where classify_name = #{org_name} and approval_period = #{org_period}
+		where classify_name = #{amvo.classify_name} and approval_period = #{amvo.approval_period}
 	</update>
 	<!-- 삽입 -->
 	<insert id="insertNewList">
-		insert into approval_classify(classify_name, approval_period)
-		values ( #{classify_name} , #{approval_period});
+		insert into approval_classify(classify_name, approval_period,upper_classify_name)
+		values ( #{classify_name} , #{approval_period},#{upper_classify_name});
 	</insert>
 </mapper>

@@ -2,7 +2,7 @@ var lang_kor = {
   "decimal" : "",
   "emptyTable" : "데이터가 없습니다.",
   "info" : "_START_ - _END_ (총 _TOTAL_ 건)",
-  "infoEmpty" : "0명",
+  "infoEmpty" : "0건",
   "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
   "infoPostFix" : "",
   "thousands" : ",",
@@ -21,7 +21,8 @@ var lang_kor = {
 $(document).ready(function() {
   var table =$('#dataTable1').DataTable({
 	language:lang_kor,
-    ordering: false
+    ordering: false,
+ 	paging: true
   });
 });
 $(document).ready(function() {

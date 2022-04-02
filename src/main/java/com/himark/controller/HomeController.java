@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "approver/myDepart";
+		return "/admin/category";
 	}
 	
 }
