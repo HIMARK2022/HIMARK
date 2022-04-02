@@ -214,7 +214,7 @@
 											<input type='hidden' name='requestNo' value='${detail.requestNo}'>
 											<div class="modal">
 												<div class="modal-header">
-													<h4 class="modal-title" id="myModalLabel">요청 거부을
+													<h4 class="modal-title" id="myModalLabel">요청 거부를
 														하시겠습니까?</h4>
 													<button type="button" class="close content-detail"
 														data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -240,8 +240,8 @@
 													<div class="btn-group btn-group-justified" role="group"
 														aria-label="group button">
 														<div class="btn-group" role="group">
-															<button type="button"
-																class="refuse btn btn-default" role="button">거부하기</button>
+															<button type="button" 
+																class="refuse btn btn-default" role="button" style="font-size:23px; font-weight:700;">거부하기</button>
 														</div>
 														<div class="btn-group" role="group">
 															<button id="positive" class="close content-detail btn btn-default btn-hover-green"
@@ -341,7 +341,7 @@ $(document).ready(function() {
 	    	showImage(path.replace(new RegExp(/\\/g),"/"));
 	    }else {
 	      //download 
-	     // self.location ="/download?fileName="+path
+	      self.location ="/download?fileName="+path
 	    }
 	    
 	    
