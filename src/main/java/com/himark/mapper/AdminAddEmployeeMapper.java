@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.himark.domain.DutyVO;
 import com.himark.domain.PosVO;
+import com.himark.domain.TreeInfoVO;
 import com.himark.domain.UserVO;
+import com.himark.domain.UsersDetailVO;
 import com.himark.domain.deptVO;
 
 public interface AdminAddEmployeeMapper {
@@ -28,4 +30,20 @@ public interface AdminAddEmployeeMapper {
 			@Param("email") String email, 
 			@Param("current_state") String current_state 
 			);
+	public List<TreeInfoVO> selectAllDepart();
+	public List<TreeInfoVO> selectAllHead();
+	public List<TreeInfoVO> selectDepartAndHead();
+	public List<TreeInfoVO> selectHeadAndDepart();
+	public List<TreeInfoVO> selectDepartAndTeam();
+	public List<UsersDetailVO> selectAllTeamMember(String dept_id);
+	
+	public int modUser(
+			@Param("user_name") String user_name,
+			@Param("birth_date") String birth_date,
+			@Param("sex") String sex,
+			@Param("email") String email,
+			@Param("phone_number") String phone_number,
+			@Param("user_id") String user_id
+			);
+
 }

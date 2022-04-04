@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.himark.domain.DutyVO;
 import com.himark.domain.PosVO;
+import com.himark.domain.TreeInfoVO;
 import com.himark.domain.UserVO;
+import com.himark.domain.UsersDetailVO;
 import com.himark.domain.deptVO;
 import com.himark.mapper.AdminAddEmployeeMapper;
 
@@ -45,7 +47,41 @@ public class AdminAddEmployeeServiceImpl implements AdminAddEmployeeService{
 		
 		return mapper.UserID();
 	}
+	@Override
+	public List<TreeInfoVO> selectAllDepart() {
+		return mapper.selectAllDepart();
+	}
+	@Override
+	public List<TreeInfoVO> selectAllHead() {
+		return mapper.selectAllHead();
+	}
+	@Override
+	public List<TreeInfoVO> selectHeadAndDepart() {
+		// TODO Auto-generated method stub
+		return mapper.selectHeadAndDepart();
+	}
+	@Override
+	public List<TreeInfoVO> selectDepartAndTeam() {
+		// TODO Auto-generated method stub
+		return mapper.selectDepartAndTeam();
+	}
+	@Override
+	public List<TreeInfoVO> selectDepartAndHead() {
+		// TODO Auto-generated method stub
+		return mapper.selectDepartAndHead();
+	}
+	@Override
+	public List<UsersDetailVO> selectAllTeamMember(String dept_id) {
+		return mapper.selectAllTeamMember(dept_id);
+	}
+	@Override
+	public int modUser(String user_name, String birth_date, String sex, String email, String phone_number,
+			String user_id) {
+		int cnt = mapper.modUser(user_name, birth_date, sex, email, phone_number, user_id);
+		return cnt;
+	}
+	
+	
 	
 
-	
 }
