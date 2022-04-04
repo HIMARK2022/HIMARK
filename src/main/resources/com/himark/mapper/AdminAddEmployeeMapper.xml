@@ -46,7 +46,7 @@
 	<!-- 팀 검색 -->
 	<select id="selectAllTeamMember" resultType="com.himark.domain.UsersDetailVO">
 		select
-		user_id, user_name, pos_id, duty_id, dept_id, birth_date, sex, phone_number ,authority_code
+		user_id, user_name, pos_id, duty_id, dept_id,authority_code ,birth_date, sex, phone_number
 		, email, current_state, team, depart, head, pos_name, duty_name
 		from usersdetail
 		where dept_id = #{dept_id} <!-- and current_state = "재직"  -->
