@@ -172,7 +172,7 @@ else (select result.n
 	</select>
 	
 		<select id="getCategory" resultType="String">
-		select classify_name from approval_classify
+		select classify_name from approval_classify where upper_classify_name is null
 
 	</select>
 	
