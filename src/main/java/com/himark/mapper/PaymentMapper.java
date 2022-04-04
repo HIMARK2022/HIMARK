@@ -40,8 +40,11 @@ public interface PaymentMapper {
 
 	public void updateReason(@Param ("requestNo") int requestNo, @Param ("rejectReason") String rejectReason);
 
-	public List<String> getCategory();
+	public List<String> getUpperCategory();
 
 	public String getTempManager(String userId);
+
+	public List<String> getCategory();
+
 
 }

@@ -83,13 +83,12 @@ public class PaymentController {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
-		model.addAttribute("member", mservice.getMember(userId));
 		
 		log.info(mservice.getMember(userId));
 		log.info(pservice.getList(userId));
-		log.info("안건목록 : "+pservice.getCategory());
-		model.addAttribute("category",pservice.getCategory());
-		
+
+		model.addAttribute("uppercategory",pservice.getUpperCategory());
+		model.addAttribute("category", pservice.getCategory());
 		model.addAttribute("member", mservice.getMember(userId));
 		
 		if(pvo.getFilterList() == null || pvo.getFilterList().get(0).toString().equals("전체")) {
@@ -172,17 +171,36 @@ public class PaymentController {
 	}
 	
 	@GetMapping("/request_list")
-	public void list( Model model,PaymentVO payment,HttpServletRequest request) {
+	public void list( Model model,PaymentVO pvo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
+		
+		model.addAttribute("uppercategory",pservice.getUpperCategory());
+		model.addAttribute("category", pservice.getCategory());
 		model.addAttribute("member", mservice.getMember(userId));
+		
 		log.info("목록 > 결재 승인 ");
 		model.addAttribute("clist",pservice.getCompleteList(userId));
 		log.info(pservice.getCompleteList(userId));
 		log.info("목록 > 결재 반려 ");
 		model.addAttribute("blist",pservice.getBackList(userId));
 		log.info(pservice.getBackList(userId));
+		
+		if(pvo.getFilterList() == null || pvo.getFilterList().get(0).toString().equals("전체")) {
+			model.addAttribute("list", pservice.getList(userId));
+
+		}
+		else {
+		log.info("필터링");
+		pvo.getFilterList().forEach(attach -> log.info(attach));
+	
+		log.info("사용자 : "+userId);
+		pservice.getSearchList(pvo.getFilterList(),userId);
+		model.addAttribute("filterList",pservice.getSearchList(pvo.getFilterList(),userId));
+		model.addAttribute("flist",pvo.getFilterList());
+
+		}
 	}
 
 	@GetMapping({"/request_detail","/payment_detail"})

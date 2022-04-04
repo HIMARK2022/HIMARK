@@ -74,7 +74,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/approve_list">
+                <a class="nav-link" href="/admin/category">
                     <i class="fa-solid fa-list-check"></i>
                     <span>결재 분류 관리</span></a>
             </li>

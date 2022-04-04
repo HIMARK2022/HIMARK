@@ -131,9 +131,9 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public List<String> getCategory() {
+	public List<String> getUpperCategory() {
 		// TODO Auto-generated method stub
-		return mapper.getCategory();
+		return mapper.getUpperCategory();
 	}
 
 	@Override
@@ -146,6 +146,11 @@ public class PaymentServiceImpl implements PaymentService {
 	public String getTempManager(String userId) {
 		// TODO Auto-generated method stub
 		return mapper.getTempManager(userId);
+	}
+	@Override
+	public List<String> getCategory() {
+		// TODO Auto-generated method stub
+		return mapper.getCategory();
 	}
 
 	

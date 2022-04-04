@@ -108,7 +108,7 @@ $(document).ready(function(e){
 												 check()
 												 </script>
 											<label><input type="checkbox" value="전체" name="filter" onclick='selectAll(this)' />전체</label>
-									 			<c:forEach var="list" items="${category}"> 
+									 			<c:forEach var="list" items="${uppercategory}"> 
 											<label><input type="checkbox" value="${list}" name="filter"/>${list}</label>
 												</c:forEach>
 													
@@ -139,7 +139,7 @@ $(document).ready(function(e){
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th id="No" width="5%">No</th>
+											<th id="No" width="5%">문서번호</th>
 											<th id="classification" width="15%">분류</th>
 											<th id="title" width="30%">제목</th>
 											<th id="requestdate" width="15%">요청일</th>
@@ -262,8 +262,19 @@ $(document).ready(function(e){
 									<select class="form-control col-xl-4" name="category">
 										<option value='' disabled selected>-- 결재 분류 --</option>
 										
-									 	<c:forEach var="list" items="${category}"> 
-											<option value='${list}'>${list}</option>
+									 	<c:forEach var="upperlist" items="${category}"> 
+									 	<c:if test="${upperlist.upper_classify_name == null }">
+									 	<optgroup label="${upperlist.classify_name }">
+									 	
+									 		<c:forEach var="list" items="${category}"> 
+									 		<c:if test = "${list.upper_classify_name eq upperlist.classify_name}">
+									 		<option value='${list.classify_name}' >${list.classify_name}</option>
+									 		</c:if>
+									 		</c:forEach>
+									 		
+									 	</optgroup>
+									 	</c:if>
+											
 										</c:forEach>
 									</select>
 									</p>
@@ -278,21 +289,13 @@ $(document).ready(function(e){
 											id="inlineRadio1" value="긴급"> <label
 											class="form-check-label" for="inlineRadio1">긴급</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="imp"
-											id="inlineRadio2" value="높음"> <label
-											class="form-check-label" for="inlineRadio2">높음</label>
-									</div>
+									
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="imp"
 											id="inlineRadio3" value="보통"> <label
 											class="form-check-label" for="inlineRadio3">보통</label>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="imp"
-											id="inlineRadio4" value="낮음"> <label
-											class="form-check-label" for="inlineRadio3">낮음</label>
-									</div>
+									
 									</p>
 									<p>
 									<h6>첨부파일</h6>

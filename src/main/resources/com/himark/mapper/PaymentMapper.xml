@@ -75,12 +75,8 @@
 set finish_date=
 case when #{imp} = '긴급'
 then adddate(request_date,1)
-when #{imp} = '높음'
-then adddate(request_date,3)
 when #{imp} = '보통'
 then adddate(request_date,7)
-when #{imp} = '낮음'
-then adddate(request_date,15)
 else (select result.n
 		from (select adddate(u.request_date,substring_index(a.approval_period,"일",1)) as n
 				from user_request u
@@ -133,7 +129,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name where user_id=#{userId}
 		<!-- <if test="filterList.size !=0"> -->
-		and a.classify_name in
+		and a.upper_classify_name in
 		
 		<foreach item="val" index="index" collection="filterList"
 		open="(" separator="," close=")">
@@ -141,7 +137,7 @@ else (select result.n
 		</foreach>
 		and u.request_state ="대기"
 		<!--  </if> -->
-		</select>
+	</select>
 
 		<select id="read" resultMap="getPaymentMap">
 		select * from user_request u
@@ -171,9 +167,12 @@ else (select result.n
 		where manager_id=#{userId} and request_state="승인"
 	</select>
 	
-		<select id="getCategory" resultType="String">
+	<select id="getUpperCategory" resultType="String">
 		select classify_name from approval_classify where upper_classify_name is null
-
+	</select>
+	
+	<select id="getCategory" resultType = "com.himark.domain.ApproveListManageVO">
+	select * from approval_classify
 	</select>
 	
 	<select id="getTempManager" resultType="String">

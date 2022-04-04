@@ -385,12 +385,15 @@
 							console.log(category);
 
 							if ($('#detail').css("display") == "none") {
+								$('#detail h2').remove();
+								$('#detail button').remove();
+								$("#addForm ").find("input[name='add_upper_classify_name']").remove();
 								$('#detail').show();
 								$('#detail').prepend(
 										"<h2 class='upper'>" + $(this).text() + "</h2><button onclick='uppermodbtn()' class='uppermodbtn btn '>"
 										+ "<span class='icon text-white-100'> <i class='fas fa-gear'></i></span></button>");
 								addForm
-										.append("<input type = 'hidden' name = 'upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
+										.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 
 								var sendData = "upper_classify_name="
 										+ category;
@@ -405,12 +408,14 @@
 								});
 
 							} else {
-								$('#detail h2').empty();
+								$('#detail h2').remove();
+								
 								$('#detail').prepend(
-										"<h2>" + $(this).text() + "</h2>");
+										"<h2 class='upper'>" + $(this).text() + "</h2>");
 								$("#addForm ").find("input").val("");
+								$("#addForm ").find("input[name='add_upper_classify_name']").remove();
 								addForm
-										.append("<input type = 'hidden' name = 'upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
+										.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 
 								var sendData = "upper_classify_name="
 										+ category;
@@ -431,7 +436,7 @@
 			var classify_name = $('input[name=upper_classify_name]').val();
 			console.log(classify_name);
 			categoryService.addUpper(classify_name, function(result) {
-				
+				alert("추가되었습니다.");
 				$(".uppermodal").find("input").val("");
 				$('.uppermodal-wrapper').removeClass('open');
 				// $('.uppermodal-wrapper').modal("hide");
@@ -477,12 +482,12 @@
 			var category = {
 				classify_name : $('input[name=classify_name]').val(),
 				approval_period : $('#approval_period').val(),
-				upper_classify_name : $('#upper_classify_name').val()
+				upper_classify_name : $('input[name=add_upper_classify_name]').val()
 			}
 			console.log(category);
 			
 			categoryService.add(category, function(result) {
-
+				alert("추가되었습니다.");
 				$(".addmodal").find("input").val("");
 
 				$('.addmodal-wrapper').removeClass('open');
@@ -589,8 +594,16 @@
 			categoryService.uppermodify(category, function(result){
 				alert("상위 분류명이 수정되었습니다.");
 				$('.uppermodmodal-wrapper').removeClass('open');
-				$('#detail').css("display", "none");
 				showUpperList();
+				$('#detail h2').remove();
+				
+				$('#detail').prepend(
+						"<h2 class='upper'>" + mod_name + "</h2>");
+				$("#addForm ").find("input").val("");
+				$("#addForm ").find("input[name='add_upper_classify_name']").remove();
+				addForm
+						.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + mod_name+"'>");
+				showList(mod_name);
 			})
 			
 		});

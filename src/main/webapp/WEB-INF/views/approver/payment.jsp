@@ -54,7 +54,7 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th id="No" width="5%">No</th>
+                                                    <th id="No" width="5%">문서번호</th>
 											<th id="classification" width="15%">분류</th>
 											<th id="title" width="30%">제목</th>
 											<th id="requestdate" width="15%">요청일</th>
