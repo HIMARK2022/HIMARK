@@ -14,6 +14,7 @@ public class UsersDetailVO {
 	private String duty_id;
 	private String dept_id;
 	
+	private String authority_code;
 	private String birth_date;
 	private String sex;
 	private String phone_number;
