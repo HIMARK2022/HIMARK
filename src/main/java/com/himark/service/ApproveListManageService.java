@@ -21,4 +21,6 @@ public interface ApproveListManageService {
 
 	public boolean modList(String mod_name, String mod_period, ApproveListManageVO amvo);
 
+	public boolean uppermodList(String mod_name, ApproveListManageVO amvo);
+
 }

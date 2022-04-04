@@ -103,7 +103,29 @@ var categoryService = (function() {
 				}
 			}
 		});
-	}//update
+	}//modify
+	
+	function uppermodify(category, callback, error) {
+	console.log(category);
+	
+		$.ajax({
+			type: 'put',
+			url : '/admin/approve_list_mod/'+ category.mod_name,
+			data : JSON.stringify(category),
+			contentType : "application/json;charset=UTF-8",
+			success : function(result, status, xhr) {
+				if(callback) {
+					callback(result);
+					
+				}
+			},
+			error : function(xhr, status, er) {
+				if(error) {
+					error(er);
+				}
+			}
+		});
+	}//modify
 	
 	
 	return{
@@ -112,6 +134,7 @@ var categoryService = (function() {
 		getList:getList,
 		getUpperList:getUpperList,
 		remove:remove,
-		modify:modify
+		modify:modify,
+		uppermodify:uppermodify
 	};
 })();

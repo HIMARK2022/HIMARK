@@ -75,6 +75,20 @@ public class AdminApproveListManageController {
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
 	
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH},
+			value="/approve_list_mod/{mod_name}",
+			consumes="application/json",
+			produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> uppermodify(
+			@RequestBody ApproveListManageVO amvo, @PathVariable("mod_name") String mod_name) {
+		
+		log.info("amvo : "+amvo);
+		log.info("mod_name : "+mod_name);
+		service.uppermodList(mod_name,amvo);
+		
+		return new ResponseEntity<>("success", HttpStatus.OK);
+	}
+	
 	@ResponseBody
 	@PostMapping("/approve_list_add")
 	public ApproveListManageVO add(Model model ,ApproveListManageVO amvo) {

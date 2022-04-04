@@ -37,4 +37,10 @@
 		insert into approval_classify(classify_name, approval_period,upper_classify_name)
 		values ( #{classify_name} , #{approval_period},#{upper_classify_name});
 	</insert>
+	
+	<update id = "uppermodList">
+	update approval_classify
+	set classify_name = case when classify_name = #{amvo.classify_name} then #{mod_name} else classify_name end,
+		upper_classify_name = case when upper_classify_name=#{amvo.classify_name} then #{mod_name} else upper_classify_name end;
+	</update>
 </mapper>

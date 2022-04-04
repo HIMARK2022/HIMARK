@@ -39,11 +39,11 @@
 
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">안건 목록 관리</h1>
+			<h1 class="h3 mb-0 text-gray-800">결재 분류 관리</h1>
 
 		</div>
 		<p class="mb-4">
-			<b>새로운 안건을 생성하고 수정할 수 있는 페이지입니다.</b>
+			<b>새로운 결재분류를 생성하고 수정할 수 있는 페이지입니다.</b>
 		</p>
 		<div class="row">
 
@@ -95,7 +95,7 @@
 							<div class="page-wrapper btnM">
 								<a class="content-detail btn btn-outline-primary btn-icon-split">
 									<span class="icon text-white-50"> <i class="fas fa-plus"></i>
-								</span> <span class="text">새로운 안건 생성</span>
+								</span> <span class="text">하위 분류 추가</span>
 								</a>
 							</div>
 							<div class="table-responsive col-lg-12">
@@ -105,7 +105,7 @@
 									<thead>
 										<tr>
 
-											<th>권한명</th>
+											<th>분류명</th>
 											<th>승인기간</th>
 											<th>관리</th>
 										</tr>
@@ -205,17 +205,17 @@
 		<div class="addmodal-wrapper">
 			<div class="addmodal">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">안건 생성</h4>
+					<h4 class="modal-title" id="myModalLabel">하위 분류 생성</h4>
 					<button type="button" class="close content-detail"
 						data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="font-weight-bold">안건명</label> <input
+						<label class="font-weight-bold">하위 분류명</label> <input
 							class="form-control" name="classify_name" id="category" value=""
 							autocomplete="username" required oninput="checkId()"
-							placeholder="생성할 안건 명을 입력하세요"> <span class="id_ok">사용
-							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 안건명입니다.</span>
+							placeholder="생성할 하위 분류명을 입력하세요"> <span class="id_ok">사용
+							가능한 하위 분류명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>
 					</div>
 					<div class="form-group">
 						<label class="font-weight-bold">승인 기간</label> <input
@@ -245,16 +245,16 @@
 		<div class="modmodal-wrapper">
 			<div class="modmodal">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">수정 안건 내용</h4>
+					<h4 class="modal-title" id="myModalLabel">하위 분류 수정</h4>
 					<button type="button" class="close mod-content-detail"
 						data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="font-weight-bold">안건 명</label> <input type="text"
+						<label class="font-weight-bold">하위 분류 명</label> <input type="text"
 							class="form-control" name="mod_name" value="" autocomplete="username" required oninput="checkId()"
 							placeholder="생성할 안건 명을 입력하세요"> <span class="id_ok">사용
-							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 안건명입니다.</span>>
+							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>>
 							 <input
 							class="form-control" name="org_name" value="" type="hidden"> 
 					</div>
@@ -284,6 +284,50 @@
 			</div>
 		</div>
 	</form>
+	
+	<!-- 상위분류수정 모달 -->
+	<form  name="UpperMod" id="UpperMod">
+		<div class="uppermodmodal-wrapper">
+			<div class="uppermodmodal">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">상위 분류 수정 및 삭제</h4>
+					<button type="button" class="close uppermod-content-detail"
+						data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="font-weight-bold">상위 분류명</label> <input
+							class="form-control" name="modupper_classify_name" id="category"
+							value="" autocomplete="username" required
+							oninput="uppercheckId()">
+						<span class="id_ok">사용 가능한 상위 분류명입니다.</span> <span
+							class="id_already">이미 존재하는 상위 분류명입니다.</span>
+							<input
+							class="form-control" name="org_upper_classify_name" value="" type="hidden"> 
+					</div>
+					</div>
+				
+			
+				<div class="modal-footer">
+					<div class="btn-group btn-group-justified" role="group"
+						aria-label="group button">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default uppermod-content-detail"
+								data-dismiss="modal" role="button">취소</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" id="uppermodList"
+								class="btn btn-default btn-hover-green" role="button">수정</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default upperdel-content-detail" id="upperdel-content-detail" 
+								data-dismiss="modal" role="button">삭제</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 
 
 	<%@include file="../sidebar/footer.jsp"%>
@@ -306,6 +350,23 @@
 			$('.modmodal-wrapper').removeClass('open');
 			return false;
 		});
+		$('.uppermod-content-detail').on('click', function() {
+			$('.uppermodmodal-wrapper').removeClass('open');
+			return false;
+		});
+		
+		
+		function uppermodbtn(){
+			var upper_classify_name = $('#detail').find("h2").text();
+			
+			$('.uppermodmodal-wrapper').toggleClass('open');
+			$('input[name=modupper_classify_name]').attr('value',upper_classify_name);
+			$('input[name=org_upper_classify_name]').attr('value',upper_classify_name);
+			//$('#detail').find("h2").remove();
+			
+			//$('#detail').prepend("<h2><input type = 'text' name = 'upper_classify_name' id='upper_classify_name' value = '" + upper_classify_name+"'></h2>");
+		}
+			
 		/* 	$('.content-detail2').on('click',"span", function() {
 				$('.modal-wrapper2').toggleClass('open');
 				$('.page-wrapper2').toggleClass('blur-it');
@@ -326,10 +387,8 @@
 							if ($('#detail').css("display") == "none") {
 								$('#detail').show();
 								$('#detail').prepend(
-										"<h2 class='upper'>" + $(this).text() + "</h2><button onclick='uppermodbtn()' class='uppermodbtn btn btn-outline-primary btn-icon-split'>"
-										+ "<span class='icon text-white-100'> <i class='fas fa-pen'></i></span>"
-										+"</button><a class='upperdelbtn btn btn-outline-primary btn-icon-split'>"
-										+ "<span class='icon text-white-100'> <i class='fas fa-circle-xmark'></i></span>");
+										"<h2 class='upper'>" + $(this).text() + "</h2><button onclick='uppermodbtn()' class='uppermodbtn btn '>"
+										+ "<span class='icon text-white-100'> <i class='fas fa-gear'></i></span></button>");
 								addForm
 										.append("<input type = 'hidden' name = 'upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 
@@ -376,35 +435,13 @@
 				$(".uppermodal").find("input").val("");
 				$('.uppermodal-wrapper').removeClass('open');
 				// $('.uppermodal-wrapper').modal("hide");
-				alert(result);
 				// $(".modal").modal("hide");
 
 				showUpperList();
 			})
 		});
-		/* function create() {
-			console.log("하위분류생성");
-			var classify_name = $('input[name=classify_name]').val();
-			var approval_period = $('#approval_period').val();
-			var upper_classify_name = $('#upper_classify_name').val();
-			
-			$.ajax({
-				type : "post",
-				url : "/admin/approve_list_add",
-				data : {
-					classify_name : classify_name,
-					approval_period : approval_period,
-					upper_classify_name : upper_classify_name
-				},
-
-				dataType : 'json',
-				success :output
-					
-			});
-		}
-
-		 */
-
+	
+		
 		function output(data) {
 			var str = "";
 			console.log("하위분류aa" + JSON.stringify(data));
@@ -423,20 +460,13 @@
 										+ val.approval_period
 										+ "</td>"
 										+ "<td><a class='btn btn-outline-danger delbtn'"
-										//+ "onclick='deletecategory("+\''val.classify_name"\+","+\val.upper_classify_name\')'>"
-										//+ "onclick='deletecategory('"+val.classify_name+"','"+val.upper_classify_name+"')'>"
-										//+ "onclick=\'deletecategory(\'"+val.classify_name+"\',\'"+val.upper_classify_name+"\')\'>"
 										+"onclick = "+ deltext +">"
 										+ "<span class='text'>삭제</span>"
 										+ "</a><a href='#' class='content-detail2 btn btn-outline-warning modbtn'"
-										//+ "onclick='modifycategory()'>"
 										+"onclick = "+ modtext +">"
 										+ "<span class='text'>수정</span>"
 										+ "</a></td>" + "</tr>" 
-										
-										
-										//console.log(str);	
-								console.log("sum : "+ typeof(val.classify_name)+val.upper_classify_name);
+
 
 							});
 			$('table > tbody.category').html(str);
@@ -450,12 +480,11 @@
 				upper_classify_name : $('#upper_classify_name').val()
 			}
 			console.log(category);
+			
 			categoryService.add(category, function(result) {
 
 				$(".addmodal").find("input").val("");
-				//$('.modal-wrapper').toggleClass('close');
-				// $('.uppermodal-wrapper').modal("hide");
-				alert("하위분류 생성");
+
 				$('.addmodal-wrapper').removeClass('open');
 
 				showList(category.upper_classify_name);
@@ -480,18 +509,13 @@
 											+ list[i].approval_period
 											+ "</td>"
 											+ "<td><a class='btn btn-outline-danger delbtn'"
-											//+ "onclick='deletecategory(\'' + list[i].classify_name + '\'+","+\'' + list[i].upper_classify_name + '\')'>"
-											//+ "onclick='deletecategory("+list[i].classify_name+","+list[i].upper_classify_name+")'>"
 											+ "onclick = "+ deltext +">"
 											+ "<span class='text'>삭제</span>"
 											+ "</a><a href='#' class='content-detail2 btn btn-outline-warning modbtn'"
-											//+ "onclick='modifycategory()'>"
 											+ "onclick = "+ modtext +">"
 											+ "<span class='text'>수정</span>"
 											+ "</a></td>" + "</tr>" 
-											
-										//console.log(str);	
-										console.log("sum : "+ typeof(list[i].classify_name)+list[i].upper_classify_name);
+
 								};
 								$('table > tbody.category').html(str);
 							});
@@ -510,90 +534,6 @@
 			})
 		}
 
-		/* function uppercreate() {
-			return new Promise(function(resolve,reject){
-				
-				var classify_name = $('#category').val();
-				console.log("상위분류생성");
-				$.ajax({
-					type : "post",
-					url : "/admin/approve_upperlist_add",
-					data : {
-						classify_name : classify_name,
-					},
-					dataType : 'json',
-					success : function(data){
-						resolve(data);
-					}
-				});
-			});
-		}
-		function uppercreate2(){
-			return new Promise(function(resolve,reject){
-				var str = "";
-				console.log("추가된 후" + JSON.stringify(data));
-				$.ajax({
-					type : "get",
-					url : "/admin/uppercategory",
-					success : function(data) {
-						for (var i = 0; i < data.length; i++) {
-							console.log("aaa" + data);
-							str += "<li class='upper'>" + data[i] + "</li>"
-		
-						}
-						$('ul.uppercategory').html(str);
-					}
-				});
-			});
-		}
-
-		uppercreate().then(uppercreate2); */
-
-		/* 	function uppercreate() {
-				console.log("상위분류생성");
-				var classify_name = $('#category').val();
-				
-				$.ajax({
-					type : "post",
-					url : "/admin/approve_upperlist_add",
-					data : {
-						classify_name : classify_name,
-					},
-					dataType : 'json',
-					success : alert("생성"),
-						function (data) {
-						var str = "";
-						console.log("추가된 후" + JSON.stringify(data));
-						$.ajax({
-							type : "get",
-							url : "/admin/uppercategory",
-							success : function(data) {
-								for (var i = 0; i < data.length; i++) {
-									console.log("aaa" + data);
-									str += "<li class='upper'>" + data[i] + "</li>"
-
-								}
-								$('ul.uppercategory').html(str);
-							}
-
-						});
-					}	
-				});
-			} */
-
-/* 		$('#please').on("click",function(e){
-			alert("aaa");
-		})	
-			 */
-			 
-		function uppermodbtn(){
-				var upper_classify_name = $('#detail').find("h2").val();
-				alert(upper_classify_name);
-				$('#detail').find("h2").remove();
-				
-				$('#detail').prepend("<h2><input type = 'text' readonly name = 'upper_classify_name' id='upper_classify_name' value = '" + upper_classify_name+"'></h2>");
-			}
-				
 					
 		function deleteConfirm() {
 
@@ -605,15 +545,24 @@
 			console.log(classify_name);	
 			console.log(upper_classify_name);
 			categoryService.remove(classify_name, function(result) {
-				alert('삭제가 완료되었습니다.')
-
-				//$(".modal").find("input").val("");
 				
-				//$(".modal").modal("hide");
-	
+				alert('삭제가 완료되었습니다.')
+				
 				showList(upper_classify_name);
 			});
 		}
+		
+		$(".upperdel-content-detail").on("click", function(e){
+			var classify_name = $('#detail').find("h2").text();
+			categoryService.remove(classify_name, function(result) {
+				alert('삭제가 완료되었습니다.')
+
+				$('.uppermodmodal-wrapper').removeClass('open');
+				$('#detail').css("display", "none");
+				showUpperList();
+			});
+		
+		})
 
 		function modifycategory(classify_name,upper_classify_name,approval_period) {
 		
@@ -627,17 +576,25 @@
 	         $('input[name=mod_upper_classify_name]').attr('value',upper_classify_name);
 	         
 	         return false;
-			/* categoryService.modify(category, function(result){
-				alert('수정되었습니다.')
-
-				$(".modal").find("input").val("");
-				
-				$(".modal").modal("hide");
-				
-				showList(upper_classify_name);
-			}); */
 			
 		}
+		
+		$('#uppermodList').on("click",function(e){
+			var classify_name = $('input[name=org_upper_classify_name]').val();
+			var mod_name =$('input[name=modupper_classify_name]').val();
+			var category={
+					mod_name :mod_name,
+					classify_name:classify_name
+			}
+			categoryService.uppermodify(category, function(result){
+				alert("상위 분류명이 수정되었습니다.");
+				$('.uppermodmodal-wrapper').removeClass('open');
+				$('#detail').css("display", "none");
+				showUpperList();
+			})
+			
+		});
+		
 		
 		$('#modList').on("click",function(e){
 			 var classify_name =  $('input[name=org_name]').val();
@@ -657,24 +614,13 @@
 			categoryService.modify(category, function(result){
 				alert('수정되었습니다.')
 
-				//$(".modmodal").find("input").val("");
 				$('.modmodal-wrapper').removeClass('open');
-				//$(".modal-wrapper2").modal("hide");
 				
 				showList(upper_classify_name);
 			});
 		})	
 
-	/* 	$("#detail").on("click","h2",function(e){
-			alert("click");
-			var upper_classify_name = $(this).text();
-			$('#detail').find("h2").remove();
-			
-			$('#detail').prepend("<h2><input type = 'text' readonly name = 'upper_classify_name' id='upper_classify_name' value = '" + upper_classify_name+"'></h2>");
-					
-			}) */
-		
-			
+
 		function checkId() {
 			var classify_name = $('input[name=classify_name]').val(); //id값이 "id"인 입력란의 값을 저장
 			$.ajax({

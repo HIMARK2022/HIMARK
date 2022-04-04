@@ -22,4 +22,6 @@ public interface ApproveListManageMapper {
 
 	public boolean modList(@Param("mod_name")String mod_name, @Param("mod_period")String mod_period, @Param("amvo")ApproveListManageVO amvo);
 
+	public boolean uppermodList(@Param("mod_name") String mod_name, @Param("amvo") ApproveListManageVO amvo);
+
 }
