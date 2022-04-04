@@ -62,5 +62,10 @@ public class ApproveListManageServiceImpl implements ApproveListManageService{
 		// TODO Auto-generated method stub
 		return mapper.modList(mod_name, mod_period, amvo);
 	}
+	@Override
+	public boolean uppermodList(String mod_name, ApproveListManageVO amvo) {
+		// TODO Auto-generated method stub
+		return mapper.uppermodList(mod_name,amvo);
+	}
 
 }
