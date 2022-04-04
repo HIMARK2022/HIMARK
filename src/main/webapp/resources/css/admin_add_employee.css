@@ -39,6 +39,15 @@ th{
 #dataTable td{
     vertical-align: middle;
 }
+#dataTable tr td{
+    vertical-align: middle;
+}
+tr{
+	text-align:center;
+}
 .twobuttons{
     text-align: center;
+}
+.tree{
+	cursor:pointer;
 }

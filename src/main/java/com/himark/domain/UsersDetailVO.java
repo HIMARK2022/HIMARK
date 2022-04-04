@@ -13,7 +13,11 @@ public class UsersDetailVO {
 	private String pos_id;
 	private String duty_id;
 	private String dept_id;
-	private String authority_code;
+	
+	private String birth_date;
+	private String sex;
+	private String phone_number;
+	private String email;
 	private String current_state;
 	
 	private String team;

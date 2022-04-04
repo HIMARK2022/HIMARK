@@ -60,34 +60,23 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa-solid fa-users-gear"></i>
-                    <span>팀 관리</span>
+                    <span>직원 관리</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">분류</h6>
-                        <a class="collapse-item" href="#">팀 생성</a>
-                        <a class="collapse-item" href="#">팀 수정</a>
+                        <!-- <h6 class="collapse-header">분류</h6> -->
+                        <a class="collapse-item" href="/admin/add_employee">직원 추가 및 수정</a>
+                        <a class="collapse-item"  href="/admin/tree_employee">승인자 관리</a>
+                        <a class="collapse-item" href="#">임시승인자 관리</a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/add_employee">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>직원 추가</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/tree_employee">
-                    <i class="fa-solid fa-sitemap"></i>
-                    <span>조직도/직원정보 수정</span></a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="/admin/approve_list">
                     <i class="fa-solid fa-list-check"></i>
-                    <span>안건 목록 관리</span></a>
+                    <span>결재 분류 관리</span></a>
             </li>
             
             <!-- Divider -->
