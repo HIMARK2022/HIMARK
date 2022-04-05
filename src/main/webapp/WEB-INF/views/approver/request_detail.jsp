@@ -45,7 +45,7 @@
 						<p>
 						<h6>승인자</h6>
 						<input type="text" class="form-control col-xl-4" readonly
-							name="managerId" value='<c:out value="${detail.managerId }"/>'>
+							name="manager" value='<c:out value="${manager[0]}"/>(${detail.managerId})'>
 						</p>
 						<p>
 						<h6>중요도</h6>

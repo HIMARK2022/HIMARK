@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +25,6 @@ import com.himark.domain.PaymentVO;
 import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
-import com.himark.service.TreeTeamService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -212,12 +212,33 @@ public class PaymentController {
 		log.info("get : "+ payment);
 		String userId = payment.getUserId();
 		log.info("userId : "+ userId);
-		
+		String requester = pservice.get(requestNo).getUserId();
+		log.info("requester " +requester);
 		log.info("requestNo : "+ requestNo);
 		model.addAttribute("member", mservice.getMember(userId));
 		model.addAttribute("detail", pservice.get(requestNo));
+
+		model.addAttribute("user", mservice.getMember(requester));
 		
-		model.addAttribute("manager",pservice.gerManager(requestNo) );
+		model.addAttribute("manager",pservice.getManager(requestNo) );
+	}
+	
+	@ResponseBody 
+	@GetMapping(value = "/getManager", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getManager(@RequestParam String requestNo) {
+		
+		int rno = Integer.parseInt(requestNo);
+
+		return pservice.getManager(rno);
+	}
+	
+	@ResponseBody 
+	@GetMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getUser(@RequestParam String requestNo) {
+
+		int rno = Integer.parseInt(requestNo);
+		log.info(pservice.getUser(rno));
+		return pservice.getUser(rno);
 	}
 	
 	
@@ -249,12 +270,13 @@ public class PaymentController {
 		log.info(payment);
 		String state = request.getParameter("state");
 		int requestNo = Integer.parseInt(request.getParameter("requestNo"));
-		String rejectReason = request.getParameter("rejectReason");
+		String reason = request.getParameter("reason");
 		log.info("결재상태 : "+state);
 		log.info("요청문서번호 : "+requestNo);
-		log.info("반려이유 : "+rejectReason);
-		pservice.updateReason(requestNo,rejectReason);
+		log.info("반려이유 : "+reason);
+		pservice.updateReason(requestNo,reason);
 		pservice.updateState(requestNo,state);
+		
 		return "redirect:/approver/payment?userId="+userId;
 		
 	}

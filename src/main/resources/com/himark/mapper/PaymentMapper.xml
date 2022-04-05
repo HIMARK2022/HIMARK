@@ -180,8 +180,18 @@ else (select result.n
 	where approval_target=#{userId}
 	</select>
 	
-	<select id="getManager" resultType="Sting">
+	<select id="getManager" resultType="String">
+	select u.user_name from user_request ur
+	join user u
+	on u.user_id = ur.manager_id
+	where request_number=#{requestNo};
+	</select>
 	
+	<select id="getUser" resultType="String">
+	select u.user_name from user_request ur
+	join user u
+	on u.user_id = ur.user_id
+	where request_number=#{requestNo};
 	</select>
 	
 </mapper>

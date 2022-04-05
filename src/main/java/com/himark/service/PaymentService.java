@@ -43,7 +43,9 @@ public interface PaymentService {
 
 	public List<String> getCategory();
 
-	public String gerManager(int requestNo);
+	public List<String> getManager(int requestNo);
+
+	public List<String> getUser(int requestNo);
 
 	
 

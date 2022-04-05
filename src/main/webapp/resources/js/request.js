@@ -28,7 +28,7 @@ var lang_kor = {
 $(document).ready(function() {
     $('#dataTable').DataTable({
         "pageLength":10, 
-        responsive: true,  //반응형 설정
+        responsive: false,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
         order:[[1,"desc"]],
         destroy: true,
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 	$('#dataTable1').DataTable({
         "pageLength":10, 
-        responsive: true,  //반응형 설정
+        responsive: false,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
         order:[[1,"desc"]],
         destroy: true,
@@ -59,8 +59,8 @@ $(document).ready(function() {
     });
 
   $('#dataTable2').DataTable({
-        "pageLength":10, 
-        responsive: true,  //반응형 설정
+       "pageLength":10, 
+        responsive: false,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
         order:[[1,"desc"]],
         destroy: true,
@@ -74,10 +74,10 @@ $(document).ready(function() {
         lengthChange: true
     });
     $('#dataTable3').DataTable({
-        "pageLength":10, 
+      "pageLength":10, 
         responsive: false,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
-        
+        order:[[1,"desc"]],
         destroy: true,
         processing: true,
         serverSide: false,
@@ -97,3 +97,22 @@ $(document).ready(function() {
                 $(this).next('.custom-file-label').html(fileName.substr(12));
             })
         });
+
+
+console.log("Payment Module............");
+var paymentService={};
+
+var paymentService = (function() {
+	function getManager(requestNo,callback, error) {
+				console.log(requestNo);
+		$.getJSON("/general/getManager?requestNo=" +requestNo,
+			function(data) {
+			console.log(data);
+			});
+	}//getManager
+	
+	return{
+		getManager:getManager
+		
+	};
+})();

@@ -12,6 +12,25 @@
 </head>
 <body id="page-top">
 
+<script>
+	function getUser(requestNo){
+		var user;
+		$.ajax({
+			url:"/general/getUser",
+			type:"get",
+			dataType : 'json',
+			async:false,
+			data :{requestNo:requestNo},
+			success : function(result){
+				user = result[0];
+			}
+		})
+				console.log(user);
+		
+		 document.getElementById(requestNo).innerHTML = user;
+	}
+	</script>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -54,23 +73,28 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th id="No" width="5%">문서번호</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="finishdate" width="15%">마감일</th>
-											<th id="state" width="15%">상태</th>
+                                                    <th id="No" width="10%">문서번호</th>
+											<th id="classification" width="13%">분류</th>
+											<th id="title" width="25%">제목</th>
+											<th id="requestdate" width="13%">요청일</th>
+											<th id="finishdate" width="13%">마감일</th>
+											<th id="manager" width="13%">요청자</th>
+											<th id="state" width="13%">상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <c:forEach var="list" items="${rpayment}">
                                                 <tr>
                                                    	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-													<td>${list.state}</td>
+												<td>${list.category}</td>
+												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
+												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+												<td>${list.state}</td>
                                                 </tr>
                                                 </c:forEach>
                                                
@@ -93,21 +117,28 @@
                                         <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                     <th id="No" width="5%">No</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="completedate" width="15%">승인일</th>
+                                                    <th id="No" width="10%">문서번호</th>
+											<th id="classification" width="13%">분류</th>
+											<th id="title" width="25%">제목</th>
+											<th id="requestdate" width="13%">요청일</th>
+											<th id="finishdate" width="13%">승인일</th>
+											<th id="manager" width="13%">요청자</th>
+											<th id="state" width="13%">상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                  <c:forEach var="list" items="${cpayment}">
                                                 <tr>
-                                                   	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.cdate}" pattern="yyyy/MM/dd" /></td>
+                                                   <td>${list.requestNo}</td>
+												<td>${list.category}</td>
+												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
+												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+												<td>${list.state}</td>
                                                 </tr>
                                                 </c:forEach>
                                                 
@@ -125,22 +156,32 @@
                                         <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                  <th id="No" width="5%">No</th>
-											<th id="classification" width="15%">분류</th>
+                                                 <th id="No" width="10%">문서번호</th>
+											<th id="classification" width="13%">분류</th>
 											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="20%">요청일</th>
-											<th id="finishdate" width="10%">반려일</th>
+											<th id="requestdate" width="13%">요청일</th>
+											<th id="finishdate" width="13%">반려일</th>
+											<th id="manager" width="13%">요청자</th>
+											<th id="state" width="13%">상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="list" items="${bpayment}">
                                                 <tr>
-                                                   	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-                                                </tr>
+														<td>${list.requestNo}</td>
+														<td>${list.category}</td>
+														<td><a class="move"
+															href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+														<td><fmt:formatDate value="${list.rdate}"
+																pattern="yyyy/MM/dd" /></td>
+														<td><fmt:formatDate value="${list.cdate}"
+																pattern="yyyy/MM/dd" /></td>
+														<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+													<td>${list.state}</td>
+													</tr>
                                                 </c:forEach>
                                                 
                                             </tbody>
@@ -194,6 +235,7 @@ $(function(){
 
 </script>
                 <%@include file="../sidebar/footer.jsp"%>
-<script src="/resources/js/request.js"></script>
+                <script type="text/javascript"  src="/resources/js/request.js"></script>
+
 </body>
 </html>

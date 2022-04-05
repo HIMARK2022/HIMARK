@@ -9,9 +9,31 @@
 <meta charset="UTF-8">
 <title>전자결재 - 목록(일반 사용자)</title>
 <link href="/resources/css/payment.css" rel="stylesheet">
+
 </head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <body id="page-top">
 
+<script type="text/javascript"  src="/resources/js/request.js"></script>
+	
+	<script>
+	function getManager(requestNo){
+		var m;
+		$.ajax({
+			url:"/general/getManager",
+			type:"get",
+			dataType : 'json',
+			async:false,
+			data :{requestNo:requestNo},
+			success : function(result){
+				m = result[0];
+			}
+		})
+				console.log(m);
+		
+		 document.getElementById(requestNo).innerHTML = m;
+	}
+	</script>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -118,7 +140,7 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th id="No" width="5%">문서번호</th>
+											<th id="No" width="10%">문서번호</th>
 											<th id="classification" width="13%">분류</th>
 											<th id="title" width="30%">제목</th>
 											<th id="requestdate" width="13%">요청일</th>
@@ -136,7 +158,10 @@
 												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
 												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
 												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-												<td>승인자</td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getManager('${list.requestNo}')</script></td>
 												<td>${list.state}</td>
 											</tr>
 										</c:forEach>
@@ -150,7 +175,10 @@
 												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
 												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
 												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-												<td>승인자</td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getManager('${list.requestNo}')</script></td>
 												<td>${list.state}</td>
 											</tr>
 							
@@ -172,12 +200,13 @@
 											<table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
 											<thead>
 												<tr>
-													<th id="No">문서번호</th>
-													<th id="classification">분류</th>
-													<th id="title">제목</th>
-													<th id="requestdate">요청일</th>
-													<th id="state">승인일</th>
-													<th id="manager">승인자</th>
+													<th id="No" width="10%">문서번호</th>
+											<th id="classification" width="13%">분류</th>
+											<th id="title" width="30%">제목</th>
+											<th id="requestdate" width="13%">요청일</th>
+											<th id="finishdate" width="13%">승인일</th>
+											<th id="manager" width="13%">승인자</th>
+											<th id="state" width="13%">상태</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -191,9 +220,13 @@
 																pattern="yyyy/MM/dd" /></td>
 														<td><fmt:formatDate value="${list.cdate}"
 																pattern="yyyy/MM/dd" /></td>
-														<td>승인자</td>
+														<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getManager('${list.requestNo}')</script></td>
 																
 													</tr>
+													<td>${list.state}</td>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -209,12 +242,12 @@
 										<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 											<thead>
 												<tr>
-													<th id="No">문서번호</th>
-													<th id="classification">분류</th>
-													<th id="title">제목</th>
-													<th id="requestdate">요청일</th>
-													<th id="refuse">반려일</th>
-													<th id="manager">승인자</th>
+													<th id="No" width="5%">문서번호</th>
+													<th id="classification" width="15%">분류</th>
+													<th id="title" width="30%">제목</th>
+													<th id="requestdate" width="15%">요청일</th>
+													<th id="refuse" width="15%">반려일</th>
+													<th id="manager" width="15%">승인자</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -228,8 +261,13 @@
 																pattern="yyyy/MM/dd" /></td>
 														<td><fmt:formatDate value="${list.cdate}"
 																pattern="yyyy/MM/dd" /></td>
-														<td>승인자</td>
+														<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getManager('${list.requestNo}')</script></td>
+													<td>${list.state}</td>
 													</tr>
+													
 												</c:forEach>
 
 											</tbody>
@@ -247,6 +285,7 @@
 
 			
 			<!-- End of Main Content -->
+
 			<script>
 var actionForm2 = $("#actionForm2");
 
@@ -309,9 +348,13 @@ function selectAll(selectAll)  {
     checkbox.checked = selectAll.checked;
   })
 }
+
+
+
 </script>
 
+			
 			<%@include file="../sidebar/footer.jsp"%>
-			<script src="/resources/js/request.js"></script>
+			
 </body>
 </html>
