@@ -17,7 +17,7 @@
         <result property="fdate" column="finish_date"/>  
         <result property="cdate" column="completion_date"/>  
         <result property="state" column="request_state"/>  
-        <result property="rejectReason" column="reject_reason"/>  
+        <result property="reason" column="reason"/>  
         
 </resultMap>
 <resultMap type="com.himark.domain.MemberVO" id="getMemberMap">
@@ -40,13 +40,13 @@
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="requestNo">
-		insert into user_request(user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
-		values( #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
+		insert into user_request(user_id,manager_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
+		values( #{userId},#{managerId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
 		
 	</insert>
 	<insert id="insert2" useGeneratedKeys="true" keyProperty="requestNo">
-		insert into user_request(request_number,user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
-		values(#{requestNo}, #{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
+		insert into user_request(request_number,manager_id,user_id,request_title,classify_name,imp_code, request_file,request_content,request_state)
+		values(#{requestNo}, #{managerId},#{userId},#{title},#{category}, #{imp},#{file},#{content},"대기" );
 		
 	</insert>
 	
@@ -97,7 +97,7 @@ else (select result.n
 	
 	<update id="updateReason">
 	update user_request 
-	set reject_reason=#{rejectReason}
+	set reason=#{reason}
     where request_number =#{requestNo}
 	</update>
 	
@@ -178,6 +178,10 @@ else (select result.n
 	<select id="getTempManager" resultType="String">
 	select temp_manager from manager
 	where approval_target=#{userId}
+	</select>
+	
+	<select id="getManager" resultType="Sting">
+	
 	</select>
 	
 </mapper>

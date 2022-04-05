@@ -119,11 +119,12 @@
 									<thead>
 										<tr>
 											<th id="No" width="5%">문서번호</th>
-											<th id="classification" width="15%">분류</th>
+											<th id="classification" width="13%">분류</th>
 											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="finishdate" width="15%">마감일</th>
-											<th id="state" width="15%">상태</th>
+											<th id="requestdate" width="13%">요청일</th>
+											<th id="finishdate" width="13%">마감일</th>
+											<th id="manager" width="13%">승인자</th>
+											<th id="state" width="13%">상태</th>
 										</tr>
 									</thead>
 									<tbody id="requestList">
@@ -135,6 +136,7 @@
 												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
 												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
 												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td>승인자</td>
 												<td>${list.state}</td>
 											</tr>
 										</c:forEach>
@@ -148,6 +150,7 @@
 												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
 												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
 												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td>승인자</td>
 												<td>${list.state}</td>
 											</tr>
 							
@@ -166,8 +169,7 @@
 							<div class="tab-pane fade show " id="tab2">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable1"
-											width="100%" cellspacing="0">
+											<table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
 											<thead>
 												<tr>
 													<th id="No">문서번호</th>
@@ -175,6 +177,7 @@
 													<th id="title">제목</th>
 													<th id="requestdate">요청일</th>
 													<th id="state">승인일</th>
+													<th id="manager">승인자</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -188,6 +191,8 @@
 																pattern="yyyy/MM/dd" /></td>
 														<td><fmt:formatDate value="${list.cdate}"
 																pattern="yyyy/MM/dd" /></td>
+														<td>승인자</td>
+																
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -201,9 +206,7 @@
 							<!-- 결재 반려 Start -->
 							<div class="tab-pane fade show" id="tab3">
 								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable2"
-											width="100%" cellspacing="0">
+										<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 											<thead>
 												<tr>
 													<th id="No">문서번호</th>
@@ -211,6 +214,7 @@
 													<th id="title">제목</th>
 													<th id="requestdate">요청일</th>
 													<th id="refuse">반려일</th>
+													<th id="manager">승인자</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -224,6 +228,7 @@
 																pattern="yyyy/MM/dd" /></td>
 														<td><fmt:formatDate value="${list.cdate}"
 																pattern="yyyy/MM/dd" /></td>
+														<td>승인자</td>
 													</tr>
 												</c:forEach>
 
@@ -239,7 +244,7 @@
 				</div>
 				<!-- 목록.html -->
 
-</div>
+
 			
 			<!-- End of Main Content -->
 			<script>
@@ -270,6 +275,12 @@ $(function(){
 		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');  
 		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
 		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
+		} 
+	else if(location.hash == "#tab3"){    
+		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
+		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');  
+		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
+		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');    
 		} 
 	 	})
 	 	

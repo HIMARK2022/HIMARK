@@ -21,8 +21,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.himark.domain.BoardAttachVO;
 import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
+import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
+import com.himark.service.TreeTeamService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -35,6 +37,7 @@ public class PaymentController {
 
 	private PaymentService pservice;
 	private MemberService mservice;
+	private ApproverListService aservice;
 	
 	@PostMapping("/register")
 	public String register(HttpServletRequest request,PaymentVO payment, RedirectAttributes rttr) {
@@ -45,7 +48,7 @@ public class PaymentController {
 		payment.setUserId(userId);
 		log.info(payment);
 		pservice.register(payment);
-		pservice.updateApprover(userId);
+		//pservice.updateApprover(userId);
 		int requestNo = payment.getRequestNo();
 		
 		/*
@@ -55,7 +58,7 @@ public class PaymentController {
 		 * //pservice.updateApprover(userId); }
 		 */
 		
-		log.info("요청번호 : " +payment.getRequestNo());
+		log.info("요청번호 : "+requestNo );
 		
 		if(payment.getAttachList() != null) {
 			payment.getAttachList().forEach(attach -> log.info(attach));
@@ -66,13 +69,13 @@ public class PaymentController {
 		//승인자
 		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
 			log.info("승인자 register");
-			return "redirect:/approver/request?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
+			return "redirect:/approver/request_list?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		}
 		
 		//일반 사용자
 		//if(mservice.getMember(userId).getAuthorityCode().equals("A1")) {
 		log.info("일반사용자 register");
-		return "redirect:/general/request?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
+		return "redirect:/general/request_list?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		
 	}
 
@@ -91,21 +94,21 @@ public class PaymentController {
 		model.addAttribute("category", pservice.getCategory());
 		model.addAttribute("member", mservice.getMember(userId));
 		
-		if(pvo.getFilterList() == null || pvo.getFilterList().get(0).toString().equals("전체")) {
-			model.addAttribute("list", pservice.getList(userId));
+		// 승인자 리스트(승인자)
+		String deptId = mservice.getMember(userId).getDeptId();
+		String duty = mservice.getMember(userId).getDuty();
+		log.info(mservice.getMember(userId).getDeptId());
+		log.info("deptId : " + deptId);
+		log.info("duty : " + duty);
 
-		}
-		else {
-		log.info("필터링");
-		pvo.getFilterList().forEach(attach -> log.info(attach));
-	
-		log.info("사용자 : "+userId);
-		pservice.getSearchList(pvo.getFilterList(),userId);
-		model.addAttribute("filterList",pservice.getSearchList(pvo.getFilterList(),userId));
-		model.addAttribute("flist",pvo.getFilterList());
+		log.info(mservice.getMember(userId));
+		log.info(mservice.getApproverList(deptId, duty));
+		model.addAttribute("alist", mservice.getApproverList(deptId, duty));
 
-		}
-		
+		//  승인자 리스트(일반 사용자)
+		model.addAttribute("team", aservice.getTeamL(userId));
+		model.addAttribute("depart", aservice.getDepartL(userId));
+		model.addAttribute("upper", aservice.getUpperL(userId));
 		
 		//승인자일경우
 		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
@@ -213,6 +216,8 @@ public class PaymentController {
 		log.info("requestNo : "+ requestNo);
 		model.addAttribute("member", mservice.getMember(userId));
 		model.addAttribute("detail", pservice.get(requestNo));
+		
+		model.addAttribute("manager",pservice.gerManager(requestNo) );
 	}
 	
 	

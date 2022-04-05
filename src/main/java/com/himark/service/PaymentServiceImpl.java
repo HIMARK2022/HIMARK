@@ -152,6 +152,11 @@ public class PaymentServiceImpl implements PaymentService {
 		// TODO Auto-generated method stub
 		return mapper.getCategory();
 	}
+	@Override
+	public String gerManager(int requestNo) {
+		// TODO Auto-generated method stub
+		return mapper.getManager(requestNo);
+	}
 
 	
 

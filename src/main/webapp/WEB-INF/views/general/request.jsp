@@ -12,36 +12,6 @@
 </head>
 <body id="page-top">
 
-<!-- <script type="text/javascript">
-$(document).ready(function(e){
-	var userId = 
-	var htmlText="";
-	$.ajax({
-		type:"post",
-		url:"/request",
-		data : { userId: userId},
-
-		dataType : "json",
-
-		success : function(data) {
-
-			for(var i =0;i<data.length;i++){
-				htmlText +="<tr>"
-				+"<td>"+ data[i].requestNo +"</td>"
-				+"<td><a class="move" href='<c:out value="+data[i].title+"/>'>"+ data[i].title +"</td>"
-				+"<td>"+ data[i].rdate +"</td>"
-				+"<td>"+ data[i].fdate+"</td>"
-				+"<td>"+ data[i].state+"</td>"
-				+"</tr>"
-				}
-			$('table > tbody').html(htmlText);
-
-	})
-	
-	
-}
-</script> -->
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -55,200 +25,8 @@ $(document).ready(function(e){
 			<h1 class="h3 mb-2 text-gray-800">요청</h1>
 			<p class="mb-4">요청 내역을 확인하고 신규 기안 요청할 수 있습니다</p>
 
-			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link py-3 shadow active"
-					data-toggle="tab" href="#tab1">
-						<h6 class="m-0 font-weight-bold text-primary">요청 내역</h6>
-				</a></li>
-				<li class="nav-item"><a class="nav-link py-3 shadow"
-					data-toggle="tab" href="#tab2">
-						<h6 class="m-0 font-weight-bold text-primary">신규 기안</h6>
-				</a></li>
-			</ul>
-
-			<div class="card shadow mb-4">
-				<div class="tab-content">
-					<!-- 요청 내역 Start -->
-					<div class="tab-pane fade show active" id="tab1">
-						<div class="card-body">
-
-							<!-- 필터 카드 Start -->
-							<p>
-							<div class="card border-left-primary shadow h-100 py-2">
-								<div class="card-body">
-
-									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
-											<div
-												class="font-weight-bold text-primary text-uppercase mb-1">
-												결재 분류</div>
-											<p>
-											<form action="/general/request" method="post" id="searchForm">
-												<div class="h5 mb-0 font-weight-bold text-gray-800"
-													id="filter">
-													<script>
-												 function check(){
-			  
-						  						/* 	var filterList ="${flist}";
-						  							var size = filterList.length;
-						  							console.log(size);
-						  							filterList = filterList.substring(1,size-1);
-						  							console.log(filterList);
-						  							filterList= filterList.split(', '); */
-						  					
-					  								
-						  					 <c:forEach var="flist" items="${flist}">
-						  								
-						  								
-						  								  $("input:checkbox[name='filter']:checkbox[value='${flist}']").prop("checked", true); 
-						  							</c:forEach>
-						  													  							
-						 							 }
-												
-												 check()
-												 </script>
-											<label><input type="checkbox" value="전체" name="filter" onclick='selectAll(this)' />전체</label>
-									 			<c:forEach var="list" items="${uppercategory}"> 
-											<label><input type="checkbox" value="${list}" name="filter"/>${list}</label>
-												</c:forEach>
-													
-													
-													<button id="search_btn" class="btn btn-outline-primary"
-														type="button" style="margin-left: 10px; margin-top: -5px">검색</button>
-												</div>
-											
-											
-												
-											</form>
-												<form id='actionForm3' action="/general/request" method='post'>
-													<c:forEach var="list" items="${filterList}">
-													<input type="hidden" id="filtering" name=${filterList } value="${filterList }"> 
-												    </c:forEach>
-												</form>  
-												
-											</p>
-</div>
-</div>
-								</div>
-							</div>
-							</p>
-															
-							<!-- 필터 카드 End -->
-
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th id="No" width="5%">문서번호</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="finishdate" width="15%">마감일</th>
-											<th id="state" width="15%">상태</th>
-										</tr>
-									</thead>
-									<tbody id="requestList">
-									 <c:if test = '${filterList == null}'>  
-										<c:forEach var="list" items="${list}">
-											<tr>
-												<td>${list.requestNo}</td>
-												<td>${list.category}</td>
-												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
-												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-												<td>${list.state}</td>
-											</tr>
-												
-<!-- <script>
-	function finishDate(i){
-	
-		var rdate = "<fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd"/>";
-		console.log("요청일 : "+rdate);
-		console.log(typeof(rdate.toString()));
-		var ardate = rdate.toString().split('/');
-		var date = new Date(ardate[0],ardate[1]-1,ardate[2]);
-		
-		console.log(typeof(date));
-		var period = "${list.period }";
-		console.log("date : "+ date.getDate());
-		console.log("period : "+ period);
-				
-		var iperiod = parseInt(period.substring(0, period.indexOf("일")));
-		var fdate= new Date(date);
-		fdate.setDate(date.getDate()+iperiod);
-		console.log("마감일 : "+fdate);
-		var year = fdate.getFullYear();
-		var month = fdate.getMonth()+1;
-		var day = fdate.getDate();
-		var str = year +"/"+month+"/"+day;
-		console.log("마감일 : "+str);
-		document.getElementById(i).innerHTML=str;
-		
-		
-		//console.log(fdate));
-	}
-	finishDate(${i})</script> -->
-										</c:forEach>
-										 </c:if> 
-										<c:if test = '${filterList != null}'>
-										<c:forEach var="list" items="${filterList}">
-										<%-- 	<c:set var="i" value="${i+1}"/> --%>
-											<tr>
-												<td>${list.requestNo}</td>
-												<td>${list.category}</td>
-												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
-												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-												<td>${list.state}</td>
-											</tr>
-							
-												
-<!-- <script>
-	function finishDate(i){
-		
-		var rdate = "<fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd"/>";
-		console.log("요청일 : "+rdate);
-		console.log(typeof(rdate.toString()));
-		var ardate = rdate.toString().split('/');
-		var date = new Date(ardate[0],ardate[1]-1,ardate[2]);
-		
-		console.log(typeof(date));
-		var period = "${list.period }";
-		console.log("date : "+ date.getDate());
-		console.log("period : "+ period);
-				
-		var iperiod = parseInt(period.substring(0, period.indexOf("일")));
-		var fdate= new Date(date);
-		fdate.setDate(date.getDate()+iperiod);
-		console.log("마감일 : "+fdate);
-		var year = fdate.getFullYear();
-		var month = fdate.getMonth()+1;
-		var day = fdate.getDate();
-		
-		var str = year +"/"+month+"/"+day;
-		console.log("마감일 : "+str);
-		document.getElementById(i).innerHTML=str;
-		
-	
-	}
-	finishDate(${i})</script> -->
-	
-										</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<form id='actionForm2' action="/general/request" method='get'>
-						<input type='hidden' name='userId' value='${member.userId}'>
-						</form>
-						
-					
-					<!-- 요청 내역 End -->
-
 					<!-- 신규 기안 Start -->
-					<div class="tab-pane fade show" id="tab2">
+					
 						<div class="table-responsive">
 							<div class="card-body">
 								<form id="actionForm" action="/general/register" method="post" role="form">
@@ -279,8 +57,18 @@ $(document).ready(function(e){
 									</select>
 									</p>
 									<p>
-									<h6>기안자</h6>
-									<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
+										<h6>기안자</h6>
+										<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
+									</p>
+									<p>
+									<h6>승인자</h6>
+									<select class="form-control col-xl-4" name="managerId">
+										<option value='' disabled selected>-- 승인자 --</option>
+									
+										<option value='${team[0].user_id}'>${team[0].user_name }</option>
+										<option value='${depart[0].user_id}'>${depart[0].user_name}</option>
+									 	<option value='${upper[0].user_id}'>${upper[0].user_name}</option>
+									</select>
 									</p>
 									<p>
 									<h6>중요도</h6>
@@ -323,10 +111,7 @@ $(document).ready(function(e){
 					</div>
 					<!-- 신규 기안 End -->
 				</div>
-			</div>
-		</div>
-		<!-- 요청.html -->
-		</div>
+		
 
 	<!-- End of Main Content -->
 	<script>

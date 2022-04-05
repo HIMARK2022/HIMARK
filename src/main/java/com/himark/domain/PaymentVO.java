@@ -25,7 +25,7 @@ public class PaymentVO {
 	private Date fdate;
 	private Date cdate;
 	private String state;
-	private String rejectReason;
+	private String reason;
 	
 	private List<String> filterList;
 	private List<BoardAttachVO> attachList;

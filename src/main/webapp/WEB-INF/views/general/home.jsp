@@ -165,7 +165,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/general/request?userId=${member.userId}'">
+                                                <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab1'"data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div
@@ -183,7 +183,7 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab1'" data-toggle="tab">
+                                                    <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
@@ -202,7 +202,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                        <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab3'" data-toggle="tab">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div

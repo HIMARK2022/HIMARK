@@ -7,9 +7,9 @@
 var lang_kor = {
     "decimal" : "",
     "emptyTable" : "데이터가 없습니다.",
-    "info" : "_START_ - _END_ (총 _TOTAL_ 명)",
-    "infoEmpty" : "0명",
-    "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+    "info" : "_START_ - _END_ (총 _TOTAL_ 건)",
+    "infoEmpty" : "0건",
+    "infoFiltered" : "(전체 _MAX_ 건 중 검색결과)",
     "infoPostFix" : "",
     "thousands" : ",",
     "lengthMenu" : "_MENU_ 개씩 보기",
@@ -26,52 +26,54 @@ var lang_kor = {
 };
 
 $(document).ready(function() {
-    var table =$('#dataTable').DataTable({
+    $('#dataTable').DataTable({
         "pageLength":10, 
-        responsive: false,  //반응형 설정
+        responsive: true,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
-        
+        order:[[1,"desc"]],
         destroy: true,
         processing: true,
         serverSide: false,
         searching: true,    //검색란 표시 설정
-
+		ordering: false,
         paging: true,  
         language:lang_kor,
         
         lengthChange: true
     });
-    var table =$('#dataTable1').DataTable({
+
+	$('#dataTable1').DataTable({
         "pageLength":10, 
-        responsive: false,  //반응형 설정
+        responsive: true,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
-        
+        order:[[1,"desc"]],
         destroy: true,
         processing: true,
         serverSide: false,
         searching: true,    //검색란 표시 설정
-
+		ordering: false,
         paging: true,  
         language:lang_kor,
         
         lengthChange: true
     });
-    var table =$('#dataTable2').DataTable({
+
+  $('#dataTable2').DataTable({
         "pageLength":10, 
-        responsive: false,  //반응형 설정
+        responsive: true,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
-        
+        order:[[1,"desc"]],
         destroy: true,
         processing: true,
         serverSide: false,
         searching: true,    //검색란 표시 설정
-
+		ordering: false,
         paging: true,  
         language:lang_kor,
         
         lengthChange: true
     });
-    var table =$('#dataTable3').DataTable({
+    $('#dataTable3').DataTable({
         "pageLength":10, 
         responsive: false,  //반응형 설정
         pageLength: 10,     //페이지 당 글 개수 설정
@@ -80,7 +82,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: false,
         searching: true,    //검색란 표시 설정
-
+		ordering: false,
         paging: true,  
         language:lang_kor,
         

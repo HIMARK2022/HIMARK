@@ -46,5 +46,7 @@ public interface PaymentMapper {
 
 	public List<String> getCategory();
 
+	public String getManager(int requestNo);
+
 
 }

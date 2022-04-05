@@ -43,6 +43,11 @@
 						<strong>${member.bonbu} / ${member.dept} / ${member.team} / ${member.userName}</strong>
 						</p>
 						<p>
+						<h6>승인자</h6>
+						<input type="text" class="form-control col-xl-4" readonly
+							name="managerId" value='<c:out value="${detail.managerId }"/>'>
+						</p>
+						<p>
 						<h6>중요도</h6>
 						<c:if test= '${detail.imp=="긴급"}'>
 						<div class="form-check form-check-inline">
@@ -50,88 +55,30 @@
 								id="inlineRadio1" value="긴급" checked readonly> <label
 								class="form-check-label" for="inlineRadio1">긴급</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio2" value="높음" disabled> <label
-								class="form-check-label" for="inlineRadio2">높음</label>
-						</div>
+						
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="imp"
 								id="inlineRadio3" value="보통" disabled> <label
 								class="form-check-label" for="inlineRadio3">보통</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio4" value="낮음" disabled> <label
-								class="form-check-label" for="inlineRadio3">낮음</label>
-						</div>
+						
 						</c:if>
-						<c:if test= '${detail.imp=="높음"}'>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio1" value="긴급"  disabled> <label
-								class="form-check-label" for="inlineRadio1">긴급</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio2" value="높음" checked readonly> <label
-								class="form-check-label" for="inlineRadio2">높음</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio3" value="보통" disabled> <label
-								class="form-check-label" for="inlineRadio3">보통</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio4" value="낮음" readonly> <label
-								class="form-check-label" for="inlineRadio3">낮음</label>
-						</div>
-						</c:if>
+						
 						<c:if test= '${detail.imp=="보통"}'>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="imp"
 								id="inlineRadio1" value="긴급"  disabled> <label
 								class="form-check-label" for="inlineRadio1">긴급</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio2" value="높음" disabled> <label
-								class="form-check-label" for="inlineRadio2">높음</label>
-						</div>
+						
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="imp"
 								id="inlineRadio3" value="보통" checked readonly> <label
 								class="form-check-label" for="inlineRadio3">보통</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio4" value="낮음" disabled> <label
-								class="form-check-label" for="inlineRadio3">낮음</label>
-						</div>
+						
 						</c:if>
-						<c:if test= '${detail.imp=="낮음"}'>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio1" value="긴급" disabled> <label
-								class="form-check-label" for="inlineRadio1">긴급</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio2" value="높음" disabled> <label
-								class="form-check-label" for="inlineRadio2">높음</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio3" value="보통" disabled> <label
-								class="form-check-label" for="inlineRadio3">보통</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="imp"
-								id="inlineRadio4" value="낮음" checked readonly> <label
-								class="form-check-label" for="inlineRadio3">낮음</label>
-						</div>
-						</c:if>
+						
 						</p>
 						<p>
 						<h6>첨부파일</h6>
@@ -159,14 +106,14 @@
 										<p>
 										<h6>반려 사유</h6>
 										<textarea class="form-control"
-											rows="10" name="rejectReason" readonly>${detail.rejectReason}</textarea>
+											rows="10" name="reason" readonly>${detail.reason}</textarea>
 										
 										</p>
 										
 										</c:if>
 										
 						
-						<a class="btn btn-outline-primary" type="submit" href="/general/request?userId=${member.userId}"
+						<a class="btn btn-outline-primary" type="submit" href="/general/request_list?userId=${member.userId}"
 							id="request_btn">목록</a>
 
 					</div>
