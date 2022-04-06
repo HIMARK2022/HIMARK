@@ -124,7 +124,7 @@ public class PaymentController {
 		model.addAttribute("team", aservice.getTeamL(userId));
 		model.addAttribute("depart", aservice.getDepartL(userId));
 		model.addAttribute("upper", aservice.getUpperL(userId));
-		
+		model.addAttribute("ceo", mservice.getCeo());
 		//승인자일경우
 		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
 			log.info("승인자 요청목록 ");

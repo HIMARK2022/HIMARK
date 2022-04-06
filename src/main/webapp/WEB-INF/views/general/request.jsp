@@ -68,6 +68,7 @@
 										<option value='${team[0].user_id}'>${team[0].user_name }</option>
 										<option value='${depart[0].user_id}'>${depart[0].user_name}</option>
 									 	<option value='${upper[0].user_id}'>${upper[0].user_name}</option>
+									 	<option value='${ceo.user_id}'>${ceo.user_name}</option>
 									</select>
 									</p>
 									<p>
