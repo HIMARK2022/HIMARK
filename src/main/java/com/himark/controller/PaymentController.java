@@ -95,15 +95,30 @@ public class PaymentController {
 		model.addAttribute("member", mservice.getMember(userId));
 		
 		// 승인자 리스트(승인자)
-		String deptId = mservice.getMember(userId).getDeptId();
-		String duty = mservice.getMember(userId).getDuty();
-		log.info(mservice.getMember(userId).getDeptId());
-		log.info("deptId : " + deptId);
-		log.info("duty : " + duty);
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		String managerId = mservice.getApprover(userId).getUserId();
+		boolean tf=true;
+	
+		while(tf==true) {
+			if(mservice.getApprover(managerId) != null) {
+				System.out.println(managerId);
+				mservice.getApproverList(managerId);
+				list.add(mservice.getApproverList(managerId));
+				managerId = mservice.getApprover(managerId).getUserId();
+				
+			}
+			else {
+				list.add(mservice.getApproverList(managerId));
+				tf = false;
+			}	
+		}
+		
+		log.info("=================list.size() 출력: "+list.size());	
+		for(MemberVO L : list) {
+			System.out.println(L);
+		}
 
-		log.info(mservice.getMember(userId));
-		log.info(mservice.getApproverList(deptId, duty));
-		model.addAttribute("alist", mservice.getApproverList(deptId, duty));
+		model.addAttribute("alist", list);
 
 		//  승인자 리스트(일반 사용자)
 		model.addAttribute("team", aservice.getTeamL(userId));
@@ -273,7 +288,7 @@ public class PaymentController {
 		String reason = request.getParameter("reason");
 		log.info("결재상태 : "+state);
 		log.info("요청문서번호 : "+requestNo);
-		log.info("반려이유 : "+reason);
+		log.info("결재사유 : "+reason);
 		pservice.updateReason(requestNo,reason);
 		pservice.updateState(requestNo,state);
 		

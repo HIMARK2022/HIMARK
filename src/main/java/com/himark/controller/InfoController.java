@@ -1,5 +1,8 @@
 package com.himark.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,20 +28,33 @@ private MemberService mservice;
 		model.addAttribute("member", mservice.getMember(userName));
 	}
 	
-	@GetMapping("/approver/approver_list")
-	public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
-		log.info("승인자리스트");
-		log.info("userId : " + userId);
-		String deptId = mservice.getMember(userId).getDeptId();
-		String duty = mservice.getMember(userId).getDuty();
-		log.info(mservice.getMember(userId).getDeptId());
-		log.info("deptId : " + deptId);
-		log.info("duty : " + duty);
-
-		log.info(mservice.getMember(userId));
-		log.info(mservice.getApproverList(deptId, duty));
-		model.addAttribute("member", mservice.getMember(userId));
-		model.addAttribute("alist", mservice.getApproverList(deptId, duty));
-
+		
+		@GetMapping("/approver/approver_list")
+		public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
+			List<MemberVO> list = new ArrayList<MemberVO>();
+			String managerId = mservice.getApprover(userId).getUserId();
+			boolean tf=true;
+		
+			while(tf==true) {
+				if(mservice.getApprover(managerId) != null) {
+					System.out.println(managerId);
+					mservice.getApproverList(managerId);
+					list.add(mservice.getApproverList(managerId));
+					managerId = mservice.getApprover(managerId).getUserId();
+					
+				}
+				else {
+					list.add(mservice.getApproverList(managerId));
+					tf = false;
+				}	
+			}
+			
+			log.info("=================list.size() 출력: "+list.size());	
+			for(MemberVO L : list) {
+				System.out.println(L);
+			}
+			
+			model.addAttribute("member", mservice.getMember(userId));
+			model.addAttribute("alist", list);
 	}
 }

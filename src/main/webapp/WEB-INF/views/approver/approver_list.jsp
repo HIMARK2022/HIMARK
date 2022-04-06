@@ -47,9 +47,9 @@
                        
                      </thead>
                      <tbody>
-                        <fmt:parseNumber value="${fn:length(alist)}" var="num"/>
+                       <%--  <fmt:parseNumber value="${fn:length(alist)}" var="num"/> --%>
                  
-                     <c:forEach var="list" items="${alist}" end= "${num-2}">
+                     <c:forEach var="list" items="${alist}">
                   
                         <tr>
                            <td>${list.userName}</td>
@@ -59,7 +59,6 @@
                         </tr>
                          </c:forEach>
                        
-                        
                      </tbody>
                   </table>
                </div>

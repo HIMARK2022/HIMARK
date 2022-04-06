@@ -126,8 +126,13 @@ public class UploadController {
 		
 		try {
 			HttpHeaders header = new HttpHeaders();
+			log.info(checkImageType(file));
 			//적당한 MIME 타입을 헤더에 추가
+			if(checkImageType(file)) {
 			header.add("Content-Type",  Files.probeContentType(file.toPath()));
+			}else {
+			header.add("Content-Type", "text/html; charset=UTF-8");
+			}
 			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),
 					header, HttpStatus.OK);
 		}catch (IOException e) {

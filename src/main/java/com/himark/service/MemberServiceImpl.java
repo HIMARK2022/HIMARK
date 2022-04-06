@@ -20,9 +20,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public List<MemberVO> getApproverList(String deptId, String duty) {
+	public MemberVO getApproverList(String managerId) {
 		// TODO Auto-generated method stub
-		return mapper.getApproverList(deptId,duty);
+		return mapper.getApproverList(managerId);
 	}
 	
 	@Override
@@ -34,5 +34,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO login(MemberVO vo) {
 		return mapper.login(vo);
+	}
+	
+	@Override
+	public MemberVO getApprover(String userId) {
+		return mapper.getApprover(userId);
 	}
 }

@@ -12,9 +12,9 @@
 /* #No, #classification, #requestdate, #enddate, #state, #refuse{
     width: 10% !important;
 } */
-#title{
+/* #title{
     width: 60% !important;
-}
+} */
 
 table{
     table-layout: fixed;

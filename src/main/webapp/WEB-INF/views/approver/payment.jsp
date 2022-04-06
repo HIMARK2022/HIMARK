@@ -73,13 +73,13 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th id="No" width="10%">문서번호</th>
-											<th id="classification" width="13%">분류</th>
-											<th id="title" width="25%">제목</th>
-											<th id="requestdate" width="13%">요청일</th>
-											<th id="finishdate" width="13%">마감일</th>
-											<th id="manager" width="13%">요청자</th>
-											<th id="state" width="13%">상태</th>
+                                                    <th id="No">문서번호</th>
+											<th id="classification" >분류</th>
+											<th id="title" >제목</th>
+											<th id="requestdate" >요청일</th>
+											<th id="finishdate" >마감일</th>
+											<th id="manager">요청자</th>
+											<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -117,13 +117,13 @@
                                         <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th id="No" width="10%">문서번호</th>
-											<th id="classification" width="13%">분류</th>
-											<th id="title" width="25%">제목</th>
-											<th id="requestdate" width="13%">요청일</th>
-											<th id="finishdate" width="13%">승인일</th>
-											<th id="manager" width="13%">요청자</th>
-											<th id="state" width="13%">상태</th>
+                                                    <th id="No" >문서번호</th>
+													<th id="classification">분류</th>
+													<th id="title">제목</th>
+													<th id="requestdate">요청일</th>
+													<th id="finishdate" >승인일</th>
+													<th id="manager" >요청자</th>
+													<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -156,13 +156,13 @@
                                         <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                 <th id="No" width="10%">문서번호</th>
-											<th id="classification" width="13%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="13%">요청일</th>
-											<th id="finishdate" width="13%">반려일</th>
-											<th id="manager" width="13%">요청자</th>
-											<th id="state" width="13%">상태</th>
+                                                 <th id="No" >문서번호</th>
+											<th id="classification" >분류</th>
+											<th id="title" >제목</th>
+											<th id="requestdate">요청일</th>
+											<th id="finishdate">반려일</th>
+											<th id="manager" >요청자</th>
+											<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -223,13 +223,15 @@ $(function(){
 		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
 		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
 		} 
-	else if(location.hash == "#tab3"){     
+	else if(location.hash == "#tab3"){    
+		$('.nav-tabs').find('a').eq(1).addClass('active').removeClass();  
+		$('.nav-tabs').find('li').eq(1).addClass('nav-link py-3 shadow');  
 		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');
-		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();  
-		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');   
-		}
-	})
+		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow'); 
+		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();      
+		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');    
+		} 
+	 })
 
 		
 

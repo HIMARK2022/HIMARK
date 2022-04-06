@@ -8,7 +8,8 @@ import com.himark.domain.MemberVO;
 
 public interface MemberMapper {
 	public MemberVO getMember(String userId);
-	public List<MemberVO> getApproverList(@Param ("deptId")String deptId, @Param ("duty")String duty);
+	public MemberVO getApproverList(@Param ("managerId")String managerId);
 	public List<MemberVO> getDeptList(@Param ("deptId") String deptId);
 	public MemberVO login(MemberVO vo);
+	public MemberVO getApprover(@Param ("userId") String userId);
 }

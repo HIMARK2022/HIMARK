@@ -27,7 +27,7 @@ public interface PaymentService {
 
 	public void updateState(int requestNo, String state);
 
-	public void updateReason(int requestNo, String rejectReason);
+	public void updateReason(int requestNo, String reason);
 
 	public List<PaymentVO> getCompleteList(String userId);
 

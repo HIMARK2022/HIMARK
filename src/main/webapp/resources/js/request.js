@@ -38,6 +38,15 @@ $(document).ready(function() {
 		ordering: false,
         paging: true,  
         language:lang_kor,
+		"autoWidth": false,
+		columnDefs:[{targets: 0, width: '100px' },
+				{targets: 1, width: '100px' },
+				{targets: 2, width: '200px' },
+				{targets: 3, width: '100px' },
+				{targets: 4, width: '100px' },
+				{targets: 5, width: '100px' },
+				{targets: 6, width: '100px' },
+				],
         
         lengthChange: true
     });
@@ -54,6 +63,23 @@ $(document).ready(function() {
 		ordering: false,
         paging: true,  
         language:lang_kor,
+		/*columns:[{"data":"문서번호","width":"10%"},
+				{"data":"분류","width":"13%"},
+				{"data":"제목","width":"25%"},
+				{"data":"요청일","width":"13%"},
+				{"data":"반려일","width":"13%"},
+				{"data":"요청자","width":"13%"},
+				{"data":"상태","width":"13%"},
+				],*/
+		"autoWidth": false,
+		columnDefs:[{targets: 0, width: '100px' },
+				{targets: 1, width: '100px' },
+				{targets: 2, width: '200px' },
+				{targets: 3, width: '100px' },
+				{targets: 4, width: '100px' },
+				{targets: 5, width: '100px' },
+				{targets: 6, width: '100px' },
+				],
         
         lengthChange: true
     });
@@ -70,6 +96,23 @@ $(document).ready(function() {
 		ordering: false,
         paging: true,  
         language:lang_kor,
+		/*columns:[{"data":"문서번호","width":"10%"},
+				{"data":"분류","width":"13%"},
+				{"data":"제목","width":"25%"},
+				{"data":"요청일","width":"13%"},
+				{"data":"승인일","width":"13%"},
+				{"data":"요청자","width":"13%"},
+				{"data":"상태","width":"13%"},
+				],*/
+		"autoWidth": false,
+		columnDefs:[{targets: 0, width: '100px' },
+				{targets: 1, width: '100px' },
+				{targets: 2, width: '200px' },
+				{targets: 3, width: '100px' },
+				{targets: 4, width: '100px' },
+				{targets: 5, width: '100px' },
+				{targets: 6, width: '100px' },
+				],
         
         lengthChange: true
     });

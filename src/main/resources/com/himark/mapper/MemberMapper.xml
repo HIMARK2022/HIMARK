@@ -68,149 +68,11 @@ where a.authority_code="A2";
 </insert>
 
 <select id="getApproverList" resultMap="getMemberMap">
-select  user_id, user_password, user_name, pos_id, duty_id, F.dept_id, authority_code, current_state, F.dept_name as '팀', dept_name2 as '부서', DE.dept_name as '본부' from dept as DE
-right join (
-select E.*, de.dept_id as 'dept_id2', de.dept_name as 'dept_name2', de.upper_dept_id as 'upper_dept_id2' from dept as de
-right join (
-select U.*, D.dept_name, D.upper_dept_id from user as U 
-join (
-select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
-union
-select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
-on u.dept_id = C.upper_dept_id
-union
-select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
-on u.user_id = B.user_id
-join dept as de on u.dept_id = de.dept_id
-union
-select u.user_id from user as u 
-join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= #{deptId} and du.duty_name in(#{duty})
-) as L
-on U.user_id = L.user_id
-left join (select * from dept) as D on U.dept_id = D.dept_id
-) as E
-on de.dept_id = E.upper_dept_id
-)
-as F
-on de.dept_id = F.upper_dept_id2
-where duty_id = "d05"
-union
-select  user_id, user_password, user_name, pos_id, duty_id, F.dept_id, authority_code, current_state, dept_name2 as '팀', DE.dept_name as '부서',  F.dept_name as '본부'from dept as DE
-right join (
-select E.*, de.dept_id as 'dept_id2', de.dept_name as 'dept_name2', de.upper_dept_id as 'upper_dept_id2' from dept as de
-right join (
-select U.*, D.dept_name, D.upper_dept_id from user as U 
-join (
-select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
-union
-select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
-on u.dept_id = C.upper_dept_id
-union
-select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
-on u.user_id = B.user_id
-join dept as de on u.dept_id = de.dept_id
-union
-select u.user_id from user as u 
-join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= #{deptId} and du.duty_name in(#{duty})
-) as L
-on U.user_id = L.user_id
-left join (select * from dept) as D on U.dept_id = D.dept_id
-) as E
-on de.dept_id = E.upper_dept_id
-)
-as F
-on de.dept_id = F.upper_dept_id2
-where duty_id = "d04"
-union
-select  user_id, user_password, user_name, pos_id, duty_id, F.dept_id, authority_code, current_state, DE.dept_name as '팀',  F.dept_name as '부서', dept_name2 as '본부' from dept as DE
-right join (
-select E.*, de.dept_id as 'dept_id2', de.dept_name as 'dept_name2', de.upper_dept_id as 'upper_dept_id2' from dept as de
-right join (
-select U.*, D.dept_name, D.upper_dept_id from user as U 
-join (
-select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
-union
-select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
-on u.dept_id = C.upper_dept_id
-union
-select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
-on u.user_id = B.user_id
-join dept as de on u.dept_id = de.dept_id
-union
-select u.user_id from user as u 
-join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= #{deptId} and du.duty_name in(#{duty})
-) as L
-on U.user_id = L.user_id
-left join (select * from dept) as D on U.dept_id = D.dept_id
-) as E
-on de.dept_id = E.upper_dept_id
-)
-as F
-on de.dept_id = F.upper_dept_id2
-where duty_id = "d03"
-union
-select  user_id, user_password, user_name, pos_id, duty_id, F.dept_id, authority_code, current_state, F.dept_name as '팀', dept_name2 as '부서', DE.dept_name as '본부' from dept as DE
-right join (
-select E.*, de.dept_id as 'dept_id2', de.dept_name as 'dept_name2', de.upper_dept_id as 'upper_dept_id2' from dept as de
-right join (
-select U.*, D.dept_name, D.upper_dept_id from user as U 
-join (
-select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
-union
-select user_id from user as u 
-inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
-on u.dept_id = C.upper_dept_id
-union
-select u.user_id from user as u 
-inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id= #{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
-on u.user_id = B.user_id
-join dept as de on u.dept_id = de.dept_id
-union
-select u.user_id from user as u 
-join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-where u.dept_id= #{deptId} and du.duty_name in(#{duty})
-) as L
-on U.user_id = L.user_id
-left join (select * from dept) as D on U.dept_id = D.dept_id
-) as E
-on de.dept_id = E.upper_dept_id
-)
-as F
-on de.dept_id = F.upper_dept_id2
-where duty_id = "d02"
+select user_id, user_name, head as 본부, depart as 부서, team as 팀 from usersdetail
+where user_id=#{managerId};
 </select>
 
-<select id="getApproverList2" resultMap="getMemberMap">
-	select distinct dept_name from user as U 
-	join (
-	select user_id from user join duty on user.duty_id = duty.duty_id where duty_name ='대표'
-	union all
-	select user_id from user as u 
-	inner join (select de.upper_dept_id from user as u inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id=#{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B on u.user_id = B.user_id join dept as de on u.dept_id = de.dept_id) as C
-	on u.dept_id = C.upper_dept_id
-	union all
-	select u.user_id from user as u 
-	inner join (select * from user as u left join (select upper_dept_id from user as u join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id where u.dept_id=#{deptId} and du.duty_name in(#{duty})) as A on u.dept_id = A.upper_dept_id where not upper_dept_id is NULL) as B
-	on u.user_id = B.user_id
-	join dept as de on u.dept_id = de.dept_id
-	union all
-	select u.user_id from user as u 
-	join duty as du on u.duty_id = du.duty_id join dept as de on u.dept_id = de.dept_id
-	where u.dept_id= #{deptId} and du.duty_name in(#{duty})
-	) as L
-	on U.user_id = L.user_id
-	left join dept
-	on dept.dept_id=u.dept_id
-</select>
+
 
 <select id="login" resultMap="getMemberMap">
 	select user_id, user_password, code_name as authority_code
@@ -218,6 +80,11 @@ where duty_id = "d02"
 	on authority_code = common_code
 	where current_state = '재직' and user_id = #{userId} and user_password = #{userPwd}
 </select>
+
+<select id="getApprover" resultMap="getMemberMap">
+		select getApprover(#{userId}) as user_id
+	</select>
+
 
 
 </mapper>

@@ -14,7 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <body id="page-top">
 
-<script type="text/javascript"  src="/resources/js/request.js"></script>
+
 	
 	<script>
 	function getManager(requestNo){
@@ -137,16 +137,16 @@
 							<!-- 필터 카드 End -->
 
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<table class="table table-bordered" id="dataTable"  cellspacing="0">
 									<thead>
 										<tr>
-											<th id="No" width="10%">문서번호</th>
-											<th id="classification" width="13%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="13%">요청일</th>
-											<th id="finishdate" width="13%">마감일</th>
-											<th id="manager" width="13%">승인자</th>
-											<th id="state" width="13%">상태</th>
+											<th id="No" >문서번호</th>
+											<th id="classification">분류</th>
+											<th id="title" >제목</th>
+											<th id="requestdate" >요청일</th>
+											<th id="finishdate">마감일</th>
+											<th id="manager" >승인자</th>
+											<th id="state" >상태</th>
 										</tr>
 									</thead>
 									<tbody id="requestList">
@@ -194,19 +194,19 @@
 					<!-- 요청 내역 End -->
 
 							<!-- 결재 완료 Start -->
-							<div class="tab-pane fade show " id="tab2">
-								<div class="card-body">
-									<div class="table-responsive">
-											<table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-											<thead>
+							 <div class="tab-pane fade show" id="tab2">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                        	<thead>
 												<tr>
-													<th id="No" width="10%">문서번호</th>
-											<th id="classification" width="13%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="13%">요청일</th>
-											<th id="finishdate" width="13%">승인일</th>
-											<th id="manager" width="13%">승인자</th>
-											<th id="state" width="13%">상태</th>
+													<th id="No">문서번호</th>
+													<th id="classification" >분류</th>
+													<th id="title" >제목</th>
+													<th id="requestdate" >요청일</th>
+													<th id="finishdate" >승인일</th>
+													<th id="manager" >승인자</th>
+													<th id="state" >상태</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -225,8 +225,8 @@
 														
 															getManager('${list.requestNo}')</script></td>
 																
+														<td>${list.state}</td>
 													</tr>
-													<td>${list.state}</td>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -239,15 +239,17 @@
 							<!-- 결재 반려 Start -->
 							<div class="tab-pane fade show" id="tab3">
 								<div class="card-body">
+								 <div class="table-responsive">
 										<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 											<thead>
 												<tr>
-													<th id="No" width="5%">문서번호</th>
-													<th id="classification" width="15%">분류</th>
-													<th id="title" width="30%">제목</th>
-													<th id="requestdate" width="15%">요청일</th>
-													<th id="refuse" width="15%">반려일</th>
-													<th id="manager" width="15%">승인자</th>
+													<th id="No" >문서번호</th>
+													<th id="classification">분류</th>
+													<th id="title">제목</th>
+													<th id="requestdate" >요청일</th>
+													<th id="finishdate">반려일</th>
+													<th id="manager">승인자</th>
+													<th id="state" >상태</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -265,7 +267,7 @@
 														<script type="text/javascript">
 														
 															getManager('${list.requestNo}')</script></td>
-													<td>${list.state}</td>
+														<td>${list.state}</td>
 													</tr>
 													
 												</c:forEach>
@@ -281,7 +283,7 @@
 					</div>
 				</div>
 				<!-- 목록.html -->
-
+</div>
 
 			
 			<!-- End of Main Content -->
@@ -316,9 +318,11 @@ $(function(){
 		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
 		} 
 	else if(location.hash == "#tab3"){    
+		$('.nav-tabs').find('a').eq(1).addClass('active').removeClass();  
+		$('.nav-tabs').find('li').eq(1).addClass('nav-link py-3 shadow');  
 		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');  
-		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
+		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow'); 
+		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();      
 		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');    
 		} 
 	 	})
@@ -353,8 +357,8 @@ function selectAll(selectAll)  {
 
 </script>
 
-			
 			<%@include file="../sidebar/footer.jsp"%>
+			<script type="text/javascript"  src="/resources/js/request.js"></script>
 			
 </body>
 </html>

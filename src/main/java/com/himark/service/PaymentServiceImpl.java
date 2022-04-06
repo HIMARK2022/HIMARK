@@ -125,8 +125,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public void updateReason(int requestNo, String rejectReason) {
-		mapper.updateReason(requestNo,rejectReason);
+	public void updateReason(int requestNo, String reason) {
+		mapper.updateReason(requestNo,reason);
 		
 	}
 

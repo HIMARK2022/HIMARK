@@ -61,9 +61,9 @@
 						<div class="upperpage-wrapper "
 							style="display: block; padding-left: 85%; padding-bottom: -30px;">
 							<a
-								class="upper-content-detail btn btn-outline-primary btn-icon-split">
-								<span class="icon text-white-50"> <i class="fas fa-plus"></i>
-							</span>
+								class="upper-content-detail btn">
+								 <i class="fa-solid fa-square-plus fa-2xl" aria-hidden="true"></i>
+							
 							</a>
 						</div>
 						<div class="container" id="tree_people">
@@ -254,7 +254,7 @@
 						<label class="font-weight-bold">하위 분류 명</label> <input type="text"
 							class="form-control" name="mod_name" value="" autocomplete="username" required oninput="checkId()"
 							placeholder="생성할 안건 명을 입력하세요"> <span class="id_ok">사용
-							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>>
+							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>
 							 <input
 							class="form-control" name="org_name" value="" type="hidden"> 
 					</div>
@@ -391,7 +391,7 @@
 								$('#detail').show();
 								$('#detail').prepend(
 										"<h2 class='upper'>" + $(this).text() + "</h2><button onclick='uppermodbtn()' class='uppermodbtn btn '>"
-										+ "<span class='icon text-white-100'> <i class='fas fa-gear'></i></span></button>");
+										+ "<i class='fas fa-gear'></i></button>");
 								addForm
 										.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 

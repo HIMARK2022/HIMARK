@@ -115,7 +115,7 @@
 										<textarea class="form-control" placeholder="내용을 입력해 주세요."
 											rows="10" name="content" readonly>${detail.content}</textarea>
 										</p>
-										<c:if test='${detail.state eq "반려" }'>
+										<c:if test='${detail.state eq "반려" || detail.state eq "승인" }'>
 											<p>
 											<h6>결재 사유</h6>
 											<textarea class="form-control" rows="10" name="reason"
@@ -130,20 +130,6 @@
 										</c:if>
 
 
-
-										<c:if test='${detail.state eq "승인" }'>
-										<p>
-											<h6>결재 사유</h6>
-											<textarea class="form-control" rows="10" name="reason"
-												readonly>${detail.reason}</textarea>
-
-											</p>
-											<div class="page-wrapper">
-												<a class="btn btn-outline-success" type="submit"
-													href="/approver/payment?userId=${member.userId}"
-													id="request_btn">목록</a>
-											</div>
-										</c:if>
 
 										<c:if test='${detail.state eq "대기" }'>
 
@@ -168,7 +154,7 @@
 
 
 			<!-- Modal Start-->
-			<form id='actionForm2' action="/approver/payment"
+			<form id='PaymentForm' action="/approver/payment"
 				method='post'>
 				<div class="modal-wrapper">
 					<input type='hidden' name='userId' value='${member.userId}'>
@@ -316,7 +302,7 @@
 																		str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'><div>";
 																		str += "<a href=\"javascript:showImage(\'"
 																				+ originPath
-																				+ "\')\"><img src='/display?fileName="
+																				+ "\')\"  target='_blank'  ><img src='/display?fileName="
 																				+ fileCallPath
 																				+ "'></a>";
 																		str += "</div></li>";
@@ -343,16 +329,20 @@
 																.data("filename"));
 
 												if (liObj.data("type")) {
-													showImage(path.replace(
-															new RegExp(/\\/g),
-															"/"));
+													//showImage(path.replace(new RegExp(/\\/g),"/"));
+													
+													window.open("/display?fileName="+path);
 												} else {
 													//download 
-													self.location = "/download?fileName="
-															+ path
-												}
+													//self.location = "/download?fileName="+ path;
+													
+													window.open("/display?fileName="+path)
+													}
 
 											});
+											
+					
+				
 							//이미지 크게 보여주기
 							function showImage(fileCallPath) {
 								//alert(fileCallPath);
@@ -369,7 +359,8 @@
 										}, 1000);
 
 							}
-
+							
+							
 							$(".bigPictureWrapper").on("click", function(e) {
 								$(".bigPicture").animate({
 									width : '0%',
@@ -386,31 +377,31 @@
 			$('.modal-wrapper').toggleClass('open');
 			return false;
 				})
-		var actionForm = $("#actionForm");
 
+		var PaymentForm = $("#PaymentForm");
+		
 		$("#accept").on("click",function(e) {
 							console.log("요청 수락 click");
 							var id = '<c:out value="${member.userId}"/>';
 							e.preventDefault();
-							actionForm.find('#state').remove();
-							actionForm
+							PaymentForm.find('#state').remove();
+							PaymentForm
 									.append("<input id='state' type='hidden' name='state' value='승인'>")
 
-							actionForm.attr("action", "/approver/payment");
-							actionForm.submit();
+							PaymentForm.attr("action", "/approver/payment");
+							PaymentForm.submit();
 						});
 
 		
-		var actionForm2 = $("#actionForm2");
 
 		$('#refuse').on('click',function() {
 							console.log("요청 거절 click");
-							actionForm2.find('#state').remove();
-							actionForm2
+							PaymentForm.find('#state').remove();
+							PaymentForm
 									.append("<input id='state' type='hidden' name='state' value='반려'>")
 
-							actionForm2.attr("action", "/approver/payment");
-							actionForm2.submit();
+							PaymentForm.attr("action", "/approver/payment");
+							PaymentForm.submit();
 
 						});
 

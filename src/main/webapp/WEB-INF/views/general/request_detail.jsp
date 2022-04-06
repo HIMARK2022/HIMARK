@@ -102,9 +102,9 @@
 							rows="10" name="content" readonly >${detail.content}</textarea>
 						</p>
 						
-						<c:if test='${detail.state eq "반려" }'>
+						<c:if test='${detail.state eq "반려" || detail.state eq "승인" }'>
 										<p>
-										<h6>반려 사유</h6>
+										<h6>결재 사유</h6>
 										<textarea class="form-control"
 											rows="10" name="reason" readonly>${detail.reason}</textarea>
 										
@@ -163,15 +163,18 @@
 						    
 				    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
 				    
-				    if(liObj.data("type")){
-				    	showImage(path.replace(new RegExp(/\\/g),"/"));
-				    }else {
-				      //download 
-				      self.location ="/download?fileName="+path
-				    }
-				    
-				    
-				  });
+				    if (liObj.data("type")) {
+						//showImage(path.replace(new RegExp(/\\/g),"/"));
+						
+						window.open("/display?fileName="+path);
+					} else {
+						//download 
+						//self.location = "/download?fileName="+ path;
+						
+						window.open("/display?fileName="+path)
+						}
+
+				});
 			//이미지 크게 보여주기
 			  function showImage(fileCallPath){
 			    //alert(fileCallPath);

@@ -64,8 +64,8 @@
 									<h6>승인자</h6>
 									<select class="form-control col-xl-4" name="managerId">
 										<option value='' disabled selected>-- 승인자 --</option>
-										 <fmt:parseNumber value="${fn:length(alist)}" var="num"/>
-										<c:forEach var="alist" items="${alist}" end= "${num-2}"> 
+										
+										<c:forEach var="alist" items="${alist}"> 
 										<option value='${alist.userId }'>${alist.userName }</option>
 									</c:forEach>
 									 	
