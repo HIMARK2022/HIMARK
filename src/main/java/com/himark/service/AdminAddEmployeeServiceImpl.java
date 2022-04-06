@@ -80,6 +80,18 @@ public class AdminAddEmployeeServiceImpl implements AdminAddEmployeeService{
 		int cnt = mapper.modUser(user_name, birth_date, sex, email, phone_number, user_id);
 		return cnt;
 	}
+	@Override
+	public List<UsersDetailVO> getApprover(String dept_id) {
+		
+		return mapper.getApprover(dept_id);
+	}
+	@Override
+	public int insertManager(String manager_id, String approval_target) {
+		
+		int cnt = mapper.insertManager(manager_id, approval_target);
+		
+		return cnt;
+	}
 	
 	
 	

@@ -44,4 +44,11 @@ public interface AdminAddEmployeeService {
 			@Param("phone_number") String phone_number,
 			@Param("user_id") String user_id
 			);
+	
+	public List<UsersDetailVO> getApprover(String dept_id);
+	
+	public int insertManager(
+			@Param("manager_id") String manager_id,
+			@Param("approval_target") String approval_target
+			);
 }
