@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.himark.domain.MemberVO;
@@ -17,11 +18,12 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 
 @AllArgsConstructor
+@RequestMapping({"/general/*","/approver/*"})
 public class InfoController {
 private MemberService mservice;
 	
 	
-	@GetMapping({"/general/myinfo","/approver/myinfo"})
+	@GetMapping({"/myinfo","/myinfo"})
 	public void get(@RequestParam("userName") String userName, Model model) {
 		log.info("/myinfo");
 		log.info(userName);
@@ -29,7 +31,7 @@ private MemberService mservice;
 	}
 	
 		
-		@GetMapping("/approver/approver_list")
+		@GetMapping("/approver_list")
 		public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
 			List<MemberVO> list = new ArrayList<MemberVO>();
 			String managerId = mservice.getApprover(userId).getUserId();

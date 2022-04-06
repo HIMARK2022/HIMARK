@@ -4,26 +4,6 @@
 
 <mapper namespace="com.himark.mapper.ApproverListMapper">
 
-	<!-- 본인 해당 팀 승인자 -->
-	<select id="getTeamL" resultType="com.himark.domain.UserDetailVO">
-		select * 
-		from user_detail
-		where dept_name = (select distinct dept_name from user_detail where user_id = #{user_id}) and duty_id = 'd02';
-	</select>
-	<!-- 본인 해당 부서 승인자 -->
-	<select id="getDepartL" resultType="com.himark.domain.UserDetailVO">
-		select * 
-		from user_detail
-		where dept_name = (select distinct upper_dept from user_detail where user_id =#{user_id}) and duty_id = 'd03';
-	</select>
-	<!-- 본인 해당 사업부 승인자 -->	
-	<select id="getUpperL" resultType="com.himark.domain.UserDetailVO">
-		select * 
-		from user_detail
-		where dept_name = (select distinct upper_dept2 from user_detail where user_id =#{user_id}) and duty_id = 'd04';
-	</select>
-
-
 	<!-- 사용자 정보 가져오기 -->
 	<select id="searchAll" resultType="com.himark.domain.UsersDetailVO">
 		select * from usersdetail where user_id =#{user_id};

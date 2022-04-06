@@ -1,5 +1,8 @@
 package com.himark.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -46,9 +49,30 @@ public class MainController {
 		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
 		model.addAttribute("member", mservice.getMember(m.getUserId()));
 		// 승인자 목록
-		model.addAttribute("team", service.getTeamL(userId));
-		model.addAttribute("depart", service.getDepartL(userId));
-		model.addAttribute("upper", service.getUpperL(userId));
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		String managerId = mservice.getApprover(userId).getUserId();
+		boolean tf=true;
+	
+		while(tf==true) {
+			if(mservice.getApprover(managerId) != null) {
+				System.out.println(managerId);
+				mservice.getApproverList(managerId);
+				list.add(mservice.getApproverList(managerId));
+				managerId = mservice.getApprover(managerId).getUserId();
+				
+			}
+			else {
+				list.add(mservice.getApproverList(managerId));
+				tf = false;
+			}	
+		}
+		
+		log.info("=================list.size() 출력: "+list.size());	
+		for(MemberVO L : list) {
+			System.out.println(L);
+		}
+
+		model.addAttribute("alist", list);
 		model.addAttribute("ceo", mservice.getCeo());
 		
 

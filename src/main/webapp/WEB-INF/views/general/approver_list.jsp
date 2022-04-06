@@ -44,39 +44,34 @@
 									
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>${team[0].user_name}</td>
-									<td>${team[0].upper_dept2}</td>
-									<td>${team[0].upper_dept}</td>
-									<td>${team[0].dept_name}</td>
-									<td>${team[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${depart[0].user_name}</td>
-
-									<td>${depart[0].upper_dept}</td>
-									<td>${depart[0].dept_name}</td>
-									<td>--</td>
-									<td>${depart[0].duty_name}</td>
-
-								</tr>
-								<tr>
-									<td>${upper[0].user_name}</td>
-
-									<td>${upper[0].dept_name}</td>
-									<td>--</td>
-									<td>--</td>
-									<td>${upper[0].duty_name}</td>
-								</tr>
-								<tr>
-		                           <td>${ceo.userName}</td>
-		                           <td>--</td>
-		                           <td>--</td>
-		                           <td>--</td>
-		                           <td>${ceo.duty}</td>
-		                        </tr>
+							 <c:forEach var="list" items="${alist}">
+                  
+                        <tr>
+                           <td>${list.userName}</td>
+                           <td><c:choose>
+                           <c:when test="${empty list.bonbu}">--</c:when>
+                           <c:otherwise>${list.bonbu}</c:otherwise>
+                           </c:choose>
+                           </td>
+                           <td><c:choose>
+                           <c:when test="${empty list.buseo}">--</c:when>
+                           <c:otherwise>${list.buseo}</c:otherwise>
+                           </c:choose></td>
+                           <td><c:choose>
+                           <c:when test="${empty list.team }">--</c:when>
+                           <c:otherwise>${list.team}</c:otherwise>
+                           </c:choose></td>
+                           <td>${list.duty}</td>
+                        </tr>
+                         </c:forEach>
+                         <tr>
+                           <td>${ceo.userName}</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>${ceo.duty}</td>
+                        </tr>
+                       
 							</tbody>
 						</table>
 					</div>

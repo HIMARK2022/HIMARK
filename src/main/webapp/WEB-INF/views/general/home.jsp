@@ -86,35 +86,34 @@
                                                 <div id="table_content">
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
-                                                       <tr>
-	                                                        <th style="width:20%">${team[0].user_name}</th>
-					                                        <th style="width:20%">${team[0].upper_dept2}</th>
-					                                        <th style="width:20%">${team[0].upper_dept}</th>
-					                                        <th style="width:20%">${team[0].dept_name}</th>
-					                                        <th style="width:20%">${team[0].duty_name}</th>
-                                                    	</tr>
-														<tr>
-	                                                        <th id="name">${depart[0].user_name}</th>
-					                                        <th id="headquarter">${depart[0].upper_dept}</th>
-					                                        <th id="department">${depart[0].dept_name}</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${depart[0].duty_name}</th>
-                                                    	</tr>
-                                                    	<tr>
-	                                                        <th id="name">${upper[0].user_name}</th>
-					                                        <th id="headquarter">${upper[0].dept_name}</th>
-					                                        <th id="department">--</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${upper[0].duty_name}</th>
-                                                    	</tr>
-                                                    	<tr>
-								                          <th id="name">${ceo.userName}</th>
-					                                        <th id="headquarter"></th>
-					                                        <th id="department">--</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${ceo.duty}</th>
+                                                       <c:forEach var="list" items="${alist}">
+                  
+								                        <tr>
+								                           <td style="width:20%">${list.userName}</td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.bonbu}">--</c:when>
+								                           <c:otherwise>${list.bonbu}</c:otherwise>
+								                           </c:choose>
+								                           </td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.buseo}">--</c:when>
+								                           <c:otherwise>${list.buseo}</c:otherwise>
+								                           </c:choose></td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.team }">--</c:when>
+								                           <c:otherwise>${list.team}</c:otherwise>
+								                           </c:choose></td>
+								                           <td style="width:20%">${list.duty}</td>
 								                        </tr>
-							
+								                         </c:forEach>
+								                         <tr>
+								                           <td style="width:20%">${ceo.userName}</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">${ceo.duty}</td>
+								                        </tr>
+                       
 														</table>
                                                 </div>
                                             </div>
