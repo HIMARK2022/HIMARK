@@ -336,7 +336,7 @@ $(function(){
 			var id = '<c:out value="${member.userId}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?userId=" + id);
+			searchForm.attr("action", "/general/request_list?userId=" + id);
 			searchForm.submit();
 		});
 		

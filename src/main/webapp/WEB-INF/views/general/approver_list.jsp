@@ -69,8 +69,14 @@
 									<td>--</td>
 									<td>--</td>
 									<td>${upper[0].duty_name}</td>
-
 								</tr>
+								<tr>
+		                           <td>${ceo.userName}</td>
+		                           <td>--</td>
+		                           <td>--</td>
+		                           <td>--</td>
+		                           <td>${ceo.duty}</td>
+		                        </tr>
 							</tbody>
 						</table>
 					</div>

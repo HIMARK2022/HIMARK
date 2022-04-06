@@ -107,7 +107,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/request?userId=${member.userId}'">
+                                                <div class="card-body state" id="ing" onclick="location.href='/approver/request?userId=${member.userId}'">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="progress" 
@@ -115,7 +115,7 @@
                                                                 진행중</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto ing">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
                                                         </div>
                                                     </div>
@@ -125,7 +125,7 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab1'" data-toggle="tab">
+                                                    <div class="card-body state" id="complete" onclick="location.href='/approver/request_list?userId=${member.userId}#tab1'" data-toggle="tab">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
@@ -134,7 +134,7 @@
                                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>건
                                                                 </div>
                                                             </div>
-                                                            <div class="col-auto">
+                                                            <div class="col-auto complete">
                                                                 <i class="fas fa-check fa-2x text-success"></i>
                                                             </div>
                                                         </div>
@@ -144,7 +144,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                        <div class="card-body state" id="back" onclick="location.href='/approver/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
@@ -153,7 +153,7 @@
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                                         <c:out value='${back}'/>건</div>
                                                                 </div>
-                                                                <div class="col-auto">
+                                                                <div class="col-auto back">
                                                                     <i class="fa fa-reply fa-2x text-secondary"></i>
                                                                 </div>
                                                             </div>
@@ -198,7 +198,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab1'" data-toggle="tab">
+                                                <div class="card-body state" id="ging" onclick="location.href='/approver/payment?userId=${member.userId}#tab1'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gprogress"
@@ -207,7 +207,7 @@
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gprogress}'/>건
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto ging">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
                                                         </div>
                                                     </div>
@@ -217,7 +217,7 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100 ">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                <div class="card-body state" id="complete" onclick="location.href='/approver/payment?userId=${member.userId}#tab2'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gcomplete"
@@ -226,7 +226,7 @@
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gcomplete}'/>건
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto gcomplete">
                                                             <i class="fas fa-check fa-2x text-success"></i>
                                                         </div>
                                                     </div>
@@ -236,7 +236,7 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab3'" data-toggle="tab">
+                                                <div class="card-body state" id="back" onclick="location.href='/approver/payment?userId=${member.userId}#tab3'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gback"
@@ -245,7 +245,7 @@
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                                 <c:out value='${gback}'/>건</div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto gback">
                                                             <i class="fas fa-reply fa-2x text-secondary"></i>
                                                         </div>
                                                     </div>
@@ -355,6 +355,51 @@ Chart.defaults.global.defaultFontColor = '#858796';
                     cutoutPercentage: 80,
                   },
                 });
+                
+                 $("#ing").hover(function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x fa-spin text-primary'></i>");
+                },function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x text-primary'></i>");
+                }); 
+                 $("#ging").hover(function(){
+                 	$(".ging i").remove();
+                 	$(".ging").append("<i class='fas fa-hourglass-half fa-2x fa-spin text-primary'></i>");
+                 },function(){
+                 	$(".ging i").remove();
+                 	$(".ging").append("<i class='fas fa-hourglass-half fa-2x text-primary'></i>");
+                 }); 
+                 
+                 $("#complete").hover(function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x fa-bounce text-success'></i>");
+                 },function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x text-success'></i>");
+                 }); 
+                 $("#gcomplete").hover(function(){
+                 	$(".gcomplete i").remove();
+                 	$(".gcomplete").append(" <i class='fas fa-check fa-2x fa-bounce text-success'></i>");
+                 },function(){
+                 	$(".gcomplete i").remove();
+                 	$(".gcomplete").append(" <i class='fas fa-check fa-2x text-success'></i>");
+                 }); 
+                 
+                 $("#back").hover(function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x fa-flip text-secondary'></i>");
+                 },function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x text-secondary'></i>");
+                 }); 
+                 $("#gback").hover(function(){
+                 	$(".gback i").remove();
+                 	$(".gback").append("<i class='fa fa-reply fa-2x fa-flip text-secondary'></i>");
+                 },function(){
+                 	$(".gback i").remove();
+                 	$(".gback").append("<i class='fa fa-reply fa-2x text-secondary'></i>");
+                 }); 
                 </script>
 	<%@include file="../sidebar/footer.jsp"%>
 

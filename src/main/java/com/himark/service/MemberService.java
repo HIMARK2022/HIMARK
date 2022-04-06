@@ -18,4 +18,6 @@ public interface MemberService {
 	//승인자 출력
 	public MemberVO getApprover(String userId);
 
+	public MemberVO getCeo();
+
 }

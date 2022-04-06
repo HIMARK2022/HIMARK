@@ -117,6 +117,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${member.userName}(승인자)</span>
+                                <span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>
                              
                             </a>
                             <!-- Dropdown - User Information -->
