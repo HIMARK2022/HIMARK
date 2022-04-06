@@ -124,7 +124,7 @@ public class PaymentController {
 		model.addAttribute("team", aservice.getTeamL(userId));
 		model.addAttribute("depart", aservice.getDepartL(userId));
 		model.addAttribute("upper", aservice.getUpperL(userId));
-		
+		model.addAttribute("ceo", mservice.getCeo());
 		//승인자일경우
 		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
 			log.info("승인자 요청목록 ");
@@ -151,8 +151,8 @@ public class PaymentController {
 	
 	}
 	
-	@PostMapping("/request")
-	public String request( HttpServletRequest request, Model model,RedirectAttributes rttr) 
+	@PostMapping("/request_list")
+	public String requestList( HttpServletRequest request, Model model,RedirectAttributes rttr) 
 	{
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
@@ -182,9 +182,9 @@ public class PaymentController {
 		
 		
 		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
-			return "redirect:/approver/request?userId="+userId;
+			return "redirect:/approver/request_list?userId="+userId;
 		}
-		return "redirect:/general/request?userId="+userId;
+		return "redirect:/general/request_list?userId="+userId;
 		
 	}
 	

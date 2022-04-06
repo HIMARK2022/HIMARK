@@ -40,4 +40,15 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO getApprover(String userId) {
 		return mapper.getApprover(userId);
 	}
+
+	@Override
+	public MemberVO getCeo() {
+		// TODO Auto-generated method stub
+		return mapper.getCeo();
+	}
+
+	@Override
+	public int countUser() {
+		return mapper.countUser();
+	}
 }

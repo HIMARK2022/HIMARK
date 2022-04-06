@@ -68,6 +68,7 @@
 										<c:forEach var="alist" items="${alist}"> 
 										<option value='${alist.userId }'>${alist.userName }</option>
 									</c:forEach>
+									<option value='${ceo.user_id}'>${ceo.user_name}</option>
 									 	
 									</select>
 									</p>

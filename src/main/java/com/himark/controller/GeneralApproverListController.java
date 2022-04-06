@@ -29,6 +29,9 @@ public class GeneralApproverListController {
 	public void tree(Model model , @RequestParam("userId")String userId) {
 		model.addAttribute("member", mservice.getMember(userId));
 		log.info("일반 사용자 승인자 리스트 ");
+		
+		model.addAttribute("ceo", mservice.getCeo());
+		
 		model.addAttribute("team", service.getTeamL(userId));
 		log.info("팀장...아이디"+service.getTeamL(userId).get(0).getUser_id().toString());
 		String team = service.getTeamL(userId).get(0).getUser_id().toString();

@@ -49,6 +49,7 @@ public class MainController {
 		model.addAttribute("team", service.getTeamL(userId));
 		model.addAttribute("depart", service.getDepartL(userId));
 		model.addAttribute("upper", service.getUpperL(userId));
+		model.addAttribute("ceo", mservice.getCeo());
 		
 
 	}

@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>전자결재 - 목록(승인자)</title>
 <link href="/resources/css/payment.css" rel="stylesheet">
-<script type="text/javascript"  src="/resources/js/request.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -119,7 +119,7 @@
 											
 												
 											</form>
-												<form id='actionForm3' action="/general/request" method='post'>
+												<form id='actionForm3' action="/general/request_list" method='post'>
 													<c:forEach var="list" items="${filterList}">
 													<input type="hidden" id="filtering" name=${filterList } value="${filterList }"> 
 												    </c:forEach>
@@ -332,7 +332,7 @@ $(function(){
 			var id = '<c:out value="${member.userId}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?userId=" + id);
+			searchForm.attr("action", "/general/request_list?userId=" + id);
 			searchForm.submit();
 		});
 		
@@ -355,6 +355,7 @@ function selectAll(selectAll)  {
 
 			
 			<%@include file="../sidebar/footer.jsp"%>
+			<script type="text/javascript"  src="/resources/js/request.js"></script>
 			
 </body>
 </html>

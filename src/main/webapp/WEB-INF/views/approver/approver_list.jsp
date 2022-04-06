@@ -42,7 +42,7 @@
                            <th>본부</th>
                            <th>부서</th>
                            <th>팀</th>
-                           
+                           <th>직책</th>
                         </tr>
                        
                      </thead>
@@ -53,11 +53,29 @@
                   
                         <tr>
                            <td>${list.userName}</td>
-                           <td>${list.bonbu}</td>
-                           <td>${list.buseo}</td>
-                           <td>${list.team}</td>
+                           <td><c:choose>
+                           <c:when test="${empty list.bonbu}">--</c:when>
+                           <c:otherwise>${list.bonbu}</c:otherwise>
+                           </c:choose>
+                           </td>
+                           <td><c:choose>
+                           <c:when test="${empty list.buseo}">--</c:when>
+                           <c:otherwise>${list.buseo}</c:otherwise>
+                           </c:choose></td>
+                           <td><c:choose>
+                           <c:when test="${empty list.team }">--</c:when>
+                           <c:otherwise>${list.team}</c:otherwise>
+                           </c:choose></td>
+                           <td>${list.duty}</td>
                         </tr>
                          </c:forEach>
+                         <tr>
+                           <td>${ceo.userName}</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>${ceo.duty}</td>
+                        </tr>
                        
                      </tbody>
                   </table>

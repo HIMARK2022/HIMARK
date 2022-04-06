@@ -54,6 +54,7 @@ private MemberService mservice;
 				System.out.println(L);
 			}
 			
+			model.addAttribute("ceo", mservice.getCeo());
 			model.addAttribute("member", mservice.getMember(userId));
 			model.addAttribute("alist", list);
 	}
