@@ -89,5 +89,9 @@ where user_id=#{managerId};
 	select user_name, duty_name from usersdetail where authority_code="A3"
 </select>
 
+<select id="countUser" resultType="int">
+	select count(user_id)
+	from user
+</select>
 
 </mapper>

@@ -46,4 +46,9 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mapper.getCeo();
 	}
+
+	@Override
+	public int countUser() {
+		return mapper.countUser();
+	}
 }

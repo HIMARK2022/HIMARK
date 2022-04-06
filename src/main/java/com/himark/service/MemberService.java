@@ -19,5 +19,7 @@ public interface MemberService {
 	public MemberVO getApprover(String userId);
 
 	public MemberVO getCeo();
+	
+	public int countUser();
 
 }

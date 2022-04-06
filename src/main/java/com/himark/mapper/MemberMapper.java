@@ -13,4 +13,5 @@ public interface MemberMapper {
 	public MemberVO login(MemberVO vo);
 	public MemberVO getApprover(@Param ("userId") String userId);
 	public MemberVO getCeo();
+	public int countUser();
 }
