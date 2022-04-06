@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.himark.domain.ManagerVO;
-import com.himark.domain.TempManagerInfoVO;
+
 import com.himark.domain.UserDetailVO;
 import com.himark.domain.UsersDetailVO;
 import com.himark.mapper.ApproverListMapper;

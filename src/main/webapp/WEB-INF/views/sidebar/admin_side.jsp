@@ -68,7 +68,7 @@
                         <!-- <h6 class="collapse-header">분류</h6> -->
                         <a class="collapse-item" href="/admin/add_employee">직원 추가 및 수정</a>
                         <a class="collapse-item"  href="/admin/Select_Approver">승인자 관리</a>
-                        <a class="collapse-item" href="#">임시승인자 관리</a>
+                        <a class="collapse-item" href="/admin/Temp_Approver">임시승인자 관리</a>
                     </div>
                 </div>
             </li>

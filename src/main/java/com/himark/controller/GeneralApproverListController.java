@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.himark.domain.TempManagerInfoVO;
 import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.TreeTeamService;
