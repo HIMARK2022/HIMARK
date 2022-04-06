@@ -217,48 +217,33 @@ function showInfo(data) {
 		var delAppover ="delAppover(\'"+data[i].user_id+"\',\'"+data[i].dept_id+"\')";
 		if(data[i].authority_code == "A1"){			
 			info = "";
-			str += "<tr><td>"
-					+ data[i].user_id
-					+ "</td>"
-					+ "<td>"
-					+ data[i].user_name
-					+ "</td>"
-					+ "<td>"
-					+ data[i].duty_name
-					+ "</td>" 
-					+"<td>" + data[i].pos_name + "</td>"
-					+ "<td><a class='btn btn-outline-primary selectBtn'"
-					+"onclick ="+selectAppover+" >"
-					+ "<span class='text'>승인자 지정</span>"
-					+"</tr>";
+			str += "<tr>"
+				+ "<td>" + data[i].user_id   + "</td>"
+				+ "<td>" + data[i].user_name + "</td>"
+				+ "<td>" + data[i].duty_name + "</td>" 
+				+ "<td>" + data[i].pos_name  + "</td>"
+				+ "<td><a class='btn btn-outline-primary selectBtn'"
+				+ "onclick ="+selectAppover+" >"
+				+ "<span class='text'>승인자 지정</span>"
+				+ "</tr>";
 			
 		}
 		else{
 			info = "<span>※지정 가능한 승인자가 없습니다.※</span>";
 			if(data[i].duty_id != "d01"){
-				strApprover += "<tr><td>"
-					+ data[i].user_id
-					+ "</td>"
-					+ "<td>"
-					+ data[i].user_name
-					+ "</td>"
-					+ "<td>"
-					+ data[i].duty_name
-					+ "</td>"
-					+"<td>" + data[i].pos_name + "</td>"
+				strApprover += "<tr>"
+					+ "<td>"  + data[i].user_id  + "</td>"
+					+ "<td>"  + data[i].user_name+ "</td>"
+					+ "<td>"  + data[i].duty_name+ "</td>"
+					+ "<td>"  + data[i].pos_name + "</td>"
 					+ "<td>삭제 불가</td>"
 					+"</tr>";
 			}else{
-				strApprover += "<tr><td>"
-					+ data[i].user_id
-					+ "</td>"
-					+ "<td>"
-					+ data[i].user_name
-					+ "</td>"
-					+ "<td>"
-					+ data[i].duty_name
-					+ "</td>"
-					+"<td>" + data[i].pos_name + "</td>"
+				strApprover += "<tr>"
+					+ "<td>" + data[i].user_id   + "</td>"
+					+ "<td>" + data[i].user_name + "</td>"
+					+ "<td>" + data[i].duty_name + "</td>"
+					+ "<td>" + data[i].pos_name  + "</td>"
 					+ "<td><a class='btn btn-outline-danger delBtn'"
 					+"onclick ="+delAppover+" >"
 					+ "<span class='text'>승인자 취소</span></td>"

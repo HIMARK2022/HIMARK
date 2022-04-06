@@ -55,7 +55,7 @@
 	</select>
 	<!-- 임시승인자가 지정되있는지 확인! -->
 	<select id="IsInTemp" resultType="com.himark.domain.ManagerVO">
-		select * 
+		select manager_id , temp_manager 
 		from manager 
 		where temp_manager = #{temp_manager} group by temp_manager;
 	</select>

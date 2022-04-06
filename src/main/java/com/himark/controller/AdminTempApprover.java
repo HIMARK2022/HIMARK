@@ -50,25 +50,31 @@ public class AdminTempApprover {
 	@PostMapping("/select_temp_approver")
 	public ManagerVO select_temp(ManagerVO managervo) {
 		
-		AdminTempService.selectTemp(managervo.getApproval_start(), 
+		AdminTempService.selectTemp(managervo.getApproval_start(), //매니저 테이블에 삽입한다.
 									managervo.getApproval_finish(), 
 									managervo.getTemp_manager(),
 									managervo.getManager_id()); 
 		
-		var check =AdminTempService.IsInTemp(managervo.getTemp_manager()).size();
+		String temp = managervo.getTemp_manager();
 		
-		var check_id =AdminTempService.IsInTemp(managervo.getTemp_manager()).get(0).getTemp_manager().toString();
+		int check =AdminTempService.IsInTemp(temp).size(); //임시 승인자 지정확인
 		
 		if(check ==1 ) {			
-		
-			AdminTempService.updateTempAuthority("A2", managervo.getTemp_manager());
+			log.info("이미 임시 승인자가 지정됨");
+			String check_id =AdminTempService.IsInTemp(temp).get(0).getTemp_manager().toString(); //이미 있는 임시 승인자의 아이디
 			
-			AdminTempService.updateTempAuthority("A1", check_id);
-		
-		}else {
+			log.info("이미있는 임시승인자 아이디"+check_id); 
 			
-			AdminTempService.updateTempAuthority("A2", managervo.getTemp_manager());			
+			AdminTempService.updateTempAuthority("A2", temp); //새로 들어온 사람은 권한업데이트 
+			
+			AdminTempService.updateTempAuthority("A1", check_id);//이미 있던 임시승인자의 권한을 다시 되돌림
+			
+			
 		
+		}else {//임시 승인자 지정 안되있음.
+			
+			AdminTempService.updateTempAuthority("A2", temp); //권한을 업데이트하고 
+
 		}
 		
 		return managervo;
