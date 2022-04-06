@@ -235,7 +235,7 @@ function showInfo(data) {
 		}
 		else{
 			info = "<span>※지정 가능한 승인자가 없습니다.※</span>";
-			if(data[i].duty_name == "팀장" || data[i].duty_name == "부서장" || data[i].duty_name == "본부장"){
+			if(data[i].duty_id != "d01"){
 				strApprover += "<tr><td>"
 					+ data[i].user_id
 					+ "</td>"

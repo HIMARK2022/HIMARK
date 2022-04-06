@@ -2,19 +2,22 @@ package com.himark.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
 public class TempManagerInfoVO {
 
-	private String user_id;
+	
 	private String manager_id;
+	private String manager_name;
+	private String dept_id;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date approval_start;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date approval_finish;
-	private String duty_id;
-	private String duty_name;
-	private String pos_name;
-	private String dept_name;
-	private String upper_dept;
-	private String upper_dept2;
+	private String temp_manager;
+	private String user_name;
+	
 }

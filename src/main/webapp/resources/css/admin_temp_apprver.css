@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* .HText{
+	padding:7px;
+} */
+.row12{
+	margin-left: 30px;
+    overflow-y: scroll;
+    width: 300px;
+    height: 500px;
+}
