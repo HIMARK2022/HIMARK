@@ -35,19 +35,29 @@ public class MainController {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
-		model.addAttribute("member", mservice.getMember(userId));
-		String deptId = mservice.getMember(userId).getDeptId();
-		model.addAttribute("dlist", mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
-		
-		log.info(pservice.getList(userId).size());
 		model.addAttribute("progress",pservice.getList(userId).size());
 		model.addAttribute("complete",pservice.getCompleteList(userId).size());
 		model.addAttribute("back",pservice.getBackList(userId).size());
+		model.addAttribute("member", mservice.getMember(userId));
+		log.info(mservice.getMember(userId));
+		
+		//임시승인자일 경우
+		String tempOriginId = mservice.getTempOrigin(userId);
+		model.addAttribute("tempOrigin", tempOriginId);
+		if(tempOriginId != null) {
+			userId=tempOriginId;
+		}
+		
+		model.addAttribute("member", mservice.getMember(userId));
+		String deptId = mservice.getMember(userId).getDept_id();
+		model.addAttribute("dlist", mservice.getDeptList(deptId));
+		log.info(mservice.getDeptList(deptId));
+		
+
+		
 		model.addAttribute("gprogress",pservice.getPaymentList(userId).size());
 		model.addAttribute("gcomplete",pservice.getCompletePaymentList(userId).size());
 		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
-		model.addAttribute("member", mservice.getMember(m.getUserId()));
 		// 승인자 목록
 		List<MemberVO> list = new ArrayList<MemberVO>();
 		String managerId = mservice.getApprover(userId).getUserId();

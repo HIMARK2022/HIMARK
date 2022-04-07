@@ -54,8 +54,7 @@
 										</p>
 										<p>
 										<h6>기안자</h6>
-										<strong>${user.bonbu} / ${user.dept} /
-											${user.team} / ${user.userName}</strong>
+										<strong>${user.head} / ${user.depart} / ${user.team} / ${user.user_name}</strong>
 										</p>
 										<p>
 										<h6>승인자</h6>

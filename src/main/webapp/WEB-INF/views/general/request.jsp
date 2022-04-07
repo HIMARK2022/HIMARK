@@ -58,16 +58,16 @@
 									</p>
 									<p>
 										<h6>기안자</h6>
-										<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
+										<strong>${member.head} / ${member.depart} / ${member.team} / ${member.user_name}</strong>
 									</p>
 									<p>
 									<h6>승인자</h6>
 									<select class="form-control col-xl-4" name="managerId">
 										<option value='' disabled selected>-- 승인자 --</option>
 									
-										<option value='${team[0].user_id}'>${team[0].user_name }</option>
-										<option value='${depart[0].user_id}'>${depart[0].user_name}</option>
-									 	<option value='${upper[0].user_id}'>${upper[0].user_name}</option>
+										<c:forEach var="list" items="${alist}">
+										<option value="${list.userId}">${list.userName}</option>
+										</c:forEach>
 									 	<option value='${ceo.user_id}'>${ceo.user_name}</option>
 									</select>
 									</p>
@@ -120,10 +120,10 @@
 		var searchForm = $("#searchForm");
 
 		$("#search_btn").on("click", function(e) {
-			var id = '<c:out value="${member.userId}"/>';
+			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?userId=" + id);
+			searchForm.attr("action", "/general/request?user_id=" + id);
 			searchForm.submit();
 		});
 		

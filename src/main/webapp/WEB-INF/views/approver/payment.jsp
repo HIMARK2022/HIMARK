@@ -49,17 +49,17 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow active" data-toggle="tab" href="#tab1">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 문서</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">대기함</h6>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow" data-toggle="tab" href="#tab2">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 승인</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">승인함</h6>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow" data-toggle="tab" href="#tab3">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 반려</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">반려함</h6>
                             </a>
                         </li>
                     </ul>
@@ -105,8 +105,8 @@
                             </div>
                             
                             <form id='actionForm2' action="/approver/request" method='get'>
-								<input type='hidden' name='userId' value='${member.userId}'>
-								<input type='hidden' name='userName' value='${member.userName}'>
+								<input type='hidden' name='user_id' value='${member.user_id}'>
+								<input type='hidden' name='user_name' value='${member.user_name}'>
 							</form>
                             <!-- 결재 문서 End -->
 

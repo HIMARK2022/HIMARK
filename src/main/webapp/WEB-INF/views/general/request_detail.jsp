@@ -40,7 +40,7 @@
 						</p>
 						<p>
 						<h6>기안자</h6>
-						<strong>${member.bonbu} / ${member.dept} / ${member.team} / ${member.userName}</strong>
+						<strong>${member.head} / ${member.depart} / ${member.team} / ${member.user_name}</strong>
 						</p>
 						<p>
 						<h6>승인자</h6>

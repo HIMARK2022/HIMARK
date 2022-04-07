@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.himark.domain.MemberVO;
+import com.himark.domain.TempManagerInfoVO;
 import com.himark.service.MemberService;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ private MemberService mservice;
 		@GetMapping("/approver_list")
 		public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
 			List<MemberVO> list = new ArrayList<MemberVO>();
+			List<TempManagerInfoVO> tlist = new ArrayList<TempManagerInfoVO>();
 			String managerId = mservice.getApprover(userId).getUserId();
 			boolean tf=true;
 		
@@ -59,5 +61,19 @@ private MemberService mservice;
 			model.addAttribute("ceo", mservice.getCeo());
 			model.addAttribute("member", mservice.getMember(userId));
 			model.addAttribute("alist", list);
+			
+			//임시승인자
+			for(int i=0;i<list.size();i++) {
+				String manager = list.get(i).getUserId();
+				if(mservice.getTempApprover(manager) != null) {
+				tlist.add(mservice.getTempApprover(manager));
+				}
+			}
+			
+			log.info("=================임시승인자 출력: "+tlist.size());	
+			for(TempManagerInfoVO tmp : tlist) {
+				System.out.println(tmp);
+			}
+			model.addAttribute("tlist", tlist);
 	}
 }

@@ -18,6 +18,7 @@ public class UserDetailVO {
 	private String email;
 	private String current_state;
 	private String pos_name;
+	private String authority_code;
 
 	private String duty_id;
 	private String duty_name;
