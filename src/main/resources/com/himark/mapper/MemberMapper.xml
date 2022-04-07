@@ -73,6 +73,7 @@ where user_id=#{managerId};
 	select user_name, duty_name, user_id from usersdetail where authority_code="A3"
 </select>
 
+
 <select id="getTempManager" resultType="com.himark.domain.TempManagerInfoVO">
 select * from tempmanagerinfo where manager_id=#{manager} 
 </select>
@@ -80,6 +81,10 @@ select * from tempmanagerinfo where manager_id=#{manager}
 <select id="getTempOrigin" resultType="String">
 select manager_id from tempmanagerinfo
 where temp_manager=#{userId};
+</select>
+<select id="countUser" resultType="int">
+	select count(user_id)
+	from user
 </select>
 
 </mapper>

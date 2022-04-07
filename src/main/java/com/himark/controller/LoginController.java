@@ -31,24 +31,30 @@ public class LoginController {
 	
 	@ResponseBody
 	@PostMapping("/login")
-	public MemberVO loginProcess(MemberVO vo, @RequestParam("authority") String authority, Model model, HttpServletRequest request) throws IOException {
-		log.info("loginProcess");
-		log.info(vo);
-		log.info(authority);
+	public MemberVO loginProcess(MemberVO vo, Model model, HttpServletRequest request) throws IOException {
+		log.info("로그인 처리");
+		
+		MemberVO result = new MemberVO(); // 반환할 값
+		
+		// 인사연동이 일어나지 않아 사용자가 없는 경우
+		int countUser = service.countUser();
+		if(countUser == 0) {
+			result.setAuthorityCode("dss");
+			
+			return result;
+		}
 		
 		HttpSession session = request.getSession();
 		
 		MemberVO loginUser = service.login(vo);
 		
-		MemberVO result = new MemberVO();
-		result.setAuthorityCode("none");
+		result.setAuthorityCode("none"); // 일치하는 아이디, 비밀번호가 없음
 		
 		if(loginUser != null) {
-			
 			// 권한 체크
 			String auth = loginUser.getAuthorityCode();
 			
-			if(authority.contains(auth)) {
+			if(vo.getAuthorityCode().contains(auth)) {
 				session.setAttribute("loginUser", loginUser);
 				
 				if("일반 사용자".equals(auth)) {
@@ -65,8 +71,6 @@ public class LoginController {
 			
 			result.setUserId(loginUser.getUserId());
 		}
-		
-		log.info(result);
 		
 		return result;
 	}

@@ -17,14 +17,17 @@ public class UsersDetailVO {
 	private String authority_code;
 	private String birth_date;
 	private String sex;
+	
 	private String phone_number;
 	private String email;
 	private String current_state;
 	
+	private String flag;
 	private String team;
 	private String depart;
-	private String head;
 	
+	private String head;
 	private String pos_name;
 	private String duty_name;
+	
 }

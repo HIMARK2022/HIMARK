@@ -50,25 +50,38 @@ public class AdminTempApprover {
 	@PostMapping("/select_temp_approver")
 	public ManagerVO select_temp(ManagerVO managervo) {
 		
-		AdminTempService.selectTemp(managervo.getApproval_start(), 
-									managervo.getApproval_finish(), 
-									managervo.getTemp_manager(),
-									managervo.getManager_id()); 
 		
-		var check =AdminTempService.IsInTemp(managervo.getTemp_manager()).size();
-		
-		var check_id =AdminTempService.IsInTemp(managervo.getTemp_manager()).get(0).getTemp_manager().toString();
-		
-		if(check ==1 ) {			
-		
-			AdminTempService.updateTempAuthority("A2", managervo.getTemp_manager());
+		String temp = managervo.getTemp_manager();
+		String id = managervo.getManager_id();
+		log.info("임시 승인자 : "+temp);
+		log.info("있는지 확인하기 리스트" + AdminTempService.IsInTemp(id).get(0).getTemp_manager());
+		String check =AdminTempService.IsInTemp(id).get(0).getTemp_manager(); //임시 승인자 지정확인
+		log.info("해당 파트에 임시 승인자가 있는지 확인 있으면1? "+check); 
+		if(check != null ) {			
+			log.info("이미 임시 승인자가 지정됨");
+			String check_id =AdminTempService.IsInTemp(id).get(0).getTemp_manager().toString(); //이미 있는 임시 승인자의 아이디
 			
-			AdminTempService.updateTempAuthority("A1", check_id);
-		
-		}else {
+			log.info("이미있는 임시승인자 아이디 : "+check_id); 
 			
-			AdminTempService.updateTempAuthority("A2", managervo.getTemp_manager());			
+			AdminTempService.updateTempAuthority("A2", temp); //새로 들어온 사람은 권한업데이트 
+			
+			AdminTempService.updateTempAuthority("A1", check_id);//이미 있던 임시승인자의 권한을 다시 되돌림
+			
+			AdminTempService.selectTemp(managervo.getApproval_start(), //매니저 테이블에 삽입한다.
+					managervo.getApproval_finish(), 
+					managervo.getTemp_manager(),
+					managervo.getManager_id()); 
+
 		
+		}else {//임시 승인자 지정 안되있음.
+			log.info("최초 임시 승인자 지정");
+			AdminTempService.updateTempAuthority("A2", temp); //권한을 업데이트하고 
+
+			AdminTempService.selectTemp(managervo.getApproval_start(), //매니저 테이블에 삽입한다.
+					managervo.getApproval_finish(), 
+					managervo.getTemp_manager(),
+					managervo.getManager_id()); 
+
 		}
 		
 		return managervo;
@@ -102,7 +115,7 @@ public class AdminTempApprover {
 	public List<UsersDetailVO> returnHeadInfo(@RequestParam("head") String head) {
 		log.info("본부 진입");
 		
-		if(AdminTempService.showAllTemp().size() == 0) {
+		if(AdminTempService.showTempInfo(head).size() == 0) {
 			
 			return AdminTempService.selectAllTeamMemberTemp(head);
 		}
@@ -110,15 +123,14 @@ public class AdminTempApprover {
 			
 			return AdminTempService.selectNotTemp(head);
 		}
-		
-		
+
 	}
 	
 	@ResponseBody 
 	@GetMapping(value = "/temp_depart", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UsersDetailVO> returnDepartInfo(@RequestParam("depart") String depart) {
 		log.info("부서 진입");
-		if(AdminTempService.showAllTemp().size() == 0) {
+		if(AdminTempService.showTempInfo(depart).size() == 0) {
 			
 			return AdminTempService.selectAllTeamMemberTemp(depart);
 		}
@@ -131,8 +143,11 @@ public class AdminTempApprover {
 	@ResponseBody 
 	@GetMapping(value = "/temp_team", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UsersDetailVO> returnTeamInfo(@RequestParam("team") String team) {
-		log.info("팀 진입");
-		if(AdminTempService.showAllTemp().size() == 0) {
+		log.info("팀 진입"  + team);
+		log.info("팀 진입1" + AdminTempService.showAllTemp().size() );
+		log.info("팀 진입2" + AdminTempService.selectAllTeamMemberTemp(team));
+		log.info("팀 진입3" + AdminTempService.selectNotTemp(team));
+		if(AdminTempService.showTempInfo(team).size() == 0) {
 			
 			return AdminTempService.selectAllTeamMemberTemp(team);
 		}

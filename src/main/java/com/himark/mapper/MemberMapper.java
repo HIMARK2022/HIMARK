@@ -14,7 +14,12 @@ public interface MemberMapper {
 	public List<MemberVO> getDeptList(@Param ("deptId") String deptId);
 	public MemberVO login(MemberVO vo);
 	public MemberVO getApprover(@Param ("userId") String userId);
+
 	public UsersDetailVO getCeo();
 	public TempManagerInfoVO getTempManager(@Param ("manager")String manager);
 	public String getTempOrigin(String userId);
+
+
+	public int countUser();
+
 }

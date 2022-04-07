@@ -20,10 +20,15 @@ public interface MemberService {
 	//승인자 출력
 	public MemberVO getApprover(String userId);
 
+
 	public UsersDetailVO getCeo();
 
 	public TempManagerInfoVO getTempApprover(String manager);
 
 	public String getTempOrigin(String userId);
+
+	
+	public int countUser();
+
 
 }

@@ -28,7 +28,8 @@ public interface AdminAddEmployeeMapper {
 			@Param("sex") String sex,
 			@Param("phone_number") String phone_number,
 			@Param("email") String email, 
-			@Param("current_state") String current_state 
+			@Param("current_state") String current_state, 
+			@Param("flag") String flag 
 			);
 	public List<TreeInfoVO> selectAllDepart();
 	public List<TreeInfoVO> selectAllHead();
@@ -46,4 +47,10 @@ public interface AdminAddEmployeeMapper {
 			@Param("user_id") String user_id
 			);
 
+	public List<UsersDetailVO> getApprover(String dept_id);
+	
+	public int insertManager(
+			@Param("manager_id") String manager_id,
+			@Param("approval_target") String approval_target
+			);
 }
