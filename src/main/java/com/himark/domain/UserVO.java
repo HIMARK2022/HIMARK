@@ -19,4 +19,6 @@ public class UserVO {
 	private String phone_number;
 	private String email;
 	private String current_state;
+	
+	private String flag;
 }

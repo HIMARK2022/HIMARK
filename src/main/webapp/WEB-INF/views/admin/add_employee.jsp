@@ -137,6 +137,23 @@
                                     </div>
                                 </td>
                             </tr>
+                            
+                            <tr>
+                                <th >등록 형태(변경 불가)</th>
+                                <td >
+                                    <div class="form-check-inline">
+                                    	<label class="form-check-label" for="inlineRadiosex1">
+                                    		<input class="form-check-input" type="radio"id="howIn1" value="인사연동" name="ModhowIn" onclick="return(false);" >인사연동
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    	<label class="form-check-label" for="inlineRadiosex2">
+                                    		<input class="form-check-input" type="radio" id="howIn2" value="웹" name="ModhowIn"  onclick="return(false);" >웹
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            
                             <tr>
                                 <th >이름</th>
                                 <td>
@@ -406,7 +423,7 @@
 		});
 	}
 	function showInfo(data) {
-		
+		refresh();
 		str = "";
 		for (var i = 0; i < data.length; i++) {
 			if(data[i].head == null){
@@ -419,7 +436,12 @@
 				data[i].team="";
 			}
 			
-			var modInfo = "modInfo(\'"+ data[i].head+'/'+data[i].depart+'/'+data[i].team + "\',\'"+ data[i].user_name + "\',\'" + data[i].pos_name + "\',\'"+ data[i].birth_date + "\',\'"+ data[i].sex + "\',\'"+ data[i].email + "\',\'"+ data[i].phone_number + "\',\'"+ data[i].user_id + "\',\'"+ data[i].dept_id + "\')";
+			var modInfo = "modInfo(\'"+ data[i].head       +'/'+data[i].depart+'/'+data[i].team + "\'"
+								+",\'"+ data[i].user_name  + "\',\'" + data[i].pos_name         + "\'"
+								+",\'"+ data[i].birth_date + "\',\'" + data[i].sex              + "\'"
+								+",\'"+ data[i].email      + "\',\'" + data[i].phone_number     + "\'"
+								+",\'"+ data[i].user_id    + "\',\'" + data[i].dept_id          + "\',\'"+ data[i].flag + "\')";
+			
 			str += "<tr><td><div class='page-wrapper'><a class='content-detail' onclick="+modInfo+"><span class='clickId'>"
 					+ data[i].user_id
 					+ "</span></a></div></td>"
@@ -457,7 +479,8 @@
 			sex : $('input[name=Addsex]').val(),
 			phone_number : $('input[name=AddPhone ]').val(),
 			email : $('input[name=AddEmail]').val(),
-			current_state : "재직"
+			current_state : "재직",
+			flag : "웹"
 		}
 		
 		AddModifyService.addUser(userInfo,function(result){
@@ -466,7 +489,6 @@
 			$(".modal").find("input").val("");
 			
 			if(userInfo.dept_id.length == 3){
-				alert('직원이 추가되었습니다.');
 				showTeamMember(userInfo.dept_id);
 			}else if(userInfo.dept_id.length == 2){
 				alert('직원이 추가되었습니다.');
@@ -490,23 +512,33 @@
 		$('input[name=ModPhone]').val('');	
 	}
 	
-	function modInfo(head, user_name , pos , birth , sex , email , phone , user_id ,dept_id) {
-		
-		console.log("aaaaaaaaaaaaa"+$('input[name=ModPhone]').val());		
+	function modInfo(head, user_name , pos , birth , sex , email , phone , user_id ,dept_id , flag) {
+				
+			
 			$('input[name=ModBelong]').attr('value', head);
 			$('input[name=ModPos]').attr('value', pos);
+			
+			if(flag =="인사연동"){				
+				$('input[name=ModhowIn]:input[id="howIn1"]').attr("checked",true);
+			}
+			
+			if(flag =="웹"){
+				$('input[name=ModhowIn]:input[id="howIn2"]').attr("checked",true);
+			}
+			
 			$('input[name=ModUserName]').attr('value', user_name);
 			$('input[name=ModBirth]').attr('value', birth);
+			
 			$('input[name=ModSex]').attr('value', sex);
+			
 			$('input[name=ModEmail]').attr('value', email);
 			$('input[name=ModPhone]').attr('value', phone);
 			
 			$('input[name=Muser_id]').attr('value', user_id);
 			$('input[name=Mdept_id]').attr('value', dept_id);
-		console.log("bbbbbbbbbbbbb"+$('input[name=ModPhone]').val());
+		
 	} 
 	$('#modMember').on("click",function(e){
-		
 		
 		var user_name =$('input[name=ModUserName]').val() ;
 		var birth_date = $('input[name=ModBirth]').val() ;
@@ -530,15 +562,21 @@
 
 			if(modInfo.dept_id.length == 3){
 				alert('정보가 수정되었습니다.');
-				
+				setTimeout(function(){
+					location.reload();
+					},30);
 				showTeamMember(modInfo.dept_id);
 			}else if(modInfo.dept_id.length == 2){
 				alert('정보가 수정되었습니다.');
-				
+				setTimeout(function(){
+					location.reload();
+					},30);
 				showDepartMember(modInfo.dept_id)
 			}else if(modInfo.dept_id.length == 1){
 				alert('정보가 수정되었습니다.');
-				
+				setTimeout(function(){
+					location.reload();
+					},30);
 				showHeadMember(modInfo.dept_id)
 			} 
 		})

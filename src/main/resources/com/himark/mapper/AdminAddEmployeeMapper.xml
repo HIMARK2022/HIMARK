@@ -18,8 +18,8 @@
 	</select>
 	
 	<insert id="AddUser">
-		insert into user(user_id,user_password,user_name,pos_id,duty_id,dept_id,authority_code,birth_date,sex,phone_number,email,current_state)
-		values ( #{user_id} , #{user_password},#{user_name},#{pos_id},#{duty_id},#{dept_id},#{authority_code},#{birth_date} ,#{sex},#{phone_number},#{email},#{current_state});
+		insert into user(user_id,user_password,user_name,pos_id,duty_id,dept_id,authority_code,birth_date,sex,phone_number,email,current_state,flag)
+		values ( #{user_id} , #{user_password},#{user_name},#{pos_id},#{duty_id},#{dept_id},#{authority_code},#{birth_date} ,#{sex},#{phone_number},#{email},#{current_state},#{flag});
 	</insert>
 	
 	<select id="UserID" resultType="com.himark.domain.UserVO">
@@ -55,7 +55,7 @@
 	<select id="selectAllTeamMember" resultType="com.himark.domain.UsersDetailVO">
 		select
 		user_id, user_name, pos_id, duty_id, dept_id,authority_code ,birth_date, sex, phone_number
-		, email, current_state, team, depart, head, pos_name, duty_name
+		, email, current_state, team, depart, head, pos_name, duty_name, flag
 		from usersdetail
 		where dept_id = #{dept_id} <!-- and current_state = "재직"  -->
 	</select>

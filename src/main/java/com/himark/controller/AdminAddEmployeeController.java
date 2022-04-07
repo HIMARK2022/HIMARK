@@ -90,7 +90,8 @@ public class AdminAddEmployeeController {
  							,uservo.getSex()
  							,uservo.getPhone_number()
  							,uservo.getEmail()
- 							,uservo.getCurrent_state());
+ 							,uservo.getCurrent_state()
+ 							,uservo.getFlag());
  		
  		String manager_id = service.getApprover(uservo.getDept_id()).get(0).getUser_id().toString(); 
  		
