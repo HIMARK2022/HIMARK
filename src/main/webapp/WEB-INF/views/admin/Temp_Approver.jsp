@@ -32,6 +32,12 @@
 							<div class="h5 mb-0 font-weight-bold text-gray-800" id="filter">
 								<div class="h5 mb-0 font-weight-bold text-gray-800">
 									<div style="float:right;">
+										<a href="#" class="btn btn-outline-danger btn-lg btn-icon-split RemoveBtn">
+											<span class="icon text-white-50"> 
+												<i class="fa-solid fa-x"></i>
+											</span>
+											<span class="text">지정 초기화</span>
+										</a>
 										<a href="#" class="btn btn-outline-primary btn-lg btn-icon-split SelectBtn">
 											<span class="icon text-white-50"> 
 												<i class="fas fa-plus"></i>
@@ -125,12 +131,13 @@
       	<div class="col-xl-4 col-lg-4" >
 			<div class="card shadow mb-4" style="height: 60vh;">
             	<div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">승인자 정보</h6>
+					<h6 class="m-0 font-weight-bold text-primary">직원 정보</h6>
 				</div>
 				<div class="card-body tables" style="display:none;">
 					<div>
-						<h4 class="teaminfo"></h4>
 						
+						<h4 class="teaminfo"></h4>
+						<p>승인자와 임시승인자 가능 대상을 확인 및 지정하실 수 있습니다.</p>
 						<div>
 							<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
 								<thead>
@@ -153,23 +160,26 @@
 		<div class="col-xl-5 col-lg-5" >
 			<div class="card shadow mb-4 " style="height: 60vh;">
             	<div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">임시승인자 지정 가능 대상  정보</h6>
+					<h6 class="m-0 font-weight-bold text-primary">임시승인자 정보</h6>
 				</div>
 				<div class="card-body tables" style=" display:none;">
 					<div>
 						<h4 class="teaminfo"></h4>
-						
+						<p>지정된 임시 승인자 정보를 확인 및 삭제 하실 수 있습니다.</p>
 						<div>
 							<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
 								<thead>
 									<tr>
-										<th>아이디</th>
+										<th>승인자</th>
 										<th>이름</th>
-										<th>직책</th>
-										<th>선택</th>
+										<th>임시 승인자</th>
+										<th>이름</th>
+										<th>지정일</th>
+										<th>만료일</th>
+										<th>관리</th>
 									</tr>
 								</thead>
-								<tbody id="tbody">
+								<tbody id="temptable">
 									
 								</tbody>
 							</table>
@@ -180,32 +190,7 @@
 		</div>             
 	</div>
 	<!-- 상단 정보 -->
-	<div class="col-xl-12 col-lg-12" >
-		<div class="card shadow mb-4 right_info">
-			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            	<h6 class="m-0 font-weight-bold text-primary">임시 승인자 목록</h6>
-            </div>
-        	<div class="card-body tables" style="display:none;">
-        	<h4 class="teaminfo"></h4>
-        		<table class="table table-bordered" id="dataTable15"  cellspacing="0" >
-        			<thead>
-        				<tr>
-        					<th>승인자 이름</th>
-	        				<th>승인자 아이디</th>
-	        				<th>임시 승인자 아이디</th>
-	        				<th>임시 승인자 이름</th>
-	        				<th>지정일</th>
-	        				<th>만료일</th>
-	        				<th>편집</th>
-	                   	</tr>
-	                </thead>
-	                <tbody id="temptable">
-	                	               	
-	                </tbody>
-         		</table>
-        	</div>
-   		</div>                           
-	</div>
+	
 </div>
 </div>
 

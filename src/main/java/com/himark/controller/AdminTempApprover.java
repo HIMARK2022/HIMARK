@@ -54,6 +54,8 @@ public class AdminTempApprover {
 		String temp = managervo.getTemp_manager();
 		String id = managervo.getManager_id();
 		log.info("임시 승인자 : "+temp);
+		log.info("승인자 : "+id);
+		
 		log.info("있는지 확인하기 리스트" + AdminTempService.IsInTemp(id).get(0).getTemp_manager());
 		String check =AdminTempService.IsInTemp(id).get(0).getTemp_manager(); //임시 승인자 지정확인
 		log.info("해당 파트에 임시 승인자가 있는지 확인 있으면1? "+check); 
