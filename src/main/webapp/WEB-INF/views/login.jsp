@@ -56,7 +56,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <input type="hidden" name="authorityCode" value="일반 사용자/승인자">
+                                        <input type="hidden" name="authorityCode" value="일반 사용자/승인자/임시 승인자">
                                         <hr>
                                         <button type="button" class="btn btn-primary btn-user btn-block" onclick="checkForm()">
                                             Login
@@ -170,7 +170,7 @@
                 $(".user a").removeClass("btn-dark");
 
                 $('body').removeClass('bg-gradient-admin');
-                $("input[name=authorityCode]").val("일반 사용자/승인자");
+                $("input[name=authorityCode]").val("일반 사용자/승인자/임시 승인자");
             });
         });
     </script>

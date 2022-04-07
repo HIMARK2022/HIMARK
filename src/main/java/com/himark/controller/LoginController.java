@@ -61,6 +61,8 @@ public class LoginController {
 					result.setAuthorityCode("general");
 				} else if("승인자".equals(auth)) {
 					result.setAuthorityCode("approver");
+				} else if("임시 승인자".equals(auth)) {
+					result.setAuthorityCode("approver");
 				} else { // 관리자
 					result.setAuthorityCode("admin");
 				}
