@@ -143,12 +143,12 @@
                                 <td >
                                     <div class="form-check-inline">
                                     	<label class="form-check-label" for="inlineRadiosex1">
-                                    		<input class="form-check-input" type="radio"id="howIn1" value="인사연동" name="ModhowIn" onclick="return(false);" >인사연동
+                                    		<input class="form-check-input" type="radio"id="howIn1" name="ModhowIn" onclick="return(false);" >인사연동
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                     	<label class="form-check-label" for="inlineRadiosex2">
-                                    		<input class="form-check-input" type="radio" id="howIn2" value="웹" name="ModhowIn"  onclick="return(false);" >웹
+                                    		<input class="form-check-input" type="radio" id="howIn2" name="ModhowIn"  onclick="return(false);" >웹
                                         </label>
                                     </div>
                                 </td>
@@ -157,7 +157,7 @@
                             <tr>
                                 <th >이름</th>
                                 <td>
-                                    <div >
+                                    <div>
                                         <input type="text" class="form-control bg-light border-0 small" placeholder="이름을 입력하시오" name="ModUserName" id ="ModUserName"
                                             aria-label="Search" aria-describedby="basic-addon2">
                                     </div>
@@ -355,10 +355,14 @@
 	});
 	$('.create-content-detail').on('click', function () {
 	    $('.modal-wrapper2').removeClass('open');
-	 
+	    $('#createForm')[0].reset();
 	    return false;
 	});
-	
+	$('.mod-content-detail').on('click', function() {
+		$('.modal-wrapper').removeClass('open');		
+		$('#modForm')[0].reset();
+		$('#modForm')[1].reset();
+	});
 </script>
 
 <script>
@@ -395,7 +399,7 @@
 	function showTeamMember(team) {
 		$('#tbody tr').remove();
 		$('#teaminfo span').remove();
-		$('#modtable').find("input").val("");
+		
 		AddModifyService.getTeamList(team, function(data) {
 			teaminfo = "<span>" + data[0].team + "</span>";
 			showInfo(data);
@@ -423,7 +427,6 @@
 		});
 	}
 	function showInfo(data) {
-		refresh();
 		str = "";
 		for (var i = 0; i < data.length; i++) {
 			if(data[i].head == null){
@@ -460,8 +463,7 @@
 		});
 		$('.mod-content-detail').on('click', function() {
 			$('.modal-wrapper').removeClass('open');
-			
-			return false;
+			$('#modForm')[0].reset();
 		});
 	}
 	
@@ -500,23 +502,25 @@
 		});
 	});
 	
-	function refresh(){
-		$('input[name=Muser_id]').val('');
-		$('input[name=Mdept_id]').val('');
-		$('input[name=ModBelong]').val('');
-		$('input[name=ModPos]').val('');
-		$('input[name=ModUserName]').val('');
-		$('input[name=ModBirth]').val('');
-		$('input[name=ModSex]').val('');
-		$('input[name=ModEmail]').val('');
-		$('input[name=ModPhone]').val('');	
-	}
-	
 	function modInfo(head, user_name , pos , birth , sex , email , phone , user_id ,dept_id , flag) {
-				
 			
 			$('input[name=ModBelong]').attr('value', head);
 			$('input[name=ModPos]').attr('value', pos);
+			
+			
+			if(birth == "null"){
+				birth="";
+			}
+			if(sex == "null"){
+				sex="";
+			}
+			if(email == "null"){
+				email="";
+			}
+			if(phone == "null"){
+				phone="";
+			}
+			
 			
 			if(flag =="인사연동"){				
 				$('input[name=ModhowIn]:input[id="howIn1"]').attr("checked",true);
@@ -562,21 +566,15 @@
 
 			if(modInfo.dept_id.length == 3){
 				alert('정보가 수정되었습니다.');
-				setTimeout(function(){
-					location.reload();
-					},30);
+				
 				showTeamMember(modInfo.dept_id);
 			}else if(modInfo.dept_id.length == 2){
 				alert('정보가 수정되었습니다.');
-				setTimeout(function(){
-					location.reload();
-					},30);
+				
 				showDepartMember(modInfo.dept_id)
 			}else if(modInfo.dept_id.length == 1){
 				alert('정보가 수정되었습니다.');
-				setTimeout(function(){
-					location.reload();
-					},30);
+				
 				showHeadMember(modInfo.dept_id)
 			} 
 		})

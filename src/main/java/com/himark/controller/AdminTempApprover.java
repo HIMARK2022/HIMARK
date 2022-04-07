@@ -63,7 +63,7 @@ public class AdminTempApprover {
 			
 			log.info("이미있는 임시승인자 아이디 : "+check_id); 
 			
-			AdminTempService.updateTempAuthority("A2", temp); //새로 들어온 사람은 권한업데이트 
+			AdminTempService.updateTempAuthority("A0", temp); //새로 들어온 사람은 권한업데이트 
 			
 			AdminTempService.updateTempAuthority("A1", check_id);//이미 있던 임시승인자의 권한을 다시 되돌림
 			
@@ -75,7 +75,7 @@ public class AdminTempApprover {
 		
 		}else {//임시 승인자 지정 안되있음.
 			log.info("최초 임시 승인자 지정");
-			AdminTempService.updateTempAuthority("A2", temp); //권한을 업데이트하고 
+			AdminTempService.updateTempAuthority("A0", temp); //권한을 업데이트하고 
 
 			AdminTempService.selectTemp(managervo.getApproval_start(), //매니저 테이블에 삽입한다.
 					managervo.getApproval_finish(), 
