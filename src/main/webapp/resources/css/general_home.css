@@ -34,9 +34,7 @@
     /* Chrome, Safari, Opera*/
 }
 
-#table td {
-    width: 50%;
-}
+
 .card-body:hover {text-decoration: none}
 a:hover{
 text-decoration: none;}

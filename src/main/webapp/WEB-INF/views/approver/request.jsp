@@ -58,7 +58,7 @@
 									</p>
 									<p>
 										<h6>기안자</h6>
-										<strong>${member.bonbu} / ${member.buseo} / ${member.team} / ${member.userName}</strong>
+										<strong>${member.head} / ${member.depart} / ${member.team} / ${member.user_name}</strong>
 									</p>
 									<p>
 									<h6>승인자</h6>
@@ -121,10 +121,10 @@
 		var searchForm = $("#searchForm");
 
 		$("#search_btn").on("click", function(e) {
-			var id = '<c:out value="${member.userId}"/>';
+			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?userId=" + id);
+			searchForm.attr("action", "/general/request?user_id=" + id);
 			searchForm.submit();
 		});
 		

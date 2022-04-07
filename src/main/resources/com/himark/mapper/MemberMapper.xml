@@ -24,24 +24,8 @@
 
 
 
-<select id="getMember" resultMap="getMemberMap">
-select user_id,user_password,user_name,authority_code,birth_date,sex as 성별,phone_number,email,dept.dept_name,result.본부,result.부서,result.팀,pos.pos_name,duty.duty_name,current_state as 재직여부,dept.dept_id as dept_id from user
-JOIN dept 
-ON user.dept_id = dept.dept_id
-join pos
-on user.pos_id = pos.pos_id
-join duty
-on user.duty_id = duty.duty_id
-left join 
-(select d.dept_name as 본부, d.dept_id as did, c.dept_name as 부서, c.dept_id as cid, b.dept_name as 팀 ,b.dept_id as bid
-from dept a
-right join dept b
-on a.upper_dept_id = b.dept_id
-right join dept c
-on b.upper_dept_id = c.dept_id
-inner join dept d
-on c.upper_dept_id = d.dept_id) as result
-on user.dept_id = result.bid
+<select id="getMember" resultType="com.himark.domain.UsersDetailVO">
+select * from usersdetail
 where user_id=#{userId}
 </select>
 
@@ -85,10 +69,19 @@ where user_id=#{managerId};
 		select getApprover(#{userId}) as user_id
 	</select>
 
-<select id="getCeo" resultMap="getMemberMap">
-	select user_name, duty_name from usersdetail where authority_code="A3"
+<select id="getCeo"  resultType="com.himark.domain.UsersDetailVO">
+	select user_name, duty_name, user_id from usersdetail where authority_code="A3"
 </select>
 
+
+<select id="getTempManager" resultType="com.himark.domain.TempManagerInfoVO">
+select * from tempmanagerinfo where manager_id=#{manager} 
+</select>
+
+<select id="getTempOrigin" resultType="String">
+select manager_id from tempmanagerinfo
+where temp_manager=#{userId};
+</select>
 <select id="countUser" resultType="int">
 	select count(user_id)
 	from user

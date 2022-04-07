@@ -36,7 +36,7 @@ public class LoginController {
 		
 		MemberVO result = new MemberVO(); // 반환할 값
 		
-		// 인사연동이 일어나지 않아 사용자가 없는 경우
+		// 데이터가 없는 경우
 		int countUser = service.countUser();
 		if(countUser == 0) {
 			result.setAuthorityCode("dss");

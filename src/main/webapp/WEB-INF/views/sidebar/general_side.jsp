@@ -58,7 +58,7 @@
 
 		<li class="nav-item"><a class="nav-link" href="#"> <i
 				class="fa-solid fa-address-book"></i> <span>나의 정보</span></a></li>
-		<li class="nav-item"><a class="nav-link" href="/general/approver_list?userId=${member.userId}"> <i
+		<li class="nav-item"><a class="nav-link" href="/general/approver_list?userId=${member.user_id}"> <i
 				class="fa-solid fa-users"></i> <span>나의 승인자</span></a></li>
 
 
@@ -71,8 +71,8 @@
 			<div id="collapseUtilities" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					 <a class="collapse-item" href="/general/request?userId=${member.userId}">요청작성</a>
-                        <a class="collapse-item" href="/general/request_list?userId=${member.userId}">요청목록</a>
+					 <a class="collapse-item" href="/general/request?userId=${member.user_id}">요청작성</a>
+                        <a class="collapse-item" href="/general/request_list?userId=${member.user_id}">요청목록</a>
 				</div>
 			</div></li>
 
@@ -111,7 +111,7 @@
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <span
-							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.userName}(일반사용자)</span> 
+							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.user_name}(일반사용자)</span> 
 							<span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>
 					</a> <!-- Dropdown - User Information -->
 						<div

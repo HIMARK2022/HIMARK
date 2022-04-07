@@ -113,7 +113,7 @@
 					console.log('로그인 처리 완료');
 					
 					if("dss" == result.authorityCode) {
-						alert("인사연동이 필요합니다.");
+						alert("데이터가 없습니다.");
 					} else if("none" == result.authorityCode) {
 						alert('잘못된 아이디이거나, 비밀번호가 틀렸습니다.');
 					} else if ("wrong" == result.authorityCode){

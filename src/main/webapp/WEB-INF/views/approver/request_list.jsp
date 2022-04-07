@@ -48,20 +48,20 @@
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link py-3 shadow active"
 					data-toggle="tab" href="#tab1">
-						<h6 class="m-0 font-weight-bold text-primary">요청 문서</h6>
+						<h6 class="m-0 font-weight-bold text-primary">대기함</h6>
 				</a></li>
 				<li class="nav-item"><a class="nav-link py-3 shadow "
 					data-toggle="tab" href="#tab2">
-						<h6 class="m-0 font-weight-bold text-primary">결재 완료</h6>
+						<h6 class="m-0 font-weight-bold text-primary">승인함</h6>
 				</a></li>
 				<li class="nav-item"><a class="nav-link py-3 shadow "
 					data-toggle="tab" href="#tab3">
-						<h6 class="m-0 font-weight-bold text-primary">결재 반려</h6>
+						<h6 class="m-0 font-weight-bold text-primary">반려함</h6>
 				</a></li>
 			</ul>
 			<form id='actionForm2' action="/approver/request" method='get'>
-				<input type='hidden' name='userId' value='${member.userId}'>
-				<input type='hidden' name='userName' value='${member.userName}'>
+				<input type='hidden' name='user_id' value='${member.user_id}'>
+				<input type='hidden' name='user_name' value='${member.user_name}'>
 			</form>
 
 
@@ -305,19 +305,21 @@ $(function(){
 	console.log(location.hash);
 	if (location.hash == "#tab1"){      
 		$('.nav-tabs').find('a').eq(0).addClass('active').siblings().removeClass();      
-		$('.tab-content').find('#tab1').addClass('active show').siblings().removeClass('active show');   
+		$('.tab-content').find('#tab1').addClass('active show').siblings().removeClass('active show');  
+	
 		} 
 	else if(location.hash == "#tab2"){    
 		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');  
+		$('.nav-tabs').find('a').eq(0).addClass('nav-link py-3 shadow');  
 		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
-		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
+		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');   
+
 		} 
 	else if(location.hash == "#tab3"){    
 		$('.nav-tabs').find('a').eq(1).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(1).addClass('nav-link py-3 shadow');  
+		$('.nav-tabs').find('a').eq(1).addClass('nav-link py-3 shadow'); 
 		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow'); 
+		$('.nav-tabs').find('a').eq(0).addClass('nav-link py-3 shadow'); 
 		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();      
 		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');    
 		} 
@@ -329,7 +331,7 @@ $(function(){
 		var searchForm = $("#searchForm");
 
 		$("#search_btn").on("click", function(e) {
-			var id = '<c:out value="${member.userId}"/>';
+			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
 			searchForm.attr("action", "/general/request_list?userId=" + id);

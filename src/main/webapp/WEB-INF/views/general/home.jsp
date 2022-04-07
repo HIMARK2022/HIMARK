@@ -49,11 +49,16 @@
                                         </svg>
                                     </div>
                                     <div class="profile">
-                                        <b>${member.userName }</b> / ${member.duty } <br> ${member.dept }&nbsp;
+                                        <b>${member.user_name }</b> / ${member.duty_name } <br> ${member.head}
+                                         <c:choose>
+                                            <c:when test="${empty member.depart}">&nbsp;</c:when>
+                                            <c:when test="${empty member.team}">/${member.depart} &nbsp;</c:when>
+                                            <c:otherwise>/${member.depart}/${member.team}&nbsp;</c:otherwise>
+                                            </c:choose>
                                     </div>
                                     </p>
                                     <br>
-                                    <p><b>아이디</b> ${member.userId }</p>
+                                    <p><b>아이디</b> ${member.user_id }</p>
                                     <b>이메일</b> ${member.email }
                                 </div>
                             </div>
@@ -86,35 +91,34 @@
                                                 <div id="table_content">
                                                     <table class="table table-bordered" id="dataTable" width="100%"
                                                         cellspacing="0">
-                                                       <tr>
-	                                                        <th style="width:20%">${team[0].user_name}</th>
-					                                        <th style="width:20%">${team[0].upper_dept2}</th>
-					                                        <th style="width:20%">${team[0].upper_dept}</th>
-					                                        <th style="width:20%">${team[0].dept_name}</th>
-					                                        <th style="width:20%">${team[0].duty_name}</th>
-                                                    	</tr>
-														<tr>
-	                                                        <th id="name">${depart[0].user_name}</th>
-					                                        <th id="headquarter">${depart[0].upper_dept}</th>
-					                                        <th id="department">${depart[0].dept_name}</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${depart[0].duty_name}</th>
-                                                    	</tr>
-                                                    	<tr>
-	                                                        <th id="name">${upper[0].user_name}</th>
-					                                        <th id="headquarter">${upper[0].dept_name}</th>
-					                                        <th id="department">--</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${upper[0].duty_name}</th>
-                                                    	</tr>
-                                                    	<tr>
-								                          <th id="name">${ceo.userName}</th>
-					                                        <th id="headquarter"></th>
-					                                        <th id="department">--</th>
-					                                        <th id="team">--</th>
-					                                        <th id="position">${ceo.duty}</th>
+                                                       <c:forEach var="list" items="${alist}">
+                  
+								                        <tr>
+								                           <td style="width:20%">${list.userName}</td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.bonbu}">--</c:when>
+								                           <c:otherwise>${list.bonbu}</c:otherwise>
+								                           </c:choose>
+								                           </td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.buseo}">--</c:when>
+								                           <c:otherwise>${list.buseo}</c:otherwise>
+								                           </c:choose></td>
+								                           <td style="width:20%"><c:choose>
+								                           <c:when test="${empty list.team }">--</c:when>
+								                           <c:otherwise>${list.team}</c:otherwise>
+								                           </c:choose></td>
+								                           <td style="width:20%">${list.duty}</td>
 								                        </tr>
-							
+								                         </c:forEach>
+								                         <tr>
+								                           <td style="width:20%">${ceo.user_name}</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">--</td>
+								                           <td style="width:20%">${ceo.duty_name}</td>
+								                        </tr>
+                       
 														</table>
                                                 </div>
                                             </div>
@@ -143,8 +147,8 @@
                                             <a href="#" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <img src="/resources/img/department.png" id="ad_icon2" style="width: 74px; height: 64px; opacity: 0.7;"></img></br>
-                                                        <h5>나의 부서</h5>
+                                                       <i class="fa fa-users fa-4x" id="ad_icon2" style="width: 74px; height: 64px; opacity: 0.7;"></i></br>
+                                                        <h5>나의 승인자</h5>
                                                     </div>
                                                 </div>
                                             </a>
@@ -166,21 +170,21 @@
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">보낸 결재 요청</h6>
+                                   <h6 class="m-0 font-weight-bold text-primary">보낸 결재 요청 </h6>
                                 </div>
                                 <div class="card-body" id="request" style="padding: 1em;">
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab1'"data-toggle="tab">
+                                                <div class="card-body state" id="ing" onclick="location.href='/general/request_list?userId=${member.user_id}#tab1'">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <div
+                                                            <div id="progress" 
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
-                                                                진행중</div>
+                                                                대기</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto ing">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
                                                         </div>
                                                     </div>
@@ -190,16 +194,16 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                    <div class="card-body state" id="complete" onclick="location.href='/general/request_list?userId=${member.user_id}#tab2'" data-toggle="tab">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
                                                                     class="text-sm font-weight-bold text-success text-uppercase mb-1">
-                                                                    완료</div>
+                                                                    승인</div>
                                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>건
                                                                 </div>
                                                             </div>
-                                                            <div class="col-auto">
+                                                            <div class="col-auto complete">
                                                                 <i class="fas fa-check fa-2x text-success"></i>
                                                             </div>
                                                         </div>
@@ -209,7 +213,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" onclick="location.href='/general/request_list?userId=${member.userId}#tab3'" data-toggle="tab">
+                                                        <div class="card-body state" id="back" onclick="location.href='/general/request_list?userId=${member.user_id}#tab3'" data-toggle="tab">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
@@ -218,7 +222,7 @@
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                                         <c:out value='${back}'/>건</div>
                                                                 </div>
-                                                                <div class="col-auto">
+                                                                <div class="col-auto back">
                                                                     <i class="fa fa-reply fa-2x text-secondary"></i>
                                                                 </div>
                                                             </div>
@@ -227,33 +231,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                        <!-- Pie Chart -->
-                                        <div class="col-xl-12 col-lg-12">
-                                            <div class="card shadow mb-4">
 
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <div class="chart-pie pt-4 pb-2">
-                                                        <canvas id="myPieChart"></canvas>
-                                                    </div>
-                                                    <div class="mt-4 text-center small">
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-primary"></i> 요청
-                                                        </span>
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-success"></i> 완료
-                                                        </span>
-                                                        <span class="mr-2">
-                                                            <i class="fas fa-circle text-secondary"></i> 반려
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                <!-- Pie Chart -->
+                                <div class="col-xl-12 col-lg-12">
+                                    <div class="card shadow mb-4">
+
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="chart-pie pt-4 pb-2">
+                                                <canvas id="myPieChart"></canvas>
+                                            </div>
+                                            <div class="mt-4 text-center small">
+                                                <span class="mr-2">
+                                                    <i class="fas fa-circle text-primary"></i> 대기
+                                                </span>
+                                                <span class="mr-2">
+                                                    <i class="fas fa-circle text-success"></i> 승인
+                                                </span>
+                                                <span class="mr-2">
+                                                    <i class="fas fa-circle text-secondary"></i> 반려
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         </div>
                         <!-- /.container-fluid -->
@@ -261,19 +264,18 @@
                     </div>
                 </div>  
                 <!-- 메인 끝 -->
-            </div>
             <script>
             var button1 = document.getElementById("ad_icon1");
             var button2 = document.getElementById("ad_icon2");
             var button3 = document.getElementById("ad_icon3");
             button1.onclick = function(event) {
-            	location.href = "myinfo?userId="+${member.userId}
+            	location.href = "myinfo?userId="+${member.user_id}
             }
             button2.onclick = function(event) {
-            	location.href = "mydept?userId="+${member.userId}
+            	location.href = "approver_list?userId="+${member.user_id}
               }
             button3.onclick = function(event) {
-            	location.href = "request?userId="+${member.userId}
+            	location.href = "request_list?userId="+${member.user_id}
               }
             
             Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -308,6 +310,33 @@
                     cutoutPercentage: 80,
                   },
                 });
+                
+                $("#ing").hover(function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x fa-spin text-primary'></i>");
+                },function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x text-primary'></i>");
+                }); 
+                
+                 
+                 $("#complete").hover(function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x fa-bounce text-success'></i>");
+                 },function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x text-success'></i>");
+                 }); 
+                
+                 
+                 $("#back").hover(function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x fa-flip text-secondary'></i>");
+                 },function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x text-secondary'></i>");
+                 }); 
+                
             </script>
             <!-- End of Main Content -->
             <%@include file="../sidebar/footer.jsp"%>

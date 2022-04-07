@@ -67,7 +67,7 @@ public class PaymentController {
 		pservice.updateFdate(payment.getRequestNo(),payment.getImp());
 		
 		//승인자
-		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
+		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
 			log.info("승인자 register");
 			return "redirect:/approver/request_list?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		}
@@ -83,18 +83,19 @@ public class PaymentController {
 	@GetMapping("/request")
 	public void request( HttpServletRequest request, Model model, PaymentVO pvo) 
 	{
+		log.info("요청하기");
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 		
 		log.info(mservice.getMember(userId));
-		log.info(pservice.getList(userId));
+
 
 		model.addAttribute("uppercategory",pservice.getUpperCategory());
 		model.addAttribute("category", pservice.getCategory());
 		model.addAttribute("member", mservice.getMember(userId));
 		
-		// 승인자 리스트(승인자)
+		// 승인자 리스트(승인자,일반사용자)
 		List<MemberVO> list = new ArrayList<MemberVO>();
 		String managerId = mservice.getApprover(userId).getUserId();
 		boolean tf=true;
@@ -119,19 +120,16 @@ public class PaymentController {
 		}
 
 		model.addAttribute("alist", list);
-
-		//  승인자 리스트(일반 사용자)
-		model.addAttribute("team", aservice.getTeamL(userId));
-		model.addAttribute("depart", aservice.getDepartL(userId));
-		model.addAttribute("upper", aservice.getUpperL(userId));
+	
 		model.addAttribute("ceo", mservice.getCeo());
+		
 		//승인자일경우
-		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
+		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
 			log.info("승인자 요청목록 ");
 					
 		}
 		//일반사용자일경우
-		if(mservice.getMember(userId).getAuthorityCode().equals("A1")) {
+		if(mservice.getMember(userId).getAuthority_code().equals("A1")) {
 			log.info("일반사용자 요청목록 ");
 			
 		}
@@ -181,7 +179,7 @@ public class PaymentController {
 		rttr.addAttribute("filterList",filterList);
 		
 		
-		if(mservice.getMember(userId).getAuthorityCode().equals("A2")) {
+		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
 			return "redirect:/approver/request_list?userId="+userId;
 		}
 		return "redirect:/general/request_list?userId="+userId;
@@ -197,6 +195,7 @@ public class PaymentController {
 		model.addAttribute("uppercategory",pservice.getUpperCategory());
 		model.addAttribute("category", pservice.getCategory());
 		model.addAttribute("member", mservice.getMember(userId));
+
 		
 		log.info("목록 > 결재 승인 ");
 		model.addAttribute("clist",pservice.getCompleteList(userId));
@@ -262,6 +261,12 @@ public class PaymentController {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
+		
+		String tempOriginId = mservice.getTempOrigin(userId);
+		
+		if(tempOriginId != null) {
+			userId=tempOriginId;
+		}
 		
 		log.info(pservice.getPaymentList(userId));
 		log.info("승인자 > 결재 문서 ");
