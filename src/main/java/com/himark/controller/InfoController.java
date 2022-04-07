@@ -36,7 +36,10 @@ private MemberService mservice;
 		public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
 			List<MemberVO> list = new ArrayList<MemberVO>();
 			List<TempManagerInfoVO> tlist = new ArrayList<TempManagerInfoVO>();
-			String managerId = mservice.getApprover(userId).getUserId();
+			if(mservice.getApprover(userId) == null) {
+				model.addAttribute("ceo", mservice.getCeo());
+			}else {
+				String managerId = mservice.getApprover(userId).getUserId();
 			boolean tf=true;
 		
 			while(tf==true) {
@@ -61,7 +64,7 @@ private MemberService mservice;
 			model.addAttribute("ceo", mservice.getCeo());
 			model.addAttribute("member", mservice.getMember(userId));
 			model.addAttribute("alist", list);
-			
+			}
 			//임시승인자
 			for(int i=0;i<list.size();i++) {
 				String manager = list.get(i).getUserId();

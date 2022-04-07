@@ -60,7 +60,12 @@ public class MainController {
 		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
 		// 승인자 목록
 		List<MemberVO> list = new ArrayList<MemberVO>();
-		String managerId = mservice.getApprover(userId).getUserId();
+		
+		
+		if(mservice.getApprover(userId) == null) {
+			model.addAttribute("ceo", mservice.getCeo());
+		}else {
+			String managerId = mservice.getApprover(userId).getUserId();
 		boolean tf=true;
 	
 		while(tf==true) {
@@ -85,7 +90,7 @@ public class MainController {
 		model.addAttribute("alist", list);
 		model.addAttribute("ceo", mservice.getCeo());
 		
-
+		}
 	}
 	@GetMapping("/admin/home")
 	public void adminHome(Model model, HttpServletRequest request) {

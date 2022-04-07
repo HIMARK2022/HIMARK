@@ -97,7 +97,10 @@ public class PaymentController {
 		
 		// 승인자 리스트(승인자,일반사용자)
 		List<MemberVO> list = new ArrayList<MemberVO>();
-		String managerId = mservice.getApprover(userId).getUserId();
+		if(mservice.getApprover(userId) == null) {
+			model.addAttribute("ceo", mservice.getCeo());
+		}else {
+			String managerId = mservice.getApprover(userId).getUserId();
 		boolean tf=true;
 	
 		while(tf==true) {
@@ -122,7 +125,7 @@ public class PaymentController {
 		model.addAttribute("alist", list);
 	
 		model.addAttribute("ceo", mservice.getCeo());
-		
+		}
 		//승인자일경우
 		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
 			log.info("승인자 요청목록 ");
