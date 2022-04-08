@@ -1,5 +1,17 @@
 @charset "UTF-8";
-
+#profile {
+    padding: 50px;
+    vertical-align: top;
+    word-break: keep-all;
+    width: 950px;
+}
+.pic {
+    float: left;
+    margin-right: 20px;
+}
+.profile {
+    font-size: xx-large;
+}
 
 *{
     -webkit-box-sizing: border-box;
@@ -17,6 +29,7 @@
 .cf:after {
     clear: both;
 }
+
 
 /**
  * For IE 6/7 only
@@ -437,4 +450,59 @@ Thanks :)*/
 }
 a:hover{
 	text-decoration: none;
+}
+
+
+.tracking-detail {
+ padding:3rem 0
+}
+#tracking {
+ margin-bottom:1rem
+}
+[class*=tracking-status-] p {
+ margin:0;
+ font-size:1.1rem;
+ color:#fff;
+ text-transform:uppercase;
+ text-align:center
+}
+[class*=tracking-status-] {
+ padding:1.6rem 0
+}
+.tracking-status-intransit {
+ background-color:#65aee0
+}
+
+
+
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 24px 0;
+    padding: 0 36px 0 46px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #22c0e8;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
 }
