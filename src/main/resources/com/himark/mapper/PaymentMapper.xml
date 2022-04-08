@@ -107,6 +107,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state ="대기"
+		order by request_number desc
 	</select>
 	
 	<select id="getBackList" resultMap="getPaymentMap">
@@ -114,6 +115,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state="반려"
+		order by request_number desc
 	</select>
 	
 		<select id="getCompleteList" resultMap="getPaymentMap">
@@ -121,6 +123,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where user_id=#{userId} and request_state="승인"
+		order by request_number desc
 	</select>
 
 
@@ -137,6 +140,7 @@ else (select result.n
 		</foreach>
 		and u.request_state ="대기"
 		<!--  </if> -->
+		order by request_number desc
 	</select>
 
 		<select id="read" resultMap="getPaymentMap">
@@ -144,6 +148,8 @@ else (select result.n
 			join approval_classify a
 			on u.classify_name = a.classify_name
 			where request_number=#{requestNo}
+			order by request_number desc
+			
 	</select>
 	
 	<select id="getPaymentList" resultMap="getPaymentMap">
@@ -151,6 +157,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="대기"
+		order by request_number desc
 	</select>
 	
 		<select id="getBackPaymentList" resultMap="getPaymentMap">
@@ -158,6 +165,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="반려"
+		order by request_number desc
 	</select>
 	
 		<select id="getCompletePaymentList" resultMap="getPaymentMap">
@@ -165,6 +173,7 @@ else (select result.n
 		join approval_classify a
 		on u.classify_name = a.classify_name 
 		where manager_id=#{userId} and request_state="승인"
+		order by request_number desc
 	</select>
 	
 	<select id="getUpperCategory" resultType="String">

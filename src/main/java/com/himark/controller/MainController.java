@@ -48,7 +48,6 @@ public class MainController {
 			userId=tempOriginId;
 		}
 		
-		model.addAttribute("member", mservice.getMember(userId));
 		String deptId = mservice.getMember(userId).getDept_id();
 		model.addAttribute("dlist", mservice.getDeptList(deptId));
 		log.info(mservice.getDeptList(deptId));

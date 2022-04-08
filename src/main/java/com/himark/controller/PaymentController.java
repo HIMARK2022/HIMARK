@@ -67,9 +67,9 @@ public class PaymentController {
 		pservice.updateFdate(payment.getRequestNo(),payment.getImp());
 		
 		//승인자
-		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
+		if(mservice.getMember(userId).getAuthority_code().equals("A2") ||mservice.getMember(userId).getAuthority_code().equals("A0")) {
 			log.info("승인자 register");
-			return "redirect:/approver/request_list?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
+			return "redirect:/approver/request_list?userId="+userId; 
 		}
 		
 		//일반 사용자
@@ -224,10 +224,13 @@ public class PaymentController {
 	}
 
 	@GetMapping({"/request_detail","/payment_detail"})
-	public void get(@RequestParam("requestNo") int requestNo, Model model,PaymentVO payment) 
+	public void get(@RequestParam("requestNo") int requestNo, Model model,PaymentVO payment, HttpServletRequest request) 
 	{
+		HttpSession session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("loginUser");
+		String userId= m.getUserId();
 		log.info("get : "+ payment);
-		String userId = payment.getUserId();
+		
 		log.info("userId : "+ userId);
 		String requester = pservice.get(requestNo).getUserId();
 		log.info("requester " +requester);
@@ -265,6 +268,8 @@ public class PaymentController {
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 		
+		model.addAttribute("member", mservice.getMember(userId));
+		
 		String tempOriginId = mservice.getTempOrigin(userId);
 		
 		if(tempOriginId != null) {
@@ -274,7 +279,6 @@ public class PaymentController {
 		log.info(pservice.getPaymentList(userId));
 		log.info("승인자 > 결재 문서 ");
 		model.addAttribute("rpayment",pservice.getPaymentList(userId));
-		model.addAttribute("member", mservice.getMember(userId));
 		
 		log.info("승인자 > 결재 승인 ");
 		model.addAttribute("cpayment",pservice.getCompletePaymentList(userId));

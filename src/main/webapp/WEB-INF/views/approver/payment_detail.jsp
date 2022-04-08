@@ -123,7 +123,7 @@
 											</p>
 											<div class="page-wrapper">
 												<a class="btn btn-outline-success" type="submit"
-													href="/approver/payment?userId=${member.userId}"
+													href="/approver/payment?userId=${member.user_id}"
 													id="request_btn">목록</a>
 											</div>
 										</c:if>
@@ -135,7 +135,7 @@
 											<!-- 승인자의 경우, 이미 완료된 결재내역 제외 -->
 											<div class="page-wrapper">
 												<a class="btn btn-outline-success" type="submit"
-													href="/approver/payment?userId=${member.userId}"
+													href="/approver/payment?userId=${member.user_id}"
 													id="request_btn">목록</a> <a class="content-detail">
 													<button class="btn btn-outline-danger" type="button"
 														id="payment">결재하기</button>
@@ -143,7 +143,7 @@
 											</div>
 											<form id='actionForm' action="/approver/payment"
 												method='post'>
-												<input type='hidden' name='userId' value='${member.userId}'>
+												<input type='hidden' name='userId' value='${member.user_id}'>
 												<input type='hidden' name='requestNo'
 													value='${detail.requestNo}'>
 											</form>
@@ -156,7 +156,7 @@
 			<form id='PaymentForm' action="/approver/payment"
 				method='post'>
 				<div class="modal-wrapper">
-					<input type='hidden' name='userId' value='${member.userId}'>
+					<input type='hidden' name='userId' value='${member.user_id}'>
 					<input type='hidden' name='requestNo'value='${detail.requestNo}'>
 					<div class="rmodal">
 						<div class="modal-header">
@@ -381,7 +381,7 @@
 		
 		$("#accept").on("click",function(e) {
 							console.log("요청 수락 click");
-							var id = '<c:out value="${member.userId}"/>';
+							var id = '<c:out value="${member.user_id}"/>';
 							e.preventDefault();
 							PaymentForm.find('#state').remove();
 							PaymentForm
@@ -403,6 +403,12 @@
 							PaymentForm.submit();
 
 						});
+		
+		$('.content-detail').on('click', function() {
+		
+			$('.modal-wrapper').removeClass('open');
+				
+		});
 
 
 	</script>
