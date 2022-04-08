@@ -44,6 +44,7 @@ public interface AdminAddEmployeeMapper {
 			@Param("sex") String sex,
 			@Param("email") String email,
 			@Param("phone_number") String phone_number,
+			@Param("flag") String flag ,
 			@Param("user_id") String user_id
 			);
 

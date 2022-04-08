@@ -109,6 +109,7 @@ public class AdminAddEmployeeController {
 				uservo.getSex(), 
 				uservo.getEmail(), 
 				uservo.getPhone_number(),
+				uservo.getFlag(),
 				uservo.getUser_id());
 		return uservo;
 	}
