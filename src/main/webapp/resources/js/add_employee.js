@@ -2,7 +2,7 @@
  * 
  */
 
-$('.content-detail').on('click', function () {
+	$('.content-detail').on('click', function () {
 	    $('.modal-wrapper').toggleClass('open');
 	    
 	    return false;
@@ -103,8 +103,8 @@ $('.content-detail').on('click', function () {
 				data[i].team="";
 			}
 			
-			var modInfo = "modInfo(\'"+ data[i].head       +'/'+data[i].depart+'/'+data[i].team + "\'"
-								+",\'"+ data[i].user_name  + "\',\'" + data[i].pos_name         + "\'"
+			var modInfo = "modInfo(\'"+ data[i].head       +'\u00a0'+data[i].depart+'\u00a0'+data[i].team + "\'"
+								+",\'"+ data[i].user_name  + "\',\'" + data[i].pos_name         + "\',\'" + data[i].pos_id + "\'"
 								+",\'"+ data[i].birth_date + "\',\'" + data[i].sex              + "\'"
 								+",\'"+ data[i].email      + "\',\'" + data[i].phone_number     + "\'"
 								+",\'"+ data[i].user_id    + "\',\'" + data[i].dept_id          + "\',\'"+ data[i].flag + "\')";
@@ -150,7 +150,7 @@ $('.content-detail').on('click', function () {
 		
 		AddModifyService.addUser(userInfo,function(result){
 			$('.modal-wrapper2').removeClass('open');
-			$('.page-wrapper2').toggleClass('blur-it');
+			
 			$(".modal").find("input").val("");
 			
 			if(userInfo.dept_id.length == 3){
@@ -165,20 +165,24 @@ $('.content-detail').on('click', function () {
 		});
 	});
 	
-	function modInfo(head, user_name , pos , birth , sex , email , phone , user_id ,dept_id , flag) {
+	function modInfo(head, user_name , pos,pos_id , birth , sex , email , phone , user_id ,dept_id , flag) {
 			
 		$('#modForm')[0].reset();
 		
 		$('input[name=ModBelong]').attr('value', head);
-		$('input[name=ModPos]').attr('value', pos);
+		/* $('input[name=ModPos]').attr('value', pos); */
 			
 		if(birth == "null"){birth="";}
 		if(sex == "null"){sex="";}
 		if(email == "null"){email="";}
 		if(phone == "null"){phone="";}
 		
-		console.log("너는 뭐가 나오니 ? "+flag)
-			
+		console.log("너는 뭐가 나오니 ? "+pos)
+		console.log("너는 뭐가 나오니 ? "+pos_id)
+		
+		$('#ModPos').val(pos_id).prop("selected",true);
+		
+		
 			if(flag =="인사연동"){				
 				//$('input[name=ModhowIn]:input[id="howIn1"]').attr("checked","checked");
 				$('#howIn1').prop("checked",true);
@@ -211,6 +215,7 @@ $('.content-detail').on('click', function () {
 		var user_id = $('input[name=Muser_id]').val();
 		var dept_id = $('input[name=Mdept_id]').val();
 		var flag  = $('input[name=ModhowIn]:checked').val();
+		var pos =  $('select[name=ModPos]').val();
 		
 		var modInfo ={
 			user_name:user_name,
@@ -220,7 +225,8 @@ $('.content-detail').on('click', function () {
 			phone_number:phone_number,
 			user_id:user_id,
 			dept_id:dept_id,
-			flag : flag
+			flag : flag,
+			pos_id : pos
 		}
 		
 		AddModifyService.modify(modInfo,function(result){

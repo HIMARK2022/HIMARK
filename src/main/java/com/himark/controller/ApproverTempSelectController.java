@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.himark.domain.ManagerVO;
+import com.himark.domain.MemberVO;
 import com.himark.domain.TempManagerInfoVO;
 import com.himark.domain.UserVO;
 import com.himark.domain.UsersDetailVO;
@@ -37,7 +39,10 @@ public class ApproverTempSelectController {
 	private AdminTempApproverService AdminTempService;
 	
 	@GetMapping("/TempSelect")
-	public void tree(Model model,@RequestParam("userId")String userId) {
+	public void tree(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("loginUser");
+		String userId= m.getUserId();
 	
 		model.addAttribute("temp",tempselectservice.findTempApprover(userId));
 		

@@ -38,15 +38,15 @@
 							<div class="row12">
 								<c:forEach var="head" items="${head}">
 	 								<ul class="tree"> 
-										 <li> <i class="fa-solid fa-folder-open"></i><a class="head" id="${head.head_id}">${head.head}</a>
+										 <li> <i class="fa-solid fa-user"></i><a class="head" id="${head.head_id}">${head.head}</a>
 											<ul>
 											<c:forEach var="depart" items="${depart}">
 		                                        <c:if test="${depart.head eq head.head}">
-		    										<li><i class="fa-solid fa-folder"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
+		    										<li><i class="fa-solid fa-user"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
 		 												<ul>
 		 												<c:forEach var="team" items="${team}">
 		                                                    <c:if test="${depart.depart eq team.depart}">
-																<li><i class="fas fa-fw fa-file"></i><a class="team" id="${team.team_id}">${team.team}</a>
+																<li><i class="fa-solid fa-user"></i><a class="team" id="${team.team_id}">${team.team}</a>
 																</li>
 															</c:if>
 	                                                    </c:forEach>
@@ -129,17 +129,18 @@
                                     </div>
                                 </td>
                             </tr>
-                             
-                              <tr>
-                                <th >직급(변경 불가)</th>
-                                <td >
-                                    <div>
-                                    	<input type="text" class="form-control bg-light border-0 small" placeholder="사원/선임/책임/수석/임원" name="ModPos" id="ModPos"
-                                          aria-label="Search" aria-describedby="basic-addon2" readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                            
+                             <tr>
+								<th>직급</th>
+								<td>
+									<div>
+										<select class="form-select form-control col-lg-5" name="ModPos" id="ModPos" required>
+                                        	<c:forEach  var="pos" items="${pos}">
+                                        		<option value="${pos.pos_id}" >${pos.pos_name}</option>  
+                                            </c:forEach>
+                                       	</select>
+                            		</div>
+								</td>
+							</tr>
                             <tr>
                                 <th >등록 형태</th>
                                 <td >

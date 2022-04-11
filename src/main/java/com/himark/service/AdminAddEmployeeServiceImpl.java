@@ -75,8 +75,8 @@ public class AdminAddEmployeeServiceImpl implements AdminAddEmployeeService{
 		return mapper.selectAllTeamMember(dept_id);
 	}
 	@Override
-	public int modUser(String user_name, String birth_date, String sex, String email, String phone_number, String flag, String user_id) {
-		int cnt = mapper.modUser(user_name, birth_date, sex, email, phone_number, flag ,user_id);
+	public int modUser(String user_name,String pos_id ,String birth_date, String sex, String email, String phone_number, String flag, String user_id) {
+		int cnt = mapper.modUser(user_name,pos_id ,birth_date, sex, email, phone_number, flag ,user_id);
 		return cnt;
 	}
 	@Override

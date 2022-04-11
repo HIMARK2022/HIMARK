@@ -124,7 +124,7 @@
 			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?user_id=" + id);
+			searchForm.attr("action", "/general/request");
 			searchForm.submit();
 		});
 		

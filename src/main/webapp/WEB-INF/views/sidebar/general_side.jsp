@@ -56,9 +56,9 @@
 
 		<!-- Nav Item - Dashboard -->
 
-		<li class="nav-item"><a class="nav-link" href="#"> <i
+		<li class="nav-item"><a class="nav-link" href="/general/myinfo"> <i
 				class="fa-solid fa-address-book"></i> <span>나의 정보</span></a></li>
-		<li class="nav-item"><a class="nav-link" href="/general/approver_list?userId=${member.user_id}"> <i
+		<li class="nav-item"><a class="nav-link" href="/general/approver_list"> <i
 				class="fa-solid fa-users"></i> <span>나의 승인자</span></a></li>
 
 
@@ -71,8 +71,8 @@
 			<div id="collapseUtilities" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					 <a class="collapse-item" href="/general/request?userId=${member.user_id}">요청작성</a>
-                        <a class="collapse-item" href="/general/request_list?userId=${member.user_id}">요청목록</a>
+					 <a class="collapse-item" href="/general/request">요청작성</a>
+                        <a class="collapse-item" href="/general/request_list">요청목록</a>
 				</div>
 			</div></li>
 

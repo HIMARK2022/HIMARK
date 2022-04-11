@@ -64,11 +64,13 @@
 	<update id="modUser">
 		UPDATE user
 		SET user_name = #{user_name} 
+		,pos_id = #{pos_id}
 		,birth_date=#{birth_date}  
 		,sex= #{sex} 
 		,email=#{email}  
 		,phone_number=#{phone_number} 
 		,flag = #{flag}
+		
 		WHERE user_id =#{user_id}  ;
 	</update>
 

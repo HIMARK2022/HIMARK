@@ -31,55 +31,39 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-4" style="text-align: center;padding: 2%;">
-                                    <img class="img-circle img-responsive" alt="" src="/resources/img/undraw_profile.svg" width="70%">
-                                    <div style="margin-top: 10%;">
-                                        <a href="#" class="btn btn-outline-danger btn-icon-split" >
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                            <span class="text">초기화</span>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary btn-icon-split" >
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="text">업로드</span>
-                                        </a>
-                                    </div>
-                                </div>
                                 
-                                <div class="col-lg-8" >
+                                
+                                <div class="col-lg-12" >
                                     <table  class="table table-bordered" id="table" cellspacing="0">
                                         <tr>
                                             <th class="col-lg-3  col-md-3">이름</th>
                                             <td>
-                                                 ${member.userName}   
+                                                 ${member.user_name}   
                                             </td>
                                         </tr>
                                        
                                         <tr>
                                             <th >직급</th>
                                             <td>
-                                                ${member.pos}
+                                                ${member.pos_name}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th >직책</th>
                                             <td>
-                                                ${member.duty}
+                                                ${member.duty_name}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>부서(상업부/부서/팀)</th>
+                                            <th>부서(본부/부서/팀)</th>
                                             <td>
-                                                 ${member.dept}
+                                               ${member.head} ${member.depart} ${member.team}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>생년월일</th>
                                             <td >
-                                               ${member.birth}
+                                               ${member.birth_date}
                                             </td>
                                           </tr>
                                           <tr>
@@ -91,56 +75,13 @@
                                           <tr>
                                             <th >휴대폰 번호</th>
                                             <td >
-                                             ${member.phoneNo}
+                                             ${member.phone_number}
                                             </td>
                                           </tr>
                                     </table>
                                     
                                 </div>
-                                <div class="col-lg-12" >
-                                    <table  class="table table-bordered"  cellspacing="0" id="table1">
-                                        <tr>
-                                            <th class="col-lg-3  col-md-3">아이디</th>
-                                            <td>
-                                               ${member.userId}
-                                            </td>
-                                        </tr>
-                                       
-                                        <tr>
-                                            <th>비밀번호</th>
-                                            <td>
-                                                <div class="myPwd">
-                                                    <label>현재 비밀번호</label>
-                                                    <div class="form-group pass_show"> 
-                                                        <input type="password" value='<c:out value="${member.userPwd}"/>' class="form-control" placeholder="Current Password"> 
-                                                    </div> 
-                                                    <label>새로운 비밀번호</label>
-                                                    <div class="form-group pass_show"> 
-                                                        <input type="password" value="" class="form-control" placeholder="New Password"> 
-                                                    </div> 
-                                                    <label>비밀번호 확인</label>
-                                                    <div class="form-group pass_show"> 
-                                                        <input type="password" value="" class="form-control" placeholder="Confirm Password"> 
-                                                    </div>
-                                                    <div id="pwd_btn">
-                                                        <a href="#" class="btn btn-outline-warning" >
-                                                            <span class="text">비밀번호 수정하기</span>
-                                                        </a>
-                                                    </div> 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        
-                                    </table>
-                                    <div id="tohomebtn">
-                                        <a href="#" class="btn btn-outline-success btn-lg btn-icon-split">
-                                            <span class="icon text-gray-600">
-                                                <i class="fas fa-arrow-right"></i>
-                                            </span>    
-                                            <span class="text">홈화면 이동</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                
                             </div>
                             
                         </div>

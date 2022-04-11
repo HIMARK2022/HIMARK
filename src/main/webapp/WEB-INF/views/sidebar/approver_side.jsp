@@ -53,17 +53,17 @@
             <!-- Nav Item - Dashboard -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/approver/myinfo">
                     <i class="fa-solid fa-address-book"></i>
                     <span>나의 정보</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/approver/approver_list?userId=${member.user_id}">
+                <a class="nav-link" href="/approver/approver_list">
                     <i class="fa-solid fa-users"></i>
                     <span>나의 승인자</span></a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/approver/TempSelect">
                    <i class="fa-solid fa-user-check"></i>
                     <span>임시 승인자 지정</span></a>
             </li>
@@ -78,13 +78,13 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/approver/request?userId=${member.user_id}">요청작성</a>
-                        <a class="collapse-item" href="/approver/request_list?userId=${member.user_id}">요청목록</a>
+                        <a class="collapse-item" href="/approver/request">요청작성</a>
+                        <a class="collapse-item" href="/approver/request_list">요청목록</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/approver/payment?userId=${member.user_id}">
+                <a class="nav-link" href="/approver/payment">
                     <i class="fa-solid fa-list-ol"></i>
                     <span>결재 수신</span></a>
             </li>

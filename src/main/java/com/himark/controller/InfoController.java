@@ -3,6 +3,9 @@ package com.himark.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,19 +28,26 @@ private MemberService mservice;
 	
 	
 	@GetMapping({"/myinfo","/myinfo"})
-	public void get(@RequestParam("userName") String userName, Model model) {
+	public void get(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("loginUser");
+		String userId= m.getUserId();
 		log.info("/myinfo");
-		log.info(userName);
-		model.addAttribute("member", mservice.getMember(userName));
+		log.info(userId);
+		model.addAttribute("member", mservice.getMember(userId));
 	}
 	
 		
 		@GetMapping("/approver_list")
-		public void approverList(@RequestParam("userId") String userId, Model model, MemberVO member) {
+		public void approverList( Model model, MemberVO member,HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			MemberVO m = (MemberVO) session.getAttribute("loginUser");
+			String userId= m.getUserId();
 			List<MemberVO> list = new ArrayList<MemberVO>();
 			List<TempManagerInfoVO> tlist = new ArrayList<TempManagerInfoVO>();
 			if(mservice.getApprover(userId) == null) {
 				model.addAttribute("ceo", mservice.getCeo());
+				
 			}else {
 				String managerId = mservice.getApprover(userId).getUserId();
 			boolean tf=true;

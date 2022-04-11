@@ -104,7 +104,11 @@ public class AdminAddEmployeeController {
 	@PostMapping("/mod_user")
 	public UserVO mod(Model model ,UserVO uservo) {
 		log.info("직원 수정 진입");
+		log.info("직원 수정 진입%%%"+uservo.getPos_id());
+		
+		
 		service.modUser(uservo.getUser_name(), 
+				uservo.getPos_id(),
 				uservo.getBirth_date(), 
 				uservo.getSex(), 
 				uservo.getEmail(), 

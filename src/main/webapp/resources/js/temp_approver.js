@@ -216,9 +216,7 @@ function showTemp(data){
 		var finish = new Date(data[i].approval_finish);
 
 		str += "<tr>"
-			+ "<td>" + data[i].manager_id      + "</td>"
 			+ "<td>" + data[i].manager_name    + "</td>"
-			+ "<td>" + data[i].temp_manager    + "</td>"
 			+ "<td>" + data[i].user_name       + "</td>"
 			+ "<td>" + start.getFullYear() +"-"+(start.getMonth()+1) +"-"+start.getDate()  + "</td>"
 			+ "<td>" + finish.getFullYear()+"-"+(finish.getMonth()+1)+"-"+finish.getDate()  +"</td>"

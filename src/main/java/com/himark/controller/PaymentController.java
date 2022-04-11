@@ -69,13 +69,13 @@ public class PaymentController {
 		//승인자
 		if(mservice.getMember(userId).getAuthority_code().equals("A2") ||mservice.getMember(userId).getAuthority_code().equals("A0")) {
 			log.info("승인자 register");
-			return "redirect:/approver/request_list?user_id="+userId; 
+			return "redirect:/approver/request_list"; 
 		}
 		
 		//일반 사용자
 		//if(mservice.getMember(userId).getAuthorityCode().equals("A1")) {
 		log.info("일반사용자 register");
-		return "redirect:/general/request_list?user_id="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
+		return "redirect:/general/request_list"; //redirect:를 하지 않는 경우, 새로고침시 도배
 		
 	}
 
@@ -138,18 +138,6 @@ public class PaymentController {
 		}
 		
 	
-		
-		//int requestNo = Integer.parseInt(request.getParameter("requestNo"));
-		
-//		Calendar cal = Calendar.getInstance();
-//		String speriod = pservice.get(requestNo).getPeriod();
-//		Date rdate = pservice.get(requestNo).getRdate();
-//		int iperiod = Integer.parseInt(speriod.substring(0, speriod.indexOf("일")));
-//		log.info(iperiod+"일");
-//		cal.setTime(rdate);
-//		cal.add(Calendar.DATE,iperiod);
-//		pvo.setFdate(cal.getTime());
-	
 	}
 	
 	@PostMapping("/request_list")
@@ -183,9 +171,9 @@ public class PaymentController {
 		
 		
 		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
-			return "redirect:/approver/request_list?user_id="+userId;
+			return "redirect:/approver/request_list";
 		}
-		return "redirect:/general/request_list?user_id="+userId;
+		return "redirect:/general/request_list";
 		
 	}
 	

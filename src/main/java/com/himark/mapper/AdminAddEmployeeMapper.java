@@ -40,6 +40,7 @@ public interface AdminAddEmployeeMapper {
 	
 	public int modUser(
 			@Param("user_name") String user_name,
+			@Param("pos_id") String pos_id,
 			@Param("birth_date") String birth_date,
 			@Param("sex") String sex,
 			@Param("email") String email,

@@ -101,15 +101,15 @@
 							<div class="row12">
 								<c:forEach var="head" items="${head}">
 	 								<ul class="tree"> 
-										 <li> <i class="fa-solid fa-folder-open"></i><a  class="head" id="${head.head_id}">${head.head}</a>
+										 <li> <i class="fa-solid fa-user"></i><a  class="head" id="${head.head_id}">${head.head}</a>
 											<ul>
 											<c:forEach var="depart" items="${depart}">
 		                                        <c:if test="${depart.head eq head.head}">
-		    										<li><i class="fa-solid fa-folder"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
+		    										<li><i class="fa-solid fa-user"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
 		 												<ul>
 		 												<c:forEach var="team" items="${team}">
 		                                                    <c:if test="${depart.depart eq team.depart}">
-																<li><i class="fas fa-fw fa-file"></i><a class="team" id="${team.team_id}">${team.team}</a>
+																<li><i class="fa-solid fa-user"></i><a class="team" id="${team.team_id}">${team.team}</a>
 																</li>
 															</c:if>
 	                                                    </c:forEach>
@@ -172,9 +172,9 @@
 								<thead>
 									<tr>
 										<th>승인자</th>
-										<th>이름</th>
+					
 										<th>임시 승인자</th>
-										<th>이름</th>
+									
 										<th>지정일</th>
 										<th>만료일</th>
 										<th>관리</th>
