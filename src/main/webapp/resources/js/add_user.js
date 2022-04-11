@@ -45,14 +45,13 @@ var AddModifyService = (function() {
 			});
 	}
 	
-	function addUser(userInfo, callback, error) { //ajax처리 후 동작해야 하는 함수
-		console.log("add upperCategory.........");
-		//ajax로 replyController초풀
+	function addUser(userInfo, callback, error) { 
+		
 		$.ajax({
 			type: 'post',
 			url: '/admin/add_user',
 			data : userInfo,
-			
+			async: false,
 			success: function(result, status, xhr) {
 				if(callback) {callback(result);}
 			},
@@ -66,6 +65,7 @@ var AddModifyService = (function() {
 			type: 'post',
 			url : '/admin/mod_user',
 			data : modInfo,
+			async: false,
 			success : function(result, status, xhr) {
 				if(callback) {
 					callback(result);

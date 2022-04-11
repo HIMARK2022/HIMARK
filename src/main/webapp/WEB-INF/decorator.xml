@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<decorators defaultdir="/WEB-INF/views">
+
+    <decorator name="adminSide"    page="sidebar/admin_side.jsp"/>
+    <decorator name="approverSide" page="sidebar/approver_side.jsp"/>
+    <decorator name="generalSide"  page="sidebar/general_side.jsp"/>
+    <decorator name="footer"       page="sidebar/footer.jsp"/>
+        
+</decorators>
+
+
