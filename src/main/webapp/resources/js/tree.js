@@ -30,29 +30,14 @@ $.fn.extend({
             })
             branch.children().children().toggle();
         });
-        //fire event from the dynamically added icon
-/*      tree.find('.branch .indicator').each(function(){
-        $(this).on('click', function () {
-			console.log("aaaaa11111111");
-            $(this).closest('li').click();
-        });
-      });*/
-        //fire event to open branch if the li contains an anchor instead of text
+
         tree.find('.branch>a').each(function () {
             $(this).on('click', function (e) {
-				console.log("aaaaa2222222");
                 $(this).closest('li').click();
                 e.preventDefault();
             });
         });
-        //fire event to open branch if the li contains a button instead of text
-/*        tree.find('.branch>button').each(function () {
-            $(this).on('click', function (e) {
-				console.log("aaaaa3333333");
-                $(this).closest('li').click();
-                e.preventDefault();
-            });
-        });*/
+
     }
 });
 

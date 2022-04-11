@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 
 </head>
 <body>
-<%@include file="../sidebar/admin_side.jsp"%>
+ <page:applyDecorator name="adminSide" />
 <link href="/resources/css/admin_tree.css" rel="stylesheet">
 <link href="/resources/css/admin_add_employee.css" rel="stylesheet">
 <link href="/resources/css/calendar.css" rel="stylesheet">
@@ -100,7 +101,7 @@
 							<div class="row12">
 								<c:forEach var="head" items="${head}">
 	 								<ul class="tree"> 
-										 <li> <i class="fa-solid fa-folder-open"></i><a class="head" id="${head.head_id}">${head.head}</a>
+										 <li> <i class="fa-solid fa-folder-open"></i><a  class="head" id="${head.head_id}">${head.head}</a>
 											<ul>
 											<c:forEach var="depart" items="${depart}">
 		                                        <c:if test="${depart.head eq head.head}">
@@ -194,7 +195,7 @@
 </div>
 </div>
 
-<%@include file="../sidebar/footer.jsp"%>
+<page:applyDecorator name="footer" />
 
 <script src="/resources/js/cal.js"></script>
 <script src="/resources/js/tree.js"></script>

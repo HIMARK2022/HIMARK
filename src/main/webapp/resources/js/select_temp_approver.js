@@ -37,7 +37,6 @@ var SelectTempApproverService = (function() {
 	}
 	
 	function getDelManagerList(dataInfo ,callback, error) {
-		console.log("######@@@@@"+dataInfo.temp_manager)
 		$.ajax({
 			type: 'post',
 			url : '/admin/del_temp',
