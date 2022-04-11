@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body id="page-top">
 	<div id="wrapper">
-		<%@include file="../sidebar/approver_side.jsp"%>
+		<page:applyDecorator name="approverSide" />
 		<link href="/resources/css/calendar.css" rel="stylesheet">
 		<link href="/resources/css/approver_myDepart.css" rel="stylesheet">
 		<link href="/resources/css/admin_modal_add.css" rel="stylesheet">
@@ -152,7 +153,7 @@
 	
 	</div>
 	</div>
-<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 <script src="/resources/js/cal.js"></script>
 <script src="/resources/js/approver_temp_select.js"></script>
 <script>

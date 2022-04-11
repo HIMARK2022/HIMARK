@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar 사이드바-->
-		<%@include file="../sidebar/approver_side.jsp"%>
+		<page:applyDecorator name="approverSide" />
 		<!-- End of Topbar 헤더 끝 -->
 
 		<div class="container-fluid">
@@ -113,7 +114,7 @@
 										</c:if>
 										
 						
-						<a class="btn btn-outline-primary" type="submit" href="/general/request_list?userId=${member.userId}"
+						<a class="btn btn-outline-primary" type="submit" href="/general/request_list?user_id=${member.user_id}"
 							id="request_btn">목록</a>
 
 					</div>
@@ -196,7 +197,7 @@
 
 
 
-		<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 		<script src="/resources/js/request.js"></script>
 </body>
 </html>

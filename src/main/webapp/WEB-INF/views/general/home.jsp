@@ -3,6 +3,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
     <div id="wrapper">
 
         <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/general_side.jsp"%>
+        		<page:applyDecorator name="generalSide" />
         <!-- End of Topbar 헤더 끝 -->
          <!-- 메인 시작 -->
                 <div class="container-fluid">
@@ -339,6 +340,6 @@
                 
             </script>
             <!-- End of Main Content -->
-            <%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 </body>
 </html>

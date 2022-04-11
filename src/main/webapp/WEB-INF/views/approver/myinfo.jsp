@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
     <div id="wrapper">
 
         <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/approver_side.jsp"%>
+       <page:applyDecorator name="approverSide" />
         <!-- End of Topbar 헤더 끝 -->
 <!-- 메인 시작 -->
                 <div class="container-fluid" >
@@ -151,7 +152,7 @@
                 <!-- 메인 끝 -->
             </div>
             <!-- End of Main Content -->
-        <%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
         <script src="/resources/js/member.js"></script>
 </body>
 </html>

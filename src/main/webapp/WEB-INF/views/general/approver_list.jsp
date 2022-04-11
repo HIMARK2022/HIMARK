@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar 사이드바-->
-		<%@include file="../sidebar/general_side.jsp"%>
+		<page:applyDecorator name="generalSide" />
 		<!-- End of Topbar 헤더 끝 -->
 		<!-- 승인자리스트.html -->
 		<div class="container-fluid">
@@ -116,7 +117,7 @@
 	</div>
 	<!-- End of Main Content -->
 	<!-- End of Main Content -->
-	<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 	<script src="/resources/js/demo/datatables-emp.js"></script>
 	<script src="/resources/js/request.js"></script>
 	<script>

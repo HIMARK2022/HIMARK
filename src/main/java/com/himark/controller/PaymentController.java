@@ -69,13 +69,13 @@ public class PaymentController {
 		//승인자
 		if(mservice.getMember(userId).getAuthority_code().equals("A2") ||mservice.getMember(userId).getAuthority_code().equals("A0")) {
 			log.info("승인자 register");
-			return "redirect:/approver/request_list?userId="+userId; 
+			return "redirect:/approver/request_list?user_id="+userId; 
 		}
 		
 		//일반 사용자
 		//if(mservice.getMember(userId).getAuthorityCode().equals("A1")) {
 		log.info("일반사용자 register");
-		return "redirect:/general/request_list?userId="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
+		return "redirect:/general/request_list?user_id="+userId; //redirect:를 하지 않는 경우, 새로고침시 도배
 		
 	}
 
@@ -183,9 +183,9 @@ public class PaymentController {
 		
 		
 		if(mservice.getMember(userId).getAuthority_code().equals("A2")) {
-			return "redirect:/approver/request_list?userId="+userId;
+			return "redirect:/approver/request_list?user_id="+userId;
 		}
-		return "redirect:/general/request_list?userId="+userId;
+		return "redirect:/general/request_list?user_id="+userId;
 		
 	}
 	

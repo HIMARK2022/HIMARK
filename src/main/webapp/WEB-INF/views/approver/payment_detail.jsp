@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar 사이드바-->
-		<%@include file="../sidebar/approver_side.jsp"%>
+		<page:applyDecorator name="approverSide" />
 		<!-- End of Topbar 헤더 끝 -->
 		<!-- 요청.html -->
 		<div class="container-fluid">
@@ -414,8 +415,7 @@
 	</script>
 
 
-
-	<%@include file="../sidebar/footer.jsp"%>
-	<script src="/resources/js/request.js"></script>
+	<page:applyDecorator name="footer" />
+		<script src="/resources/js/request.js"></script>
 </body>
 </html>
