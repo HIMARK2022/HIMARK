@@ -97,13 +97,12 @@ public class MainController {
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 		model.addAttribute("member", mservice.getMember(userId));
+		model.addAttribute("work", mservice.getWork());
+		model.addAttribute("retire", mservice.getRetire());
 		
-		model.addAttribute("bonbu",  aservice.getbonbu());
-		model.addAttribute("buseo",aservice.getbuseo());
-		model.addAttribute("team",aservice.getteam());
-		log.info( aservice.getbonbu());
-		log.info( aservice.getbuseo());
-		log.info( aservice.getteam());
+		model.addAttribute("sysinfo", aservice.getsysinfo());
+		
+		
 
 	}
 	

@@ -66,4 +66,16 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.countUser();
 
 	}
+
+	@Override
+	public int getWork() {
+		// TODO Auto-generated method stub
+		return mapper.getWork();
+	}
+
+	@Override
+	public int getRetire() {
+		// TODO Auto-generated method stub
+		return mapper.getRetire();
+	}
 }

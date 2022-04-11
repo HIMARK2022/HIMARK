@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.himark.domain.SysInfoVO;
 import com.himark.mapper.AdminHomeMapper;
 
 import lombok.Setter;
@@ -30,6 +31,12 @@ public class AdminHomeServiceImpl implements AdminHomeService{
 	public List<String> getteam() {
 		// TODO Auto-generated method stub
 		return mapper.getteam();
+	}
+
+	@Override
+	public SysInfoVO getsysinfo() {
+		// TODO Auto-generated method stub
+		return mapper.getsysinfo();
 	}
 
 }

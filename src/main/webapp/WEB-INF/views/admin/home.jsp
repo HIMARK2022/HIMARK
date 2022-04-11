@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +50,13 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" id="ing" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab1'">
+                                                <div class="card-body state">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="progress" 
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                                                                 추가</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>명</div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${sysinfo.adduser}'/>명</div>
                                                         </div>
                                                         <div class="col-auto ing">
                                              
@@ -68,13 +69,13 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" id="complete" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab2'" data-toggle="tab">
+                                                    <div class="card-body state" >
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
                                                                     class="text-sm font-weight-bold text-success text-uppercase mb-1">
                                                                     재직</div>
-                                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>명
+                                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${work}'/>명
                                                                 </div>
                                                             </div>
                                                             <div class="col-auto complete">
@@ -87,14 +88,14 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" id="back" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab3'" data-toggle="tab">
+                                                        <div class="card-body state" >
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
                                                                         class="text-sm font-weight-bold text-secondary text-uppercase mb-1">
                                                                         퇴직</div>
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                        <c:out value='${back}'/>명</div>
+                                                                        <c:out value='${retire}'/>명</div>
                                                                 </div>
                                                                 <div class="col-auto back">
                                                                    
@@ -130,27 +131,23 @@
 									<li>
 										<a href="#">인사연동 시작</a>
 										
-										<p>2022-04-08 16:05:45 인사연동이 시작되었습니다. </p>
+										<p>${sysinfo.starttime } 인사연동이 시작되었습니다. </p>
 									</li>
 									<li>
-										<a target="_blank" href="https://www.totoprayogo.com/#">직원</a>
+										<a target="_blank" href="#">직원</a>
 										
-										<p>직원 0명이 추가되었습니다.<br>직원 0명이 수정되었습니다.<br>직원 0명이 삭제되었습니다.</p>
+										<p>직원 ${sysinfo.adduser }명이 추가되었습니다.<br>직원 ${sysinfo.moduser }명이 수정되었습니다.<br>직원 ${sysinfo.deluser }명이 삭제되었습니다.</p>
 									</li>
 									<li>
 										<a href="#">부서</a>
 										
-										<p>부서 0개가 추가되었습니다.<br>부서 0개가 수정되었습니다.<br>부서 0개가 삭제되었습니다.</p>
+										<p>부서 ${sysinfo.adddept }개가 추가되었습니다.<br>부서  ${sysinfo.moddept }개가 수정되었습니다.<br>부서  ${sysinfo.deldept }개가 삭제되었습니다.</p>
 									</li>
-									<li>
-										<a href="#">직급</a>
-										
-										<p>직급 0개가 추가되었습니다.<br>직급 0개가 수정되었습니다.<br>직급 0개가 삭제되었습니다.</p>
-									</li>
+								
 									<li>
 										<a href="#">인사연동 완료</a>
 										
-										<p>2022-04-08 16:20:06 인사연동이 완료되었습니다. </p>
+										<p> ${sysinfo.endtime} 인사연동이 완료되었습니다. </p>
 									</li>
 								</ul>
 					               
