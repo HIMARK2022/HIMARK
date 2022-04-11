@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +10,7 @@
   <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>
 <body id="page-top">
-
-    <!-- Page Wrapper -->
-
-
-        <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/admin_side.jsp"%>
-        <!-- End of Topbar 헤더 끝 -->
-<!-- 메인 시작 -->
+        <page:applyDecorator name="adminSide" />
                 <div class="container-fluid">
                     <!-- Page Heading -->
                    
@@ -199,7 +193,7 @@
             </script>
          
 
-            <%@include file="../sidebar/footer.jsp"%>
+            <page:applyDecorator name="footer" />
              
 
 </body>

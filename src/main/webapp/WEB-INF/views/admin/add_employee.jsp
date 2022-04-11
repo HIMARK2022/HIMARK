@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +12,8 @@
 </head>
 
 <body>
+<page:applyDecorator name="adminSide" />
 
-<%@include file="../sidebar/admin_side.jsp"%>
 <link href="/resources/css/admin_tree.css" rel="stylesheet">
 <link href="/resources/css/admin_add_employee.css" rel="stylesheet">
 <link href="/resources/css/admin_modal_add.css" rel="stylesheet">
@@ -329,7 +331,7 @@
 		</div>
 	</form>
 
-<%@include file="../sidebar/footer.jsp"%>
+<page:applyDecorator name="footer" />
 
 <script src="/resources/js/tree.js"></script>
 <script src="/resources/js/birth.js"></script>

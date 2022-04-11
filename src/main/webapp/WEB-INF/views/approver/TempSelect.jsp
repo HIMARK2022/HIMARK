@@ -156,7 +156,7 @@
 <script src="/resources/js/cal.js"></script>
 <script src="/resources/js/approver_temp_select.js"></script>
 <script>
-	$('.content-detail').on('click', function () {
+$('.content-detail').on('click', function () {
 	    $('.modal-wrapper').toggleClass('open');
 	    return false;
 	});
