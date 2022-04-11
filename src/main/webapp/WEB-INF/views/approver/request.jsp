@@ -30,7 +30,7 @@
 					
 						<div class="table-responsive">
 							<div class="card-body">
-								<form id="actionForm" action="/general/register" method="post" role="form">
+								<form id="actionForm" action="/approver/register" method="post" role="form">
 									<p>
 									<h6>제목</h6>
 									<input type="text" class="form-control col-xl-4" required
@@ -125,7 +125,7 @@
 			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request?user_id=" + id);
+			searchForm.attr("action", "/approver/request?user_id=" + id);
 			searchForm.submit();
 		});
 		
@@ -139,7 +139,7 @@
 					+ $(this).attr("href") + "'>");
 		
 	
-			actionForm2.attr("action", "/general/request_detail");
+			actionForm2.attr("action", "/approver/request_detail");
 			actionForm2.submit();
 		});
 		

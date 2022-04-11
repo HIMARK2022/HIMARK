@@ -114,7 +114,7 @@
 										</c:if>
 										
 						
-						<a class="btn btn-outline-primary" type="submit" href="/general/request_list?user_id=${member.user_id}"
+						<a class="btn btn-outline-primary" type="submit" href="/approver/request_list?user_id=${member.user_id}"
 							id="request_btn">목록</a>
 
 					</div>

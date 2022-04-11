@@ -295,7 +295,7 @@ $(".move").on("click",function(e) {
 	actionForm2.append("<input id='requestNo' type='hidden' name='requestNo' value='"
 			+ $(this).attr("href") + "'>");
 	
-	actionForm2.attr("action", "/general/request_detail");
+	actionForm2.attr("action", "/approver/request_detail");
 	actionForm2.submit();
 });
 
@@ -335,7 +335,7 @@ $(function(){
 			var id = '<c:out value="${member.user_id}"/>';
 			console.log("click");
 			console.log("userId " + id);
-			searchForm.attr("action", "/general/request_list?userid=" + id);
+			searchForm.attr("action", "/approver/request_list?user_id=" + id);
 			searchForm.submit();
 		});
 		
