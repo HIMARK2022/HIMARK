@@ -155,7 +155,7 @@
                 
                 $(".admin").css("color", "black");
                 $(".admin").css("border-bottom", "solid 3px black");
-                $(".user a").addClass("btn-dark");
+                $("button").addClass("btn-dark");
                 
                 $('body').addClass('bg-gradient-admin');
                 $("input[name=authorityCode]").val("관리자");
@@ -167,7 +167,7 @@
                 
                 $(".admin").css("color", "gray");
                 $(".admin").css("border-bottom", "none");
-                $(".user a").removeClass("btn-dark");
+                $("button").removeClass("btn-dark");
 
                 $('body').removeClass('bg-gradient-admin');
                 $("input[name=authorityCode]").val("일반 사용자/승인자/임시 승인자");

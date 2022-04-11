@@ -317,3 +317,10 @@ ul.uppercategory li:before{
 h2.upper{
 	display:contents;
 }
+
+.upper{
+		cursor: pointer;
+}
+.gap{
+	margin: 5px;
+}

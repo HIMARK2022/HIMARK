@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>결재 분류</title>
 </head>
-
 <body>
 	<page:applyDecorator name="adminSide" />
 	<link href="/resources/css/category.css" rel="stylesheet">
@@ -465,7 +464,7 @@
 										+ "<td>"
 										+ val.approval_period
 										+ "</td>"
-										+ "<td><a class='btn btn-outline-danger delbtn'"
+										+ "<td><a class='btn btn-outline-danger delbtn gap'"
 										+"onclick = "+ deltext +">"
 										+ "<span class='text'>삭제</span>"
 										+ "</a><a href='#' class='content-detail2 btn btn-outline-warning modbtn'"
