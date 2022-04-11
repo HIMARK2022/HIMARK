@@ -5,12 +5,12 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class SysInfoVO {
-	int adduser;
-	int moduser;
-	int deluser;
-	int adddept;
-	int moddept;
-	int deldept;
-	Date starttime;
-	Date endtime;
+	private int adduser;
+	private int moduser;
+	private int deluser;
+	private int adddept;
+	private int moddept;
+	private int deldept;
+	private Date starttime;
+	private Date endtime;
 }

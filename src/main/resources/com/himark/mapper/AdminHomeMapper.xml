@@ -6,12 +6,12 @@
 
 <select id="getRetire" resultType="int">
 select count(*) from usersdetail
-where current_state="재직";
+where current_state="퇴직";
 </select>
 
 <select id="getWork" resultType="int">
 select count(*) from usersdetail
-where current_state="퇴직";
+where current_state="재직";
 </select>
 
 <select id="getsysinfo" resultType="com.himark.domain.SysInfoVO">

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
-        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,12 +127,13 @@
                                     </div>
                                     </div>
                               <div class="col-md-5 col-lg-5">
-					         
+					         <c:set var="stime" value="${sysinfo.starttime}"/>
+					         <c:set var="ftime" value="${sysinfo.endtime}"/>
 					              <ul class="timeline">
 									<li>
 										<a href="#">인사연동 시작</a>
 										
-										<p>${sysinfo.starttime } 인사연동이 시작되었습니다. </p>
+										<p><fmt:formatDate value="${stime}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/>  인사연동이 시작되었습니다. </p>
 									</li>
 									<li>
 										<a target="_blank" href="#">직원</a>
@@ -147,7 +149,7 @@
 									<li>
 										<a href="#">인사연동 완료</a>
 										
-										<p> ${sysinfo.endtime} 인사연동이 완료되었습니다. </p>
+										<p>  <fmt:formatDate value="${ftime}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/> 인사연동이 완료되었습니다. </p>
 									</li>
 								</ul>
 					               
