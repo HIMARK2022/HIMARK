@@ -44,6 +44,7 @@ public class ApproverTempSelectController {
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 	
+			
 		model.addAttribute("temp",tempselectservice.findTempApprover(userId));
 		
 		model.addAttribute("member", mservice.getMember(userId));

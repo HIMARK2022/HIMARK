@@ -252,7 +252,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="font-weight-bold">하위 분류 명</label> <input type="text"
-							class="form-control" name="mod_name" value="" autocomplete="username" required oninput="checkId()"
+							class="form-control" name="mod_name" value="" autocomplete="username" required oninput="modcheckId()"
 							placeholder="생성할 안건 명을 입력하세요"> <span class="id_ok">사용
 							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>
 							 <input
@@ -299,7 +299,7 @@
 						<label class="font-weight-bold">상위 분류명</label> <input
 							class="form-control" name="modupper_classify_name" id="category"
 							value="" autocomplete="username" required
-							oninput="uppercheckId()">
+							oninput="moduppercheckId()">
 						<span class="id_ok">사용 가능한 상위 분류명입니다.</span> <span
 							class="id_already">이미 존재하는 상위 분류명입니다.</span>
 							<input
@@ -348,10 +348,12 @@
 		});
 		$('.mod-content-detail').on('click', function() {
 			$('.modmodal-wrapper').removeClass('open');
+			$('#forMod')[0].reset();
 			return false;
 		});
 		$('.uppermod-content-detail').on('click', function() {
 			$('.uppermodmodal-wrapper').removeClass('open');
+			$('#UpperMod')[0].reset();
 			return false;
 		});
 		
@@ -645,7 +647,7 @@
 				success : function(cnt) {
 					
 					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
-						if(classify_name==""){
+						if(classify_name==""||classify_name==classify_name){
 							$('.id_ok').css("display", "none");
 							$('.id_already').css("display", "none");
 						}else{
@@ -655,6 +657,41 @@
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");
+					}
+				},
+				error : function() {
+					alert("에러입니다");
+				}
+			});
+		};
+		
+		function modcheckId() {
+			var classify_name = $('input[name=mod_name]').val(); //id값이 "id"인 입력란의 값을 저장
+			var org_name = $('input[name=org_name]').val()
+			$.ajax({
+				url : '/admin/approve_list_check', //Controller에서 인식할 주소
+				type : 'post', //POST 방식으로 전달
+				data : {
+					classify_name : classify_name
+				},
+				success : function(cnt) {
+					
+					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
+						$('.id_ok').css("display", "inline-block");
+						$('.id_already').css("display", "none");	
+						}
+					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
+						if(classify_name==org_name){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
+						$('.id_already').css("display", "inline-block");
+						$('.id_ok').css("display", "none");
+						}
 					}
 				},
 				error : function() {
@@ -675,7 +712,7 @@
 				success : function(cnt) {
 
 					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
-						if(upper_classify_name==""){
+						if(upper_classify_name=="" || upper_classify_name==upper_classify_name){
 							$('.id_ok').css("display", "none");
 							$('.id_already').css("display", "none");
 						}else{
@@ -685,6 +722,42 @@
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");
+					}
+				},
+				error : function() {
+					alert("에러입니다");
+				}
+			});
+		};
+		
+		function moduppercheckId() {
+
+			var upper_classify_name = $('input[name=modupper_classify_name]').val();
+			var org_upper_name = $('input[name=org_upper_classify_name]').val();
+			$.ajax({
+				url : '/admin/approve_upperlist_check', //Controller에서 인식할 주소
+				type : 'post', //POST 방식으로 전달
+				data : {
+					upper_classify_name : upper_classify_name
+				},
+				success : function(cnt) {
+
+					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(upper_classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
+						$('.id_ok').css("display", "inline-block");
+						$('.id_already').css("display", "none");	
+						}
+					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
+						if(upper_classify_name==org_upper_name){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
+						$('.id_already').css("display", "inline-block");
+						$('.id_ok').css("display", "none");
+						}
 					}
 				},
 				error : function() {

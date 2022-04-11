@@ -63,9 +63,19 @@
                     <span>나의 승인자</span></a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" href="/approver/TempSelect">
-                   <i class="fa-solid fa-user-check"></i>
+			<c:choose>
+				<c:when test="${member.authority_code eq 'A0' }">
+	                <a class="nav-link" href="javascript:alert('접근권한이 없습니다.')">
+	                <i class="fa-solid fa-user-check"></i>
                     <span>임시 승인자 지정</span></a>
+	            </c:when>
+             	<c:when test="${member.authority_code eq 'A2' }">
+                <a class="nav-link" href="/approver/TempSelect">
+                <i class="fa-solid fa-user-check"></i>
+                    <span>임시 승인자 지정</span></a>
+         		</c:when>
+           </c:choose>
+                 
             </li>
             
 

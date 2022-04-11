@@ -43,6 +43,7 @@ private MemberService mservice;
 			HttpSession session = request.getSession();
 			MemberVO m = (MemberVO) session.getAttribute("loginUser");
 			String userId= m.getUserId();
+			model.addAttribute("member", mservice.getMember(userId));
 			List<MemberVO> list = new ArrayList<MemberVO>();
 			List<TempManagerInfoVO> tlist = new ArrayList<TempManagerInfoVO>();
 			if(mservice.getApprover(userId) == null) {
@@ -72,7 +73,7 @@ private MemberService mservice;
 			}
 			
 			model.addAttribute("ceo", mservice.getCeo());
-			model.addAttribute("member", mservice.getMember(userId));
+	
 			model.addAttribute("alist", list);
 			}
 			//임시승인자
