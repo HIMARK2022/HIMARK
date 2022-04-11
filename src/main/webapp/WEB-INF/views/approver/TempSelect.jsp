@@ -101,7 +101,7 @@
 						<h4 id="teaminfo">임시 승인자 정보</h4>
 						
 						<div>
-							<table class="table table-bordered table-hover" id="dataTable"  cellspacing="0" >
+							<table class="table table-bordered table-hover tempT" id="dataTable"  cellspacing="0" >
 								<thead>
 									<tr>
 									

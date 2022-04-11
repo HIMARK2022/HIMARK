@@ -117,46 +117,43 @@ public class AdminTempApprover {
 	public List<UsersDetailVO> returnHeadInfo(@RequestParam("head") String head) {
 		log.info("본부 진입");
 		
-		if(AdminTempService.showTempInfo(head).size() == 0) {
-			
-			return AdminTempService.selectAllTeamMemberTemp(head);
-		}
-		else {
-			
-			return AdminTempService.selectNotTemp(head);
-		}
-
+		/*
+		 * if(AdminTempService.showTempInfo(head).size() == 0) {
+		 * 
+		 * return AdminTempService.selectAllTeamMemberTemp(head); } else {
+		 * 
+		 * return AdminTempService.selectNotTemp(head); }
+		 */
+		return AdminTempService.selectAllTeamMemberTemp(head);
 	}
 	
 	@ResponseBody 
 	@GetMapping(value = "/temp_depart", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UsersDetailVO> returnDepartInfo(@RequestParam("depart") String depart) {
 		log.info("부서 진입");
-		if(AdminTempService.showTempInfo(depart).size() == 0) {
-			
-			return AdminTempService.selectAllTeamMemberTemp(depart);
-		}
-		else {
-		
-			return AdminTempService.selectNotTemp(depart);
-		}
+		/*
+		 * if(AdminTempService.showTempInfo(depart).size() == 0) {
+		 * 
+		 * return AdminTempService.selectAllTeamMemberTemp(depart); } else {
+		 * 
+		 * return AdminTempService.selectNotTemp(depart); }
+		 */
+		return AdminTempService.selectAllTeamMemberTemp(depart);
 	}
 	
 	@ResponseBody 
 	@GetMapping(value = "/temp_team", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UsersDetailVO> returnTeamInfo(@RequestParam("team") String team) {
 		log.info("팀 진입"  + team);
-		log.info("팀 진입1" + AdminTempService.showAllTemp().size() );
-		log.info("팀 진입2" + AdminTempService.selectAllTeamMemberTemp(team));
-		log.info("팀 진입3" + AdminTempService.selectNotTemp(team));
-		if(AdminTempService.showTempInfo(team).size() == 0) {
-			
-			return AdminTempService.selectAllTeamMemberTemp(team);
-		}
-		else {
 		
-			return AdminTempService.selectNotTemp(team);
-		}
+		/*
+		 * if(AdminTempService.showTempInfo(team).size() == 0) {
+		 * 
+		 * return AdminTempService.selectAllTeamMemberTemp(team); } else {
+		 * 
+		 * return AdminTempService.selectNotTemp(team); }
+		 */
+		return AdminTempService.selectAllTeamMemberTemp(team);
 	}
 	
 

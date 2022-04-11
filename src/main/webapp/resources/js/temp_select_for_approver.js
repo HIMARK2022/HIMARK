@@ -1,6 +1,16 @@
-$('.content-detail').on('click', function () {
-	    $('.modal-wrapper').toggleClass('open');
-	    return false;
+	$('.content-detail').on('click', function () {
+
+		var t = $('#temptable tr td').text()
+
+
+		if(t ==""){
+			alert("지정 가능한 임시 승인자가 없습니다.");
+		}else{
+			$('.modal-wrapper').toggleClass('open');
+		}
+		
+		return false;
+		
 	});
 
 	/*var manager = "${member.user_id}";
@@ -10,10 +20,6 @@ $('.content-detail').on('click', function () {
 	var manager = $('input[name=OrgUserId ]').val();
 	var managerName = $('input[name=OrgApprover ]').val();
 	var dept_id = $('input[name=OrgDepartId ]').val();
-	
-	console.log("$$$$$$$$$$$$$$$$$$$$$"+manager);
-	console.log("$$$$$$$$$$$$$$$$$$$$$"+managerName);
-	console.log("$$$$$$$$$$$$$$$$$$$$$"+dept_id);
 	
 	showTeamMember(dept_id);
 	
@@ -41,6 +47,7 @@ $('.content-detail').on('click', function () {
 		var orgDepart = $('input[name=OrgDepartId ]').val();
 		var start = $('input[name=start-date1 ]').val();
 		var end = $('input[name=end-date1 ]').val();
+		
 
 		TempInfo ={
 			approval_start:start,
@@ -88,12 +95,10 @@ $('.content-detail').on('click', function () {
 		str = "";
 		var tempApprover = "${temp[0].temp_manager}";
 		
-		
 		for (var i = 0; i < data.length; i++) {
 				
 			var selectTempAppover ="selectTempAppover(\'"+data[i].user_name+"\',\'"+data[i].user_id+"\',\'"+data[i].dept_id+"\')";
 			var delTempAppover ="delTempAppover(\'"+data[i].user_id+"\',\'"+data[i].dept_id+"\')";
-			
 			if(data[i].authority_code == "A1"){//승인가능 대상자.
 				str += "<tr>"
 					+ "<td>"+ data[i].user_id  + "</td>"
@@ -105,7 +110,9 @@ $('.content-detail').on('click', function () {
 					+ "<span class='text'>선택</span>"
 					+ "</td>"
 					+ "</tr>";
+				
 			}
+			
 		}
 		$('.teaminfo').append(str);
 	}

@@ -193,12 +193,20 @@ function showTeamMember(team) {
 					+ "</tr>";
 			}
 			
-			else if (data[i].authority_code != "A1"){ //승인자 입장	
+			if (data[i].authority_code == "A2"){ //승인자 입장	
 				str += "<tr id='"+data[i].user_id +"'>"
 					+ "<td id='userA'>" + data[i].user_id   + "</td>"
 					+ "<td id='userN'>" + data[i].user_name + "</td>"
 					+ "<td>" + data[i].pos_name  + "</td>"
 					+ "<td>승인자</td>"
+					+ "</tr>";		
+			}
+			if (data[i].authority_code == "A0"){ //승인자 입장	
+				str += "<tr id='"+data[i].user_id +"'>"
+					+ "<td id='userA'>" + data[i].user_id   + "</td>"
+					+ "<td id='userN'>" + data[i].user_name + "</td>"
+					+ "<td>" + data[i].pos_name  + "</td>"
+					+ "<td>임시 승인자</td>"
 					+ "</tr>";		
 			}
 		
