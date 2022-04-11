@@ -97,8 +97,8 @@ public class MainController {
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 		model.addAttribute("member", mservice.getMember(userId));
-		model.addAttribute("work", mservice.getWork());
-		model.addAttribute("retire", mservice.getRetire());
+		model.addAttribute("work", aservice.getWork());
+		model.addAttribute("retire", aservice.getRetire());
 		
 		model.addAttribute("sysinfo", aservice.getsysinfo());
 		

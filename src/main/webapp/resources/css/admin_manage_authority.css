@@ -39,5 +39,5 @@ th{
    background:white;
 }
 
-.id_ok{color:#fff; display: none;}
-.id_already{color:#6A82FB; display: none;}
+.id_ok{color:#6A82FB; display: none;}
+.id_already{color:red; display: none;}

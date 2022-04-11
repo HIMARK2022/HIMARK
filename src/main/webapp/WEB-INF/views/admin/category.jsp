@@ -67,7 +67,7 @@
 							
 							</a>
 						</div>
-						<div class="container" id="tree_people">
+						
 							<div class="row">
 								<div>
 									<ul class="uppercategory">
@@ -76,7 +76,7 @@
 								</div>
 
 							</div>
-						</div>
+						
 					</div>
 					<!-- Card Body 부서트리-->
 				</div>
@@ -644,9 +644,15 @@
 					classify_name : classify_name
 				},
 				success : function(cnt) {
-					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+					
+					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
 						$('.id_ok').css("display", "inline-block");
-						$('.id_already').css("display", "none");
+						$('.id_already').css("display", "none");	
+						}
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");
@@ -668,9 +674,15 @@
 					upper_classify_name : upper_classify_name
 				},
 				success : function(cnt) {
-					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+
+					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(upper_classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
 						$('.id_ok').css("display", "inline-block");
-						$('.id_already').css("display", "none");
+						$('.id_already').css("display", "none");	
+						}
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");

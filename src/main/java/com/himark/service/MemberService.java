@@ -30,9 +30,7 @@ public interface MemberService {
 	
 	public int countUser();
 
-	public int getWork();
-
-	public int getRetire();
+	
 
 
 }

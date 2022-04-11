@@ -67,15 +67,5 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 
-	@Override
-	public int getWork() {
-		// TODO Auto-generated method stub
-		return mapper.getWork();
-	}
 
-	@Override
-	public int getRetire() {
-		// TODO Auto-generated method stub
-		return mapper.getRetire();
-	}
 }
