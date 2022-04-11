@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.row12{
+	margin-left: 30px;
+    overflow-y: scroll;
+    /* overflow: scroll; */
+    width: 300px;
+    height: 530px;
+}

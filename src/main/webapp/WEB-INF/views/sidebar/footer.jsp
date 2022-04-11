@@ -67,7 +67,7 @@
 
     <!-- Page level custom scripts -->
    <!--  <script src="/resources/js/demo/chart-pie-demo.js"></script>-->
-    <script src="/resources/js/demo/datatables-demo.js"></script>
+    <!-- <script src="/resources/js/demo/datatables-demo.js"></script> -->
 
     <!-- datepicker to korean -->
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>

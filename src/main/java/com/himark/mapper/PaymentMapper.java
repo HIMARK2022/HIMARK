@@ -38,10 +38,17 @@ public interface PaymentMapper {
 
 	public void updateState(@Param ("requestNo") int requestNo, @Param ("state") String state);
 
-	public void updateReason(@Param ("requestNo") int requestNo, @Param ("rejectReason") String rejectReason);
+	public void updateReason(@Param ("requestNo") int requestNo, @Param ("reason") String reason);
+
+	public List<String> getUpperCategory();
+
+	public String getTempManager(String userId);
 
 	public List<String> getCategory();
 
-	public String getTempManager(String userId);
+	public List<String> getManager(int requestNo);
+
+	public List<String> getUser(int requestNo);
+
 
 }

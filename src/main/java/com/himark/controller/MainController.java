@@ -1,5 +1,8 @@
 package com.himark.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,25 +35,61 @@ public class MainController {
 		HttpSession session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
-		model.addAttribute("member", mservice.getMember(userId));
-		String deptId = mservice.getMember(userId).getDeptId();
-		model.addAttribute("dlist", mservice.getDeptList(deptId));
-		log.info(mservice.getDeptList(deptId));
-		
-		log.info(pservice.getList(userId).size());
 		model.addAttribute("progress",pservice.getList(userId).size());
 		model.addAttribute("complete",pservice.getCompleteList(userId).size());
 		model.addAttribute("back",pservice.getBackList(userId).size());
+		model.addAttribute("member", mservice.getMember(userId));
+		log.info(mservice.getMember(userId));
+		
+		//임시승인자일 경우
+		String tempOriginId = mservice.getTempOrigin(userId);
+		model.addAttribute("tempOrigin", tempOriginId);
+		if(tempOriginId != null) {
+			userId=tempOriginId;
+		}
+		
+		String deptId = mservice.getMember(userId).getDept_id();
+		model.addAttribute("dlist", mservice.getDeptList(deptId));
+		log.info(mservice.getDeptList(deptId));
+		
+
+		
 		model.addAttribute("gprogress",pservice.getPaymentList(userId).size());
 		model.addAttribute("gcomplete",pservice.getCompletePaymentList(userId).size());
 		model.addAttribute("gback",pservice.getBackPaymentList(userId).size());
-		model.addAttribute("member", mservice.getMember(m.getUserId()));
 		// 승인자 목록
-		model.addAttribute("team", service.getTeamL(userId));
-		model.addAttribute("depart", service.getDepartL(userId));
-		model.addAttribute("upper", service.getUpperL(userId));
+		List<MemberVO> list = new ArrayList<MemberVO>();
 		
+		
+		if(mservice.getApprover(userId) == null) {
+			model.addAttribute("ceo", mservice.getCeo());
+		}else {
+			String managerId = mservice.getApprover(userId).getUserId();
+		boolean tf=true;
+	
+		while(tf==true) {
+			if(mservice.getApprover(managerId) != null) {
+				System.out.println(managerId);
+				mservice.getApproverList(managerId);
+				list.add(mservice.getApproverList(managerId));
+				managerId = mservice.getApprover(managerId).getUserId();
+				
+			}
+			else {
+				list.add(mservice.getApproverList(managerId));
+				tf = false;
+			}	
+		}
+		
+		log.info("=================list.size() 출력: "+list.size());	
+		for(MemberVO L : list) {
+			System.out.println(L);
+		}
 
+		model.addAttribute("alist", list);
+		model.addAttribute("ceo", mservice.getCeo());
+		
+		}
 	}
 	@GetMapping("/admin/home")
 	public void adminHome(Model model, HttpServletRequest request) {
@@ -58,13 +97,12 @@ public class MainController {
 		MemberVO m = (MemberVO) session.getAttribute("loginUser");
 		String userId= m.getUserId();
 		model.addAttribute("member", mservice.getMember(userId));
+		model.addAttribute("work", aservice.getWork());
+		model.addAttribute("retire", aservice.getRetire());
 		
-		model.addAttribute("bonbu",  aservice.getbonbu());
-		model.addAttribute("buseo",aservice.getbuseo());
-		model.addAttribute("team",aservice.getteam());
-		log.info( aservice.getbonbu());
-		log.info( aservice.getbuseo());
-		log.info( aservice.getteam());
+		model.addAttribute("sysinfo", aservice.getsysinfo());
+		
+		
 
 	}
 	

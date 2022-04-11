@@ -22,8 +22,10 @@ td{
 th{
     text-align: center;
 }
-.btnM{
-   margin-left:83.4%;
+.btnM {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 13px;
 }
 .selbox{
     margin-left: 2%;
@@ -39,5 +41,5 @@ th{
    background:white;
 }
 
-.id_ok{color:#fff; display: none;}
-.id_already{color:#6A82FB; display: none;}
+.id_ok{color:#6A82FB; display: none;}
+.id_already{color:red; display: none;}

@@ -39,11 +39,12 @@ public class AdminApproveListManageController {
 		return service.getUpperList();
 	}
 	
-	/*
-	 * @GetMapping("/category") public void category() {
-	 * 
-	 * }
-	 */
+	
+	 @GetMapping("/category")
+	 public void category() {
+	 
+	 }
+	 
 	@ResponseBody 
 	@GetMapping(value = "/category", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ApproveListManageVO> category(@RequestParam("upper_classify_name") String upper_classify_name) {

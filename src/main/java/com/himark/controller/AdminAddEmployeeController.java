@@ -31,19 +31,23 @@ public class AdminAddEmployeeController {
 	
 	@GetMapping("/add_employee")
 	public void viewPage(Model model ) {
-	     model.addAttribute("head",service.selectAllHead());
-	     model.addAttribute("depart",service.selectHeadAndDepart());
-	     model.addAttribute("team",service.selectDepartAndTeam());
-	     model.addAttribute("duty",service.dutyInfo());
-	     model.addAttribute("pos",service.posInfo());
 	     
+		model.addAttribute("head",service.selectAllHead());
+	     
+		model.addAttribute("depart",service.selectHeadAndDepart());
+	     
+		model.addAttribute("team",service.selectDepartAndTeam());
+	     
+		model.addAttribute("duty",service.dutyInfo());
+	     
+		model.addAttribute("pos",service.posInfo()); 
 	}
 	
 	@ResponseBody 
 	@GetMapping(value = "/check_head", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UsersDetailVO> returnHeadInfo(@RequestParam("head") String head) {
 		log.info("본부 진입");
-		log.info(service.selectAllTeamMember(head));
+		
 		return service.selectAllTeamMember(head);
 	}
 	
@@ -64,7 +68,9 @@ public class AdminAddEmployeeController {
 	@ResponseBody
 	@PostMapping("/add_user")
 	public UserVO add(Model model ,UserVO uservo) {
-		log.info("더하기 진입");
+		
+		log.info("직원 더하기 진입");
+		
 		ArrayList<Integer> IDS = new ArrayList<>();
  		for(int i=0;i<service.UserID().size();i++) {
 			IDS.add(Integer.parseInt(service.UserID().get(i).getUser_id().toString()));
@@ -84,7 +90,13 @@ public class AdminAddEmployeeController {
  							,uservo.getSex()
  							,uservo.getPhone_number()
  							,uservo.getEmail()
- 							,uservo.getCurrent_state());
+ 							,uservo.getCurrent_state()
+ 							,uservo.getFlag());
+ 		
+ 		String manager_id = service.getApprover(uservo.getDept_id()).get(0).getUser_id().toString(); 
+ 		
+ 		service.insertManager(manager_id, id);  		
+ 		
 		return uservo;
 	}
 	
@@ -92,11 +104,16 @@ public class AdminAddEmployeeController {
 	@PostMapping("/mod_user")
 	public UserVO mod(Model model ,UserVO uservo) {
 		log.info("직원 수정 진입");
+		log.info("직원 수정 진입%%%"+uservo.getPos_id());
+		
+		
 		service.modUser(uservo.getUser_name(), 
+				uservo.getPos_id(),
 				uservo.getBirth_date(), 
 				uservo.getSex(), 
 				uservo.getEmail(), 
 				uservo.getPhone_number(),
+				uservo.getFlag(),
 				uservo.getUser_id());
 		return uservo;
 	}

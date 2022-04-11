@@ -27,19 +27,26 @@ public interface PaymentService {
 
 	public void updateState(int requestNo, String state);
 
-	public void updateReason(int requestNo, String rejectReason);
+	public void updateReason(int requestNo, String reason);
 
 	public List<PaymentVO> getCompleteList(String userId);
 
 	public List<PaymentVO> getBackList(String userId);
 	
-	public List<String> getCategory();
+	public List<String> getUpperCategory();
 	
 	public List<BoardAttachVO> getAttachList(int rno);
 
 	public String getTempManager(String userId);
 
 	public void register(PaymentVO payment, int requestNo);
+
+	public List<String> getCategory();
+
+	public List<String> getManager(int requestNo);
+
+	public List<String> getUser(int requestNo);
+
 	
 
 }

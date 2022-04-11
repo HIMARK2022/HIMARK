@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.himark.mapper.AdminTempApproverMapper">
+	<!-- 임시 승인자 지정 -->
+	<update id="selectTemp">
+		UPDATE manager
+		SET approval_start   = #{approval_start} 
+			,approval_finish = #{approval_finish} 
+			,temp_manager    = #{temp_manager} 
+		WHERE manager_id =#{manager_id};
+	</update>
+	
+	<!-- 임시 승인자 권한 업데이트 -->
+	<update id="updateTempAuthority">
+		UPDATE user
+		SET authority_code = #{authority_code} 
+		WHERE user_id =#{user_id}  ;
+	</update>
+	
+	<!-- 승인자 임시 승인자 같이 보이기 -->
+	<select id="showTempInfo" resultType="com.himark.domain.TempManagerInfoVO">
+		select manager_id , manager_name , dept_id , approval_start , approval_finish , temp_manager , user_name 
+		from tempmanagerinfo where dept_id = #{dept_id};
+	</select>
+	
+	<!-- 승인자 임시 승인자 같이 보이기 -->
+	<select id="showAllTemp" resultType="com.himark.domain.TempManagerInfoVO">
+		select manager_id , manager_name , dept_id , approval_start , approval_finish , temp_manager , user_name 
+		from tempmanagerinfo;
+	</select>
+	
+	<!-- 임시 승인자 권한삭제 -->
+	<update id="delTempManger">
+		UPDATE manager
+		SET approval_start = null , approval_finish = null ,temp_manager=null
+		WHERE temp_manager = #{temp_manager} ;
+	</update>
+	
+	<!-- 팀정보 -->
+	<select id="selectAllTeamMemberTemp" resultType="com.himark.domain.UsersDetailVO">
+		select
+		user_id, user_name, pos_id, duty_id, dept_id,authority_code ,birth_date, sex, phone_number
+		, email, current_state, team, depart, head, pos_name, duty_name
+		from usersdetail
+		where dept_id = #{dept_id} and current_state = "재직" 
+	</select>
+	<!-- 임시 승인자가 아닌 승인자 정보 -->
+	<select id="selectNotTemp" resultType="com.himark.domain.UsersDetailVO">
+		select
+		user_id, user_name, pos_id, duty_id, dept_id,authority_code ,birth_date, sex, phone_number
+		, email, current_state, team, depart, head, pos_name, duty_name
+		from usersdetail
+		where dept_id = #{dept_id} and user_id !=(select temp_manager from tempmanagerinfo where dept_id = #{dept_id}) and current_state = "재직"  
+	</select>
+	<!-- 임시승인자가 지정되있는지 확인! -->
+	<select id="IsInTemp" resultType="com.himark.domain.ManagerVO">
+		select *
+		from manager 
+		where manager_id = #{temp_manager} group by temp_manager;
+	</select>
+</mapper>

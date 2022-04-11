@@ -28,7 +28,8 @@ public interface AdminAddEmployeeService {
 			@Param("sex") String sex,
 			@Param("phone_number") String phone_number,
 			@Param("email") String email ,
-			@Param("current_state") String current_state 
+			@Param("current_state") String current_state, 
+			@Param("flag") String flag 
 			);
 	public List<TreeInfoVO> selectAllDepart(); //모든 부서 정보 가져오기
 	public List<TreeInfoVO> selectAllHead();
@@ -38,10 +39,19 @@ public interface AdminAddEmployeeService {
 	public List<UsersDetailVO> selectAllTeamMember(String dept_id);
 	public int modUser(
 			@Param("user_name") String user_name,
+			@Param("pos_id") String pos_id,
 			@Param("birth_date") String birth_date,
 			@Param("sex") String sex,
 			@Param("email") String email,
 			@Param("phone_number") String phone_number,
+			@Param("flag") String flag,
 			@Param("user_id") String user_id
+			);
+	
+	public List<UsersDetailVO> getApprover(String dept_id);
+	
+	public int insertManager(
+			@Param("manager_id") String manager_id,
+			@Param("approval_target") String approval_target
 			);
 }

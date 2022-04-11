@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-    <%@include file="../sidebar/general_side.jsp"%>
+		<page:applyDecorator name="generalSide" />
         <!-- 메인 시작 -->
                 <div class="container-fluid ">
                     <h1 class="h3 mb-2 text-gray-800">나의 부서</h1>
@@ -53,6 +54,6 @@
                 <!-- 메인 끝 -->
             </div>
             <!-- End of Main Content -->
-            <%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 </body>
 </html>

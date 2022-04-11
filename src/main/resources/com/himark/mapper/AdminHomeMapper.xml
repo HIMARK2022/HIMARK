@@ -4,19 +4,17 @@
 
 <mapper namespace="com.himark.mapper.AdminHomeMapper">
 
-<select id="getbonbu" resultType="String">
-select dept_name from dept
-where length(dept_id)=1;
+<select id="getRetire" resultType="int">
+select count(*) from usersdetail
+where current_state="퇴직";
 </select>
 
-<select id="getbuseo" resultType="String">
-select dept_name from dept
-where length(dept_id)=2;
+<select id="getWork" resultType="int">
+select count(*) from usersdetail
+where current_state="재직";
 </select>
 
-<select id="getteam" resultType="String">
-select dept_name from dept
-where length(dept_id)=3;
+<select id="getsysinfo" resultType="com.himark.domain.SysInfoVO">
+select * from sysinfo;
 </select>
-
 </mapper>

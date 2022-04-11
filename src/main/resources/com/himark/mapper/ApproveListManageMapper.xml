@@ -24,7 +24,7 @@
 	
 	<!-- 삭제 -->
 	<delete id="delList" >
-		delete from approval_classify where classify_name = #{classify_name}
+		delete from approval_classify where classify_name = #{classify_name} or upper_classify_name = #{classify_name}
 	</delete>
 	<!-- 수정 -->
 	<update id="modList">

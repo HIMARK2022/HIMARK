@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.himark.domain.SysInfoVO;
 import com.himark.mapper.AdminHomeMapper;
 
 import lombok.Setter;
@@ -14,22 +15,22 @@ import lombok.extern.log4j.Log4j;
 public class AdminHomeServiceImpl implements AdminHomeService{
 	@Setter(onMethod_=@Autowired)
 	private AdminHomeMapper mapper;
+	
 	@Override
-	public List<String> getbonbu() {
+	public SysInfoVO getsysinfo() {
 		// TODO Auto-generated method stub
-		return mapper.getbonbu();
+		return mapper.getsysinfo();
 	}
 
 	@Override
-	public List<String> getbuseo() {
+	public int getWork() {
 		// TODO Auto-generated method stub
-		return mapper.getbuseo();
+		return mapper.getWork();
 	}
 
 	@Override
-	public List<String> getteam() {
+	public int getRetire() {
 		// TODO Auto-generated method stub
-		return mapper.getteam();
+		return mapper.getRetire();
 	}
-
 }

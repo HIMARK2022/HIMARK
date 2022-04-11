@@ -38,8 +38,8 @@ public class AdminAddEmployeeServiceImpl implements AdminAddEmployeeService{
 	@Override
 	public int AddUser(String user_id, String user_password, String user_name, String pos_id, String duty_id,
 			String dept_id, String authority_code, String birth_date, String sex, String phone_number, String email,
-			String current_state) {
-		int cnt = mapper.AddUser(user_id, user_password, user_name, pos_id, duty_id, dept_id, authority_code, birth_date, sex, phone_number, email, current_state);
+			String current_state ,String flag) {
+		int cnt = mapper.AddUser(user_id, user_password, user_name, pos_id, duty_id, dept_id, authority_code, birth_date, sex, phone_number, email, current_state,flag);
 		return cnt;
 	}
 	@Override
@@ -75,9 +75,20 @@ public class AdminAddEmployeeServiceImpl implements AdminAddEmployeeService{
 		return mapper.selectAllTeamMember(dept_id);
 	}
 	@Override
-	public int modUser(String user_name, String birth_date, String sex, String email, String phone_number,
-			String user_id) {
-		int cnt = mapper.modUser(user_name, birth_date, sex, email, phone_number, user_id);
+	public int modUser(String user_name,String pos_id ,String birth_date, String sex, String email, String phone_number, String flag, String user_id) {
+		int cnt = mapper.modUser(user_name,pos_id ,birth_date, sex, email, phone_number, flag ,user_id);
+		return cnt;
+	}
+	@Override
+	public List<UsersDetailVO> getApprover(String dept_id) {
+		
+		return mapper.getApprover(dept_id);
+	}
+	@Override
+	public int insertManager(String manager_id, String approval_target) {
+		
+		int cnt = mapper.insertManager(manager_id, approval_target);
+		
 		return cnt;
 	}
 	

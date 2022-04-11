@@ -56,27 +56,23 @@
 
 		<!-- Nav Item - Dashboard -->
 
-		<li class="nav-item"><a class="nav-link" href="#"> <i
-				class="fa-solid fa-users"></i> <span>나의 정보</span></a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> <i
-				class="fa-solid fa-sitemap"></i> <span>나의 부서</span></a></li>
+		<li class="nav-item"><a class="nav-link" href="/general/myinfo"> <i
+				class="fa-solid fa-address-book"></i> <span>나의 정보</span></a></li>
+		<li class="nav-item"><a class="nav-link" href="/general/approver_list"> <i
+				class="fa-solid fa-users"></i> <span>나의 승인자</span></a></li>
 
 
 
 		<li class="nav-item"><a class="nav-link collapsed" href="#"
 			data-toggle="collapse" data-target="#collapseUtilities"
 			aria-expanded="true" aria-controls="collapseUtilities"> <i
-				class="fa-solid fa-list-ol"></i> <span>전자 결재</span>
+				class="fa-solid fa-list-ol"></i> <span>결재 상신</span>
 		</a>
 			<div id="collapseUtilities" class="collapse"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<h6 class="collapse-header">요청</h6>
-					 <a class="collapse-item" href="/general/request?userId=${member.userId}">요청</a>
-                        <a class="collapse-item" href="/general/request_list?userId=${member.userId}">목록</a>
-                        <h6 class="collapse-header">승인자 리스트 </h6>
-                        <a class="collapse-item" href="/general/approver_list?userId=${member.userId}">승인자 리스트</a>
-                        
+					 <a class="collapse-item" href="/general/request">요청작성</a>
+                        <a class="collapse-item" href="/general/request_list">요청목록</a>
 				</div>
 			</div></li>
 
@@ -115,7 +111,8 @@
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <span
-							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.userName}(일반사용자)</span> 
+							class="mr-2 d-none d-lg-inline text-gray-600 small">${member.user_name}(일반사용자)</span> 
+							<span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

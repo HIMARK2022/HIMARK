@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>결재 분류</title>
 </head>
-
 <body>
-	<%@include file="../sidebar/admin_side.jsp"%>
+	<page:applyDecorator name="adminSide" />
 	<link href="/resources/css/category.css" rel="stylesheet">
 	<link href="/resources/css/admin_manage_authority.css" rel="stylesheet">
 <!-- 	<link href="/resources/css/admin_modal.css" rel="stylesheet"> -->
@@ -61,12 +61,12 @@
 						<div class="upperpage-wrapper "
 							style="display: block; padding-left: 85%; padding-bottom: -30px;">
 							<a
-								class="upper-content-detail btn btn-outline-primary btn-icon-split">
-								<span class="icon text-white-50"> <i class="fas fa-plus"></i>
-							</span>
+								class="upper-content-detail btn">
+								 <i class="fa-solid fa-square-plus fa-2xl" aria-hidden="true"></i>
+							
 							</a>
 						</div>
-						<div class="container" id="tree_people">
+						
 							<div class="row">
 								<div>
 									<ul class="uppercategory">
@@ -75,7 +75,7 @@
 								</div>
 
 							</div>
-						</div>
+						
 					</div>
 					<!-- Card Body 부서트리-->
 				</div>
@@ -254,7 +254,7 @@
 						<label class="font-weight-bold">하위 분류 명</label> <input type="text"
 							class="form-control" name="mod_name" value="" autocomplete="username" required oninput="checkId()"
 							placeholder="생성할 안건 명을 입력하세요"> <span class="id_ok">사용
-							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>>
+							가능한 안건명입니다.</span> <span class="id_already">이미 존재하는 하위 분류명입니다.</span>
 							 <input
 							class="form-control" name="org_name" value="" type="hidden"> 
 					</div>
@@ -330,7 +330,7 @@
 	</form>
 
 
-	<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 	<script type="text/javascript" src="/resources/js/category.js"></script>
 	<script>
 		$('.content-detail').on('click', function() {
@@ -385,12 +385,15 @@
 							console.log(category);
 
 							if ($('#detail').css("display") == "none") {
+								$('#detail h2').remove();
+								$('#detail button').remove();
+								$("#addForm ").find("input[name='add_upper_classify_name']").remove();
 								$('#detail').show();
 								$('#detail').prepend(
 										"<h2 class='upper'>" + $(this).text() + "</h2><button onclick='uppermodbtn()' class='uppermodbtn btn '>"
-										+ "<span class='icon text-white-100'> <i class='fas fa-gear'></i></span></button>");
+										+ "<i class='fas fa-gear'></i></button>");
 								addForm
-										.append("<input type = 'hidden' name = 'upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
+										.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 
 								var sendData = "upper_classify_name="
 										+ category;
@@ -405,12 +408,14 @@
 								});
 
 							} else {
-								$('#detail h2').empty();
+								$('#detail h2').remove();
+								
 								$('#detail').prepend(
-										"<h2>" + $(this).text() + "</h2>");
+										"<h2 class='upper'>" + $(this).text() + "</h2>");
 								$("#addForm ").find("input").val("");
+								$("#addForm ").find("input[name='add_upper_classify_name']").remove();
 								addForm
-										.append("<input type = 'hidden' name = 'upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
+										.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + category+"'>");
 
 								var sendData = "upper_classify_name="
 										+ category;
@@ -431,7 +436,7 @@
 			var classify_name = $('input[name=upper_classify_name]').val();
 			console.log(classify_name);
 			categoryService.addUpper(classify_name, function(result) {
-				
+				alert("추가되었습니다.");
 				$(".uppermodal").find("input").val("");
 				$('.uppermodal-wrapper').removeClass('open');
 				// $('.uppermodal-wrapper').modal("hide");
@@ -459,7 +464,7 @@
 										+ "<td>"
 										+ val.approval_period
 										+ "</td>"
-										+ "<td><a class='btn btn-outline-danger delbtn'"
+										+ "<td><a class='btn btn-outline-danger delbtn gap'"
 										+"onclick = "+ deltext +">"
 										+ "<span class='text'>삭제</span>"
 										+ "</a><a href='#' class='content-detail2 btn btn-outline-warning modbtn'"
@@ -477,12 +482,12 @@
 			var category = {
 				classify_name : $('input[name=classify_name]').val(),
 				approval_period : $('#approval_period').val(),
-				upper_classify_name : $('#upper_classify_name').val()
+				upper_classify_name : $('input[name=add_upper_classify_name]').val()
 			}
 			console.log(category);
 			
 			categoryService.add(category, function(result) {
-
+				alert("추가되었습니다.");
 				$(".addmodal").find("input").val("");
 
 				$('.addmodal-wrapper').removeClass('open');
@@ -589,8 +594,16 @@
 			categoryService.uppermodify(category, function(result){
 				alert("상위 분류명이 수정되었습니다.");
 				$('.uppermodmodal-wrapper').removeClass('open');
-				$('#detail').css("display", "none");
 				showUpperList();
+				$('#detail h2').remove();
+				
+				$('#detail').prepend(
+						"<h2 class='upper'>" + mod_name + "</h2>");
+				$("#addForm ").find("input").val("");
+				$("#addForm ").find("input[name='add_upper_classify_name']").remove();
+				addForm
+						.append("<input type = 'hidden' name = 'add_upper_classify_name' id='upper_classify_name' value = '" + mod_name+"'>");
+				showList(mod_name);
 			})
 			
 		});
@@ -630,9 +643,15 @@
 					classify_name : classify_name
 				},
 				success : function(cnt) {
-					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+					
+					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
 						$('.id_ok').css("display", "inline-block");
-						$('.id_already').css("display", "none");
+						$('.id_already').css("display", "none");	
+						}
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");
@@ -654,9 +673,15 @@
 					upper_classify_name : upper_classify_name
 				},
 				success : function(cnt) {
-					if (cnt != 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+
+					if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한
+						if(upper_classify_name==""){
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						}else{
 						$('.id_ok').css("display", "inline-block");
-						$('.id_already').css("display", "none");
+						$('.id_already').css("display", "none");	
+						}
 					} else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는
 						$('.id_already').css("display", "inline-block");
 						$('.id_ok').css("display", "none");

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.himark.mapper.ApproverTempSelectMapper">
+	
+	<select id="selectAbleMember" resultType="com.himark.domain.UsersDetailVO">
+		select
+		user_id, user_name, pos_id, duty_id, dept_id,authority_code ,birth_date, sex, phone_number
+		, email, current_state, team, depart, head, pos_name, duty_name
+		from usersdetail
+		where dept_id = #{dept_id} and current_state = "재직" 
+	</select>
+	
+	<select id = "findTempApprover" resultType ="com.himark.domain.TempManagerInfoVO">
+		select manager_id , temp_manager 
+		from tempmanagerinfo 
+		where manager_id = #{manager_id};
+	</select>
+	
+</mapper>

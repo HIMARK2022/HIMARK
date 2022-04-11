@@ -3,6 +3,7 @@
     padding: 25px 50px 41px 50px;
     vertical-align: top;
     word-break: keep-all;
+    width: 950px;
 }
 
 .pic {
@@ -34,9 +35,7 @@
     /* Chrome, Safari, Opera*/
 }
 
-#table td {
-    width: 50%;
-}
+
 .card-body:hover {text-decoration: none}
 a:hover{
 text-decoration: none;}

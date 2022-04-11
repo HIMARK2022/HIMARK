@@ -3,6 +3,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,30 @@
 </head>
 <body id="page-top">
 
+<script>
+	function getUser(requestNo){
+		var user;
+		$.ajax({
+			url:"/general/getUser",
+			type:"get",
+			dataType : 'json',
+			async:false,
+			data :{requestNo:requestNo},
+			success : function(result){
+				user = result[0];
+			}
+		})
+				console.log(user);
+		
+		 document.getElementById(requestNo).innerHTML = user;
+	}
+	</script>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/approver_side.jsp"%>
+        <page:applyDecorator name="approverSide" />
         <!-- End of Topbar 헤더 끝 -->
  <!-- 결재.html -->
                 <div class="container-fluid">
@@ -30,17 +50,17 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow active" data-toggle="tab" href="#tab1">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 문서</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">대기함</h6>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow" data-toggle="tab" href="#tab2">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 승인</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">승인함</h6>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link py-3 shadow" data-toggle="tab" href="#tab3">
-                                <h6 class="m-0 font-weight-bold text-primary">결재 반려</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">반려함</h6>
                             </a>
                         </li>
                     </ul>
@@ -54,23 +74,28 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th id="No" width="5%">No</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="finishdate" width="15%">마감일</th>
-											<th id="state" width="15%">상태</th>
+                                                    <th id="No">문서번호</th>
+											<th id="classification" >분류</th>
+											<th id="title" >제목</th>
+											<th id="requestdate" >요청일</th>
+											<th id="finishdate" >마감일</th>
+											<th id="manager">요청자</th>
+											<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <c:forEach var="list" items="${rpayment}">
                                                 <tr>
                                                    	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-													<td>${list.state}</td>
+												<td>${list.category}</td>
+												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
+												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+												<td>${list.state}</td>
                                                 </tr>
                                                 </c:forEach>
                                                
@@ -81,8 +106,8 @@
                             </div>
                             
                             <form id='actionForm2' action="/approver/request" method='get'>
-								<input type='hidden' name='userId' value='${member.userId}'>
-								<input type='hidden' name='userName' value='${member.userName}'>
+								<input type='hidden' name='user_id' value='${member.user_id}'>
+								<input type='hidden' name='user_name' value='${member.user_name}'>
 							</form>
                             <!-- 결재 문서 End -->
 
@@ -93,21 +118,28 @@
                                         <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                     <th id="No" width="5%">No</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="15%">요청일</th>
-											<th id="completedate" width="15%">승인일</th>
+                                                    <th id="No" >문서번호</th>
+													<th id="classification">분류</th>
+													<th id="title">제목</th>
+													<th id="requestdate">요청일</th>
+													<th id="finishdate" >승인일</th>
+													<th id="manager" >요청자</th>
+													<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                  <c:forEach var="list" items="${cpayment}">
                                                 <tr>
-                                                   	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.cdate}" pattern="yyyy/MM/dd" /></td>
+                                                   <td>${list.requestNo}</td>
+												<td>${list.category}</td>
+												<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+												<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /></td>
+												<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
+												<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+												<td>${list.state}</td>
                                                 </tr>
                                                 </c:forEach>
                                                 
@@ -125,22 +157,32 @@
                                         <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                  <th id="No" width="5%">No</th>
-											<th id="classification" width="15%">분류</th>
-											<th id="title" width="30%">제목</th>
-											<th id="requestdate" width="20%">요청일</th>
-											<th id="finishdate" width="10%">반려일</th>
+                                                 <th id="No" >문서번호</th>
+											<th id="classification" >분류</th>
+											<th id="title" >제목</th>
+											<th id="requestdate">요청일</th>
+											<th id="finishdate">반려일</th>
+											<th id="manager" >요청자</th>
+											<th id="state" >상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="list" items="${bpayment}">
                                                 <tr>
-                                                   	<td>${list.requestNo}</td>
-													<td>${list.category}</td>
-													<td><a class="move" href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
-													<td><fmt:formatDate value="${list.rdate}" pattern="yyyy/MM/dd" /> </td>
-													<td><fmt:formatDate value="${list.fdate}" pattern="yyyy/MM/dd" /></td>
-                                                </tr>
+														<td>${list.requestNo}</td>
+														<td>${list.category}</td>
+														<td><a class="move"
+															href='<c:out value="${list.requestNo}"/>'>${list.title}</a></td>
+														<td><fmt:formatDate value="${list.rdate}"
+																pattern="yyyy/MM/dd" /></td>
+														<td><fmt:formatDate value="${list.cdate}"
+																pattern="yyyy/MM/dd" /></td>
+														<td id='${list.requestNo}'>
+														<script type="text/javascript">
+														
+															getUser('${list.requestNo}')</script></td>
+													<td>${list.state}</td>
+													</tr>
                                                 </c:forEach>
                                                 
                                             </tbody>
@@ -182,18 +224,21 @@ $(function(){
 		$('.nav-tabs').find('a').eq(1).addClass('active').siblings().removeClass();      
 		$('.tab-content').find('#tab2').addClass('active show').siblings().removeClass('active show');    
 		} 
-	else if(location.hash == "#tab3"){     
+	else if(location.hash == "#tab3"){    
+		$('.nav-tabs').find('a').eq(1).addClass('active').removeClass();  
+		$('.nav-tabs').find('li').eq(1).addClass('nav-link py-3 shadow');  
 		$('.nav-tabs').find('a').eq(0).addClass('active').removeClass();  
-		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow');
-		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();  
-		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');   
-		}
-	})
+		$('.nav-tabs').find('li').eq(0).addClass('nav-link py-3 shadow'); 
+		$('.nav-tabs').find('a').eq(2).addClass('active').siblings().removeClass();      
+		$('.tab-content').find('#tab3').addClass('active show').siblings().removeClass('active show');    
+		} 
+	 })
 
 		
 
 </script>
-                <%@include file="../sidebar/footer.jsp"%>
-<script src="/resources/js/request.js"></script>
+                	<page:applyDecorator name="footer" />
+                <script type="text/javascript"  src="/resources/js/request.js"></script>
+
 </body>
 </html>

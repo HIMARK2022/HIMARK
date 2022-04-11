@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,37 +53,42 @@
             <!-- Nav Item - Dashboard -->
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-users"></i>
+                <a class="nav-link" href="/approver/myinfo">
+                    <i class="fa-solid fa-address-book"></i>
                     <span>나의 정보</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/approver/myDepart?userId=${member.userId}">
-                    <i class="fa-solid fa-sitemap"></i>
-                    <span>나의 부서</span></a>
+                <a class="nav-link" href="/approver/approver_list">
+                    <i class="fa-solid fa-users"></i>
+                    <span>나의 승인자</span></a>
             </li>
-
+			<li class="nav-item">
+                <a class="nav-link" href="/approver/TempSelect">
+                   <i class="fa-solid fa-user-check"></i>
+                    <span>임시 승인자 지정</span></a>
+            </li>
             
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa-solid fa-list-ol"></i>
-                    <span>전자 결재</span>
+                    <span>결재 상신</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">요청 </h6>
-                        <a class="collapse-item" href="/approver/request?userId=${member.userId}">요청</a>
-                        <a class="collapse-item" href="/approver/request_list?userId=${member.userId}">목록</a>
-                        <h6 class="collapse-header">승인자 리스트 </h6>
-                        <a class="collapse-item" href="/approver/approver_list?userId=${member.userId}">승인자 리스트</a>
-                        <h6 class="collapse-header">승인자 결재</h6>
-                        <a class="collapse-item" href="/approver/payment?userId=${member.userId}">결재</a>
+                        <a class="collapse-item" href="/approver/request">요청작성</a>
+                        <a class="collapse-item" href="/approver/request_list">요청목록</a>
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/approver/payment">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <span>결재 수신</span></a>
+            </li>
+            
             
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -116,7 +122,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${member.userName}(승인자)</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                ${member.user_name}
+                                <c:if test="${empty tempOrigin}">(승인자)</c:if>
+                                            <c:if test="${!empty tempOrigin}">(임시승인자)</c:if></span>
+                                <span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>
                              
                             </a>
                             <!-- Dropdown - User Information -->

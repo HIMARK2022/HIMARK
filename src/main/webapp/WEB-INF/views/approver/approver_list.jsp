@@ -3,6 +3,7 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
     <div id="wrapper">
 
         <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/approver_side.jsp"%>
+         <page:applyDecorator name="approverSide" />
         <!-- End of Topbar 헤더 끝 -->
  <!-- 승인자리스트.html -->
       <div class="container-fluid">
@@ -42,90 +43,73 @@
                            <th>본부</th>
                            <th>부서</th>
                            <th>팀</th>
-                           
+                           <th>직책</th>
                         </tr>
                        
                      </thead>
                      <tbody>
-                        <fmt:parseNumber value="${fn:length(alist)}" var="num"/>
+                       <%--  <fmt:parseNumber value="${fn:length(alist)}" var="num"/> --%>
                  
-                     <c:forEach var="list" items="${alist}" end= "${num-2}">
+                     <c:forEach var="list" items="${alist}">
                   
                         <tr>
                            <td>${list.userName}</td>
-                           <td>${list.bonbu}</td>
-                           <td>${list.buseo}</td>
-                           <td>${list.team}</td>
+                           <td><c:choose>
+                           <c:when test="${empty list.bonbu}">--</c:when>
+                           <c:otherwise>${list.bonbu}</c:otherwise>
+                           </c:choose>
+                           </td>
+                           <td><c:choose>
+                           <c:when test="${empty list.buseo}">--</c:when>
+                           <c:otherwise>${list.buseo}</c:otherwise>
+                           </c:choose></td>
+                           <td><c:choose>
+                           <c:when test="${empty list.team }">--</c:when>
+                           <c:otherwise>${list.team}</c:otherwise>
+                           </c:choose></td>
+                           <td>${list.duty}</td>
                         </tr>
                          </c:forEach>
+                         <tr>
+                           <td>${ceo.user_name}</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>${ceo.duty_name}</td>
+                        </tr>
                        
-                        
                      </tbody>
                   </table>
                </div>
                <br>
                <div class="table-responsive col-lg-12" id="temp">
-                  <h4>임시 승인자 목록</h4>
-                  <br>
-                 <%--  <table class="table table-bordered" id="dataTable11" width="100%"
-                     cellspacing="0">
-                     <thead>
-                        <tr>
-                           <th>임시 승인자</th>
-                           <th>본부(승인대상)</th>
-                           <th>부서(승인대상)</th>
-                           <th>팀(승인대상)</th>
-                           <th>임시 권한</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <c:if test="${Tempteam[0].user_id ne null}">
-                           <tr>
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title="${ user_team[0].dept_name} / ${ user_team[0].pos_name}">
-                                    ${user_team[0].user_name} </span></td>
-                              <td>${Tempteam[0].upper_dept2}</td>
-                              <td>${Tempteam[0].upper_dept}</td>
-                              <td>${Tempteam[0].dept_name}</td>
+						<h4>임시 승인자 리스트</h4>
+						<br>
+						<table class="table table-bordered" id="dataTable11" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>승인자</th>
+									<th>임시승인자</th>
+									<th>승인 부여일</th>
+									<th>승인 만료일</th>
+								</tr>
+							</thead>
+							<tbody>
+								 <c:forEach var="tlist" items="${tlist}">
+									<tr>
+										<td>${tlist.manager_name}/${tlist.manager_id}</td>
+										<td>${tlist.user_name}/${tlist.temp_manager}</td>
+										<td><fmt:formatDate value="${tlist.approval_start}" pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatDate value="${tlist.approval_finish}" pattern="yyyy-MM-dd" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title="<fmt:formatDate value="${Tempteam[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempteam[0].approval_finish}" pattern="yyyy-MM-dd" />">
-                                    ${Tempteam[0].duty_name} </span></td>
-                           </tr>
-                        </c:if>
-                        <c:if test="${Tempdepart[0].user_id ne null}">
-                           <tr>
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title="${ user_dept[0].dept_name} / ${ user_dept[0].pos_name}">
-                                    ${user_dept[0].user_name} </span></td>
-                              <td>${Tempdepart[0].upper_dept}</td>
-                              <td>${Tempdepart[0].dept_name}</td>
-                              <td>--</td>
-
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title="<fmt:formatDate value="${Tempdepart[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempdepart[0].approval_finish}" pattern="yyyy-MM-dd" />">${Tempdepart[0].duty_name}</span></td>
-                           </tr>
-                        </c:if>
-                        <c:if test="${Tempupper[0].user_id ne null}">
-                           <tr>
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title=" ${ user_upper[0].dept_name} / ${ user_upper[0].pos_name}">
-                                    ${user_upper[0].user_name} </span></td>
-                              <td>${Tempupper[0].dept_name}</td>
-                              <td>--</td>
-                              <td>--</td>
-
-                              <td><span data-toggle="tooltip" data-placement="top"
-                                 title="<fmt:formatDate value="${Tempupper[0].approval_start}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${Tempupper[0].approval_finish}" pattern="yyyy-MM-dd" />">${Tempupper[0].duty_name}</span></td>
-                           </tr>
-                        </c:if>
-                     </tbody>
-                  </table> --%>
-
-               </div>
-            </div>
-         </div>
-         </div>
+					</div>
+				</div>
+			</div>
          <script>
          
          $("#temp").css("display","none")
@@ -154,7 +138,7 @@
 
 
             <!-- End of Main Content -->
-<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 <script src="/resources/js/request.js"></script>
 </body>
 </html>

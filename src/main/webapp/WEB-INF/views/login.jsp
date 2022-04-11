@@ -56,7 +56,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <input type="hidden" name="authority" value="일반 사용자/승인자">
+                                        <input type="hidden" name="authorityCode" value="일반 사용자/승인자/임시 승인자">
                                         <hr>
                                         <button type="button" class="btn btn-primary btn-user btn-block" onclick="checkForm()">
                                             Login
@@ -88,7 +88,7 @@
 	    function checkForm() {
 	    	var userId = $("input[name=userId]").val();
 	    	var userPwd = $("input[name=userPwd]").val();
-	    	var authority = $("input[name=authority]").val();
+	    	var authorityCode = $("input[name=authorityCode]").val();
 	    	
 			if(!userId) {
 				alert('아이디를 입력하세요');
@@ -107,13 +107,14 @@
 				type : 'POST',
 				data: { userId: userId, 
 						userPwd: userPwd,
-						authority: authority },
-				dataType : 'json',
+						authorityCode: authorityCode },
+				dataType : 'JSON',
 				success: function(result) {
-					console.log(result);
-					console.log('로그인!!!!!!!!');
+					console.log('로그인 처리 완료');
 					
-					if("none" == result.authorityCode) {
+					if("dss" == result.authorityCode) {
+						alert("데이터가 없습니다.");
+					} else if("none" == result.authorityCode) {
 						alert('잘못된 아이디이거나, 비밀번호가 틀렸습니다.');
 					} else if ("wrong" == result.authorityCode){
 						alert('접근 불가능한 권한입니다!');
@@ -124,6 +125,7 @@
 					} else {
 						location.href = '/admin/home';
 					}
+					
 				}, error: function(xhr, status, error) {
 					alert('오류가 발생했습니다.');		
 				}
@@ -153,10 +155,10 @@
                 
                 $(".admin").css("color", "black");
                 $(".admin").css("border-bottom", "solid 3px black");
-                $(".user a").addClass("btn-dark");
+                $("button").addClass("btn-dark");
                 
                 $('body').addClass('bg-gradient-admin');
-                $("input[name=authority]").val("관리자");
+                $("input[name=authorityCode]").val("관리자");
             });
 
             $(".general").click(function() {
@@ -165,10 +167,10 @@
                 
                 $(".admin").css("color", "gray");
                 $(".admin").css("border-bottom", "none");
-                $(".user a").removeClass("btn-dark");
+                $("button").removeClass("btn-dark");
 
                 $('body').removeClass('bg-gradient-admin');
-                $("input[name=authority]").val("일반 사용자/승인자");
+                $("input[name=authorityCode]").val("일반 사용자/승인자/임시 승인자");
             });
         });
     </script>

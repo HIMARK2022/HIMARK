@@ -31,29 +31,37 @@ public class LoginController {
 	
 	@ResponseBody
 	@PostMapping("/login")
-	public MemberVO loginProcess(MemberVO vo, @RequestParam("authority") String authority, Model model, HttpServletRequest request) throws IOException {
-		log.info("loginProcess");
-		log.info(vo);
-		log.info(authority);
+	public MemberVO loginProcess(MemberVO vo, Model model, HttpServletRequest request) throws IOException {
+		log.info("로그인 처리");
+		
+		MemberVO result = new MemberVO(); // 반환할 값
+		
+		// 데이터가 없는 경우
+		int countUser = service.countUser();
+		if(countUser == 0) {
+			result.setAuthorityCode("dss");
+			
+			return result;
+		}
 		
 		HttpSession session = request.getSession();
 		
 		MemberVO loginUser = service.login(vo);
 		
-		MemberVO result = new MemberVO();
-		result.setAuthorityCode("none");
+		result.setAuthorityCode("none"); // 일치하는 아이디, 비밀번호가 없음
 		
 		if(loginUser != null) {
-			
 			// 권한 체크
 			String auth = loginUser.getAuthorityCode();
 			
-			if(authority.contains(auth)) {
+			if(vo.getAuthorityCode().contains(auth)) {
 				session.setAttribute("loginUser", loginUser);
 				
 				if("일반 사용자".equals(auth)) {
 					result.setAuthorityCode("general");
 				} else if("승인자".equals(auth)) {
+					result.setAuthorityCode("approver");
+				} else if("임시 승인자".equals(auth)) {
 					result.setAuthorityCode("approver");
 				} else { // 관리자
 					result.setAuthorityCode("admin");
@@ -65,8 +73,6 @@ public class LoginController {
 			
 			result.setUserId(loginUser.getUserId());
 		}
-		
-		log.info(result);
 		
 		return result;
 	}

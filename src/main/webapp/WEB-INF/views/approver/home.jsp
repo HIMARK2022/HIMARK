@@ -3,6 +3,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
     <div id="wrapper">
 
         <!-- Sidebar 사이드바-->
-        <%@include file="../sidebar/approver_side.jsp"%>
+         <page:applyDecorator name="approverSide" />
         <!-- End of Topbar 헤더 끝 -->
         <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -49,12 +50,20 @@
                                         </svg>
                                     </div>
                                     <div class="profile">
-                                        <b>${member.userName }</b> /  ${member.duty } <p class="text-xs font-weight-bold text-primary"
-                                            style="float: right; margin-top: 20px;">(승인자)</p><br> ${member.dept }&nbsp;
+                                        <b>${member.user_name }</b> /  ${member.duty_name } <small class="text-xs font-weight-bold text-primary"
+                                            style="margin-top: 20px;">
+                                            <c:if test="${empty tempOrigin}">(승인자)</c:if>
+                                            <c:if test="${!empty tempOrigin}">(임시승인자)</c:if>
+                                            </small><br> ${member.head}
+                                            <c:choose>
+                                            <c:when test="${empty member.depart}">&nbsp;</c:when>
+                                            <c:when test="${empty member.team}">/${member.depart} &nbsp;</c:when>
+                                            <c:otherwise>/${member.depart}/${member.team}&nbsp;</c:otherwise>
+                                            </c:choose>
                                     </div>
                                     </p>
                                     <br>
-                                     <p><b>아이디</b> ${member.userId }</p>
+                                     <p><b>아이디</b> ${member.user_id }</p>
                                     <b>이메일</b> ${member.email }
                                 </div>
                             </div>
@@ -107,15 +116,15 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/request?userId=${member.userId}'">
+                                                <div class="card-body state" id="ing" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab1'">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="progress" 
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
-                                                                진행중</div>
+                                                                대기</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${progress}'/>건</div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto ing">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
                                                         </div>
                                                     </div>
@@ -125,16 +134,16 @@
 
                                             <div class="col-lg-4 mb-2">
                                                 <div class="card border shadow h-100 ">
-                                                    <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab1'" data-toggle="tab">
+                                                    <div class="card-body state" id="complete" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab2'" data-toggle="tab">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col mr-2">
                                                                 <div
                                                                     class="text-sm font-weight-bold text-success text-uppercase mb-1">
-                                                                    완료</div>
+                                                                    승인</div>
                                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${complete}'/>건
                                                                 </div>
                                                             </div>
-                                                            <div class="col-auto">
+                                                            <div class="col-auto complete">
                                                                 <i class="fas fa-check fa-2x text-success"></i>
                                                             </div>
                                                         </div>
@@ -144,7 +153,7 @@
 
                                                 <div class="col-lg-4 mb-2">
                                                     <div class="card border shadow h-100">
-                                                        <div class="card-body state" onclick="location.href='/approver/request_list?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                        <div class="card-body state" id="back" onclick="location.href='/approver/request_list?userId=${member.user_id}#tab3'" data-toggle="tab">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col mr-2">
                                                                     <div
@@ -153,7 +162,7 @@
                                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                                         <c:out value='${back}'/>건</div>
                                                                 </div>
-                                                                <div class="col-auto">
+                                                                <div class="col-auto back">
                                                                     <i class="fa fa-reply fa-2x text-secondary"></i>
                                                                 </div>
                                                             </div>
@@ -174,10 +183,10 @@
                                             </div>
                                             <div class="mt-4 text-center small">
                                                 <span class="mr-2">
-                                                    <i class="fas fa-circle text-primary"></i> 진행중
+                                                    <i class="fas fa-circle text-primary"></i> 대기
                                                 </span>
                                                 <span class="mr-2">
-                                                    <i class="fas fa-circle text-success"></i> 완료
+                                                    <i class="fas fa-circle text-success"></i> 승인
                                                 </span>
                                                 <span class="mr-2">
                                                     <i class="fas fa-circle text-secondary"></i> 반려
@@ -198,16 +207,16 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab1'" data-toggle="tab">
+                                                <div class="card-body state" id="ging" onclick="location.href='/approver/payment?userId=${member.user_id}#tab1'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gprogress"
                                                                 class="text-sm font-weight-bold text-primary text-uppercase mb-1">
-                                                                진행중</div>
+                                                                대기</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gprogress}'/>건
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto ging">
                                                             <i class="fas fa-hourglass-half fa-2x text-primary"></i>
                                                         </div>
                                                     </div>
@@ -217,16 +226,16 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100 ">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab2'" data-toggle="tab">
+                                                <div class="card-body state" id="complete" onclick="location.href='/approver/payment?userId=${member.user_id}#tab2'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gcomplete"
                                                                 class="text-sm font-weight-bold text-success text-uppercase mb-1">
-                                                                완료</div>
+                                                                승인</div>
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><c:out value='${gcomplete}'/>건
                                                             </div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto gcomplete">
                                                             <i class="fas fa-check fa-2x text-success"></i>
                                                         </div>
                                                     </div>
@@ -236,7 +245,7 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="card border shadow h-100">
-                                                <div class="card-body state" onclick="location.href='/approver/payment?userId=${member.userId}#tab3'" data-toggle="tab">
+                                                <div class="card-body state" id="back" onclick="location.href='/approver/payment?userId=${member.user_id}#tab3'" data-toggle="tab">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div id="gback"
@@ -245,7 +254,7 @@
                                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                                 <c:out value='${gback}'/>건</div>
                                                         </div>
-                                                        <div class="col-auto">
+                                                        <div class="col-auto gback">
                                                             <i class="fas fa-reply fa-2x text-secondary"></i>
                                                         </div>
                                                     </div>
@@ -266,10 +275,10 @@
                                             </div>
                                             <div class="mt-4 text-center small">
                                                 <span class="mr-2">
-                                                    <i class="fas fa-circle text-primary"></i> 진행중
+                                                    <i class="fas fa-circle text-primary"></i> 대기
                                                 </span>
                                                 <span class="mr-2">
-                                                    <i class="fas fa-circle text-success"></i> 완료
+                                                    <i class="fas fa-circle text-success"></i> 승인
                                                 </span>
                                                 <span class="mr-2">
                                                     <i class="fas fa-circle text-secondary"></i> 반려
@@ -286,8 +295,7 @@
 
                 </div>
                 <!-- End of Main Content -->
-                <script>
-                      
+              <script>                
                 
                 
                 
@@ -355,8 +363,53 @@ Chart.defaults.global.defaultFontColor = '#858796';
                     cutoutPercentage: 80,
                   },
                 });
+                
+                 $("#ing").hover(function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x fa-spin text-primary'></i>");
+                },function(){
+                	$(".ing i").remove();
+                	$(".ing").append("<i class='fas fa-hourglass-half fa-2x text-primary'></i>");
+                }); 
+                 $("#ging").hover(function(){
+                 	$(".ging i").remove();
+                 	$(".ging").append("<i class='fas fa-hourglass-half fa-2x fa-spin text-primary'></i>");
+                 },function(){
+                 	$(".ging i").remove();
+                 	$(".ging").append("<i class='fas fa-hourglass-half fa-2x text-primary'></i>");
+                 }); 
+                 
+                 $("#complete").hover(function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x fa-bounce text-success'></i>");
+                 },function(){
+                 	$(".complete i").remove();
+                 	$(".complete").append(" <i class='fas fa-check fa-2x text-success'></i>");
+                 }); 
+                 $("#gcomplete").hover(function(){
+                 	$(".gcomplete i").remove();
+                 	$(".gcomplete").append(" <i class='fas fa-check fa-2x fa-bounce text-success'></i>");
+                 },function(){
+                 	$(".gcomplete i").remove();
+                 	$(".gcomplete").append(" <i class='fas fa-check fa-2x text-success'></i>");
+                 }); 
+                 
+                 $("#back").hover(function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x fa-flip text-secondary'></i>");
+                 },function(){
+                 	$(".back i").remove();
+                 	$(".back").append("<i class='fa fa-reply fa-2x text-secondary'></i>");
+                 }); 
+                 $("#gback").hover(function(){
+                 	$(".gback i").remove();
+                 	$(".gback").append("<i class='fa fa-reply fa-2x fa-flip text-secondary'></i>");
+                 },function(){
+                 	$(".gback i").remove();
+                 	$(".gback").append("<i class='fa fa-reply fa-2x text-secondary'></i>");
+                 }); 
                 </script>
-	<%@include file="../sidebar/footer.jsp"%>
+	<page:applyDecorator name="footer" />
 
 </body>
 </html>

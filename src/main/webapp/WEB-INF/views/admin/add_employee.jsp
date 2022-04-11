@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +12,8 @@
 </head>
 
 <body>
+<page:applyDecorator name="adminSide" />
 
-<%@include file="../sidebar/admin_side.jsp"%>
 <link href="/resources/css/admin_tree.css" rel="stylesheet">
 <link href="/resources/css/admin_add_employee.css" rel="stylesheet">
 <link href="/resources/css/admin_modal_add.css" rel="stylesheet">
@@ -36,15 +38,15 @@
 							<div class="row12">
 								<c:forEach var="head" items="${head}">
 	 								<ul class="tree"> 
-										 <li> <i class="fa-solid fa-folder-open"></i><a class="head" id="${head.head_id}">${head.head}</a>
+										 <li> <i class="fa-solid fa-user"></i><a class="head" id="${head.head_id}">${head.head}</a>
 											<ul>
 											<c:forEach var="depart" items="${depart}">
 		                                        <c:if test="${depart.head eq head.head}">
-		    										<li><i class="fa-solid fa-folder"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
+		    										<li><i class="fa-solid fa-user"></i><a class="dept" id="${depart.dept_id}">${depart.depart}</a>
 		 												<ul>
 		 												<c:forEach var="team" items="${team}">
 		                                                    <c:if test="${depart.depart eq team.depart}">
-																<li><i class="fas fa-fw fa-file"></i><a class="team" id="${team.team_id}">${team.team}</a>
+																<li><i class="fa-solid fa-user"></i><a class="team" id="${team.team_id}">${team.team}</a>
 																</li>
 															</c:if>
 	                                                    </c:forEach>
@@ -106,8 +108,8 @@
 
 	<!-- 수정 모달 -->
 	<form name="modForm" id="modForm">
-		<input type='hidden' value="" name ='Muser_id'>
-		<input type='hidden' value="" name ='Mdept_id'>
+		<input type='hidden' value="" name ='Muser_id' id='Muser_id'>
+		<input type='hidden' value="" name ='Mdept_id' id='Mdept_id'>
 		<div class="modal-wrapper">
 			<div class="modal">
 				<div class="modal-header">
@@ -117,31 +119,49 @@
 				</div>
 				<div class="modal-body">
                     <div>
-                        <table class="table table-bordered" id="dataTable" cellspacing="0" >
+                        <table class="table table-bordered" id="dataTable modtable" cellspacing="0" >
                             <tr>
                                 <th >소속(변경 불가)</th>
                                 <td >
                                     <div>
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name="ModBelong"
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name="ModBelong" id="ModBelong"
                                             aria-label="Search" aria-describedby="basic-addon2" readonly>
                                     </div>
                                 </td>
                             </tr>
-                             
-                              <tr>
-                                <th >직급(변경 불가)</th>
+                             <tr>
+								<th>직급</th>
+								<td>
+									<div>
+										<select class="form-select form-control col-lg-5" name="ModPos" id="ModPos" required>
+                                        	<c:forEach  var="pos" items="${pos}">
+                                        		<option value="${pos.pos_id}" >${pos.pos_name}</option>  
+                                            </c:forEach>
+                                       	</select>
+                            		</div>
+								</td>
+							</tr>
+                            <tr>
+                                <th >등록 형태</th>
                                 <td >
-                                    <div>
-                                    	<input type="text" class="form-control bg-light border-0 small" placeholder="사원/선임/책임/수석/임원" name="ModPos"
-                                          aria-label="Search" aria-describedby="basic-addon2" readonly>
+                                    <div class="form-check-inline">
+                                    	<label class="form-check-label" for="howIn1">
+                                    		<input class="form-check-input" type="radio" id="howIn1" name="ModhowIn" value="인사연동">인사연동
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    	<label class="form-check-label" for="howIn2">
+                                    		<input class="form-check-input" type="radio" id="howIn2" name="ModhowIn" value="웹">웹
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <th >이름</th>
                                 <td>
-                                    <div >
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="이름을 입력하시오" name="ModUserName"
+                                    <div>
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="이름을 입력하시오" name="ModUserName" id ="ModUserName"
                                             aria-label="Search" aria-describedby="basic-addon2">
                                     </div>
                                 </td>
@@ -150,7 +170,7 @@
                             <tr>
                               <th>생년월일</th>
                               <td>
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="생년월일을 입력하세요 ex) 1900-01-01" name="ModBirth"
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="생년월일을 입력하세요 ex) 1900-01-01" name="ModBirth" id ="ModBirth"
                                             aria-label="Search" aria-describedby="basic-addon2">
                               </td>
                             </tr>
@@ -158,7 +178,7 @@
                               <th>성별</th>
                               <td>
                                 <div>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="성별을 입력하세요 ex) 남/여" name="ModSex"
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="성별을 입력하세요 ex) 남/여" name="ModSex" id="ModSex"
                                             aria-label="Search" aria-describedby="basic-addon2">
                                 </div>
                                 
@@ -168,7 +188,7 @@
                                 <th >이메일</th>
                                 <td >
                                     <div>
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="이메일을 입력하세요" name="ModEmail"
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="이메일을 입력하세요" name="ModEmail" id="ModEmail"
                                             aria-label="Search" aria-describedby="basic-addon2">
                                     </div>
                                 </td>
@@ -177,7 +197,7 @@
                                 <th>휴대폰 번호</th>
                                 <td>
                                   <div>
-                                      <input type="text" class="form-control bg-light border-0 small" placeholder="전화번호를 입력하시오" name="ModPhone"
+                                      <input type="text" class="form-control bg-light border-0 small" placeholder="전화번호를 입력하시오" name="ModPhone" id="ModPhone"
                                           aria-label="Search" aria-describedby="basic-addon2">
                                   </div>
                                 </td>
@@ -189,7 +209,7 @@
 					<div class="btn-group btn-group-justified" role="group"
 						aria-label="group button">
 						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-default content-detail cancel"
+							<button type="button" class="btn btn-default content-detail mod-content-detail" 
 								data-dismiss="modal" role="button">취소</button>
 						</div>
 						<div class="btn-group" role="group">
@@ -312,224 +332,12 @@
 		</div>
 	</form>
 
-<%@include file="../sidebar/footer.jsp"%>
+<page:applyDecorator name="footer" />
 
 <script src="/resources/js/tree.js"></script>
 <script src="/resources/js/birth.js"></script>
 <script src="/resources/js/add_user.js"></script>
-<script>
-	$('.content-detail').on('click', function () {
-	    $('.modal-wrapper').toggleClass('open');
-	    $('.page-wrapper').toggleClass('blur-it');
-	    return false;
-	});
-	$('.content-detail2').on('click', function () {
-	    $('.modal-wrapper2').toggleClass('open');
-	    $('.page-wrapper2').toggleClass('blur-it');
-	    return false;
-	});
-	$('.head').on('click', function() {	
-		if($('.about-detail').css("display")=="none"){
-			$('.about-detail').show();
-        }else{
-        	$('.about-detail').hide();
-        }
-	});
-	$('.create-content-detail').on('click', function () {
-	    $('.modal-wrapper2').removeClass('open');
-	    $('.page-wrapper2').toggleClass('blur-it');
-	    return false;
-	});
-	$('.cancel').on('click', function () {
-	    $('.modal-wrapper2').removeClass('open');
-	    $('.page-wrapper2').toggleClass('blur-it');
-	    return false;
-	});
-</script>
-
-<script>
-	$(".team").click(function(e){
-	 	var teamN = $(this).text();
-	    var team = $(this).attr("id");
-	    showTeamMember(team)
-	    console.log("선택 명 :"+teamN);
-	    $('input[name=departIn ]').attr('value', teamN);
-	    $('input[name=AdddeptId ]').attr('value', team);
-	});
-	$(".dept").click(function(e){
-    	var deptN = $(this).text();
-	    var dept = $(this).attr("id");
-		showDepartMember(dept);
-		console.log("선택 명 :"+deptN);
-		$('input[name=departIn ]').attr('value', deptN);
-		$('input[name=AdddeptId ]').attr('value', dept);
-	});
-	$(".head").click(function(e) {
-		var headN = $(this).text();
-	    var head = $(this).attr("id");
-		showHeadMember(head);
-		console.log("선택 명 :"+headN);
-		$('input[name=departIn ]').attr('value', headN);
-		$('input[name=AdddeptId ]').attr('value', head);
-	});
-	
-	function showTeamMember(team) {
-		$('#tbody tr').remove();
-		$('#teaminfo span').remove();
-		AddModifyService.getTeamList(team, function(data) {
-			teaminfo = "<span>" + data[0].team + "</span>";
-			showInfo(data);
-			$('#teaminfo').append(teaminfo);
-		});
-	}
-	
-	function showDepartMember(depart) {
-		 $('#tbody tr').remove();
-		$('#teaminfo span').remove();
-		AddModifyService.getDepartList(depart, function(data) {
-			teaminfo = "<span>" + data[0].depart + "</span>";
-			showInfo(data);
-			$('#teaminfo').append(teaminfo);
-		});
-	}
-	
-	function showHeadMember(head) {
-		 $('#tbody tr').remove();
-		 $('#teaminfo span').remove();
-		AddModifyService.getHeadList(head, function(data) {
-			teaminfo = "<span>" + data[0].head + "</span>";
-			showInfo(data);
-			$('#teaminfo').append(teaminfo);
-		});
-	}
-	function showInfo(data) {
-		str = "";
-		for (var i = 0; i < data.length; i++) {
-			if(data[i].head == null){
-				data[i].head ="";
-			}
-			if(data[i].depart == null){
-				data[i].depart="";
-			}
-			if(data[i].team == null){
-				data[i].team="";
-			}
-			
-			var modInfo = "modInfo(\'"+ data[i].head+'/'+data[i].depart+'/'+data[i].team + "\',\'"+ data[i].user_name + "\',\'" + data[i].pos_name + "\',\'"+ data[i].birth_date + "\',\'"+ data[i].sex + "\',\'"+ data[i].email + "\',\'"+ data[i].phone_number + "\',\'"+ data[i].user_id + "\',\'"+ data[i].dept_id + "\')";
-			str += "<tr><td><div class='page-wrapper'><a class='content-detail' onclick="+modInfo+"><span class='clickId'>"
-					+ data[i].user_id
-					+ "</span></a></div></td>"
-					+ "<td>"
-					+ data[i].user_name
-					+ "</td>"
-					+ "<td>"
-					+ data[i].duty_name
-					+ "</td>" + "<td>" + data[i].pos_name + "</td></tr>"
-		}
-		$('#tbody').append(str);
-		$('.content-detail').on('click', function() { //모달 클릭시 오픈
-			$('.modal-wrapper').toggleClass('open');
-			$('.page-wrapper').toggleClass('blur-it');
-			return false;
-		});
-		$('.mod-content-detail').on('click', function() {
-			$('.modal-wrapper').removeClass('open');
-			$('.page-wrapper').toggleClass('blur-it');
-			return false;
-		});
-	}
-	
-	$('#addMember').on('click',function(){
-		var year = $('input[name=AddBirth]').val();
-		var user_id = $('input[name=AdddeptId]').val();
-		
-		console.log("부서아이디 : " + $('input[name=AdddeptId]').val());
-		console.log("부서이름 : " + $('#departIn').text());
-		var userInfo ={
-			user_name : $('input[name=AdduserName]').val(),
-			pos_id : $('select[name=pos]').val(),
-			duty_id : "d01",
-			dept_id :  $('input[name=AdddeptId]').val(),
-			authority_code :"A1",
-			birth_date : $('input[name=AddBirth]').val(),
-			sex : $('input[name=Addsex]').val(),
-			phone_number : $('input[name=AddPhone ]').val(),
-			email : $('input[name=AddEmail]').val(),
-			current_state : "재직"
-		}
-		console.log("길이"+userInfo.dept_id.length);
-		
-		AddModifyService.addUser(userInfo,function(result){
-			$('.modal-wrapper2').removeClass('open');
-			$('.page-wrapper2').toggleClass('blur-it');
-			$(".modal").find("input").val("");
-			
-			if(userInfo.dept_id.length == 3){
-				alert('직원이 추가되었습니다.');
-				showTeamMember(userInfo.dept_id);
-			}else if(userInfo.dept_id.length == 2){
-				alert('직원이 추가되었습니다.');
-				showDepartMember(userInfo.dept_id)
-			}else if(userInfo.dept_id.length == 1){
-				alert('직원이 추가되었습니다.');
-				showHeadMember(userInfo.dept_id)
-			}
-		});
-	});
-	
-	function modInfo(head, user_name , pos , birth , sex , email , phone , user_id ,dept_id) {
-
-		$('input[name=ModBelong]').attr('value', head);
-		$('input[name=ModPos]').attr('value', pos);
-		console.log('지금 이름이 뭔지?' +$('input[name=ModUserName]').value)
-		$('input[name=ModUserName]').attr('value', user_name);
-		$('input[name=ModBirth]').attr('value', birth);
-		$('input[name=ModSex]').attr('value', sex);
-		$('input[name=ModEmail]').attr('value', email);
-		$('input[name=ModPhone]').attr('value', phone);
-		
-		$('input[name=Muser_id]').attr('value', user_id);
-		$('input[name=Mdept_id]').attr('value', dept_id);
-		
-	} 
-	$('#modMember').on("click",function(e){
-		
-		
-		var user_name =$('input[name=ModUserName]').val() ;
-		var birth_date = $('input[name=ModBirth]').val() ;
-		var sex =$('input[name=ModSex]').val() ;
-		var email = $('input[name=ModEmail]').val(); 
-		var phone_number = $('input[name=ModPhone]').val();
-		var user_id = $('input[name=Muser_id]').val();
-		var dept_id = $('input[name=Mdept_id]').val();
-		
-		var modInfo ={
-			user_name:user_name,
-			birth_date:birth_date,
-			sex:sex,
-			email:email,
-			phone_number:phone_number,
-			user_id:user_id,
-			dept_id:dept_id
-		}
-		
-		AddModifyService.modify(modInfo,function(result){
-			
-
-			if(modInfo.dept_id.length == 3){
-				alert('정보가 수정되었습니다.');
-				showTeamMember(modInfo.dept_id);
-			}else if(modInfo.dept_id.length == 2){
-				alert('정보가 수정되었습니다.');
-				showDepartMember(modInfo.dept_id)
-			}else if(modInfo.dept_id.length == 1){
-				alert('정보가 수정되었습니다.');
-				showHeadMember(modInfo.dept_id)
-			} 
-		})
-	});
-	
-</script>
+<script src="/resources/js/add_employee.js"></script>
 
 </body>
 </html>
