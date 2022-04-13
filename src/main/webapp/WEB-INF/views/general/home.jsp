@@ -135,17 +135,17 @@
                                
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <a href="#" class="text-body">
+                                            <a href="/general/myinfo" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
-                                                        <i class="fa fa-user fa-4x" id="ad_icon1" aria-hidden="true"></i></br>
+                                                        <i class="fa fa-user fa-4x" id="ad_icon1" aria-hidden="true"></i><br>
                                                         <h5>나의 정보</h5>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <a href="#" class="text-body">
+                                            <a href="/general/approver_list" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
                                                        <i class="fa fa-users fa-4x" id="ad_icon2" style="width: 74px; height: 64px; opacity: 0.7;"></i></br>
@@ -155,7 +155,7 @@
                                             </a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <a href="#" class="text-body">
+                                            <a href="/general/request_list" class="text-body">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body" id="menu_btn">
                                                         <i class="fa fa-list-alt fa-4x " id="ad_icon3" aria-hidden="true"></i></br>
