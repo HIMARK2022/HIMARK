@@ -112,7 +112,7 @@ public class PaymentController {
 				
 			}
 			else {
-				list.add(mservice.getApproverList(managerId));
+				//list.add(mservice.getApproverList(managerId));
 				tf = false;
 			}	
 		}
@@ -229,6 +229,13 @@ public class PaymentController {
 		model.addAttribute("user", mservice.getMember(requester));
 		
 		model.addAttribute("manager",pservice.getManager(requestNo) );
+		
+		if(mservice.getCeo().getUserId().equals(userId)) {
+			//대표
+			log.info("대표");
+			model.addAttribute("ceo", mservice.getCeo());
+			model.addAttribute("isceo", 1);
+		}
 	}
 	
 	@ResponseBody 
@@ -273,6 +280,12 @@ public class PaymentController {
 		
 		log.info("승인자 > 결재 반려 ");
 		model.addAttribute("bpayment",pservice.getBackPaymentList(userId));
+		if(mservice.getCeo().getUserId().equals(userId)) {
+			//대표
+			log.info("대표");
+			model.addAttribute("ceo", mservice.getCeo());
+			model.addAttribute("isceo", 1);
+		}
 		
 	}
 	
@@ -291,6 +304,7 @@ public class PaymentController {
 		log.info("결재사유 : "+reason);
 		pservice.updateReason(requestNo,reason);
 		pservice.updateState(requestNo,state);
+		
 		
 		return "redirect:/approver/payment?userId="+userId;
 		

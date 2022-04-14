@@ -48,9 +48,8 @@
                        
                      </thead>
                      <tbody>
-                       <%--  <fmt:parseNumber value="${fn:length(alist)}" var="num"/> --%>
-                 
-                     <c:forEach var="list" items="${alist}">
+                         
+							 <c:forEach var="list" items="${alist}" >
                   
                         <tr>
                            <td>${list.userName}</td>
@@ -71,11 +70,11 @@
                         </tr>
                          </c:forEach>
                          <tr>
-                           <td>${ceo.user_name}</td>
+                           <td>${ceo.userName}</td>
                            <td>--</td>
                            <td>--</td>
                            <td>--</td>
-                           <td>${ceo.duty_name}</td>
+                           <td>${ceo.duty}</td>
                         </tr>
                        
                      </tbody>

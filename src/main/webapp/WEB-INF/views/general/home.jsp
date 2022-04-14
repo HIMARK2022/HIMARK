@@ -113,11 +113,11 @@
 								                        </tr>
 								                         </c:forEach>
 								                         <tr>
-								                           <td style="width:20%">${ceo.user_name}</td>
+								                           <td style="width:20%">${ceo.userName}</td>
 								                           <td style="width:20%">--</td>
 								                           <td style="width:20%">--</td>
 								                           <td style="width:20%">--</td>
-								                           <td style="width:20%">${ceo.duty_name}</td>
+								                           <td style="width:20%">${ceo.duty}</td>
 								                        </tr>
                        
 														</table>

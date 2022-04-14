@@ -22,8 +22,6 @@
 </resultMap>
 
 
-
-
 <select id="getMember" resultType="com.himark.domain.UsersDetailVO">
 select * from usersdetail
 where user_id=#{userId}
@@ -69,8 +67,11 @@ where user_id=#{managerId};
 		select getApprover(#{userId}) as user_id
 	</select>
 
-<select id="getCeo"  resultType="com.himark.domain.UsersDetailVO">
-	select * from user where authority_code="A3"
+<select id="getCeo" resultMap="getMemberMap">
+select * from user
+join duty
+on user.duty_id = duty.duty_id
+where dept_id ='';
 </select>
 
 
@@ -85,6 +86,12 @@ where temp_manager=#{userId};
 <select id="countUser" resultType="int">
 	select count(user_id)
 	from user
+</select>
+
+<select id="getAllUser" resultMap="getMemberMap" >
+select * from user
+join pos
+on user.pos_id = pos.pos_id;
 </select>
 
 </mapper>

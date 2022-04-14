@@ -69,7 +69,7 @@
 										<c:forEach var="alist" items="${alist}"> 
 										<option value='${alist.userId }'>${alist.userName }</option>
 									</c:forEach>
-									<option value='${ceo.user_id}'>${ceo.user_name}</option>
+									<option value='${ceo.userId}'>${ceo.userName}</option>
 									 	
 									</select>
 									</p>
@@ -175,7 +175,7 @@ $(document).ready(function(e){
 					str += "<input type = 'hidden' name = 'attachList["+i+"].uploadPath' value = '" + jobj.data("path") + "'>";
 					str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '" + jobj.data("type") + "'>";
 			
-				});
+				}
 				actionForm.append(str);
 				actionForm.submit();
 			});

@@ -69,7 +69,7 @@
 										<c:forEach var="list" items="${alist}">
 										<option value="${list.userId}">${list.userName}</option>
 										</c:forEach>
-									 	<option value='${ceo.user_id}'>${ceo.user_name}</option>
+									 	<option value='${ceo.userId}'>${ceo.userName}</option>
 									</select>
 									</p>
 									<p>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +46,25 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+			<c:choose>
+			<c:when test="${!empty isceo}">
+			 <!-- Heading -->
+            <div class="sidebar-heading">
+                Approver
+            </div>
+
+            <!-- Nav Item - Dashboard -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="/approver/payment">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <span>결재 수신</span></a>
+            </li>
+			
+			</c:when>
+			
+			<c:otherwise>
+			
             <!-- Heading -->
             <div class="sidebar-heading">
                 Approver
@@ -98,6 +118,8 @@
                     <i class="fa-solid fa-list-ol"></i>
                     <span>결재 수신</span></a>
             </li>
+            </c:otherwise>
+            </c:choose>
             
             
             <!-- Divider -->
@@ -133,7 +155,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <c:choose>
+                                <c:when test="${!empty isceo}">${ceo.userName}</c:when>
+                                <c:otherwise>
                                 ${member.user_name}
+                                </c:otherwise>
+                                </c:choose>
                                 <c:if test="${empty tempOrigin}">(승인자)</c:if>
                                             <c:if test="${!empty tempOrigin}">(임시승인자)</c:if></span>
                                 <span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>

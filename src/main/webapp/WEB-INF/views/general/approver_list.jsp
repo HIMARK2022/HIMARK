@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,10 @@
 									
 								</tr>
 							</thead>
-							 <c:forEach var="list" items="${alist}">
+						 <tbody>
+                       <%--  <fmt:parseNumber value="${fn:length(alist)}-1" var="num"/> --%>
+							 <c:forEach var="list" items="${alist}" >
+							 
                   
                         <tr>
                            <td>${list.userName}</td>
@@ -66,11 +70,11 @@
                         </tr>
                          </c:forEach>
                          <tr>
-                           <td>${ceo.user_name}</td>
+                           <td>${ceo.userName}</td>
                            <td>--</td>
                            <td>--</td>
                            <td>--</td>
-                           <td>${ceo.duty_name}</td>
+                           <td>${ceo.duty}</td>
                         </tr>
                        
 							</tbody>

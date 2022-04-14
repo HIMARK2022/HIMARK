@@ -15,12 +15,13 @@ public interface MemberMapper {
 	public MemberVO login(MemberVO vo);
 	public MemberVO getApprover(@Param ("userId") String userId);
 
-	public UsersDetailVO getCeo();
+	public MemberVO getCeo();
 	public TempManagerInfoVO getTempManager(@Param ("manager")String manager);
 	public String getTempOrigin(String userId);
 
 
 	public int countUser();
+	public List<MemberVO> getAllUser();
 	
 
 }

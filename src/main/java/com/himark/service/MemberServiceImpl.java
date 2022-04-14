@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public UsersDetailVO getCeo() {
+	public MemberVO getCeo() {
 		// TODO Auto-generated method stub
 		return mapper.getCeo();
 	}
@@ -65,6 +65,12 @@ public class MemberServiceImpl implements MemberService{
 	public int countUser() {
 		return mapper.countUser();
 
+	}
+
+	@Override
+	public List<MemberVO> getAllUser() {
+		// TODO Auto-generated method stub
+		return mapper.getAllUser();
 	}
 
 

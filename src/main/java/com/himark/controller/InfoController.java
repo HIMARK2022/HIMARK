@@ -62,7 +62,7 @@ private MemberService mservice;
 					
 				}
 				else {
-					list.add(mservice.getApproverList(managerId));
+					//list.add(mservice.getApproverList(managerId));
 					tf = false;
 				}	
 			}
@@ -79,6 +79,7 @@ private MemberService mservice;
 			//임시승인자
 			for(int i=0;i<list.size();i++) {
 				String manager = list.get(i).getUserId();
+				
 				if(mservice.getTempApprover(manager) != null) {
 				tlist.add(mservice.getTempApprover(manager));
 				}

@@ -21,7 +21,7 @@ public interface MemberService {
 	public MemberVO getApprover(String userId);
 
 
-	public UsersDetailVO getCeo();
+	public MemberVO getCeo();
 
 	public TempManagerInfoVO getTempApprover(String manager);
 
@@ -29,6 +29,8 @@ public interface MemberService {
 
 	
 	public int countUser();
+
+	public List<MemberVO> getAllUser();
 
 	
 
