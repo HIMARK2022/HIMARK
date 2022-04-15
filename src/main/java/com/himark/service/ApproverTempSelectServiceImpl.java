@@ -23,7 +23,7 @@ public class ApproverTempSelectServiceImpl implements ApproverTempSelectService{
 	}
 
 	@Override
-	public List<TempManagerInfoVO> findTempApprover(String manager_id) {
+	public TempManagerInfoVO findTempApprover(String manager_id) {
 		return mapper.findTempApprover(manager_id);
 	}
 	

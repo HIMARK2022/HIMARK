@@ -7,5 +7,5 @@ import com.himark.domain.UsersDetailVO;
 
 public interface ApproverTempSelectMapper {
 	public List<UsersDetailVO> selectAbleMember(String dept_id);
-	public List<TempManagerInfoVO> findTempApprover(String manager_id);
+	public TempManagerInfoVO findTempApprover(String manager_id);
 }

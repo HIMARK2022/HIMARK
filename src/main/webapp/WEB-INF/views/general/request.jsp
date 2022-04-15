@@ -67,7 +67,8 @@
 										<option value='' disabled selected>-- 승인자 --</option>
 									
 										<c:forEach var="list" items="${alist}">
-										<option value="${list.userId}">${list.userName}</option>
+										<option value="${list.userId}">${list.userName}
+										<c:if test='${!empty list.tmpManager }'>(임시승인자 : ${list.tmpManager.user_name })</c:if></option>
 										</c:forEach>
 									 	<option value='${ceo.userId}'>${ceo.userName}</option>
 									</select>

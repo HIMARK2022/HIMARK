@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id = "findTempApprover" resultType ="com.himark.domain.TempManagerInfoVO">
-		select manager_id , temp_manager 
+		select *
 		from tempmanagerinfo 
 		where manager_id = #{manager_id};
 	</select>

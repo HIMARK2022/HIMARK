@@ -1,14 +1,14 @@
 	$('.content-detail').on('click', function () {
 
-		var t = $('#temptable tr td').text()
+		/*var t = $('#temptable tr td').text()
 
 
 		if(t ==""){
 			alert("지정 가능한 임시 승인자가 없습니다.");
 		}else{
 			$('.modal-wrapper').toggleClass('open');
-		}
-		
+		}*/
+		$('.modal-wrapper').toggleClass('open');
 		return false;
 		
 	});

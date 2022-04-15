@@ -24,6 +24,7 @@ import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
 import com.himark.domain.TempManagerInfoVO;
 import com.himark.service.ApproverListService;
+import com.himark.service.ApproverTempSelectService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
 
@@ -38,7 +39,7 @@ public class PaymentController {
 
 	private PaymentService pservice;
 	private MemberService mservice;
-	private ApproverListService aservice;
+	private ApproverTempSelectService aservice;
 	
 	@PostMapping("/register")
 	public String register(HttpServletRequest request,PaymentVO payment, RedirectAttributes rttr) {
@@ -98,6 +99,7 @@ public class PaymentController {
 		
 		// 승인자 리스트(승인자,일반사용자)
 		List<MemberVO> list = new ArrayList<MemberVO>();
+		MemberVO mvo;
 		if(mservice.getApprover(userId) == null) {
 			model.addAttribute("ceo", mservice.getCeo());
 		}else {
@@ -107,11 +109,19 @@ public class PaymentController {
 		while(tf==true) {
 			if(mservice.getApprover(managerId) != null) {
 				System.out.println(managerId);
-				mservice.getApproverList(managerId);
-				list.add(mservice.getApproverList(managerId));
-		
-				managerId = mservice.getApprover(managerId).getUserId();
+				mvo=mservice.getApproverList(managerId);
 				
+				if(aservice.findTempApprover(managerId) !=null) {
+					log.info(aservice.findTempApprover(managerId));
+					log.info(managerId+"임시승인자 존재");
+					TempManagerInfoVO tm =aservice.findTempApprover(managerId);
+				mvo.setTmpManager(tm);
+				list.add(mvo);
+		
+				}else {
+					list.add(mvo);
+				}
+				managerId = mservice.getApprover(managerId).getUserId();
 			}
 			else {
 				//list.add(mservice.getApproverList(managerId));
