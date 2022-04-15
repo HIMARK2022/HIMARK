@@ -20,6 +20,7 @@ public class MemberVO {
 	private String bonbu;
 	private String buseo;
 	private String team;
+	private TempManagerInfoVO tmpManager;
 	
 }
 

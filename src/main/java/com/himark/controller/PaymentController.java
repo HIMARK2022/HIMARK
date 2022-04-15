@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.himark.domain.BoardAttachVO;
 import com.himark.domain.MemberVO;
 import com.himark.domain.PaymentVO;
+import com.himark.domain.TempManagerInfoVO;
 import com.himark.service.ApproverListService;
 import com.himark.service.MemberService;
 import com.himark.service.PaymentService;
@@ -108,6 +109,7 @@ public class PaymentController {
 				System.out.println(managerId);
 				mservice.getApproverList(managerId);
 				list.add(mservice.getApproverList(managerId));
+		
 				managerId = mservice.getApprover(managerId).getUserId();
 				
 			}

@@ -285,7 +285,7 @@
                 var myPieChart = new Chart(ctx, {
                   type: 'doughnut',
                   data: {
-                    labels: ["진행중", "완료", "반려"],
+                    labels: ["대기", "승인", "반려"],
                     datasets: [{
                       data: [<c:out value='${progress}'/>, <c:out value='${complete}'/>, <c:out value='${back}'/>],
                       backgroundColor: ['#4e73df', '#1cc88a', '#858796'],

@@ -37,7 +37,7 @@
 
 .card-body:hover {text-decoration: none}
 a:hover{
-text-decoration: none;}
+text-decoration: none!important;}
 #menu_btn:hover{
     background-color:#f2f2f2;
 }

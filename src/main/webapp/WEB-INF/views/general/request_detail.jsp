@@ -100,14 +100,14 @@
 						<p>
 						<h6>내용</h6>
 						<textarea class="form-control" placeholder="내용을 입력해 주세요."
-							rows="10" name="content" readonly >${detail.content}</textarea>
+							rows="10" name="content" readonly style="width: 534px;">${detail.content}</textarea>
 						</p>
 						
 						<c:if test='${detail.state eq "반려" || detail.state eq "승인" }'>
 										<p>
 										<h6>결재 사유</h6>
 										<textarea class="form-control"
-											rows="10" name="reason" readonly>${detail.reason}</textarea>
+											rows="10" name="reason" readonly style="width: 534px;">${detail.reason}</textarea>
 										
 										</p>
 										

@@ -71,6 +71,8 @@
 										</c:forEach>
 									 	<option value='${ceo.userId}'>${ceo.userName}</option>
 									</select>
+									
+									
 									</p>
 									<p>
 									<h6>중요도</h6>
@@ -101,7 +103,7 @@
 									<p>
 									<h6>내용</h6>
 									<textarea class="form-control" placeholder="내용을 입력해 주세요."
-										rows="10" name="content"></textarea>
+										rows="10" name="content" style="width: 534px;"></textarea>
 									</p>
 									<button class="btn btn-outline-primary" type="submit"
 										id="request_btn">요청하기</button>
