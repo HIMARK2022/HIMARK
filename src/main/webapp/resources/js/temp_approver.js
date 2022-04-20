@@ -39,7 +39,8 @@ $('.head').on('click',function(e){
 	$('.RemoveBtn').on('click',function(){
 		
 		alert("임시 승인자 지정폼을 삭제합니다.");
-		
+		$('#end-date1').datepicker('setDate', ""); 
+		$('#start-date1').datepicker('setDate', "");
 		$('input[name=OrgApprover ]').attr('value', '');
 		$('input[name=OrgUserId ]').attr('value', '');
 		$('input[name=OrgDepartId ]').attr('value', '');
@@ -74,7 +75,8 @@ $('.head').on('click',function(e){
 			alert("임시 승인자 지정을 완료하였습니다.");
 			
 			SelectTempApproverService.selectTempApprover(TempInfo,function(result){
-				
+				$('#end-date1').datepicker('setDate', ""); 
+				$('#start-date1').datepicker('setDate', ""); 	
 				if(orgDepart.length == 3){
 					$('input[name=OrgApprover ]').attr('value', '');
 					$('input[name=OrgUserId ]').attr('value', '');
