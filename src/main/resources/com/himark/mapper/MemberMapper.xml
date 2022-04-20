@@ -24,7 +24,7 @@
 
 <select id="getMember" resultType="com.himark.domain.UsersDetailVO">
 select * from usersdetail
-where user_id=#{userId}
+where user_id=#{userId} and current_state = '재직'
 </select>
 
 <select id="getDeptList" resultMap="getMemberMap">
@@ -51,7 +51,7 @@ where a.authority_code="A2";
 
 <select id="getApproverList" resultMap="getMemberMap">
 select user_id, user_name, head as 본부, depart as 부서, team as 팀, duty_name from usersdetail
-where user_id=#{managerId};
+where user_id=#{managerId} and current_state = '재직'
 </select>
 
 
