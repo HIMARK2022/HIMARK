@@ -14,8 +14,14 @@
 	<!-- 임시 승인자 권한 업데이트 -->
 	<update id="updateTempAuthority">
 		UPDATE user
-		SET authority_code = #{authority_code} 
-		WHERE user_id =#{user_id}  ;
+		SET authority_code = #{authority_code} , 
+		<if test='authority_code.equals("A1")'>
+			flag = '인사연동'
+		</if>
+		<if test='authority_code.equals("A0")'>
+			flag = '웹'
+		</if>
+		WHERE user_id =#{user_id}
 	</update>
 	
 	<!-- 승인자 임시 승인자 같이 보이기 -->

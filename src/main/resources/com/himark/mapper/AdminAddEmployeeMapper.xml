@@ -23,7 +23,7 @@
 	</insert>
 	
 	<select id="UserID" resultType="com.himark.domain.UserVO">
-		select user_id from user;
+		select user_id from user where authority_code != 'A3' ;
 	</select>
 	<!-- 사용자 추가시 -->
 	
