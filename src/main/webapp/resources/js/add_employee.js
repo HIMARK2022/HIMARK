@@ -12,6 +12,7 @@
 	    
 	    return false;
 	});
+	
 	$('.head').on('click', function() {	
 		if($('.about-detail').css("display")=="none"){
 			$('.about-detail').show();
@@ -20,6 +21,7 @@
         	$('.about-detail').hide();
         }
 	});
+	
 	$('.create-content-detail').on('click', function () {
 	    $('.modal-wrapper2').removeClass('open');
 	    $('#createForm')[0].reset();
@@ -131,8 +133,14 @@
 	}
 	
 	$('#addMember').on('click',function(){
-		var year = $('input[name=AddBirth]').val();
+		
 		var user_id = $('input[name=AdddeptId]').val();
+		
+		var year = $('select[name=Addyear]').val();
+		var month = $('select[name=Addmonth]').val();
+		var day = $('select[name=Addday]').val();
+		
+		var birth = year +"-"+month+"-"+day;
 		
 		var userInfo ={
 			user_name : $('input[name=AdduserName]').val(),
@@ -140,7 +148,7 @@
 			duty_id : "d01",
 			dept_id :  $('input[name=AdddeptId]').val(),
 			authority_code :"A1",
-			birth_date : $('input[name=AddBirth]').val(),
+			birth_date :birth,
 			sex : $('input[name=Addsex]:checked').val(),
 			phone_number : $('input[name=AddPhone ]').val(),
 			email : $('input[name=AddEmail]').val(),
@@ -170,12 +178,26 @@
 		$('#modForm')[0].reset();
 		
 		$('input[name=ModBelong]').attr('value', head);
-		/* $('input[name=ModPos]').attr('value', pos); */
-			
-		if(birth == "null"){birth="";}
-		/*if(sex == "null"){sex="";}*/
+		
 		if(email == "null"){email="";}
 		if(phone == "null"){phone="";}
+		
+		var full = birth.split('-');
+		
+		var year = full[0];
+		var month = full[1];
+		var day = full[2];
+		if(birth == '' || birth == "null"){
+			$('#birthday-y-ko option:eq(0)').prop('selected', true);
+			$('#birthday-m-ko option:eq(0)').prop('selected', true);
+			$('#birthday-d-ko option:eq(0)').prop('selected', true);
+		}
+		else{			
+			$('#birthday-y-ko').val(year).prop("selected",true);
+			$('#birthday-m-ko').val(month).prop("selected",true);
+			$('#birthday-d-ko').val(day).prop("selected",true);
+		}	
+		
 		
 		
 		$('#ModPos').val(pos_id).prop("selected",true);
@@ -212,9 +234,14 @@
 	} 
 	$('#modMember').on("click",function(e){
 		
+		var year = $('select[name=Modyear]').val();
+		var month = $('select[name=Modmonth]').val();
+		var day = $('select[name=Modday]').val();
+		
+		var birth = year +"-"+month+"-"+day;
 		
 		var user_name =$('input[name=ModUserName]').val() ;
-		var birth_date = $('input[name=ModBirth]').val() ;
+		var birth_date = birth;
 		var sex =$('input[name=ModSex]:checked').val();
 		
 		var email = $('input[name=ModEmail]').val(); 

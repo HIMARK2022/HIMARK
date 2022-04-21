@@ -170,8 +170,15 @@
                             <tr>
                               <th>생년월일</th>
                               <td>
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="생년월일을 입력하세요 ex) 1900-01-01" name="ModBirth" id ="ModBirth"
-                                            aria-label="Search" aria-describedby="basic-addon2">
+                                <!-- <input type="text" class="form-control bg-light border-0 small" placeholder="생년월일을 입력하세요 ex) 1900-01-01" name="ModBirth" id ="ModBirth"
+                                            aria-label="Search" aria-describedby="basic-addon2"> -->
+                              	<div class="sec-unit form-inline">
+									<div class="form-wrap ui-check-date" data-term="100">
+										<select id="birthday-y-ko" name="Modyear" title="연도 선택"  data-default-option="연도 선택" data-unit="y" class="form-control"></select>
+										<select id="birthday-m-ko" name="Modmonth" title="연도 선택" data-default-option="월 선택" data-unit="m" class="form-control"></select>
+										<select id="birthday-d-ko" name="Modday"   title="연도 선택" data-default-option="일 선택" data-unit="d" class="form-control"></select>
+									</div>
+								</div>
                               </td>
                             </tr>
                             <tr>
@@ -257,7 +264,7 @@
 										<input type="text"
 											class="form-control bg-light border-0 small"
 											placeholder="이름을 입력하시오" aria-label="Search" name="AdduserName" id="AdduserName"
-											aria-describedby="basic-addon2">
+											aria-describedby="basic-addon2" required>
 									</div>
 								</td>
 							</tr>
@@ -265,12 +272,15 @@
 							<tr>
 								<th>생년월일</th>
 								<td>
-									<div>
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="생일을 입력하시오 ex) 1900-01-01" aria-label="Search"  name="AddBirth" id="AddBirth"
-											aria-describedby="basic-addon2">
+								
+                                    <div class="sec-unit form-inline">
+										<div class="form-wrap ui-check-date" data-term="100">
+											<select id="birthday-y-ko" name="Addyear"  title="연도 선택" data-default-option="연도 선택" data-unit="y" class="form-control"></select>
+											<select id="birthday-m-ko" name="Addmonth" title="달 선택"  data-default-option="달 선택" data-unit="m" class="form-control"></select>
+											<select id="birthday-d-ko" name="Addday"   title="일 선택"  data-default-option="일 선택" data-unit="d" class="form-control"></select>
+										</div>
 									</div>
+								
 								</td>
 							</tr>
 							<tr>

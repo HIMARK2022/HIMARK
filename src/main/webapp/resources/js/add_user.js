@@ -4,7 +4,7 @@ var AddModifyService={};
 var AddModifyService = (function() {
 	
 	function getHeadList(head ,callback, error) {
-		console.log("전달받는 값"+head)
+		
 		$.getJSON('/admin/check_head?head=' +head,
 			function(data) {
 				if(callback) {
@@ -18,7 +18,7 @@ var AddModifyService = (function() {
 	}
 	
 	function getDepartList(depart ,callback, error) {
-		console.log("전달받는 값"+depart)
+		
 		$.getJSON('/admin/check_depart?depart=' +depart,
 			function(data) {
 				if(callback) {
@@ -32,7 +32,7 @@ var AddModifyService = (function() {
 	}
 	
 	function getTeamList(team ,callback, error) {
-		console.log("전달받는 값"+team)
+		
 		$.getJSON('/admin/check_team?team=' +team,
 			function(data) {
 				if(callback) {
