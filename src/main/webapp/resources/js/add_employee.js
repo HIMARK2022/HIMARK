@@ -141,7 +141,7 @@
 			dept_id :  $('input[name=AdddeptId]').val(),
 			authority_code :"A1",
 			birth_date : $('input[name=AddBirth]').val(),
-			sex : $('input[name=Addsex]').val(),
+			sex : $('input[name=Addsex]:checked').val(),
 			phone_number : $('input[name=AddPhone ]').val(),
 			email : $('input[name=AddEmail]').val(),
 			current_state : "재직",
@@ -173,29 +173,35 @@
 		/* $('input[name=ModPos]').attr('value', pos); */
 			
 		if(birth == "null"){birth="";}
-		if(sex == "null"){sex="";}
+		/*if(sex == "null"){sex="";}*/
 		if(email == "null"){email="";}
 		if(phone == "null"){phone="";}
 		
-		console.log("너는 뭐가 나오니 ? "+pos)
-		console.log("너는 뭐가 나오니 ? "+pos_id)
 		
 		$('#ModPos').val(pos_id).prop("selected",true);
 		
 		
 			if(flag =="인사연동"){				
-				//$('input[name=ModhowIn]:input[id="howIn1"]').attr("checked","checked");
+				
 				$('#howIn1').prop("checked",true);
 			}
 			if(flag =="웹"){
-				//$('input[name=ModhowIn]:input[id="howIn2"]').attr("checked","checked");
+				
 				$('#howIn2').prop("checked",true);
+			}
+			
+			if(sex =="남"){				
+				
+				$('#sexM').prop("checked",true);
+			}
+			if(sex =="여"){
+				
+				$('#sexF').prop("checked",true);
 			}
 			
 			$('input[name=ModUserName]').attr('value', user_name);
 			$('input[name=ModBirth]').attr('value', birth);
 			
-			$('input[name=ModSex]').attr('value', sex);
 			
 			$('input[name=ModEmail]').attr('value', email);
 			$('input[name=ModPhone]').attr('value', phone);
@@ -209,7 +215,8 @@
 		
 		var user_name =$('input[name=ModUserName]').val() ;
 		var birth_date = $('input[name=ModBirth]').val() ;
-		var sex =$('input[name=ModSex]').val() ;
+		var sex =$('input[name=ModSex]:checked').val();
+		
 		var email = $('input[name=ModEmail]').val(); 
 		var phone_number = $('input[name=ModPhone]').val();
 		var user_id = $('input[name=Muser_id]').val();

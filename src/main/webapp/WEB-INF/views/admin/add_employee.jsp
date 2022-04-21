@@ -177,11 +177,17 @@
                             <tr>
                               <th>성별</th>
                               <td>
-                                <div>
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="성별을 입력하세요 ex) 남/여" name="ModSex" id="ModSex"
-                                            aria-label="Search" aria-describedby="basic-addon2">
-                                </div>
-                                
+                                <div class="form-check-inline">
+                                    	<label class="form-check-label" for="sexM">
+                                    		<input class="form-check-input" type="radio" id="sexM" name="ModSex" value="남">남
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    	<label class="form-check-label" for="sexF">
+                                    		<input class="form-check-input" type="radio" id="sexF" name="ModSex" value="여">여
+                                        </label>
+                                    </div>
+                            
                               </td>
                             </tr>
 							<tr>
@@ -270,12 +276,17 @@
 							<tr>
 								<th>성별</th>
 								<td>
-									<div>
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="성별을 입력하시오 ex) 남/여" aria-label="Search"  name="Addsex" id="Addsex"
-											aria-describedby="basic-addon2">
-									</div>
+										 <div class="form-check-inline">
+	                                    	<label class="form-check-label" for="sexM">
+	                                    		<input class="form-check-input" type="radio" id="AddsexM" name="Addsex" value="남">남
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check-inline">
+	                                    	<label class="form-check-label" for="sexF">
+	                                    		<input class="form-check-input" type="radio" id="AddsexF" name="Addsex" value="여">여
+	                                        </label>
+	                                    </div>
+										
 								</td>
 							</tr>
 							<tr>
