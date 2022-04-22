@@ -28,14 +28,14 @@ where user_id=#{userId} and current_state = '재직'
 </select>
 
 <select id="getDeptList" resultMap="getMemberMap">
-select * from user
-JOIN dept 
-ON user.dept_id = dept.dept_id
-join pos
-on user.pos_id = pos.pos_id
-join duty
-on user.duty_id = duty.duty_id
-where user.dept_id like CONCAT(#{deptId},'%');
+	select * from user
+	JOIN dept 
+	ON user.dept_id = dept.dept_id
+	join pos
+	on user.pos_id = pos.pos_id
+	join duty
+	on user.duty_id = duty.duty_id
+	where user.dept_id like CONCAT(#{deptId},'%') and user.current_state = "재직"; 
 </select>
 
 
