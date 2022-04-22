@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>홈 - 일반 사용자</title>
+<title>H!MARK</title>e>
 <link href="/resources/css/general_home.css" rel="stylesheet">
   <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>

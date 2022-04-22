@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 정보 들어가기</title>
+<title>H!MARK</title>
 </head>
 <body id="page-top">
 

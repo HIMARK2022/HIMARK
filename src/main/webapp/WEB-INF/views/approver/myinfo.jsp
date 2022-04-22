@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 정보 - 승인자</title>
+<title>H!MARK</title>
 <link href="/resources/css/myinfo.css" rel="stylesheet">
 </head>
 <body id="page-top">

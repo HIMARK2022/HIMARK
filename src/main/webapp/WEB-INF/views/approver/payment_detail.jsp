@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전자결재 - 결재(승인자)</title>
+<title>H!MARK</title>
 <link href="/resources/css/payment.css" rel="stylesheet">
 <!-- <link href="/resources/css/modal.css" rel="stylesheet"> -->
 </head>

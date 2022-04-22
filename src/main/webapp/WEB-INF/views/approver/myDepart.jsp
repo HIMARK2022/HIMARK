@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>H!MARK</title>
 </head>
 <body id="page-top">
 

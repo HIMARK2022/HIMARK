@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>임시 승인자 지정(승인자)</title>
+<title>H!MARK</title>
 </head>
 <body id="page-top">
 	<div id="wrapper">

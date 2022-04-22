@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>홈 - 관리자</title>
+<title>H!MARK</title>
 <link href="/resources/css/admin_home.css" rel="stylesheet">
   <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>

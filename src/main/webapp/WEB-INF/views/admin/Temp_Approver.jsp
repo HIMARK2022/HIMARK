@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>승인자 임시승인자 지정</title>
+<title>H!MARK</title>
 
 </head>
 <body>

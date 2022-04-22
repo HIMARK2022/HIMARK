@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>승인자 리스트(일반사용자)</title>
+<title>H!MARK</title>
 <link href="/resources/css/payment.css" rel="stylesheet">
 </head>
 <body id="page-top">

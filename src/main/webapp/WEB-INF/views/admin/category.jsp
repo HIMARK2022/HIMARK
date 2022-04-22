@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>결재 분류</title>
+<title>H!MARK</title>
 </head>
 <body>
 	<page:applyDecorator name="adminSide" />
@@ -329,7 +329,7 @@
 		</div>
 	</form>
 
-
+</div>
 	<page:applyDecorator name="footer" />
 	<script type="text/javascript" src="/resources/js/category.js"></script>
 	<script>

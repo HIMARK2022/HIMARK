@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>나의 부서</title>
+<title>H!MARK</title>
 </head>
 <body id="page-top">
 

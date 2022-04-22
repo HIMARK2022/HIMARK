@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>add employee </title>
+<title>H!MARK</title>
     
 </head>
 
@@ -264,7 +264,7 @@
 										<input type="text"
 											class="form-control bg-light border-0 small"
 											placeholder="이름을 입력하시오" aria-label="Search" name="AdduserName" id="AdduserName"
-											aria-describedby="basic-addon2" required>
+											aria-describedby="basic-addon2" >
 									</div>
 								</td>
 							</tr>
@@ -275,9 +275,9 @@
 								
                                     <div class="sec-unit form-inline">
 										<div class="form-wrap ui-check-date" data-term="100">
-											<select id="birthday-y-ko" name="Addyear"  title="연도 선택" data-default-option="연도 선택" data-unit="y" class="form-control"></select>
-											<select id="birthday-m-ko" name="Addmonth" title="달 선택"  data-default-option="달 선택" data-unit="m" class="form-control"></select>
-											<select id="birthday-d-ko" name="Addday"   title="일 선택"  data-default-option="일 선택" data-unit="d" class="form-control"></select>
+											<select id="birthday-y-ko" name="Addyear"  title="연도 선택" data-default-option="연도 선택" data-unit="y" class="form-control" required></select>
+											<select id="birthday-m-ko" name="Addmonth" title="달 선택"  data-default-option="달 선택" data-unit="m" class="form-control" required></select>
+											<select id="birthday-d-ko" name="Addday"   title="일 선택"  data-default-option="일 선택" data-unit="d" class="form-control" required></select>
 										</div>
 									</div>
 								

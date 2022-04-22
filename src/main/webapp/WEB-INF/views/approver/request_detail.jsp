@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전자결재 - 요청상세(승인자)</title>
+<title>H!MARK</title>
 <link href="/resources/css/payment.css" rel="stylesheet">
 </head>
 <body id="page-top">
