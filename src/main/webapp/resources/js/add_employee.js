@@ -228,7 +228,7 @@
 			if(flag =="인사연동"){				
 				
 				$('#howIn1').prop("checked",true);
-			}else{
+			} else if(flag == "웹"){
 				
 				$('#howIn2').prop("checked",true);
 			}
