@@ -75,7 +75,9 @@
 									</select>
 									</p>
 									<p>
-									<h6>중요도</h6>
+									<h6 style="display: inline-flex;">중요도 &nbsp<div class="questImp">
+									<i class="fa-solid fa-circle-question"><span class="tooltiptext">중요도 선택 시 결재기간이 변경됩니다. <br>긴급 : 1일/ 보통 : 7일</span></i></div></h6>
+									<br>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="imp"
 											id="inlineRadio1" value="긴급"> <label
