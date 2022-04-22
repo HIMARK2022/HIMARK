@@ -157,7 +157,11 @@
 		var month = $('select[name=Addmonth]').val();
 		var day = $('select[name=Addday]').val();
 		
-		var birth = year +"-"+month+"-"+day;
+		if(year == "default"){
+			var birth = null;
+		}else{
+			var birth = year +"-"+month+"-"+day;
+		}
 		
 		var userInfo ={
 			user_name : $('input[name=AdduserName]').val(),
@@ -172,6 +176,7 @@
 			current_state : "재직",
 			flag : "웹"
 		}
+		
 		
 		AddModifyService.addUser(userInfo,function(result){
 			$('.modal-wrapper2').removeClass('open');
@@ -255,8 +260,11 @@
 		var month = $('select[name=Modmonth]').val();
 		var day = $('select[name=Modday]').val();
 		
-		var birth = year +"-"+month+"-"+day;
-		
+		if(year == "default"){
+			var birth = null;
+		}else{
+			var birth = year +"-"+month+"-"+day;
+		}
 		var user_name =$('input[name=ModUserName]').val() ;
 		var birth_date = birth;
 		var sex =$('input[name=ModSex]:checked').val();
