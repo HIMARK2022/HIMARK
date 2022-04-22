@@ -48,6 +48,10 @@ tr{
 .twobuttons{
     text-align: center;
 }
-.tree{
+.tree,
+.clickId{
 	cursor:pointer;
+}
+a:hover{
+	text-decoration: none;
 }
