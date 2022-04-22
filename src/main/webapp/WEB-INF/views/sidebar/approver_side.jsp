@@ -161,8 +161,8 @@
                                 ${member.user_name}
                                 </c:otherwise>
                                 </c:choose>
-                                <c:if test="${empty tempOrigin}">(승인자)</c:if>
-                                            <c:if test="${!empty tempOrigin}">(임시승인자)</c:if></span>
+                                <c:if test="${member.authority_code eq 'A1'}">(승인자)</c:if>
+                                            <c:if test="${member.authority_code eq 'A0'}">(임시승인자)</c:if></span>
                                 <span class="mr-1 text-gray-600"><i class="fa-solid fa-user fa-lg"></i></span>
                              
                             </a>
