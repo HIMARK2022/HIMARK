@@ -31,12 +31,20 @@ $.fn.extend({
             branch.children().children().toggle();
         });
 
+		tree.find('.branch>.fa-user').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+		
         tree.find('.branch>a').each(function () {
             $(this).on('click', function (e) {
                 $(this).closest('li').click();
                 e.preventDefault();
             });
         });
+		
 
     }
 });

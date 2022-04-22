@@ -1,10 +1,9 @@
 
 $('.head').on('click',function(e){
-		if($('.tables').css("display")=="none"){
-			$('.tables').show();
-		}else{
-			$('.tables').hide();
-		}	
+		$('.tables').show();
+	});
+	$('i').on('click',function(e){
+		$('.tables').show();
 	});
 
 	$(".team").click(function(e){
@@ -35,7 +34,22 @@ $('.head').on('click',function(e){
 		$('input[name=departIn ]').attr('value', headN);
 		$('input[name=AdddeptId ]').attr('value', head);
 	});
-
+	$("i").click(function(e) {
+		var id = $(this).next('a').attr("class");
+		var name = $(this).next('a').text();
+	    var org = $(this).next('a').attr("id");
+		
+		if('head' == id) {
+			showHeadMember(org);
+		} else if('dept' == id) {
+			showDepartMember(org);
+		} else {
+			showTeamMember(org);	
+		}
+		
+		$('input[name=departIn ]').attr('value', name);
+		$('input[name=AdddeptId ]').attr('value', org);
+	});
 	$('.RemoveBtn').on('click',function(){
 		
 		alert("임시 승인자 지정폼을 삭제합니다.");

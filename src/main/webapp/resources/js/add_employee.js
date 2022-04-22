@@ -14,12 +14,14 @@
 	});
 	
 	$('.head').on('click', function() {	
-		if($('.about-detail').css("display")=="none"){
-			$('.about-detail').show();
-			
-        }else{
-        	$('.about-detail').hide();
-        }
+		
+		$('.about-detail').show();
+		
+	});
+	$('i').on('click', function() {	
+		
+		$('.about-detail').show();
+		
 	});
 	
 	$('.create-content-detail').on('click', function () {
@@ -61,7 +63,22 @@
 		$('input[name=departIn ]').attr('value', headN);
 		$('input[name=AdddeptId ]').attr('value', head);
 	});
-	
+	$("i").click(function(e) {
+		var id = $(this).next('a').attr("class");
+		var name = $(this).next('a').text();
+	    var org = $(this).next('a').attr("id");
+		
+		if('head' == id) {
+			showHeadMember(org);
+		} else if('dept' == id) {
+			showDepartMember(org);
+		} else {
+			showTeamMember(org);	
+		}
+		
+		$('input[name=departIn ]').attr('value', name);
+		$('input[name=AdddeptId ]').attr('value', org);
+	});
 	function showTeamMember(team) {
 		$('#tbody tr').remove();
 		$('#teaminfo span').remove();

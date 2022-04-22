@@ -55,9 +55,9 @@
     top:1em;
     bottom:0
 }
-.indicator {
+/* .indicator {
     margin-right:5px;
-}
+} */
 .tree li a {
     text-decoration: none;
     color:#369;
