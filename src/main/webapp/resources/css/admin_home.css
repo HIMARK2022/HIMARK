@@ -424,17 +424,17 @@ right connector from last child*/
 	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
 /*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
+/* .tree li a:hover+ul li::after, 
 .tree li a:hover+ul li::before, 
 .tree li a:hover+ul::before, 
 .tree li a:hover+ul ul::before{
 	border-color:  #94a0b4;
 }
-
+ */
 /*Thats all. I hope you enjoyed it.
 Thanks :)*/
 
-.card-body:hover {background-color:#f2f2f2;}
+/* .card-body:hover {background-color:#f2f2f2;} */
 
 #ad_icon{
 	margin-bottom: 10px;
@@ -444,13 +444,13 @@ Thanks :)*/
 	margin-bottom: 8px;
 	margin-top: 6px;
 }
-#admin_card:hover{
+/* #admin_card:hover{
 	background-color: white;
 }
 a:hover{
 	text-decoration: none;
 }
-
+ */
 
 .tracking-detail {
  padding:3rem 0
