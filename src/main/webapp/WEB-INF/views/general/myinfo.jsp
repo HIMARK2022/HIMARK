@@ -22,7 +22,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">나의정보</h1>
                     </div>
-                    <p class="mb-4"><b>본인의 정보를 확인하고 비밀번호를 수정할 수 있습니다.</b></p>
+                    <p class="mb-4"><b>사용자의 정보를 확인하고 비밀번호를 재설정할 수 있는 페이지입니다.</b></p>
                 
                     <!-- 여기는 직원추가 -->
                     <div class="card shadow mb-4" >

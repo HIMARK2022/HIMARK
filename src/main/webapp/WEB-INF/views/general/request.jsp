@@ -23,8 +23,8 @@
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">요청</h1>
-			<p class="mb-4">요청 내역을 확인하고 신규 기안 요청할 수 있습니다</p>
+			<h1 class="h3 mb-2 text-gray-800">요청작성</h1>
+			<p class="mb-4">승인자를 선택 후 신규 기안을 작성할 수 있습니다</p>
 
 					<!-- 신규 기안 Start -->
 					
@@ -77,7 +77,7 @@
 									</p>
 									<p>
 									<h6 style="display: inline-flex;">중요도 &nbsp<div class="questImp">
-									<i class="fa-solid fa-circle-question"><span class="tooltiptext">중요도 선택 시 결재기간이 변경됩니다. <br>긴급 : 1일/ 보통 : 7일</span></i></div></h6>
+									<i class="fa-solid fa-circle-question"><span class="tooltiptext">중요도 선택 시 결재기간이 변경됩니다. <br>긴급 : 1일<!-- / 보통 : 7일 --></span></i></div></h6>
 									<br>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="imp"
@@ -85,11 +85,11 @@
 											class="form-check-label" for="inlineRadio1">긴급</label>
 									</div>
 									
-									<div class="form-check form-check-inline">
+									<!-- <div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="imp"
 											id="inlineRadio3" value="보통"> <label
 											class="form-check-label" for="inlineRadio3">보통</label>
-									</div>
+									</div> -->
 									
 									</p>
 									<p>

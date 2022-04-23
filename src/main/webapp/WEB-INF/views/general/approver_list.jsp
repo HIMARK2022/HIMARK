@@ -22,17 +22,17 @@
 		<!-- 승인자리스트.html -->
 		<div class="container-fluid">
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">승인자 리스트</h1>
-			<p class="mb-4">승인자 목록과 임시 승인자 목록을 확인할 수 있습니다.</p>
+			<h1 class="h3 mb-2 text-gray-800">승인자 목록</h1>
+			<p class="mb-4">사용자가 승인을 받을 수 있는 사용자들을 볼 수 있는 페이지입니다.</p>
 
 			<!--승인자 목록 Start-->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">승인자 라스트</h6>
+					<h6 class="m-0 font-weight-bold text-primary">승인자 목록</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive col-lg-12">
-						<h4>승인자 리스트</h4>
+						<h4>승인자 목록</h4>
 						<br>
 						<table class="table table-bordered table-hover" id="dataTable11"
 							width="100%" cellspacing="0">
@@ -82,7 +82,7 @@
 					</div>
 					<br>
 					<div class="table-responsive col-lg-12" id="temp">
-						<h4>임시 승인자 리스트</h4>
+						<h4>임시 승인자 목록</h4>
 						<br>
 						<table class="table table-bordered" id="dataTable11" width="100%"
 							cellspacing="0">

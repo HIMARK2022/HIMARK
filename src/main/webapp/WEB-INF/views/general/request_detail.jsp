@@ -57,11 +57,11 @@
 								class="form-check-label" for="inlineRadio1">긴급</label>
 						</div>
 						
-						<div class="form-check form-check-inline">
+						<!-- <div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="imp"
 								id="inlineRadio3" value="보통" disabled> <label
 								class="form-check-label" for="inlineRadio3">보통</label>
-						</div>
+						</div> -->
 						
 						</c:if>
 						
@@ -72,11 +72,11 @@
 								class="form-check-label" for="inlineRadio1">긴급</label>
 						</div>
 						
-						<div class="form-check form-check-inline">
+						<!-- <div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="imp"
 								id="inlineRadio3" value="보통" checked readonly> <label
 								class="form-check-label" for="inlineRadio3">보통</label>
-						</div>
+						</div> -->
 						
 						</c:if>
 						
