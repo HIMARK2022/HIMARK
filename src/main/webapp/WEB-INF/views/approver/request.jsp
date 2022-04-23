@@ -24,7 +24,7 @@
 
 			<!-- Page Heading -->
 			<h1 class="h3 mb-2 text-gray-800">요청작성</h1>
-			<p class="mb-4"><b>승인자를 선택 후 신규 기안을 요청할 수 있습니다</b></p>
+			<p class="mb-4"><b>승인자를 선택 후 신규 기안을 작성할 수 있습니다</b></p>
 
 					<!-- 신규 기안 Start -->
 					
