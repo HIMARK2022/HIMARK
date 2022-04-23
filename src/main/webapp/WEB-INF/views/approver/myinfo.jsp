@@ -73,6 +73,12 @@
                                             </td>
                                           </tr>
                                           <tr>
+                                            <th >이메일</th>
+                                            <td >
+                                              ${member.email}
+                                            </td>
+                                          </tr>
+                                          <tr>
                                             <th >휴대폰 번호</th>
                                             <td >
                                              ${member.phone_number}
