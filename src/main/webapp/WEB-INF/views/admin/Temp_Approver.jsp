@@ -90,12 +90,12 @@
 	<div class="row">
 		<!-- 부서정보 트리 카드 -->
 		<div class="col-xl-3 col-lg-3">
-			<div class="card shadow mb-4" style="height: 60vh;">
+			<div class="card shadow mb-4" >
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">조직도</h6>
 				</div>
 				<!-- 부서트리 -->
-				<div class="card-body">
+				<div class="card-body" style="height: 60vh;">
 					<div class="container" >
 						<div class="row">
 							<div class="row12">
@@ -130,12 +130,12 @@
 		</div>
       	<!-- 부서정보 트리 카드 -->
       	<div class="col-xl-4 col-lg-4" >
-			<div class="card shadow mb-4" style="height: 60vh;">
+			<div class="card shadow mb-4" >
             	<div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">직원 정보</h6>
 				</div>
-				<div class="card-body tables" style="display:none;">
-					<div>
+				<div class="card-body tables" style="height: 60vh; overflow-y:scroll">
+					<div class="tables" style="display:none; ">
 						
 						<h4 class="teaminfo"></h4>
 						<p>승인자와 임시승인자 가능 대상을 확인 및 지정하실 수 있습니다.</p>
@@ -159,12 +159,12 @@
 			</div>
 		</div>
 		<div class="col-xl-5 col-lg-5" >
-			<div class="card shadow mb-4 " style="height: 60vh;">
+			<div class="card shadow mb-4 ">
             	<div  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">임시승인자 정보</h6>
 				</div>
-				<div class="card-body tables" style=" display:none;">
-					<div>
+				<div class="card-body tables" style="height: 60vh;" >
+					<div  class="card-body tables" style=" display:none;">
 						<h4 class="teaminfo"></h4>
 						<p>지정된 임시 승인자 정보를 확인 및 삭제 하실 수 있습니다.</p>
 						<div>
