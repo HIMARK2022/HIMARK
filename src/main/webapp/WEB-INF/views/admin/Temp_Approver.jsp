@@ -19,7 +19,10 @@
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800">임시승인자 관리</h1>
 	</div>
-	<p class="mb-4"><b>일정 기간동안 일반 사용자에게 승인자의 권한을 부여할 수 있습니다.<br>※임시승인자 지정 가능 대상은 승인자와 같은 소속으로 한정됩니다.</b></p>
+	<p class="mb-4">
+		<b>일정 기간동안 일반 사용자에게 승인자의 권한을 부여할 수 있습니다.</b>
+		<br>※임시승인자 지정 가능 대상은 승인자와 같은 소속으로 한정됩니다.
+	</p>
 	<div>
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
