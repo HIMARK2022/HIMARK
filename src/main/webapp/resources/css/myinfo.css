@@ -39,3 +39,13 @@ th{
 #tohomebtn{
     text-align: center;
 }
+#alert-success,
+#alert-danger{
+	display: none;
+}
+#alert-success{
+	color: var(--blue);
+}
+#alert-danger{
+	color: var(--red);
+}

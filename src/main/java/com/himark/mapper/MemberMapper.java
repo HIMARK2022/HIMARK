@@ -1,6 +1,7 @@
 package com.himark.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -22,6 +23,8 @@ public interface MemberMapper {
 
 	public int countUser();
 	public List<MemberVO> getAllUser();
+	
+	public void changePwd(Map<String, String> map);
 	
 
 }

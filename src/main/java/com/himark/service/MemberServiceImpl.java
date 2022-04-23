@@ -1,6 +1,7 @@
 package com.himark.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -71,6 +72,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> getAllUser() {
 		// TODO Auto-generated method stub
 		return mapper.getAllUser();
+	}
+
+	@Override
+	public void changePwd(Map<String, String> map) {
+		mapper.changePwd(map);
 	}
 
 

@@ -94,4 +94,10 @@ join pos
 on user.pos_id = pos.pos_id;
 </select>
 
+<update id="changePwd">
+	update user
+	set user_password = #{userPwd}
+	where user_id = #{userId}
+</update>
+
 </mapper>

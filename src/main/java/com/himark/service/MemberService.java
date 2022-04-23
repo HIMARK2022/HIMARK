@@ -1,6 +1,7 @@
 package com.himark.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.himark.domain.MemberVO;
 import com.himark.domain.TempManagerInfoVO;
@@ -32,7 +33,6 @@ public interface MemberService {
 
 	public List<MemberVO> getAllUser();
 
-	
-
+	public void changePwd(Map<String, String> map);
 
 }

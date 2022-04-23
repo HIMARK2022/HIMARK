@@ -84,6 +84,34 @@
                                              ${member.phone_number}
                                             </td>
                                           </tr>
+                                          <tr>
+                                            <th>비밀번호</th>
+                                            <td>
+                                                <div class="myPwd">
+                                                    <label>현재 비밀번호</label>
+                                                    <div class="form-group pass_show"> 
+                                                        <input type="password" value="${member.user_password}" class="form-control" placeholder="현재 비밀번호"> 
+                                                    </div> 
+                                                    <label>새로운 비밀번호</label>
+                                                    <div class="form-group pass_show"> 
+                                                        <input type="password" id="new_pwd" class="form-control pwd" placeholder="새로운 비밀번호"> 
+                                                    </div> 
+                                                    <label>비밀번호 확인</label>
+                                                    <div class="form-group pass_show"> 
+                                                        <input type="password" id="confirm_pwd" class="form-control pwd" placeholder="비밀번호 확인"> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                    	<span id="alert-success">비밀번호가 일치합니다.</span>
+    													<span id="alert-danger">비밀번호가 일치하지 않습니다.</span>
+                                                    </div>
+                                                    <div id="pwd_btn" onclick="changePwd()">
+                                                        <a href="#" class="btn btn-outline-warning" >
+                                                            <span class="text">비밀번호 수정하기</span>
+                                                        </a>
+                                                    </div> 
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </table>
                                     
                                 </div>
