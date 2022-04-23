@@ -43,8 +43,11 @@
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">목록</h1>
-			<p class="mb-4">결재 완료와 결재 반려를 확인 할 수 있습니다</p>
+			<h1 class="h3 mb-2 text-gray-800">요청목록</h1>
+			<p class="mb-4"><b>상용자가 요청한 문서의 상태에 따라 대기함, 승인함, 반려함에서 작성한 문서를 확인할 수 있습니다.</b>
+						<br>※대기함: 승인자가 결재하기 전 문서
+                        <br>※승인함: 승인자가 승인한 문서
+                        <br>※반려함: 승인자가 반려한 문서 </p>
 
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link py-3 shadow active"

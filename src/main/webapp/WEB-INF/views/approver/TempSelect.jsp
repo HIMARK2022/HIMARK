@@ -20,7 +20,8 @@
 				<h1 class="h3 mb-0 text-gray-800">임시 승인자 지정</h1>
 			</div>
 			<p class="mb-4">
-				<b>나의 승인 권한을 임시로 부여할 수 있는 페이지입니다.</b>
+				<b>일정 기간동안 일반 사용자에게 승인자의 권한을 부여할 수 있습니다.
+					<br>※임시승인자 지정 가능 대상은 승인자와 같은 소속으로 한정됩니다.</b>
 			</p>
 			
 			<br>
@@ -29,7 +30,7 @@
 					<div class="card-body">
 						<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div class="font-weight-bold text-primary text-uppercase mb-1">임시 승인자 기간 지정</div>
+							<div class="font-weight-bold text-primary text-uppercase mb-1">임시 승인자 지정 폼</div>
 							<!-- 상단 지정 -->
 							<form action="#" method="post" id="searchForm">
 								<div class="h5 mb-0 font-weight-bold text-gray-800" id="filter">
@@ -39,7 +40,7 @@
 												<span class="icon text-white-50"> 
 													<i class="fa-solid fa-x"></i>
 												</span>
-												<span class="text">지정 초기화</span>
+												<span class="text">폼 초기화</span>
 											</a>
 											<a href="#" class="btn btn-outline-primary btn-lg btn-icon-split SelectBtn">
 												<span class="icon text-white-50"> 
@@ -61,7 +62,7 @@
 														aria-label="Search" aria-describedby="basic-addon2" readonly>
 												</div>
 												<div class="col-lg-3">
-													<p class="HText">임시 승인자</p>
+													<p class="HText">임시승인자</p>
 													<input type="text" class="form-control bg-light border-0 small content-detail" placeholder="임시 승인자" name="TempApprover" id="TempApprover"
 															aria-label="Search" aria-describedby="basic-addon2" readonly>
 												</div>

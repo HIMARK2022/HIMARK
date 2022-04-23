@@ -42,9 +42,12 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">결재</h1>
+                    <h1 class="h3 mb-2 text-gray-800">결재 수신</h1>
                     <p class="mb-4">
-                        결재 수락 및 거부를 할 수 있으며, 반려된 결재목록을 확인할 수 있습니다.
+                        <b>사용자에게 결재 요청한 문서들이 관리되는 페이지입니다</b>
+                        <br>※대기함: 사용자가 결재하기 전 문서
+                        <br>※승인함: 사용자가 승인한 문서
+                        <br>※반려함: 사용자가 반려한 문서
                     </p>
 
                     <ul class="nav nav-tabs">
