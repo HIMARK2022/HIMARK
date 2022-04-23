@@ -17,16 +17,16 @@
 <link href="/resources/css/admin_temp_apprver.css" rel="stylesheet">
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">임시 승인자 지정 페이지</h1>
+		<h1 class="h3 mb-0 text-gray-800">임시승인자 지정 관리</h1>
 	</div>
-	<p class="mb-4"><b>승인자의 권한을 기간을 지정하여 임시로 일반 사용자에게 권한을 부여 할수 있습니다.</b></p>
+	<p class="mb-4"><b>일정 기간동안 일반 사용자에게 승인자의 권한을 부여할 수 있습니다.<br>※임시승인자 지정 가능 대상은 승인자와 같은 소속으로 한정됩니다.</b></p>
 	<div>
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div class="font-weight-bold text-primary text-uppercase mb-1">
-							임시 승인자 기간 지정
+							임시승인자 지정 폼
 						</div>
 						<!-- 상단 지정 -->
 						<form action="#" method="post" id="searchForm">
@@ -37,7 +37,7 @@
 											<span class="icon text-white-50"> 
 												<i class="fa-solid fa-x"></i>
 											</span>
-											<span class="text">지정 초기화</span>
+											<span class="text">폼 초기화</span>
 										</a>
 										<a href="#" class="btn btn-outline-primary btn-lg btn-icon-split SelectBtn">
 											<span class="icon text-white-50"> 
@@ -61,7 +61,7 @@
 													aria-label="Search" aria-describedby="basic-addon2" readonly>
 												</div>
 												<div class="col-lg-3">
-													<p class="HText">임시 승인자</p>
+													<p class="HText">임시승인자</p>
 													<input type="text" class="form-control bg-light border-0 small" placeholder="임시 승인자" name="TempApprover" id="TempApprover"
 														aria-label="Search" aria-describedby="basic-addon2" readonly>
 												</div>
@@ -92,7 +92,7 @@
 		<div class="col-xl-3 col-lg-3">
 			<div class="card shadow mb-4" style="height: 60vh;">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">부서 정보</h6>
+					<h6 class="m-0 font-weight-bold text-primary">조직도</h6>
 				</div>
 				<!-- 부서트리 -->
 				<div class="card-body">
