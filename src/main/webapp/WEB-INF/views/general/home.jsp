@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>H!MARK</title>e>
+<title>H!MARK</title>
 <link href="/resources/css/general_home.css" rel="stylesheet">
   <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 </head>
