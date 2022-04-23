@@ -21,15 +21,15 @@
 
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">직원추가하기</h1>
+		<h1 class="h3 mb-0 text-gray-800">직원 추가 및 수정</h1>
 	</div>
-	<p class="mb-4"><b>조직도에서 소속을 선택한 후 직원을 추가할 수 있습니다.</b></p>
+	<p class="mb-4"><b>직원을 추가할 수 있으며 직원 정보를 수정할 수 있습니다.<br>※직원 수정 시 인사연동 버튼을 누르면 인사연동 시 연동한 데이터가 반영되고 웹 버튼을 누르면 웹에서 수정한 내용이 유지됩니다.</b></p>
 	<div class="row">
 		<!-- 부서정보 트리 카드 -->
 		<div class="col-xl-3 col-lg-3">
 			<div class="card shadow mb-4" >
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">부서 정보</h6>
+					<h6 class="m-0 font-weight-bold text-primary">조직도</h6>
 				</div>
 				<!-- 부서트리 -->
 				<div class="card-body">
