@@ -34,7 +34,7 @@
 		
 	});
 
-	$(".team").click(function(e){
+	$(".team").on('click',function(e){
 	 	var teamN = $(this).text();
 	    var team = $(this).attr("id");
 	    
@@ -44,7 +44,7 @@
 	    $('input[name=AdddeptId ]').attr('value', team);
 	});
 	
-	$(".dept").click(function(e){
+	$(".dept").on('click',function(e){
     	var deptN = $(this).text();
 	    var dept = $(this).attr("id");
 		
@@ -54,7 +54,7 @@
 		$('input[name=AdddeptId ]').attr('value', dept);
 	});
 	
-	$(".head").click(function(e) {
+	$(".head").on('click',function(e) {
 		var headN = $(this).text();
 	    var head = $(this).attr("id");
 		
@@ -63,21 +63,26 @@
 		$('input[name=departIn ]').attr('value', headN);
 		$('input[name=AdddeptId ]').attr('value', head);
 	});
-	$("i").click(function(e) {
+	$("i").on('click',function(e) {
 		var id = $(this).next('a').attr("class");
 		var name = $(this).next('a').text();
 	    var org = $(this).next('a').attr("id");
 		
 		if('head' == id) {
 			showHeadMember(org);
+			$('input[name=departIn]').attr('value', name);
+			$('input[name=AdddeptId]').attr('value', org);
 		} else if('dept' == id) {
 			showDepartMember(org);
-		} else {
-			showTeamMember(org);	
+			$('input[name=departIn]').attr('value', name);
+			$('input[name=AdddeptId]').attr('value', org);
+		} else if('team' == id){
+			showTeamMember(org);
+			$('input[name=departIn]').attr('value', name);
+			$('input[name=AdddeptId]').attr('value', org);	
 		}
 		
-		$('input[name=departIn ]').attr('value', name);
-		$('input[name=AdddeptId ]').attr('value', org);
+		
 	});
 	function showTeamMember(team) {
 		$('#tbody tr').remove();
@@ -177,7 +182,9 @@
 			flag : "웹"
 		}
 		
-		
+		if(userInfo.user_name ==""){
+			alert("이름은 필수로 입력해야합니다.");
+		}else{			
 		AddModifyService.addUser(userInfo,function(result){
 			$('.modal-wrapper2').removeClass('open');
 			
@@ -193,6 +200,8 @@
 				showHeadMember(userInfo.dept_id)
 			}
 		});
+		}
+		
 	});
 	
 	function modInfo(head, user_name , pos,pos_id , birth , sex , email , phone , user_id ,dept_id , flag) {
