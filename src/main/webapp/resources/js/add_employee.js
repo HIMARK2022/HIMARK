@@ -188,7 +188,6 @@
 		AddModifyService.addUser(userInfo,function(result){
 			$('.modal-wrapper2').removeClass('open');
 			
-			$(".modal").find("input").val("");
 			
 			if(userInfo.dept_id.length == 3){
 				showTeamMember(userInfo.dept_id);
@@ -232,8 +231,7 @@
 		
 		
 		$('#ModPos').val(pos_id).prop("selected",true);
-		
-		
+	
 			if(flag =="인사연동"){				
 				
 				$('#howIn1').prop("checked",true);
