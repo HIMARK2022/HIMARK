@@ -26,7 +26,7 @@
 	
 	$('.create-content-detail').on('click', function () {
 	    $('.modal-wrapper2').removeClass('open');
-	    $('#createForm')[0].reset();
+	  
 	    return false;
 	});
 	$('.mod-content-detail').on('click', function() {
@@ -188,6 +188,7 @@
 		AddModifyService.addUser(userInfo,function(result){
 			$('.modal-wrapper2').removeClass('open');
 			
+			//$(".modal").find("input").val("");
 			
 			if(userInfo.dept_id.length == 3){
 				showTeamMember(userInfo.dept_id);
@@ -204,7 +205,7 @@
 	});
 	
 	function modInfo(head, user_name , pos,pos_id , birth , sex , email , phone , user_id ,dept_id , flag) {
-			
+			  $('#createForm')[0].reset();
 		$('#modForm')[0].reset();
 		
 		$('input[name=ModBelong]').attr('value', head);
